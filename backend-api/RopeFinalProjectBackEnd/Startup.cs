@@ -63,6 +63,8 @@ namespace RopeFinalProjectBackEnd
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(MyAllowSpecificOrigins);
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
