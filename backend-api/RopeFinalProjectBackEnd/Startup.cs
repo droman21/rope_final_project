@@ -35,7 +35,7 @@ namespace RopeFinalProjectBackEnd
                 o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
-
+            services.AddDbContext<ReleaseTasksAPIContext>();
             services.AddScoped<IRepository<Employee>, EmployeeRepository>();
             services.AddScoped<IRepository<Priority>, PriorityRepository>();
             services.AddScoped<IRepository<ReleaseTask>, ReleaseTaskRepository>();
