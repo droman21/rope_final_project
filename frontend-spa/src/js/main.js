@@ -6,18 +6,22 @@ import ReleaseTasks from './components/ReleaseTasks';
 // import ReleaseTaskEdit from './components/ReleaseTaskEdit';
 // import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
 
+const appDiv = document.querySelector('.app');
 
 export default function pagebuild(){
-    header()
-    footer()
-    home()
-    showReleaseTasks()
-    showEmployeeList()
-    showStatus()
-    showPriority()    
+    // header()
+    // footer()
+    // home()
+    showReleaseTasks();
+    // showEmployeeList()
+    // showStatus()
+    // showPriority()    
 }
+
+
 function showReleaseTasks() {
-    fetch()
+    console.log(appDiv);
+    fetch("https://localhost:44302/api/ReleaseTask")
         .then(response => response.json())
         .then(releaseTasks => {
             appDiv.innerHTML = ReleaseTasks(releaseTasks);
@@ -25,14 +29,14 @@ function showReleaseTasks() {
         .catch(err => console.log(err))
 }
 
-function showEmployeeList() {
-    fetch()
-        .then(response => response.json())
-        .then(employees => {
-            appDiv.innerHTML = Employees(employees);
-        })
-        .catch(err => console.log(err))
-}
+// function showEmployeeList() {
+//     fetch()
+//         .then(response => response.json())
+//         .then(employees => {
+//             appDiv.innerHTML = Employees(employees);
+//         })
+//         .catch(err => console.log(err))
+// }
 // function showReleaseTask_ByPriority() {
 //     const priorityReleaseTask = document.querySelectorAll(".releaseTask__item");
 //     priorityReleaseTask.forEach(element => {
