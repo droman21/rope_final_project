@@ -28,28 +28,35 @@ namespace RopeFinalProjectBackEnd.Controllers
         }
 
         // GET: api/ReleaseTask/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = "GetReleaseTask")]
+        public ReleaseTask Get(int id)
         {
-            return "value";
+            return releaseTasksRepo.GetById(id);
         }
 
         // POST: api/ReleaseTask
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IEnumerable<ReleaseTask> Post([FromBody] ReleaseTask value)
         {
+            releaseTasksRepo.Create(value);
+            return releaseTasksRepo.GetAll();
         }
 
         // PUT: api/ReleaseTask/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IEnumerable<ReleaseTask> Put(int id, [FromBody] ReleaseTask value)
         {
+            releaseTasksRepo.Update(value);
+            return releaseTasksRepo.GetAll();
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IEnumerable<ReleaseTask> Delete(int id)
         {
+            var releaseTask = releaseTasksRepo.GetById(id);
+            releaseTasksRepo.Delete(releaseTask);
+            return releaseTasksRepo.GetAll();
         }
     }
 }
