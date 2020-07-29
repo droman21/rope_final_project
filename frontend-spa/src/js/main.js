@@ -1,7 +1,7 @@
 // import Employee from './components/Employee';
 // import Priority from './components/Priority';
 // import Status from './components/Status';
-import ApiActions from './api/apiActions';
+import apiActions from './api/apiActions';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
 // import ReleaseTaskEdit from './components/ReleaseTaskEdit';
@@ -36,10 +36,12 @@ function showReleaseTasks() {
         .then(response => response.json())
         .then(releaseTasks => {
             appDiv.innerHTML = ReleaseTasks(releaseTasks);
-            console.log("Fetched release task data")
+            console.log('before releasebutton call');
+            releaseTaskNameButton();
+            console.log("after releasebutton call - Fetched release task data");
         })
         .catch(err => console.log(err))
-        releaseTaskNameButton();
+        console.log('after shoeREleaseTasks fetch');
 }
 function releaseTaskNameButton() {
     const releaseTaskItem = document.querySelectorAll('.releaseTask__info');
@@ -48,12 +50,12 @@ function releaseTaskNameButton() {
         element.addEventListener('click', function () {
             console.log("I'm in the event listener HELLO WORLD");
             const releaseTaskId = element.id;
+            console.log('releasetaskID='+releaseTaskId);
             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
             const releaseTaskCallback = releaseTask => {
                 appDiv.innerHTML = ReleaseTask(releaseTask);
             };
-            apiActions.getRequest(releaseTaskCallback, releaseTaskEndpoint);
-
+            apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         })
     })
 }
