@@ -1,0 +1,15 @@
+table, th, td {
+    border: 1px solid black;
+    /* border-collapse: collapse; */
+}
+
+.table-2 {
+    height: 267px;
+    max-height: 267px;
+     display: block; 
+}
+
+
+.floatLeft { width: 50%; float: left; }
+.floatRight {width: 50%; float: right; }
+.container { overflow: hidden; }
