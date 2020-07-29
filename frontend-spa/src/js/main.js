@@ -1,4 +1,3 @@
-
 import Employee from './components/Employee';
 import Employees from './components/Employees';
 import Priority from './components/Priority';
@@ -7,23 +6,33 @@ import ReleaseTasks from './components/ReleaseTasks';
 // import ReleaseTask from './components/ReleaseTask';
 // import ReleaseTaskEdit from './components/ReleaseTaskEdit';
 // import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
+// import Header from './components/Header';
+// import Footer from './components/Footer';
 
 const appDiv = document.querySelector('.app');
 
-export default function pagebuild() {
+export default function pagebuild(){
     // header()
     // footer()
     // home()
     showReleaseTasks();
+
     //showEmployeeList()
     // showStatus()
     // showPriority()    
 }
 
-
+// function header() {
+//     const header = document.querySelector('.header');
+//     header.innerHTML = Header();
+// }
+// function footer() {
+//     const footerElement = document.querySelector('.footer');
+//     footerElement.innerHTML = Footer();
+// }
 function showReleaseTasks() {
     console.log(appDiv);
-    fetch("https://localhost:44302/api/releaseTask")
+    fetch("https://localhost:44302/api/ReleaseTask")
         .then(response => response.json())
         .then(releaseTasks => {
             appDiv.innerHTML = ReleaseTasks(releaseTasks);
@@ -40,6 +49,7 @@ function showReleaseTasks() {
 //         })
 //         .catch(err => console.log(err))
 // }
+
 function releaseTaskNameButton() {
     const releaseTask = document.querySelectorAll('.releaseTask');
     releaseTask.forEach(element => {
@@ -61,6 +71,7 @@ function releaseTaskNameButton() {
         })
     })
 }
+
 // function showReleaseTask_ByPriority() {
 //     const priorityReleaseTask = document.querySelectorAll(".releaseTask__item");
 //     priorityReleaseTask.forEach(element => {
@@ -74,3 +85,4 @@ function releaseTaskNameButton() {
 //     })
 
 // }
+

@@ -1,0 +1,38 @@
+body {
+    font-family: Arial,FreeSans,Helvetica,sans-serif;
+    background-color: rgb(218, 216, 216);
+}
+table, th, td {
+    border: 1px solid black;
+    /* border-collapse: collapse; */
+}
+
+.table-2 {
+    height: 267px;
+    max-height: 267px;
+     display: block;
+    background-color: white;
+}
+.table-2_header{
+    background-color: rgb(219, 219, 106);
+}
+
+.floatLeft { width: 50%; float: left; }
+.floatRight {width: 50%; float: right; }
+.container { overflow: hidden; }
+
+.table_header{
+    background-color: rgb(21, 21, 146);
+    color: white;
+}
+.table1__rowFont{
+    background-color: white;
+}
+.header{
+    font-size: 20px;
+    font-weight: bold;
+    background-color: teal;
+    color: white;
+    opacity: 0.7
+    
+}
