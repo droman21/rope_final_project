@@ -17,7 +17,7 @@ export default function pagebuild(){
     // footer()
     // home()
     showReleaseTasks();
-    releaseTaskNameButton();
+    //releaseTaskNameButton();
     // showStatus()
     // showPriority()    
 }
@@ -31,19 +31,22 @@ function header() {
 //     footerElement.innerHTML = Footer();
 // }
 function showReleaseTasks() {
-    console.log(appDiv);
+    console.log("In the show release task");
     fetch("https://localhost:44302/api/releaseTask")
         .then(response => response.json())
         .then(releaseTasks => {
             appDiv.innerHTML = ReleaseTasks(releaseTasks);
+            console.log("Fetched release task data")
         })
         .catch(err => console.log(err))
+        releaseTaskNameButton();
 }
 function releaseTaskNameButton() {
-    const releaseTaskItem = document.querySelector('.releaseTask__name');
-    console.log("release Task item ="+releaseTaskItem)
+    const releaseTaskItem = document.querySelectorAll('.releaseTask__info');
+    console.log("In the Release Task Name Button", releaseTaskItem);
     releaseTaskItem.forEach(element => {
         element.addEventListener('click', function () {
+            console.log("I'm in the event listener HELLO WORLD");
             const releaseTaskId = element.id;
             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
             const releaseTaskCallback = releaseTask => {
