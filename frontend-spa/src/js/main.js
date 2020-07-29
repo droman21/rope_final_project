@@ -15,7 +15,7 @@ export default function pagebuild() {
     // footer()
     // home()
     showReleaseTasks();
-    // showEmployeeList()
+    //showEmployeeList()
     // showStatus()
     // showPriority()    
 }
@@ -27,17 +27,39 @@ function showReleaseTasks() {
         .then(response => response.json())
         .then(releaseTasks => {
             appDiv.innerHTML = ReleaseTasks(releaseTasks);
+            releaseTaskName__Button();
         })
         .catch(err => console.log(err))
 }
 
-function showEmployeeList() {
-    fetch("https://localhost:44302/api/employee")
-        .then(response => response.json())
-        .then(employees => {
-            appDiv.innerHTML = Employees(employees);
+// function showEmployeeList() {
+//     fetch("https://localhost:44302/api/employee")
+//         .then(response => response.json())
+//         .then(employees => {
+//             appDiv.innerHTML = Employees(employees);
+//         })
+//         .catch(err => console.log(err))
+// }
+function releaseTaskNameButton() {
+    const releaseTask = document.querySelectorAll('.releaseTask');
+    releaseTask.forEach(element => {
+        element.addEventListener('click', function () {
+            const releaseTaskID = element.id;
+            const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskID}`;
+            const releaseTaskCallback = () => {
+                apiActions.getRequest(
+                    `https://localhost:44302/api/releaseTask/${releaseTaskID}`,
+                    releaseTask => {
+                        appDiv.innerHTML = ReleaseTask(releaseTask);
+                    }
+                )
+            }            
+            // const releaseTaskCallback = releaseTask => {
+            //     appDiv.innerHTML = ReleaseTask(releaseTask);
+            // };
+            // apiActions.getRequest(releaseTaskCallback, releaseTaskEndpoint);
         })
-        .catch(err => console.log(err))
+    })
 }
 // function showReleaseTask_ByPriority() {
 //     const priorityReleaseTask = document.querySelectorAll(".releaseTask__item");

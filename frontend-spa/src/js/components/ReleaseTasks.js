@@ -3,12 +3,12 @@ export default function ReleaseTasks(releaseTasks) {
         <h1><u>Release Tasks</h1></u>
             ${releaseTasks.map(releaseTask => {
         return `
-            <div id="releaseTasks"
+            <div id="releaseTask">
                 <ul>
                 <article>
-                <a class="releaseTask__anchor">
+                <a class="releaseTask__name__anchor" id="${releaseTask.id}" href="#">
                     <h2 class='releaseTask__name'>${releaseTask.name}</h2> 
-                    </a>
+                </a>
                     </article>
                 </ul>
             </div>
