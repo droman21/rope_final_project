@@ -1,5 +1,4 @@
-import Employee from "./Employee";
-
+//import Employee from "./Employee";
 export default function ReleaseTaskEdit(releaseTask, employeeId) {
     return `
         <input class="edit-releaseTask__id" type="hidden" value="${releaseTask.id}">
@@ -15,6 +14,6 @@ export default function ReleaseTaskEdit(releaseTask, employeeId) {
             `
     }).join("")}
         </select>
-        <button class="edit-releaseTask__button"> Save Your Changes </button>
+        <button class="edit-releaseTask__submit"> Save Your Changes </button>
     `
 }
