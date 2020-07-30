@@ -14,13 +14,14 @@ export default function ReleaseTasks(releaseTasks) {
                         <th>Assigned To</th>
                     </tr>
         ${releaseTasks.map(releaseTask => {
+        var dueTime = FormatTime(releaseTask.currentDueTime);
         return `
             <tr class="table1__rowFont">
                 <td>${releaseTask.id}</td>
                 <td><a href="#" class="releaseTask__info" id="${releaseTask.id}">${releaseTask.name}</a></td>
                 <td>${releaseTask.currentStatusID}</td>
                 <td>${releaseTask.currentPriorityID}</td>
-                <td>${releaseTask.currentDueTime}</td>
+                <td>${dueTime}</td>
                 <td>${releaseTask.assignedEmployeeID}</td>
             </tr>
                 `
@@ -30,4 +31,9 @@ export default function ReleaseTasks(releaseTasks) {
         </div>
         </section>
     `
+}
+
+function FormatTime(time){
+    var date = new Date(time);
+    return (date.getHours()<10?'0':'') + date.getHours() + ":" +  (date.getMinutes()<10?'0':'') + date.getMinutes() + ":" + (date.getSeconds()<10?'0':'') + date.getSeconds();
 }
