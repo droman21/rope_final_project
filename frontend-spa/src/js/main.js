@@ -57,22 +57,88 @@ function releaseTaskNameButton() {
             const releaseTaskId = element.id;
             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
             const releaseTaskCallback = releaseTask => {
-                //appDiv.innerHTML = ReleaseTask(releaseTask);
-                //getStatusName(releaseTask.currentStatusID);
+
+                 let statusName = 'ron';
+                 console.log('1-before fetch statusName='+statusName);
+                 fetch(`https://localhost:44302/api/status/${releaseTask.currentStatusID}`)
+                 .then(response => response.json())
+                 .then(console.log('2-second then'))
+                 .then(stname => {
+                     console.log('3-third then');
+                     console.log(stname.name);
+                     statusName = stname.name;
+                     console.log("4=statusName="+statusName);
+                 })
+                 .then(console.log('5-fourth then, statusName='+statusName))
+                 .catch(err => console.log(err))
+                 console.log('6-after fetch, statusName='+statusName);
+
+                // console.log('2-before request declaration');
+                // const request = async () => {
+                //     console.log('4-in request function');
+                //     const response1 = await fetch(`https://localhost:44302/api/status/${releaseTask.currentStatusID}`);
+                //     const json1 = await response1.json();
+                //     console.log('5json1.name='+json1.name);
+                //     statusName = json1.name;
+                //     console.log('6statusName1='+statusName);
+                // }
+                // console.log('3-after request declaration, before request call');
+                // let test1 = request();
+                // console.log('7-after request call, test1='+test1);
+                // console.log(test1);
+                
+                // console.log('8-before getStatusName2 call');
+                // let test2 = getStatusName2(releaseTask.currentStatusID);
+                // console.log('12-after getStatusName2 call');
+                // console.log('13-StatusName2='+statusName);
+                // console.log('14-test2='+test2);
+                // console.log(test2);
+                // console.log('15-test2.name='+test2.name);
+
+                // console.log('100-before promise declaration');
+                // const test3 = new Promise((resolve, reject) => {
+                //     console.log('101-in promise');
+                //     let test33 = getStatusName2(releaseTask.currentStatusID);
+                //     console.log('102-after getStatusName2 call');
+                //     console.log('103-StatusName2='+statusName);
+                //     console.log('104-test2='+test33);
+                //     console.log(test33);
+                //     console.log('105-test2.name='+test33.name);
+    
+                // })
+                // console.log('106-before promise call');
+                // let stname3 = test3();
+                // console.log('107-after promise call');
+                // console.log('108-stname3='+stname3);
+
                 appDivRight.innerHTML = ReleaseTask(releaseTask);
+                console.log('after ReleaseTask display call');
+
             };
             apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         })
     })
 }
+//const request = async () => {
+ async function getStatusName2(statusId){
+     console.log('9-in get statusnmae');
+     const response1 =  await fetch(`https://localhost:44302/api/status/${statusId}`);
+     const json1 =   await response1.json();
+     console.log('10 - json1.name='+json1.name);
+     console.log(json1);
+     let statusName = json1.name;
+     console.log('11 - statusName='+statusName);
+     return statusName;
+ }
 
-function getStatusName(statusId){
-    const statusEndpoint = `https://localhost:44302/api/status/${statusId}`;
-    fetch(`https://localhost:44302/api/status/${statusId}`)
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+
+async function getStatusName(statusId){
+    const response = await fetch(`https://localhost:44302/api/status/${statusId}`, {});
+    const json = await response.json();
+    console.log(json.name);
+    return json.name;
 }
+
 
 // function showEmployeeList() {
 //     fetch()
