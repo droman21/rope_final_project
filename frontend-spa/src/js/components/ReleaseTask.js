@@ -2,7 +2,7 @@ export default function ReleaseTask(releaseTask) {
 
     
     return `
-    <h1>${releaseTask.name}</h1>
+    <h1><a href="#" class="edit__releaseTask" id="${releaseTask.id}">${releaseTask.name}</a></h1>
     <ul class="releaseTask__info">
         <li class="releaseTask__id" >ID: ${releaseTask.id}</li>
         <li class="releaseTask__name" id="${releaseTask.id}">NAME: ${releaseTask.name}</li>

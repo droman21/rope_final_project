@@ -74,6 +74,58 @@ function getStatusName(statusId){
     .catch(err => console.log(err))
 }
 
+appDiv.addEventListener('click', function () {
+    if (event.target.classList.contains('.edit-releaseTask')) {
+        const ReleaseTaskEdit = document.querySelector('.edit-rleleaseTask');
+        const releaseTaskId = event.target.parentElement.querySelector('.edit-album__button').id;
+        const artistId = event.target.parentElement.querySelector('.artistId').value;
+        apiActions.getRequest(
+            `https://localhost:44313/api/album/${albumId}`,
+            albumEdit => {
+                editAlbumSection.innerHTML = AlbumEditSection(artistId, albumEdit);
+            }
+        )
+    }
+})
+
+// appDiv.addEventListener("click", function () {
+//     if (event.target.classList.contains('edit-album__submit')) {
+//         const albumId = event.target.parentElement.querySelector('.edit-album__albumId').value;
+//         const albumName = event.target.parentElement.querySelector('.edit-album__albumName').value;
+//         const imageName = event.target.parentElement.querySelector('.edit-album__albumImageName').value;
+//         const releaseYear = event.target.parentElement.querySelector('.edit-album__releaseYear').value;
+//         const recordLabel = event.target.parentElement.querySelector('.edit-album__recordLabel').value;
+//         const genre = event.target.parentElement.querySelector('.edit-album__albumGenre').value;
+//         const artistId = event.target.parentElement.querySelector('.edit-album__artistId').value;
+
+//         const albumEdit = {
+//             id: albumId,
+//             Name: albumName,
+//             ImageName: imageName,
+//             ReleaseYear: releaseYear,
+//             RecordLabel: recordLabel,
+//             Genre: genre,
+//             ArtistId: artistId
+//         };
+
+//         const artistCallback = () => {
+//             apiActions.getRequest(
+//                 `https://localhost:44313/api/artist/${artistId}`,
+//                 artist => {
+//                     appDiv.innerHTML = Artist(artist);
+//                     albumNameButton();
+//                 })
+//         }
+
+//         apiActions.putRequest(
+//             `https://localhost:44313/api/album/${albumId}`,
+//             albumEdit,
+//             artistCallback
+//         )
+//     }
+// })
+
+
 // function showEmployeeList() {
 //     fetch()
 //         .then(response => response.json())
