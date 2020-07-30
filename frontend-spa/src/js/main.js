@@ -17,9 +17,8 @@ const appDivRight = document.querySelector('.appRight');
 export default function pagebuild(){
     header()
     // footer()
-    navHome()
+    //navHome()
     showReleaseTasks();
-    //releaseTaskNameButton();
     // showStatus()
     // showPriority()    
 }
@@ -36,40 +35,43 @@ function header() {
 function navHome() {
     const homeButton = document.querySelector('.nav__home');
     homeButton.addEventListener('click', function () {
+        console.log('navhome');
         appDiv.innerHTML = showReleaseTasks();
     })
 }
 
 function showReleaseTasks() {
-    console.log("In the show release task");
     fetch("https://localhost:44302/api/releaseTask")
         .then(response => response.json())
         .then(releaseTasks => {
             //appDiv.innerHTML = ReleaseTasks(releaseTasks);
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-            console.log('before releasebutton call');
             releaseTaskNameButton();
-            console.log("after releasebutton call - Fetched release task data");
         })
         .catch(err => console.log(err))
-        console.log('after shoeREleaseTasks fetch');
 }
 function releaseTaskNameButton() {
     const releaseTaskItem = document.querySelectorAll('.releaseTask__info');
-    console.log("In the Release Task Name Button", releaseTaskItem);
     releaseTaskItem.forEach(element => {
         element.addEventListener('click', function () {
-            console.log("I'm in the event listener HELLO WORLD");
             const releaseTaskId = element.id;
-            console.log('releasetaskID='+releaseTaskId);
             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
             const releaseTaskCallback = releaseTask => {
                 //appDiv.innerHTML = ReleaseTask(releaseTask);
+                //getStatusName(releaseTask.currentStatusID);
                 appDivRight.innerHTML = ReleaseTask(releaseTask);
             };
             apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         })
     })
+}
+
+function getStatusName(statusId){
+    const statusEndpoint = `https://localhost:44302/api/status/${statusId}`;
+    fetch(`https://localhost:44302/api/status/${statusId}`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
 }
 
 // function showEmployeeList() {

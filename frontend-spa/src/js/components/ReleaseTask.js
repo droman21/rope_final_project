@@ -1,4 +1,6 @@
 export default function ReleaseTask(releaseTask) {
+
+    
     return `
     <h1>${releaseTask.name}</h1>
     <ul class="releaseTask__info">
@@ -12,5 +14,7 @@ export default function ReleaseTask(releaseTask) {
         <li class="releaseTask__lastModifiedDate">LAST-MODIFIED: ${releaseTask.lastModifiedDate}</li>
         <li class="releaseTask__assignedEmployeeId">ASSIGNED-TO: ${releaseTask.assignedEmployeeID}</li>
     </ul>
+
+
     `
 }
