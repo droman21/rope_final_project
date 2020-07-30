@@ -6,10 +6,13 @@ table, th, td {
     border: 1px solid black;
     /* border-collapse: collapse; */
 }
-
+.table-1{
+    margin-left: 5rem;
+}
 .table-1 tr:hover{
     background-color: yellow;
 }
+
 .table-1 tr:first-child:hover{
     background-color:rgb(21, 21, 146);
 }
@@ -23,8 +26,11 @@ table, th, td {
     background-color: rgb(219, 219, 106);
 }
 
-.floatLeft { width: 65%; float: left; }
-.floatRight {width: 50%; float: right; }
+/* .floatLeft { width: 65%; float: left; } */
+.floatLeft { width: 85%; float: left; }
+/* .floatRight {width: 50%; float: right; } */
+.floatRight {width: 45%; float: right; }
+
 .container { overflow: hidden; }
 
 .table_header{

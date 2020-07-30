@@ -10,17 +10,17 @@ export default function ReleaseTasks(releaseTasks) {
         <div class="container">
             <div class="floatLeft">
                 <table class="table-1" style="width:100%; float:left">        
-                    <tr class="table_header">
-                        <th class="table_headerFont">ID</th>
-                        <th>Task Name</th>
-                        <th>Status</th>
-                        <th>Priority</th>
-                        <th>DueTime</th>
-                        <th>Assigned To</th>
+                    <tr  class="table_header">
+                        <th style="width:200px" class="table_headerFont">ID</th>
+                        <th style="width:300px">Task Name</th>
+                        <th style="width:400px">Status</th>
+                        <th style="width:400px">Priority</th>
+                        <th style="width:400px">DueTime</th>
+                        <th style="width:400px">Assigned To</th>
                     </tr>
         ${releaseTasks.map(releaseTask => {
         return `
-            <tr class="table1__rowFont">
+             <tr class="table1__rowFont" onclick="document.table1__rowFont.style.backgroundColor = 'yellow';">
                 <td>${releaseTask.id}</td>
                 <td><a href="#" class="releaseTask__info" id="${releaseTask.id}">${releaseTask.name}</a></td>
                 <td>${releaseTask.currentStatusID}</td>
