@@ -7,6 +7,12 @@ table, th, td {
     /* border-collapse: collapse; */
 }
 
+.table-1 tr:hover{
+    background-color: yellow;
+}
+.table-1 tr:first-child:hover{
+    background-color:rgb(21, 21, 146);
+}
 .table-2 {
     height: 267px;
     max-height: 267px;
