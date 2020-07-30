@@ -11,11 +11,13 @@ import Header from './components/Header';
 
 
 const appDiv = document.querySelector('.app');
+const appDivLeft = document.querySelector('.appLeft');
+const appDivRight = document.querySelector('.appRight');
 
 export default function pagebuild(){
     header()
     // footer()
-    // home()
+    navHome()
     showReleaseTasks();
     //releaseTaskNameButton();
     // showStatus()
@@ -30,12 +32,21 @@ function header() {
 //     const footerElement = document.querySelector('.footer');
 //     footerElement.innerHTML = Footer();
 // }
+
+function navHome() {
+    const homeButton = document.querySelector('.nav__home');
+    homeButton.addEventListener('click', function () {
+        appDiv.innerHTML = showReleaseTasks();
+    })
+}
+
 function showReleaseTasks() {
     console.log("In the show release task");
     fetch("https://localhost:44302/api/releaseTask")
         .then(response => response.json())
         .then(releaseTasks => {
-            appDiv.innerHTML = ReleaseTasks(releaseTasks);
+            //appDiv.innerHTML = ReleaseTasks(releaseTasks);
+            appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
             console.log('before releasebutton call');
             releaseTaskNameButton();
             console.log("after releasebutton call - Fetched release task data");
@@ -53,7 +64,8 @@ function releaseTaskNameButton() {
             console.log('releasetaskID='+releaseTaskId);
             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
             const releaseTaskCallback = releaseTask => {
-                appDiv.innerHTML = ReleaseTask(releaseTask);
+                //appDiv.innerHTML = ReleaseTask(releaseTask);
+                appDivRight.innerHTML = ReleaseTask(releaseTask);
             };
             apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         })
