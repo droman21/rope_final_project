@@ -17,7 +17,7 @@ table, th, td {
     background-color: rgb(219, 219, 106);
 }
 
-.floatLeft { width: 50%; float: left; }
+.floatLeft { width: 65%; float: left; }
 .floatRight {width: 50%; float: right; }
 .container { overflow: hidden; }
 
