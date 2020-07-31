@@ -26,7 +26,7 @@ namespace RopeFinalProjectBackEnd.Repositories
             db.SaveChanges();
         }
 
-        public T GetById(int id)
+        public virtual T GetById(int id)
         {
             return db.Set<T>().Find(id);
         }
@@ -42,7 +42,7 @@ namespace RopeFinalProjectBackEnd.Repositories
             db.SaveChanges();
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             return db.Set<T>().ToList();
         }
