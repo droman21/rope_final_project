@@ -23,6 +23,7 @@ namespace RopeFinalProjectBackEnd.Repositories
             var someReleaseTask = db.ReleaseTasks.Where(o => o.ID == id)
                 .Include("Status")
                 .Include("Priority")
+                .Include("Comments")
                 .Include("Employee").FirstOrDefault();
             return someReleaseTask;
         }
