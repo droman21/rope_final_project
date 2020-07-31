@@ -6,10 +6,17 @@ table, th, td {
     border: 1px solid black;
     /* border-collapse: collapse; */
 }
-
 .table-1 tr:hover{
     background-color: yellow;
 }
+#app td a.appLeft {
+    background-color: white;
+}
+#app td a:active,
+#app td a:focus{
+    background-color: yellow;
+}
+
 .table-1 tr:first-child:hover{
     background-color:rgb(21, 21, 146);
 }
@@ -25,6 +32,7 @@ table, th, td {
 
 .floatLeft { width: 65%; float: left; }
 .floatRight {width: 50%; float: right; }
+
 .container { overflow: hidden; }
 
 .table_header{
@@ -41,4 +49,17 @@ table, th, td {
     color: white;
     opacity: 0.7
     
+}
+tbody {
+    background-color: whitesmoke;
+}
+
+.appLeft h1{
+    border-style: solid;
+margin-right: 36%;
+}
+
+.table-2__header{
+    font-size: 40px;
+    margin-left: 10%;
 }

@@ -4,7 +4,7 @@
 import apiActions from './api/apiActions';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
-// import ReleaseTaskEdit from './components/ReleaseTaskEdit';
+import ReleaseTaskEdit from './components/ReleaseTaskEdit';
 // import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
 import Header from './components/Header';
 // import Footer from './components/Footer';
@@ -13,6 +13,7 @@ import Header from './components/Header';
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
+
 
 export default function pagebuild() {
     header()
@@ -77,76 +78,42 @@ function getStatusName(statusId) {
         .catch(err => console.log(err))
 }
 
-appDiv.addEventListener('click', function () {
-    if (event.target.classList.contains('.edit-releaseTask')) {
-        const ReleaseTaskEdit = document.querySelector('.edit-rleleaseTask');
-        const releaseTaskId = event.target.parentElement.querySelector('.edit-album__button').id;
-        const artistId = event.target.parentElement.querySelector('.artistId').value;
+appDivRight.addEventListener('click', function () {
+    console.log("first")
+    console.log(event)
+    if (event.target.classList.contains('edit__releaseTaskButton')) {
+        console.log("inside edit click")
+        const ReleaseTaskEditSection = document.querySelector(".releaseTask__detailsInfo");
+        const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
+        console.log(releaseTaskId)
         apiActions.getRequest(
-            `https://localhost:44313/api/album/${albumId}`,
-            albumEdit => {
-                editAlbumSection.innerHTML = AlbumEditSection(artistId, albumEdit);
+            `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
+            releaseTaskEdit => {
+                ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit);
             }
         )
     }
 })
-
-// appDiv.addEventListener("click", function () {
-//     if (event.target.classList.contains('edit-album__submit')) {
-//         const albumId = event.target.parentElement.querySelector('.edit-album__albumId').value;
-//         const albumName = event.target.parentElement.querySelector('.edit-album__albumName').value;
-//         const imageName = event.target.parentElement.querySelector('.edit-album__albumImageName').value;
-//         const releaseYear = event.target.parentElement.querySelector('.edit-album__releaseYear').value;
-//         const recordLabel = event.target.parentElement.querySelector('.edit-album__recordLabel').value;
-//         const genre = event.target.parentElement.querySelector('.edit-album__albumGenre').value;
-//         const artistId = event.target.parentElement.querySelector('.edit-album__artistId').value;
-
-//         const albumEdit = {
-//             id: albumId,
-//             Name: albumName,
-//             ImageName: imageName,
-//             ReleaseYear: releaseYear,
-//             RecordLabel: recordLabel,
-//             Genre: genre,
-//             ArtistId: artistId
-//         };
-
-//         const artistCallback = () => {
-//             apiActions.getRequest(
-//                 `https://localhost:44313/api/artist/${artistId}`,
-//                 artist => {
-//                     appDiv.innerHTML = Artist(artist);
-//                     albumNameButton();
-//                 })
+// function changePriorityColor() {
+    
+//     var priorityThreshold = ${priority.id },
+//         priorityColor = document.querySelector('.priorityLevel');
+    
+//     function changeColor(val) {
+//         var color = "green";
+    
+//         if (val = 3) {
+//             color = "yellow"
 //         }
-
-//         apiActions.putRequest(
-//             `https://localhost:44313/api/album/${albumId}`,
-//             albumEdit,
-//             artistCallback
-//         )
+//         if (val = 2) {
+//             color = "orange";
+//         }
+//         if (val = 1) {
+//             color = "red";
+//         }
+    
+//         priorityColor.style.color = color;
 //     }
-// })
-
-
-// function showEmployeeList() {
-//     fetch()
-//         .then(response => response.json())
-//         .then(employees => {
-//             appDiv.innerHTML = Employees(employees);
-//         })
-//         .catch(err => console.log(err))
 // }
-// function showReleaseTask_ByPriority() {
-//     const priorityReleaseTask = document.querySelectorAll(".releaseTask__item");
-//     priorityReleaseTask.forEach(element => {
-//         element.addEventListener('click', function () {
-//             const priorityReleaseTaskId = element.id;
-//             fetch()
-//                 .then(response => response.json())
-//                 .then( => appDiv.innerHTML = )
-//                 .catch(err => console.log(err))
-//         })
-//     })
 
-// }
+// changeColor(colorThreshold);
