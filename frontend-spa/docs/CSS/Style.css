@@ -25,6 +25,7 @@ table, th, td {
 
 .floatLeft { width: 65%; float: left; }
 .floatRight {width: 50%; float: right; }
+
 .container { overflow: hidden; }
 
 .table_header{
@@ -45,10 +46,12 @@ table, th, td {
 tbody {
     background-color: whitesmoke;
 }
+
 .appLeft h1{
     border-style: solid;
 margin-right: 36%;
 }
+
 .table-2__header{
     margin-left: 20%;
 }
