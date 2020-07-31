@@ -1,7 +1,7 @@
 export default function ReleaseTask(releaseTask) {
     return `
     <h1 class="table-2__header"  id="${releaseTask.id}">${releaseTask.name}</h1>
-    <ul class="releaseTask__info">
+    <ul class="releaseTask__detailsInfo">
         <li class="releaseTask__currentDueTime"><u><b>DUE-TIME:</b></u> ${releaseTask.currentDueTime}</li>
         <br>
         <li class="releaseTask__id" ><u><b>ID:</b></u> ${releaseTask.id}</li>

@@ -8,10 +8,6 @@ export default function ReleaseTaskEdit(releaseTask, employeeId) {
         <input class="edit-releaseTask__currentPriorityId" type="hidden" value="${releaseTask.currentPriorityId}">
         <input class="edit-releaseTask__currentDueTime" type="hidden" value="${releaseTask.currentDueTime}">
         <select class="edit-releaseTask__assignedEmployeedId" type="dropdown" value="${releaseTask.assignedEmployeeId}">
-        ${Employees.map(employee => {
-        return `
-            <option class="edit-releaseTask__assignedEmployeeId" value="${employee.assignedEmployeeId}">${employee.name}</option>
-            `
     }).join("")}
         </select>
         <button class="edit-releaseTask__submit"> Save Your Changes </button>
