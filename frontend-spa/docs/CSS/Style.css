@@ -65,3 +65,11 @@ tbody {
 .appRight {
     background-color: rgb(173, 204, 209);
 }
+.add__releaseTaskButton{
+    color: white;
+    background-color: red;
+}
+.edit__releaseTaskButton{
+    color: black;
+    background-color: chartreuse;
+}
