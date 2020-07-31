@@ -20,7 +20,10 @@ namespace RopeFinalProjectBackEnd.Repositories
 
         public override ReleaseTask GetById(int id)
         {
-            return db.ReleaseTasks.Where(o => o.ID == id).Include("Status").FirstOrDefault();
+            var StatusName = db.ReleaseTasks.Where(o => o.ID == id).Include("Status").FirstOrDefault();
+            var PriorityName = db.ReleaseTasks.Where(o => o.ID == id).Include("Priority").FirstOrDefault();
+            var EmployeeName = db.ReleaseTasks.Where(o => o.ID == id).Include("Employee").FirstOrDefault();
+            return StatusName;
         }
 
     }
