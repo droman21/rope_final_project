@@ -64,12 +64,16 @@ tbody {
 }
 .appRight {
     background-color: rgb(173, 204, 209);
+    border-radius: 8px;
 }
 .add__releaseTaskButton{
     color: white;
     background-color: red;
+    border-radius: 6px;
 }
 .edit__releaseTaskButton{
     color: black;
+    font-weight: bold;
     background-color: chartreuse;
+    border-radius: 8px;
 }
