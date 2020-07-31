@@ -2,7 +2,7 @@ export default function ReleaseTask(releaseTask) {
 
     
     return `
-    <h1><a href="#" class="edit__releaseTask" id="${releaseTask.id}">${releaseTask.name}</a></h1>
+    <h1 class="table-2__header"><a href="#" class="edit__releaseTask" id="${releaseTask.id}">${releaseTask.name}</a></h1>
     <ul class="releaseTask__info">
         <li class="releaseTask__id" >ID: ${releaseTask.id}</li>
         <li class="releaseTask__name" id="${releaseTask.id}">NAME: ${releaseTask.name}</li>
@@ -14,7 +14,7 @@ export default function ReleaseTask(releaseTask) {
         <li class="releaseTask__lastModifiedDate">LAST-MODIFIED: ${releaseTask.lastModifiedDate}</li>
         <li class="releaseTask__assignedEmployeeId">ASSIGNED-TO: ${releaseTask.assignedEmployeeID}</li>
     </ul>
-
+<button class="edit__releaseTaskButton" id="${releaseTask.id}">Edit</button>
 
     `
 }
