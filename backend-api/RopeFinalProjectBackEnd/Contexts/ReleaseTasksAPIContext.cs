@@ -19,8 +19,8 @@ namespace RopeFinalProjectBackEnd.Contexts
         {
             var connectionString = "Server=(localdb)\\mssqllocaldb;Database=ReleaseTasks_Database;Trusted_Connection=True;";
 
-            optionsBuilder.UseSqlServer(connectionString)
-                          .UseLazyLoadingProxies();
+            optionsBuilder.UseSqlServer(connectionString);
+                          //.UseLazyLoadingProxies();
 
             base.OnConfiguring(optionsBuilder);
         }
