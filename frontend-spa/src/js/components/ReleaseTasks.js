@@ -1,9 +1,13 @@
 export default function ReleaseTasks(releaseTasks) {
     return `
         <h1><u>Release Tasks123</h1></u>
+        <br>
+        <section class="releaseTask__buttons">
+        <button><a href="#" class="add-releaseTask__button"><b>New Task</b></a></button>
+        <button><a href="#" class="edit-releaseTask__button"><em>Change A Task</em></a></button>
+        </section>
         <section>
-        <div class="container">
-            <div class="floatLeft">
+            <div class="floatLeft-container">
                 <table class="table-1" style="width:100%; float:left">        
                     <tr class="table_header">
                         <th class="table_headerFont">ID</th>
@@ -28,7 +32,6 @@ export default function ReleaseTasks(releaseTasks) {
             }).join("")}
                 </table>
             </div>    
-        </div>
         </section>
     `
 }
