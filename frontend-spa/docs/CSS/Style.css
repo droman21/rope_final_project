@@ -6,10 +6,17 @@ table, th, td {
     border: 1px solid black;
     /* border-collapse: collapse; */
 }
-
 .table-1 tr:hover{
     background-color: yellow;
 }
+#app td a.appLeft {
+    background-color: white;
+}
+#app td a:active,
+#app td a:focus{
+    background-color: yellow;
+}
+
 .table-1 tr:first-child:hover{
     background-color:rgb(21, 21, 146);
 }

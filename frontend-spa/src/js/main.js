@@ -14,6 +14,7 @@ const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 
+
 export default function pagebuild() {
     header()
     // footer()
