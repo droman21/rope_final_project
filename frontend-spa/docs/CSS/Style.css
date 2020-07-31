@@ -45,8 +45,8 @@ table, th, td {
 .header{
     font-size: 35px;
     font-weight: bold;
-    background-color: rgb(21, 127, 146);
-    color: white;
+    background-color: rgb(2, 3, 56);
+    color: rgb(224, 105, 7);
     opacity: 0.7
     
 }
