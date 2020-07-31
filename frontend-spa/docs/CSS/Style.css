@@ -1,20 +1,20 @@
 body {
     font-family: Arial,FreeSans,Helvetica,sans-serif;
-    background-color: rgb(218, 216, 216);
+    background-color: rgb(240, 239, 239);
 }
 table, th, td {
     border: 1px solid black;
     /* border-collapse: collapse; */
 }
 .table-1 tr:hover{
-    background-color: yellow;
+    background-color: rgb(173, 204, 209);
 }
-#app td a.appLeft {
+#appRow tr a.appLeft {
     background-color: white;
 }
-#app td a:active,
-#app td a:focus{
-    background-color: yellow;
+#appRow tr a:active,
+#appRow tr a:focus{
+    background-color: rgb(173, 204, 209);
 }
 
 .table-1 tr:first-child:hover{
@@ -43,9 +43,9 @@ table, th, td {
     background-color: white;
 }
 .header{
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
-    background-color: teal;
+    background-color: rgb(21, 146, 21);
     color: white;
     opacity: 0.7
     
@@ -61,4 +61,7 @@ margin-right: 36%;
 
 .table-2__header{
     margin-left: 20%;
+}
+.appRight {
+    background-color: rgb(173, 204, 209);
 }
