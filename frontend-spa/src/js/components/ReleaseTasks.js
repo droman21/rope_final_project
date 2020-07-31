@@ -4,7 +4,6 @@ export default function ReleaseTasks(releaseTasks) {
         <br>
         <section class="releaseTask__buttons">
         <button class="add__releaseTaskButton"><b>New Task</b></a></button>
-        <button class="class="edit__releaseTaskButton"">Change A Task</button>
         </section>
         <section>
             <div class="floatLeft-container">
@@ -24,7 +23,7 @@ export default function ReleaseTasks(releaseTasks) {
                 <td>${releaseTask.id}</td>
                 <td><a href="#" class="releaseTask__info" id="${releaseTask.id}">${releaseTask.name}</a></td>
                 <td>${releaseTask.currentStatusID}</td>
-                <td>${releaseTask.currentPriorityID}</td>
+                <td class="priorityLevel">${releaseTask.currentPriorityID}</td>
                 <td>${dueTime}</td>
                 <td>${releaseTask.assignedEmployeeID}</td>
             </tr>

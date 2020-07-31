@@ -42,7 +42,7 @@ table, th, td {
     opacity: 0.7
     
 }
-td {
+tbody {
     background-color: whitesmoke;
 }
 .appLeft h1{

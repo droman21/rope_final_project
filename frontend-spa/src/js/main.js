@@ -90,3 +90,26 @@ appDiv.addEventListener('click', function () {
         )
     }
 })
+// function changePriorityColor() {
+    
+//     var priorityThreshold = ${priority.id },
+//         priorityColor = document.querySelector('.priorityLevel');
+    
+//     function changeColor(val) {
+//         var color = "green";
+    
+//         if (val = 3) {
+//             color = "yellow"
+//         }
+//         if (val = 2) {
+//             color = "orange";
+//         }
+//         if (val = 1) {
+//             color = "red";
+//         }
+    
+//         priorityColor.style.color = color;
+//     }
+// }
+
+// changeColor(colorThreshold);
