@@ -13,3 +13,24 @@ export default function Priority(priority) {
     </ul>
     `
 }
+
+// var priorityThreshold = 10,
+//     priorityColor = document.querySelector('.priorityLevel');
+
+// function changeColor(val) {
+//     var color = "green";
+
+//     if (val = 3) {
+//         color = "yellow"
+//     }
+//     if (val =2) {
+//         color = "orange";
+//     }
+//     if (val = 1) {
+//         color = "red";
+//     }
+
+//     priorityColor.style.color = color;
+// }
+
+// changeColor(colorThreshold);
