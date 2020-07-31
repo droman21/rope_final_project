@@ -1,5 +1,5 @@
 body {
-    font-family: Arial,FreeSans,Helvetica,sans-serif;
+    font-family: Monaco, Menlo, Consolas, 'Droid Sans Mono', Inconsoldata, 'Courier New', monospace;
     background-color: rgb(2, 3, 51);
 }
 table, th, td {
@@ -47,7 +47,7 @@ table, th, td {
     font-weight: bold;
     background-color: rgb(2, 3, 56);
     color: rgb(224, 105, 7);
-    opacity: 0.7
+    opacity: 0.7;
     
 }
 tbody {
@@ -56,7 +56,7 @@ tbody {
 
 .appLeft h1{
     border-style: solid;
-margin-right: 36%;
+    margin-right: 36%;
 }
 
 .table-2__header{
