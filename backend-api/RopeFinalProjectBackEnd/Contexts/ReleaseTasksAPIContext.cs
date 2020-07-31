@@ -43,10 +43,10 @@ namespace RopeFinalProjectBackEnd.Contexts
                 );
 
             modelbuilder.Entity<Status>().HasData(
-                new Priority { ID = 1, Name = "New", Value = 1 },
-                new Priority { ID = 2, Name = "In Progress", Value = 2 },
-                new Priority { ID = 3, Name = "Done", Value = 3 },
-                new Priority { ID = 4, Name = "Cancelled", Value = 4 }
+                new Status { ID = 1, Name = "New", Value = 1 },
+                new Status { ID = 2, Name = "In Progress", Value = 2 },
+                new Status { ID = 3, Name = "Done", Value = 3 },
+                new Status { ID = 4, Name = "Cancelled", Value = 4 }
                 );
 
             modelbuilder.Entity<ReleaseTask>().HasData(
