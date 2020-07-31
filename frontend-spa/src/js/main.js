@@ -85,13 +85,11 @@ appDivRight.addEventListener('click', function () {
         console.log("inside edit click")
         const ReleaseTaskEditSection = document.querySelector(".releaseTask__detailsInfo");
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
-        // const artistId = event.target.parentElement.querySelector('.artistId').value;
         console.log(releaseTaskId)
-        console.log("inside edit click2")
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
-                ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskId, releaseTaskEdit);
+                ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit);
             }
         )
     }
