@@ -20,6 +20,7 @@ export default function pagebuild() {
     // footer()
     //navHome()
     showReleaseTasks();
+
     // showStatus()
     // showPriority()    
 }
@@ -47,13 +48,14 @@ function showReleaseTasks() {
         .then(releaseTasks => {
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
             releaseTaskNameButton();
+            addRowHandlers();
         })
         .catch(err => console.log(err))
-        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
+    const releaseTaskCallback = releaseTask => {
+        appDivRight.innerHTML = ReleaseTask(releaseTask);
+    };
+    apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
     
 }
 function releaseTaskNameButton() {
@@ -113,3 +115,18 @@ appDivRight.addEventListener('click', function () {
 // }
 
 // changeColor(colorThreshold);
+
+function rowHighlightHandler(row){
+    alert('row index='+row.rowIndex);
+}
+
+function addRowHandlers(){
+    var tableRows = document.getElementById('table1Id').rows;
+    for (let i = 1; i < tableRows.length; i++){
+        tableRows[i].onclick = function(){ return function(){
+            var id = this.cells[0].innerHTML;
+            alert('id='+id);
+        };}(tableRows[i]);
+
+    }
+}
