@@ -4,7 +4,7 @@
 import apiActions from './api/apiActions';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
-// import ReleaseTaskEdit from './components/ReleaseTaskEdit';
+import ReleaseTaskEdit from './components/ReleaseTaskEdit';
 // import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
 import Header from './components/Header';
 // import Footer from './components/Footer';
@@ -78,15 +78,14 @@ function getStatusName(statusId) {
         .catch(err => console.log(err))
 }
 
-appDiv.addEventListener('click', function () {
-    if (event.target.classList.contains('.edit-releaseTask')) {
-        const ReleaseTaskEdit = document.querySelector('.edit-rleleaseTask');
-        const releaseTaskId = event.target.parentElement.querySelector('.edit-album__button').id;
-        const artistId = event.target.parentElement.querySelector('.artistId').value;
+appDivRight.addEventListener('click', function () {
+    if (event.target.classList.contains('edit__releaseTaskButton')) {
+        const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
+        const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
         apiActions.getRequest(
-            `https://localhost:44313/api/album/${albumId}`,
-            albumEdit => {
-                editAlbumSection.innerHTML = AlbumEditSection(artistId, albumEdit);
+            `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
+            releaseTaskEdit => {
+                ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit);
             }
         )
     }
