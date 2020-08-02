@@ -47,7 +47,7 @@ function showReleaseTasks() {
         .then(response => response.json())
         .then(releaseTasks => {
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-            //releaseTaskNameButton();
+            releaseTaskNameButton();
             highlightSelectedRow();
         })
         .catch(err => console.log(err))
@@ -116,9 +116,9 @@ appDivRight.addEventListener('click', function () {
 
 // changeColor(colorThreshold);
 
-// function rowHighlightHandler(row){
-//     alert('row index='+row.rowIndex);
-// }
+//  function rowHighlightHandler(row){
+//      alert('row index='+row.rowIndex);
+//  }
 
 // function addRowHandlers(){
 //     var tableRows = document.getElementById('table1Id').rows;

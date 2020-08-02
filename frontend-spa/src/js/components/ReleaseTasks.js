@@ -21,7 +21,7 @@ export default function ReleaseTasks(releaseTasks) {
         return `
             <tr id="table1__rowHighlight" class="table1__rowFont">
                 <td>${releaseTask.id}</td>
-                <td><a href="#" class="releaseTask__info" id="${releaseTask.id}">${releaseTask.name}</a></td>
+                <td class="releaseTask__info" id="${releaseTask.id}">${releaseTask.name}</td>
                 <td>${releaseTask.currentStatusID}</td>
                 <td class="priorityLevel">${releaseTask.currentPriorityID}</td>
                 <td>${dueTime}</td>
