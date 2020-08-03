@@ -115,3 +115,11 @@ tbody {
 .floatLeft-container{
     cursor: pointer;
 }
+.edit__releaseTaskButton__back{
+    background-color: white;
+    border-radius: 8px;
+}
+.edit__releaseTaskButton__back:hover{
+    background-color: yellow;
+    cursor: pointer;
+}
