@@ -47,7 +47,7 @@ function showReleaseTasks() {
         .then(response => response.json())
         .then(releaseTasks => {
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-            releaseTaskNameButton();
+            //releaseTaskNameButton();
             highlightSelectedRow();
         })
         .catch(err => console.log(err))
@@ -92,6 +92,66 @@ appDivRight.addEventListener('click', function () {
         )
     }
 })
+
+appDivRight.addEventListener('click', function(){
+    if (event.target.classList.contains('edit-releaseTask__submit')){
+        console.log('in task save');
+        const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
+        const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
+        const description = event.target.parentElement.querySelector('.edit-releaseTask__description').value;
+        const statusID = 1;
+        const priorityID = 1;
+        const dueTime = Date.now();
+        const employeeID = 1;
+        const isVisible = true;
+        const lastModifiedTime = Date.now();
+
+        const releaseEdit = {
+            id: releaseTaskId,
+            Name: name,
+            Description: description,
+            //CurrentDueTime: dueTime,
+            IsVisible: isVisible,
+            //LastModifiedTime: lastModifiedTime,
+            CurrentStatusID: statusID,
+            CurrentPriorityID: priorityID,
+            AssignedEmployeeID: employeeID
+        };
+        console.log(releaseEdit);
+
+        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+        console.log('before save');
+        apiActions.putRequest2(
+            releaseTaskEndpoint,
+            releaseEdit
+        )
+        console.log('after save');
+        //without the alert the page reposts with old data, even though it did save
+        alert('Changes Saved');
+
+        //Reload the Left Table
+        fetch("https://localhost:44302/api/releaseTask")
+        .then(response => response.json())
+        .then(releaseTasks => {
+            appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+            //releaseTaskNameButton();
+            highlightSelectedRow();
+        })
+        .catch(err => console.log(err))
+
+        //Reload the Right Table
+        const releaseTaskCallback = releaseTask => {
+             appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        console.log('after get req');
+
+        //highlightSpecificRow(2);
+
+
+    }
+})
+
 // function changePriorityColor() {
     
 //     var priorityThreshold = ${priority.id },
@@ -120,16 +180,6 @@ appDivRight.addEventListener('click', function () {
 //      alert('row index='+row.rowIndex);
 //  }
 
-// function addRowHandlers(){
-//     var tableRows = document.getElementById('table1Id').rows;
-//     for (let i = 1; i < tableRows.length; i++){
-//         tableRows[i].onclick = function(){ return function(){
-//             var id = this.cells[0].innerHTML;
-//             alert('id='+id);
-//         };}(tableRows[i]);
-
-//     }
-// }
 
 function highlightSelectedRow() {
     var table = document.getElementById('table1Id');
@@ -157,5 +207,17 @@ function highlightSelectedRow() {
 
         }
     }
+}
+
+function highlightSpecificRow(rowId){
+    console.log('in spec row highligh');
+    console.log(rowId);
+    var table = document.getElementById('table1Id');
+    console.log(table);
+    var cells = table.getElementsByTagName('td');
+    var rowSelected = table.getElementsByTagName('tr')[rowId];
+    console.log(rowSelected);
+    rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
+    rowSelected.className += " selected";
 
 }
