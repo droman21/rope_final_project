@@ -12,10 +12,12 @@ export default function ReleaseTaskEdit(releaseTask) {
         <input class="edit-releaseTask__currentStatus" value="${releaseTask.status.name}"></h3>
         <h3>Priority:
         <input class="edit-releaseTask__currentPriority" value="${releaseTask.priority.name}"></h3>
-        <h3>Due Date: 
+        <h3>Due Time: 
         <input class="edit-releaseTask__currentDueTime" value="${releaseTask.currentDueTime}"></h3>
         <h3>Assigned Employee:
         <input class="edit-releaseTask__assignedEmployeed" value="${releaseTask.employee.name}"></h3><br><br>
-        <button class="edit-releaseTask__submit">Save Your Changes</button>
+        <div class="edit-releaseTask__submitContainer">
+        <div class="edit-releaseTask_submitCenter">
+        <button class="edit-releaseTask__submit">Save Your Changes</button></div></div>
     `
 }
