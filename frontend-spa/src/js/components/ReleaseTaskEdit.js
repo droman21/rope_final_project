@@ -8,8 +8,8 @@ export default function ReleaseTaskEdit(releaseTask) {
         <input class="edit-releaseTask__name" type="text" value="${releaseTask.name}"></h4>
         <h4>Description:
         <input class="edit-releaseTask__description" type="text" value="${releaseTask.description}"></h4>
-        <h4>Current Task Status:
-        <input class="edit-releaseTask__currentStatus" value="${releaseTask.status.name}"></h4>
+        <h4>Status:
+        <select class="edit-releaseTask__currentStatus" type="dropdowm" value="${releaseTask.status.name}"></h4></select>
         <h4>Priority:
         <input class="edit-releaseTask__currentPriority" value="${releaseTask.priority.name}"></h4>
         <h4>Due: 

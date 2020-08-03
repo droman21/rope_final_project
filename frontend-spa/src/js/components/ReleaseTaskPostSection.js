@@ -1,9 +1,9 @@
 export default ReleaseTaskPostSection(releaseTasks) {
     return `
-    <h1 class="releaseTaskPostSection"> Create New Release Task <h1>
-    <section class="create-releaseTask__post">
-    ${releaseTasks.map(releaseTask => {
-        return `
+        <h1 class="releaseTaskPostSection"> Create New Release Task <h1>
+        <section class="create-releaseTask__post">
+            ${releaseTasks.map(releaseTask => {
+                return `
         <input class="create-releaseTask__id" type"hidden" value="${releaseTask.Id}>
         <input class="create-releaseTask__name" type="text" value="${releaseTask.name}">
         <input class="create-releaseTask__description" type="text" value="${releaseTask.description}">
@@ -13,9 +13,10 @@ export default ReleaseTaskPostSection(releaseTasks) {
         <input class="releaseTask__currentDueTime" type="text" value="${releaseTask.currentDueTime}">
         <input class="releaseTask__createdTime" type="text" value="${releaseTask.createdTime}">
         <input class="releaseTask__lastModifiedTime"  type="text" value="${releaseTask.lastModifiedTime}">
+        <button class="create-releaseTask__submit">Save Your Task</button>
         </section>
         `
-    }).join("")}
+        }).join("")}
     `
 }
 
