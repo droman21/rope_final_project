@@ -20,7 +20,7 @@ export default function pagebuild() {
     // footer()
     //navHome()
     showReleaseTasks();
-
+    showAlert();
     // showStatus()
     // showPriority()    
 }
@@ -220,4 +220,13 @@ function highlightSpecificRow(rowId){
     rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
     rowSelected.className += " selected";
 
+}
+function showAlert() {
+    const alertButton = document.getElementsByName('alertButton');
+    const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
+    console.log("in show alert")
+    alertButton.addEventListener('click', function () {
+        console.log("in eventlistener")
+        alert("${releaseTask.name}","${releasetask.currentDueTime}")
+    })
 }
