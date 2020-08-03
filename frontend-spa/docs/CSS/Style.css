@@ -54,6 +54,7 @@ table, th, td {
 }
 .table1__rowFont{
     background-color: white;
+
 }
 .header{
     font-size: 35px;
@@ -110,15 +111,6 @@ tbody {
     background-color: yellow;
     cursor: pointer;
 }
-/* .edit-releaseTask_submitContainer{
-    height: 100px;
-    position: relative;
+.floatLeft-container{
+    cursor: pointer;
 }
-.edit-releaseTask_submitCenter{
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-} */
