@@ -89,9 +89,11 @@ tbody {
 .add__releaseTaskButton:hover{
     background-color: yellow;
     color: black;
+    cursor: pointer;
 }
 .edit__releaseTaskButton:hover{
     background-color: yellow;
+    cursor: pointer;
 }
 .edit__releaseTaskButton{
     color: black;
@@ -106,6 +108,7 @@ tbody {
 }
 .edit-releaseTask__submit:hover{
     background-color: yellow;
+    cursor: pointer;
 }
 /* .edit-releaseTask_submitContainer{
     height: 100px;
