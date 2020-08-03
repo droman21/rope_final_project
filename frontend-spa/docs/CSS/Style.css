@@ -6,17 +6,29 @@ table, th, td {
     border: 1px solid black;
     /* border-collapse: collapse; */
 }
-.table-1 tr:hover{
+/* .table1 tr:hover{
     background-color: rgb(173, 204, 209);
-}
+    background-color: yellow;
+} */
+
 #appRow tr a.appLeft {
     background-color: white;
 }
-#appRow tr a:active,
+/* #appRow tr a:active,
 #appRow tr a:focus{
     background-color: rgb(173, 204, 209);
-    
+} */
+
+/* #appRow tr :focus{
+    background-color: rgb(173, 204, 209);
+    background-color: red;
+} */
+
+/* #table1__rowHighlight tr:active */
+#table1__rowHighlight :focus{
+    background-color: red;
 }
+
 
 .table-1 tr:first-child:hover{
     background-color:rgb(21, 21, 146);

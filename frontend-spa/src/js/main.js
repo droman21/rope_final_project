@@ -20,6 +20,7 @@ export default function pagebuild() {
     // footer()
     //navHome()
     showReleaseTasks();
+
     // showStatus()
     // showPriority()    
 }
@@ -47,13 +48,14 @@ function showReleaseTasks() {
         .then(releaseTasks => {
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
             releaseTaskNameButton();
+            highlightSelectedRow();
         })
         .catch(err => console.log(err))
-        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
+    const releaseTaskCallback = releaseTask => {
+        appDivRight.innerHTML = ReleaseTask(releaseTask);
+    };
+    apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
     
 }
 function releaseTaskNameButton() {
@@ -113,3 +115,47 @@ appDivRight.addEventListener('click', function () {
 // }
 
 // changeColor(colorThreshold);
+
+//  function rowHighlightHandler(row){
+//      alert('row index='+row.rowIndex);
+//  }
+
+// function addRowHandlers(){
+//     var tableRows = document.getElementById('table1Id').rows;
+//     for (let i = 1; i < tableRows.length; i++){
+//         tableRows[i].onclick = function(){ return function(){
+//             var id = this.cells[0].innerHTML;
+//             alert('id='+id);
+//         };}(tableRows[i]);
+
+//     }
+// }
+
+function highlightSelectedRow() {
+    var table = document.getElementById('table1Id');
+    var cells = table.getElementsByTagName('td');
+
+    for (let i = 0; i < cells.length; i++) {
+        var cell = cells[i];
+        cell.onclick = function () {
+            var rowId = this.parentNode.rowIndex;
+            var rowsNotSelected = table.getElementsByTagName('tr');
+            for (var row = 1; row < rowsNotSelected.length; row++) {
+                rowsNotSelected[row].style.backgroundColor = "white";
+                rowsNotSelected[row].classList.remove('selected');
+            }
+            var rowSelected = table.getElementsByTagName('tr')[rowId];
+            rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
+            rowSelected.className += " selected";
+
+            const releaseTaskId = rowSelected.cells[0].innerHTML;
+            const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+            const releaseTaskCallback = releaseTask => {
+                appDivRight.innerHTML = ReleaseTask(releaseTask);
+            };
+            apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+
+        }
+    }
+
+}
