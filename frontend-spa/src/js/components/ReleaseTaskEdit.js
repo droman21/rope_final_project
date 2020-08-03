@@ -4,8 +4,7 @@ export default function ReleaseTaskEdit(releaseTask) {
         <h1>Edit the release task fields below.</h1>
         <h4>Due: 
         <input class="edit-releaseTask__currentDueTime" value="${releaseTask.currentDueTime}"></h4>
-        <h4>ID:
-        <input class="edit-releaseTask__id" value="${releaseTask.id}"></h4>
+        <input class="edit-releaseTask__id" type="hidden" value="${releaseTask.id}">
         <h4>Task Name:
         <input class="edit-releaseTask__name" type="text" value="${releaseTask.name}"></h4>
         <h4>Description:
