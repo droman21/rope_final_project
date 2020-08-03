@@ -7,7 +7,7 @@ export default ReleaseTaskPostSection(releaseTasks) {
         <input class="create-releaseTask__id" type"hidden" value="${releaseTask.Id}>
         <input class="create-releaseTask__name" type="text" value="${releaseTask.name}">
         <input class="create-releaseTask__description" type="text" value="${releaseTask.description}">
-        <select class="releaseTask__currentStatusI"d  text="dropdown" value="${releaseTask.currentStatusId}"></select>
+        <input class="releaseTask__currentStatusId"  text="dropdown" value="${releaseTask.currentStatusId}">
         <input class="releaseTask__assignedEmployeeId" type="text" value="${releaseTask.employeeId}">
         <input class="releaseTask__isVisible  "type="text" value="${releaseTask.isVisible}">
         <input class="releaseTask__currentDueTime" type="text" value="${releaseTask.currentDueTime}">
