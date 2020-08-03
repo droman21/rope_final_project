@@ -86,9 +86,24 @@ tbody {
     background-color: red;
     border-radius: 6px;
 }
+.add__releaseTaskButton:hover{
+    background-color: yellow;
+    color: black;
+}
+.edit__releaseTaskButton:hover{
+    background-color: yellow;
+}
 .edit__releaseTaskButton{
     color: black;
     font-weight: bold;
     background-color: chartreuse;
     border-radius: 8px;
+}
+.edit-releaseTask__submit{
+    background-color: chocolate;
+    font-weight:bold;
+    border-radius: 10px;
+}
+.edit-releaseTask__submit:hover{
+    background-color: yellow;
 }
