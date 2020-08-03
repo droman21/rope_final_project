@@ -8,6 +8,7 @@ import ReleaseTaskEdit from './components/ReleaseTaskEdit';
 // import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
 import Header from './components/Header';
 // import Footer from './components/Footer';
+import moment from "moment";
 
 
 const appDiv = document.querySelector('.app');
@@ -104,15 +105,25 @@ appDivRight.addEventListener('click', function(){
         const dueTime = Date.now();
         const employeeID = 1;
         const isVisible = true;
-        const lastModifiedTime = Date.now();
+        var lastModifiedTime = new Date();
+        console.log('rawtime');
+        console.log(lastModifiedTime);
+        let newdate2 = lastModifiedTime.toISOString().slice(0,19).replace('T', ' ');
+        const newdate1 = moment(lastModifiedTime).format();
+        const newdate = lastModifiedTime.toUTCString();
+        const harddate = "2020-08-03 18:29:41"
+        
+        console.log('newtime');
+        console.log(newdate);
 
         const releaseEdit = {
             id: releaseTaskId,
             Name: name,
             Description: description,
-            //CurrentDueTime: dueTime,
+            CurrentDueTime: "08-19-2020 23:15:00",
+            CreatedDate: "08-19-2020 23:15:00",
             IsVisible: isVisible,
-            //LastModifiedTime: lastModifiedTime,
+            LastModifiedDate: newdate2,
             CurrentStatusID: statusID,
             CurrentPriorityID: priorityID,
             AssignedEmployeeID: employeeID

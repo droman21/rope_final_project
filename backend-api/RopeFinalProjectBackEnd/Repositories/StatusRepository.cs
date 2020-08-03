@@ -18,10 +18,10 @@ namespace RopeFinalProjectBackEnd.Repositories
             db = context;
         }
 
-        //public override Status GetById(int id)
-        //{
-        //    return db.Statuses.Where(o => o.ID == id).Include("Statuses").FirstOrDefault();
-        //}
+        public override Status GetById(int id)
+        {
+            return db.Statuses.Where(o => o.ID == id).FirstOrDefault();
+        }
 
         //public override IEnumerable<Status> GetAll()
         //{

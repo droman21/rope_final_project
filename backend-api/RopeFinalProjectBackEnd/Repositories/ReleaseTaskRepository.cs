@@ -18,6 +18,15 @@ namespace RopeFinalProjectBackEnd.Repositories
             db = context;
         }
 
+        public override IEnumerable<ReleaseTask> GetAll()
+        {
+            var releaseTasks = db.ReleaseTasks
+            .Include(rt => rt.Status.Name).Where(rt => rt.CurrentStatusID == rt.Status.ID).FirstOrDefault();
+            //.Include(s => s.Status.Name);
+            return db.ReleaseTasks.Include("ReleaseTask").ToList();
+            //return releaseTasks;
+        }
+
         public override ReleaseTask GetById(int id)
         {
             var someReleaseTask = db.ReleaseTasks.Where(o => o.ID == id)
