@@ -41,9 +41,24 @@ function putRequest(location, requestBody, callback) {
         .then(data => callback(data))
         .catch(err => console.log(err))
 }
+
+function putRequest2(location, requestBody){
+    fetch(location, {
+        method: 'PUT',
+        body: JSON.stringify(requestBody),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+
+}
+
 export default {
     getRequest,
     postRequest,
     deleteRequest,
-    putRequest
+    putRequest,
+    putRequest2
 };

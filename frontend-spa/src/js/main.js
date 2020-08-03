@@ -97,9 +97,7 @@ appDivRight.addEventListener('click', function(){
     if (event.target.classList.contains('edit-releaseTask__submit')){
         console.log('in task save');
         const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
-        console.log('id='+releaseTaskId);
         const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
-        console.log('name='+ name);
         const description = event.target.parentElement.querySelector('.edit-releaseTask__description').value;
         const statusID = 1;
         const priorityID = 1;
@@ -122,17 +120,17 @@ appDivRight.addEventListener('click', function(){
         console.log(releaseEdit);
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-
-        apiActions.putRequest(
+        console.log('before save');
+        apiActions.putRequest2(
             releaseTaskEndpoint,
-            releaseEdit,
-            releaseTaskCallback
+            releaseEdit
         )
-
-
+        console.log('after save');
+         const releaseTaskCallback = releaseTask => {
+             appDivRight.innerHTML = ReleaseTask(releaseTask);
+         };
+        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        console.log('after get req');
 
     }
 })
