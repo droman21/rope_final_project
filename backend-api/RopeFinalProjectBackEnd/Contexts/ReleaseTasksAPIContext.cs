@@ -14,6 +14,7 @@ namespace RopeFinalProjectBackEnd.Contexts
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Priority> Priorities { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -43,10 +44,10 @@ namespace RopeFinalProjectBackEnd.Contexts
                 );
 
             modelbuilder.Entity<Status>().HasData(
-                new Priority { ID = 1, Name = "New", Value = 1 },
-                new Priority { ID = 2, Name = "In Progress", Value = 2 },
-                new Priority { ID = 3, Name = "Done", Value = 3 },
-                new Priority { ID = 4, Name = "Cancelled", Value = 4 }
+                new Status { ID = 1, Name = "New", Value = 1 },
+                new Status { ID = 2, Name = "In Progress", Value = 2 },
+                new Status { ID = 3, Name = "Done", Value = 3 },
+                new Status { ID = 4, Name = "Cancelled", Value = 4 }
                 );
 
             modelbuilder.Entity<ReleaseTask>().HasData(
@@ -61,12 +62,21 @@ namespace RopeFinalProjectBackEnd.Contexts
                 new ReleaseTask { ID = 9, Name = "Remove Service Page", Description = "Bring Down Out of Service Page", CurrentStatusID = 2, CurrentPriorityID = 2, AssignedEmployeeID = 2, IsVisisble = true, CurrentDueTime = Convert.ToDateTime("08-20-2020 00:01:00"), CreatedDate = DateTime.Now, LastModifiedDate = DateTime.Now },
                 new ReleaseTask { ID = 10, Name = "Update User Message", Description = "Update Message To Reflect Issues In The Event An Unplanned Outage Occurs", CurrentStatusID = 3, CurrentPriorityID = 4, AssignedEmployeeID = 4, IsVisisble = true, CurrentDueTime = Convert.ToDateTime("08-21-2020 01:15:00"), CreatedDate = DateTime.Now, LastModifiedDate = DateTime.Now },
                 new ReleaseTask { ID = 11, Name = "Notify Validation Group", Description = "Notify Group Validation Can Begin", CurrentStatusID = 1, CurrentPriorityID = 3, AssignedEmployeeID = 3, IsVisisble = true, CurrentDueTime = Convert.ToDateTime("08-20-2020 02:00:00"), CreatedDate = DateTime.Now, LastModifiedDate = DateTime.Now },
-                new ReleaseTask { ID = 12, Name = "Monitor System", Description = "System Monitoring Through Monday", CurrentStatusID = 3, CurrentPriorityID = 3, AssignedEmployeeID = 5, IsVisisble = true, CurrentDueTime = Convert.ToDateTime("08-20-2020 08:00:00"), CreatedDate = DateTime.Now, LastModifiedDate = DateTime.Now }
+                new ReleaseTask { ID = 12, Name = "Monitor System", Description = "System Monitoring Through Monday", CurrentStatusID = 3, CurrentPriorityID = 3, AssignedEmployeeID = 5, IsVisisble = true, CurrentDueTime = Convert.ToDateTime("08-20-2020 08:00:00"), CreatedDate = DateTime.Now, LastModifiedDate = DateTime.Now },
+                new ReleaseTask { ID = 13, Name = "Complete Final Checklist", Description = "Enure no steps were missed", CurrentStatusID= 1, CurrentPriorityID = 4, AssignedEmployeeID = 5, IsVisisble = true, CurrentDueTime = Convert.ToDateTime("08-20-2020 08:00:00"), CreatedDate = DateTime.Now, LastModifiedDate = DateTime.Now}
                 );
 
-
-
+            //modelbuilder.Entity<ReleaseTask>().HasData(
+            //    new Comment { ID = 1, Details = "Operations Running Smoothly.", IsVisible = true, ReleaseTaskID = 1 },
+            //    new Comment { ID = 2, Details = "Having some issues.", IsVisible = true, ReleaseTaskID = 1 },
+            //    new Comment { ID = 3, Details = "Runtime errors present", IsVisible = true, ReleaseTaskID = 1 },
+            //    new Comment { ID = 4, Details = "No issues.", IsVisible = true, ReleaseTaskID = 2 },
+            //    new Comment { ID = 5, Details = "Estimated completion in 30 minutes.", IsVisible = true, ReleaseTaskID = 2 },
+            //    new Comment { ID = 6, Details = "Running about 45 minutes behind schedule.", IsVisible = true, ReleaseTaskID = 3 },
+            //    new Comment { ID = 7, Details = "Looking good.", IsVisible = true, ReleaseTaskID = 3 },
+            //    new Comment { ID = 8, Details = "This might be a show stopper.", IsVisible = true, ReleaseTaskID = 4 },
+            //    new Comment { ID = 9, Details = "GO Decision made.", IsVisible = true, ReleaseTaskID = 5}
+            //    );
         }
-
     }
 }

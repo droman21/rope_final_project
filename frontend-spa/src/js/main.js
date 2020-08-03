@@ -79,13 +79,9 @@ function getStatusName(statusId) {
 }
 
 appDivRight.addEventListener('click', function () {
-    console.log("first")
-    console.log(event)
     if (event.target.classList.contains('edit__releaseTaskButton')) {
-        console.log("inside edit click")
-        const ReleaseTaskEditSection = document.querySelector(".releaseTask__detailsInfo");
+        const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
-        console.log(releaseTaskId)
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {

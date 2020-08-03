@@ -19,6 +19,7 @@ export default function ReleaseTask(releaseTask) {
         <li class="releaseTask__lastModifiedDate"><u><b>LAST-MODIFIED:</b></u> ${releaseTask.lastModifiedDate}</li>
         <br>
         <li class="releaseTask__assignedEmployeeName"><u><b>ASSIGNED-TO:</b></u> ${releaseTask.employee.name}</li>
+        <br>
     </ul>
     <div class="edit-button">
 <button class="edit__releaseTaskButton" id="${releaseTask.id}">Edit</button>

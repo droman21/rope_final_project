@@ -40,6 +40,8 @@ namespace RopeFinalProjectBackEnd
             services.AddScoped<IRepository<Priority>, PriorityRepository>();
             services.AddScoped<IRepository<ReleaseTask>, ReleaseTaskRepository>();
             services.AddScoped<IRepository<Status>, StatusRepository>();
+            services.AddScoped<IRepository<Comment>, CommentRepository>();
+
             services.AddCors(options =>
                 {
                     options.AddPolicy(MyAllowSpecificOrigins,

@@ -27,5 +27,8 @@ namespace RopeFinalProjectBackEnd.Models
         [ForeignKey("Employee")]
         public int AssignedEmployeeID { get; set; }
         public Employee Employee { get; set; }
+
+        public IEnumerable<Comment> Comments { get; set; }
+
     }
 }
