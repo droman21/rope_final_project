@@ -18,5 +18,7 @@ export default function ReleaseTaskEdit(releaseTask) {
         <div class="edit-releaseTask__submitContainer">
         <div class="edit-releaseTask_submitCenter">
         <button class="edit-releaseTask__submit">Save Your Changes</button></div></div>
+        <div class="back-button">
+            <button class="edit__releaseTaskButton__back" id=${releaseTask.id}">Back</button>
     `
 }
