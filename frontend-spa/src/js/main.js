@@ -47,7 +47,7 @@ function showReleaseTasks() {
         .then(response => response.json())
         .then(releaseTasks => {
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-            releaseTaskNameButton();
+            //releaseTaskNameButton();
             highlightSelectedRow();
         })
         .catch(err => console.log(err))
@@ -92,6 +92,51 @@ appDivRight.addEventListener('click', function () {
         )
     }
 })
+
+appDivRight.addEventListener('click', function(){
+    if (event.target.classList.contains('edit-releaseTask__submit')){
+        console.log('in task save');
+        const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
+        console.log('id='+releaseTaskId);
+        const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
+        console.log('name='+ name);
+        const description = event.target.parentElement.querySelector('.edit-releaseTask__description').value;
+        const statusID = 1;
+        const priorityID = 1;
+        const dueTime = Date.now();
+        const employeeID = 1;
+        const isVisible = true;
+        const lastModifiedTime = Date.now();
+
+        const releaseEdit = {
+            id: releaseTaskId,
+            Name: name,
+            Description: description,
+            //CurrentDueTime: dueTime,
+            IsVisible: isVisible,
+            //LastModifiedTime: lastModifiedTime,
+            CurrentStatusID: statusID,
+            CurrentPriorityID: priorityID,
+            AssignedEmployeeID: employeeID
+        };
+        console.log(releaseEdit);
+
+        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+        const releaseTaskCallback = releaseTask => {
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+
+        apiActions.putRequest(
+            releaseTaskEndpoint,
+            releaseEdit,
+            releaseTaskCallback
+        )
+
+
+
+    }
+})
+
 // function changePriorityColor() {
     
 //     var priorityThreshold = ${priority.id },
@@ -120,16 +165,6 @@ appDivRight.addEventListener('click', function () {
 //      alert('row index='+row.rowIndex);
 //  }
 
-// function addRowHandlers(){
-//     var tableRows = document.getElementById('table1Id').rows;
-//     for (let i = 1; i < tableRows.length; i++){
-//         tableRows[i].onclick = function(){ return function(){
-//             var id = this.cells[0].innerHTML;
-//             alert('id='+id);
-//         };}(tableRows[i]);
-
-//     }
-// }
 
 function highlightSelectedRow() {
     var table = document.getElementById('table1Id');
