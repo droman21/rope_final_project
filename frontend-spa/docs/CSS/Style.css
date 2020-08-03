@@ -71,6 +71,7 @@ tbody {
 .appLeft h1{
     border-style: solid;
     margin-right: 36%;
+    box-shadow: 2px 2px;
 }
 
 .table-2__header{
