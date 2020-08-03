@@ -100,11 +100,11 @@ tbody {
     color: black;
     font-weight: bold;
     background-color: chartreuse;
-    border-radius: 8px;
+    border-radius: 15px;
 }
 .edit-releaseTask__submit{
     background-color: chocolate;
-    font-weight:bold;
+    font-weight: bold;
     border-radius: 10px;
 }
 .edit-releaseTask__submit:hover{
