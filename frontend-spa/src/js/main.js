@@ -126,11 +126,28 @@ appDivRight.addEventListener('click', function(){
             releaseEdit
         )
         console.log('after save');
-         const releaseTaskCallback = releaseTask => {
+        //without the alert the page reposts with old data, even though it did save
+        alert('Changes Saved');
+
+        //Reload the Left Table
+        fetch("https://localhost:44302/api/releaseTask")
+        .then(response => response.json())
+        .then(releaseTasks => {
+            appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+            //releaseTaskNameButton();
+            highlightSelectedRow();
+        })
+        .catch(err => console.log(err))
+
+        //Reload the Right Table
+        const releaseTaskCallback = releaseTask => {
              appDivRight.innerHTML = ReleaseTask(releaseTask);
-         };
+        };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         console.log('after get req');
+
+        //highlightSpecificRow(2);
+
 
     }
 })
@@ -190,5 +207,17 @@ function highlightSelectedRow() {
 
         }
     }
+}
+
+function highlightSpecificRow(rowId){
+    console.log('in spec row highligh');
+    console.log(rowId);
+    var table = document.getElementById('table1Id');
+    console.log(table);
+    var cells = table.getElementsByTagName('td');
+    var rowSelected = table.getElementsByTagName('tr')[rowId];
+    console.log(rowSelected);
+    rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
+    rowSelected.className += " selected";
 
 }
