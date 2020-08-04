@@ -120,15 +120,17 @@ appDivRight.addEventListener('click', function () {
         const employeeID = 1;
         const isVisible = true;
         var lastModifiedDate = new Date();
-        const formatedDate = lastModifiedDate.toISOString().slice(0,19).replace('T', ' ');
-
+        //const formatedDate = lastModifiedDate.toISOString().slice(0,19).replace('T', ' ');
+        const formatedDate = lastModifiedDate.toUTCString();
+        console.log(lastModifiedDate);
+        console.log(formatedDate);
         const releaseEdit = {
             id: releaseTaskId,
             Name: name,
             Description: description,
             //CurrentDueTime: formatedDate,
             IsVisible: isVisible,
-            LastModifiedDate: formatedDate,
+            LastModifiedDate: lastModifiedDate,
             //CreatedDate: formatedDate,
             CurrentStatusID: statusID,
             CurrentPriorityID: priorityID,
