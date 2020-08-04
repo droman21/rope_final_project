@@ -1,4 +1,5 @@
 export default function ReleaseTask(releaseTask) {
+
     return `
     <h1 class="table-2__header"  id="${releaseTask.id}">${releaseTask.name}</h1>
     <section class="releaseTask__detailsInfo">
@@ -21,6 +22,14 @@ export default function ReleaseTask(releaseTask) {
             <br>
             <li class="releaseTask__assignedEmployeeName"><b>Assigned To:</b> ${releaseTask.employee.name}</li>
             <br>
+            <ul class="releaseTask__comment"><b>Comments:</b>
+            ${releaseTask.comments.map(comment => {
+                return `
+                <li>${comment.details}</li>
+                        `
+                    }).join("")}
+            </ul>
+            <br>
         </ul>
         <div class="edit-button">
             <button class="edit__releaseTaskButton" id="${releaseTask.id}">Edit</button>
@@ -28,4 +37,5 @@ export default function ReleaseTask(releaseTask) {
     </section>
 
     `
+
 }
