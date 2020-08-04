@@ -20,7 +20,7 @@ export default function pagebuild() {
     // footer()
     //navHome()
     showReleaseTasks();
-    showAlert();
+    //showAlert();
     // showStatus()
     // showPriority()    
 }
