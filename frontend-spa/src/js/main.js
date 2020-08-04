@@ -227,15 +227,15 @@ function highlightSpecificRow(rowId){
 
 }
 
-appDivLeft.addEventListener('click', function(){
-    console.log("in show alert")
-    const alertButton = document.getElementsByName('alertButton');
-    console.log(alertButton);
-    const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
-    console.log(alertItem);
-//    alertButton.addEventListener('click', function () {
-//        console.log("in eventlistener")
-        alert("${releaseTask.name}","${releasetask.currentDueTime}")
-    //})
+// appDivLeft.addEventListener('click', function(){
+//     console.log("in show alert")
+//     const alertButton = document.getElementsByName('alertButton');
+//     console.log(alertButton);
+//     const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
+//     console.log(alertItem);
+// //    alertButton.addEventListener('click', function () {
+// //        console.log("in eventlistener")
+//         alert("${releaseTask.name}","${releasetask.currentDueTime}")
+//     //})
 
-})
+// })

@@ -31,10 +31,17 @@ namespace RopeFinalProjectBackEnd.Repositories
         public override IEnumerable<ReleaseTask> GetAll()
         {
             var releaseTasks = db.ReleaseTasks
-             .Include(rt => rt.Status.Name).Where(rt => rt.CurrentStatusID == rt.Status.ID).FirstOrDefault();
-            //.Include(s => s.Status.Name);
-            return db.ReleaseTasks.Include("ReleaseTask").ToList();
-            //return releaseTasks;
+            //this line gives a lambda error
+            //.Include(rt => rt.Status.Name).Where(rt => rt.CurrentStatusID == rt.Status.ID).FirstOrDefault();
+
+            //this line works but returns incorrect data
+            //.Include(rt => rt.Status).Where(s => s.CurrentStatusID == 1).ToList();
+
+            //this line works but returns all other tasks with StatusIDs that match the current StatusID
+            .Include(rt => rt.Status).Where(s => s.CurrentStatusID == s.Status.ID).ToList();
+
+            //return db.ReleaseTasks.Include("ReleaseTask").ToList();
+            return releaseTasks;
         }
 
     }
