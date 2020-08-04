@@ -25,9 +25,9 @@ export default function ReleaseTasks(releaseTasks) {
                 <td>${releaseTask.id}</td>
                 <td class="releaseTask__info" id="${releaseTask.id}">${releaseTask.name}</td>
                 <td id="${releaseTask.currentStatusID}">${releaseTask.status.name}</td>
-                <td class="priorityLevel">${releaseTask.currentPriorityID}</td>
+                <td id="${releaseTask.currentPriorityID}">${releaseTask.priority.name}</td>
                 <td>${dueTime}</td>
-                <td>${releaseTask.assignedEmployeeID}</td>
+                <td id="${releaseTask.assignedEmployeeID}">${releaseTask.employee.name}</td>
             </tr>
                 `
             }).join("")}
