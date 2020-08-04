@@ -24,8 +24,13 @@ export default function ReleaseTaskEdit(releaseTask) {
             <option value="critical">Critical</option>
         </select>
         <h4>Assigned To:
-        <input class="edit-releaseTask__assignedEmployeed" value="${releaseTask.employee.name}"></h4>
-        
+        <select class="edit-releaseTask__assignedEmployeed" type="dropdown" value="${releaseTask.employee.name}"></h4>
+            <option value="dakota">Dakota</option>
+            <option value="bernard">Bernard</option>
+            <option value="ron">Ron</option>
+            <option value="dan">Dan</option>
+        </select>
+        <br><br>
         <button class="edit-releaseTask__submit"> Save Your Changes </button>
         <button class="edit__releaseTaskButton__back" id=${releaseTask.id}">Back</button>
 
