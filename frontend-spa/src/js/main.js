@@ -97,8 +97,11 @@ appDivRight.addEventListener('click', function(){
     if (event.target.classList.contains('edit-releaseTask__submit')){
         console.log('in task save');
         const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
+        console.log(releaseTaskId);
         const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
+        console.log(name);
         const description = event.target.parentElement.querySelector('.edit-releaseTask__description').value;
+        console.log(description);
         const statusID = 1;
         const priorityID = 1;
         //const dueTime = Date.now();
@@ -111,10 +114,10 @@ appDivRight.addEventListener('click', function(){
             id: releaseTaskId,
             Name: name,
             Description: description,
-            CurrentDueTime: formatedDate,
+            //CurrentDueTime: formatedDate,
             IsVisible: isVisible,
             LastModifiedDate: formatedDate,
-            CreatedDate: formatedDate,
+            //CreatedDate: formatedDate,
             CurrentStatusID: statusID,
             CurrentPriorityID: priorityID,
             AssignedEmployeeID: employeeID
