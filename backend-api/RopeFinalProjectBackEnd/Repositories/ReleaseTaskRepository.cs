@@ -40,7 +40,9 @@ namespace RopeFinalProjectBackEnd.Repositories
             //this line works but returns all other tasks with StatusIDs that match the current StatusID
             .Include(rt => rt.Status).Where(s => s.CurrentStatusID == s.Status.ID)
             .Include(rt => rt.Priority).Where(p => p.CurrentPriorityID == p.Priority.ID)
-            .Include(rt => rt.Employee).Where(e => e.AssignedEmployeeID == e.Employee.ID).ToList();
+            .Include(rt => rt.Employee).Where(e => e.AssignedEmployeeID == e.Employee.ID)
+            .Include(rt => rt.Comments)
+            .ToList();
 
             //return db.ReleaseTasks.Include("ReleaseTask").ToList();
             return releaseTasks;
