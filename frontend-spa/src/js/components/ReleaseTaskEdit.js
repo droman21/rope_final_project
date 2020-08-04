@@ -32,7 +32,7 @@ export default function ReleaseTaskEdit(releaseTask) {
         </select>
         <br><br>
         <button class="edit-releaseTask__submit"> Save Your Changes </button>
-        <button class="edit__releaseTaskButton__back" id=${releaseTask.id}">Back</button>
+        <button class="edit__releaseTaskButton__back" id=${releaseTask.id}>Back</button>
 
     `
 }
