@@ -20,7 +20,7 @@ export default function pagebuild() {
     // footer()
     //navHome()
     showReleaseTasks();
-
+    //showAlert();
     // showStatus()
     // showPriority()    
 }
@@ -97,22 +97,27 @@ appDivRight.addEventListener('click', function () {
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit-releaseTask__submit')) {
         const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
+        console.log(releaseTaskId);
         const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
+        console.log(name);
         const description = event.target.parentElement.querySelector('.edit-releaseTask__description').value;
+        console.log(description);
         const statusID = 1;
         const priorityID = 1;
-        // const dueTime = Date.now();
+        //const dueTime = Date.now();
         const employeeID = 1;
         const isVisible = true;
-        // const lastModifiedTime = Date.now();
+        var lastModifiedDate = new Date();
+        const formatedDate = lastModifiedDate.toISOString().slice(0,19).replace('T', ' ');
 
         const releaseEdit = {
             id: releaseTaskId,
             Name: name,
             Description: description,
-            //CurrentDueTime: dueTime,
+            //CurrentDueTime: formatedDate,
             IsVisible: isVisible,
-            //LastModifiedTime: lastModifiedTime,
+            LastModifiedDate: formatedDate,
+            //CreatedDate: formatedDate,
             CurrentStatusID: statusID,
             CurrentPriorityID: priorityID,
             AssignedEmployeeID: employeeID
@@ -222,3 +227,16 @@ function highlightSpecificRow(rowId) {
     rowSelected.className += " selected";
 
 }
+
+// appDivLeft.addEventListener('click', function(){
+//     console.log("in show alert")
+//     const alertButton = document.getElementsByName('alertButton');
+//     console.log(alertButton);
+//     const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
+//     console.log(alertItem);
+// //    alertButton.addEventListener('click', function () {
+// //        console.log("in eventlistener")
+//         alert("${releaseTask.name}","${releasetask.currentDueTime}")
+//     //})
+
+// })
