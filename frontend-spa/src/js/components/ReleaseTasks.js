@@ -10,19 +10,19 @@ export default function ReleaseTasks(releaseTasks) {
                 <table class="table1" id="table1Id" style="width:100%; float:left"> 
                 <tbody class="table1__body">       
                     <tr class="table_header">
-                        <th class="table_headerFont">ID</th>
-                        <th>Task Name</th>
-                        <th>Status</th>
-                        <th>Priority</th>
-                        <th>DueTime</th>
-                        <th>Assigned To</th>
+                        <th style="width: 25px;" class="table_headerFont">ID</th>
+                        <th style="width: 250px;">Task Name</th>
+                        <th style="width: 90px;">Status</th>
+                        <th style="width: 75px;">Priority</th>
+                        <th style="width: 75px;">DueTime</th>
+                        <th style="width: 90px;">Assigned To</th>
                     </tr>
         ${releaseTasks.map(releaseTask => {
         var dueTime = FormatTime(releaseTask.currentDueTime);
         //console.log(releaseTask);
         //console.log(releaseTask.status.name);
         return `
-            <tr id="rowId" class="table1__rowFont">
+            <tr id="${releaseTask.id}" class="table1__rowFont">
                 <td>${releaseTask.id}</td>
                 <td class="releaseTask__info" id="${releaseTask.id}">${releaseTask.name}</td>
                 <td id="${releaseTask.currentStatusID}">${releaseTask.status.name}</td>

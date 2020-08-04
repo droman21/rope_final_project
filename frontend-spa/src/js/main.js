@@ -20,6 +20,7 @@ export default function pagebuild() {
     // footer()
     //navHome()
     showReleaseTasks();
+    //highlightSpecificRow(1);
     //showAlert();
     // showStatus()
     // showPriority()    
@@ -51,11 +52,22 @@ function showReleaseTasks() {
             highlightSelectedRow();
         })
         .catch(err => console.log(err))
-    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
-    const releaseTaskCallback = releaseTask => {
-        appDivRight.innerHTML = ReleaseTask(releaseTask);
-    };
-    apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+
+        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
+        const releaseTaskCallback = releaseTask => {
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        
+        // console.log('before row highlight');
+        // var table = document.getElementById('table1Id');
+        // //var cells = table.getElementsByTagName('td');
+        // console.log(table);
+        // var rowSelected = table.getElementsByTagName('tr')[1];
+        // rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
+        // rowSelected.className += " selected";
+        // console.log('before row highlight');
+
 
 }
 function releaseTaskNameButton() {
@@ -140,7 +152,11 @@ appDivRight.addEventListener('click', function () {
             .then(releaseTasks => {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 //releaseTaskNameButton();
-                highlightSelectedRow();
+                //highlightSelectedRow();
+                // var selectedRowID = document.getElementById(releaseTaskId);
+                // console.log('selected row task id');
+                // console.log(selectedRowID);
+                // highlightSpecificRow(2);
             })
             .catch(err => console.log(err))
 
@@ -152,7 +168,6 @@ appDivRight.addEventListener('click', function () {
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         console.log('after get req');
 
-        highlightSpecificRow(2);
 
 
     }
