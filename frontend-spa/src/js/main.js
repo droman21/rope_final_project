@@ -221,12 +221,16 @@ function highlightSpecificRow(rowId){
     rowSelected.className += " selected";
 
 }
-function showAlert() {
-    const alertButton = document.getElementsByName('alertButton');
-    const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
+
+appDivLeft.addEventListener('click', function(){
     console.log("in show alert")
-    alertButton.addEventListener('click', function () {
-        console.log("in eventlistener")
+    const alertButton = document.getElementsByName('alertButton');
+    console.log(alertButton);
+    const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
+    console.log(alertItem);
+//    alertButton.addEventListener('click', function () {
+//        console.log("in eventlistener")
         alert("${releaseTask.name}","${releasetask.currentDueTime}")
-    })
-}
+    //})
+
+})
