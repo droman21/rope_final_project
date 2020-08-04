@@ -7,7 +7,8 @@ export default function ReleaseTasks(releaseTasks) {
         </section>
         <section>
             <div class="floatLeft-container">
-                <table class="table1" id="table1Id" style="width:100%; float:left">        
+                <table class="table1" id="table1Id" style="width:100%; float:left"> 
+                <tbody class="table1__body">       
                     <tr class="table_header">
                         <th class="table_headerFont">ID</th>
                         <th>Task Name</th>
@@ -19,7 +20,7 @@ export default function ReleaseTasks(releaseTasks) {
         ${releaseTasks.map(releaseTask => {
         var dueTime = FormatTime(releaseTask.currentDueTime);
         return `
-            <tr id="table1__rowHighlight" class="table1__rowFont">
+            <tr id="rowId" class="table1__rowFont">
                 <td>${releaseTask.id}</td>
                 <td class="releaseTask__info" id="${releaseTask.id}">${releaseTask.name}</td>
                 <td>${releaseTask.currentStatusID}</td>
@@ -28,14 +29,15 @@ export default function ReleaseTasks(releaseTasks) {
                 <td>${releaseTask.assignedEmployeeID}</td>
             </tr>
                 `
-            }).join("")}
-                </table>
+    }).join("")}
+                </tbody>
+            </table>
             </div>    
         </section>
     `
 }
 
-function FormatTime(time){
+function FormatTime(time) {
     var date = new Date(time);
-    return (date.getHours()<10?'0':'') + date.getHours() + ":" +  (date.getMinutes()<10?'0':'') + date.getMinutes() + ":" + (date.getSeconds()<10?'0':'') + date.getSeconds();
+    return (date.getHours() < 10 ? '0' : '') + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + ":" + (date.getSeconds() < 10 ? '0' : '') + date.getSeconds();
 }

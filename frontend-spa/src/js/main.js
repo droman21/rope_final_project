@@ -56,7 +56,7 @@ function showReleaseTasks() {
         appDivRight.innerHTML = ReleaseTask(releaseTask);
     };
     apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-    
+
 }
 function releaseTaskNameButton() {
     const releaseTaskItem = document.querySelectorAll('.releaseTask__info');
@@ -84,6 +84,7 @@ appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
+        console.log('edit paage displayed')
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
@@ -93,18 +94,17 @@ appDivRight.addEventListener('click', function () {
     }
 })
 
-appDivRight.addEventListener('click', function(){
-    if (event.target.classList.contains('edit-releaseTask__submit')){
-        console.log('in task save');
+appDivRight.addEventListener('click', function () {
+    if (event.target.classList.contains('edit-releaseTask__submit')) {
         const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
         const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
         const description = event.target.parentElement.querySelector('.edit-releaseTask__description').value;
         const statusID = 1;
         const priorityID = 1;
-        const dueTime = Date.now();
+        // const dueTime = Date.now();
         const employeeID = 1;
         const isVisible = true;
-        const lastModifiedTime = Date.now();
+        // const lastModifiedTime = Date.now();
 
         const releaseEdit = {
             id: releaseTaskId,
@@ -120,46 +120,47 @@ appDivRight.addEventListener('click', function(){
         console.log(releaseEdit);
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-        console.log('before save');
         apiActions.putRequest2(
             releaseTaskEndpoint,
             releaseEdit
         )
-        console.log('after save');
+        console.log('changed saved');
+        console.log("alert pop")
         //without the alert the page reposts with old data, even though it did save
         alert('Changes Saved');
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
-        .then(response => response.json())
-        .then(releaseTasks => {
-            appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-            //releaseTaskNameButton();
-            highlightSelectedRow();
-        })
-        .catch(err => console.log(err))
+            .then(response => response.json())
+            .then(releaseTasks => {
+                appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+                //releaseTaskNameButton();
+                highlightSelectedRow();
+            })
+            .catch(err => console.log(err))
 
         //Reload the Right Table
         const releaseTaskCallback = releaseTask => {
-             appDivRight.innerHTML = ReleaseTask(releaseTask);
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+            console.log("left table reloads")
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         console.log('after get req');
 
-        //highlightSpecificRow(2);
+        highlightSpecificRow(2);
 
 
     }
 })
 
 // function changePriorityColor() {
-    
+
 //     var priorityThreshold = ${priority.id },
 //         priorityColor = document.querySelector('.priorityLevel');
-    
+
 //     function changeColor(val) {
 //         var color = "green";
-    
+
 //         if (val = 3) {
 //             color = "yellow"
 //         }
@@ -169,7 +170,7 @@ appDivRight.addEventListener('click', function(){
 //         if (val = 1) {
 //             color = "red";
 //         }
-    
+
 //         priorityColor.style.color = color;
 //     }
 // }
@@ -202,15 +203,15 @@ function highlightSelectedRow() {
             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
             const releaseTaskCallback = releaseTask => {
                 appDivRight.innerHTML = ReleaseTask(releaseTask);
+                console.log("new highlight on click")
             };
             apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-
         }
     }
 }
 
-function highlightSpecificRow(rowId){
-    console.log('in spec row highligh');
+function highlightSpecificRow(rowId) {
+    console.log('highlight undone');
     console.log(rowId);
     var table = document.getElementById('table1Id');
     console.log(table);
