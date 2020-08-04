@@ -10,14 +10,29 @@ export default function ReleaseTaskEdit(releaseTask) {
         <h4>Description:
         <input class="edit-releaseTask__description" type="text" value="${releaseTask.description}"></h4>
         <h4>Status:
-        <input class="edit-releaseTask__currentStatus" value="${releaseTask.status.name}"></h4>
+        <select class="edit-releaseTask__currentStatus" type="dropdown" value="${releaseTask.status.name}"></h4>
+            <option value="new">New</option>
+            <option value="in_progress">In Progress</option>
+            <option value="done">Done</option>
+            <option value="cancelled">Cancelled</option>
+        </select>
         <h4>Priority:
-        <input class="edit-releaseTask__currentPriority" value="${releaseTask.priority.name}"></h4>
+        <select class="edit-releaseTask__currentPriority" type="dropdown" value="${releaseTask.priority.name}"></h4>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="critical">Critical</option>
+        </select>
         <h4>Assigned To:
-        <input class="edit-releaseTask__assignedEmployeed" value="${releaseTask.employee.name}"></h4>
-        
+        <select class="edit-releaseTask__assignedEmployeed" type="dropdown" value="${releaseTask.employee.name}"></h4>
+            <option value="dakota">Dakota</option>
+            <option value="bernard">Bernard</option>
+            <option value="ron">Ron</option>
+            <option value="dan">Dan</option>
+        </select>
+        <br><br>
         <button class="edit-releaseTask__submit"> Save Your Changes </button>
-        <button class="edit__releaseTaskButton__back" id=${releaseTask.id}">Back</button>
+        <button class="edit__releaseTaskButton__back" id=${releaseTask.id}>Back</button>
 
     `
 }

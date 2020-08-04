@@ -255,3 +255,18 @@ function highlightSpecificRow(rowId) {
 //     //})
 
 // })
+appDivRight.addEventListener('click', function(releaseTask){
+    console.log("in event listener")
+    if (event.target.classList.contains('edit__releaseTaskButton__back')){
+        //const ReleaseTask = document.querySelector('.releaseTask__detailsInfo');
+        const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton__back').id;
+        // console.log(releaseTaskId)
+        // console.log(releaseTask)
+        apiActions.getRequest(
+            `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
+            releaseTask => {
+                appDivRight.innerHTML = ReleaseTask(releaseTask);
+            }
+        )
+    }           
+})

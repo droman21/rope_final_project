@@ -129,3 +129,13 @@ tbody {
     background-color: yellow;
     cursor: pointer;
 }
+#alert{
+    background-color: white;
+    border-radius: 8px;
+    font-weight: bold;
+}
+#alert:hover{
+    background-color: yellow;
+    cursor: pointer;
+    font-weight: bold;
+}
