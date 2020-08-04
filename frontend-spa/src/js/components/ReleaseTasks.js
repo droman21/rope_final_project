@@ -18,17 +18,8 @@ export default function ReleaseTasks(releaseTasks) {
                     </tr>
         ${releaseTasks.map(releaseTask => {
         var dueTime = FormatTime(releaseTask.currentDueTime);
-        //console.log('1');
-        //var statusName = getStatusName(releaseTask.currentStatusID);
-        //console.log('2');
-        //console.log('statusname');
-        //console.log(statusName);
-        //console.log('3');
-        console.log(releaseTask);
-        console.log(releaseTask.status.name);
-        //var getName = StatusName(releaseTask.currentStatusID);
-        //alert('I HATE JAVASCRIPT!');
-        //console.log(getName);
+        //console.log(releaseTask);
+        //console.log(releaseTask.status.name);
         return `
             <tr id="table1__rowHighlight" class="table1__rowFont">
                 <td>${releaseTask.id}</td>
@@ -50,27 +41,4 @@ function FormatTime(time){
     //TODO:  Change this to use Momento package
     var date = new Date(time);
     return (date.getHours()<10?'0':'') + date.getHours() + ":" +  (date.getMinutes()<10?'0':'') + date.getMinutes() + ":" + (date.getSeconds()<10?'0':'') + date.getSeconds();
-}
-
-function getStatusName(statusId) {
-    console.log(4);
-    //const statusEndpoint = `https://localhost:44302/api/status/${statusId}`;
-    let statusName='test';
-    fetch(`https://localhost:44302/api/status/${statusId}`)
-        .then((response) => response.json())
-        //.then(data => console.log(data))
-        //.then(data => console.log(data.name))
-        .then((data) => {
-            console.log(5);
-            console.log(data.name);
-            statusName=data.name;
-            console.log(statusName);
-            console.log(6);
-            //return data.name;})
-            //return "test";
-        })
-        .catch(err => console.log(err))
-        console.log(7);
-
-        return statusName;
 }
