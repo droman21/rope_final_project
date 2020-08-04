@@ -18,14 +18,16 @@ export default function ReleaseTasks(releaseTasks) {
                     </tr>
         ${releaseTasks.map(releaseTask => {
         var dueTime = FormatTime(releaseTask.currentDueTime);
+        //console.log(releaseTask);
+        //console.log(releaseTask.status.name);
         return `
             <tr id="table1__rowHighlight" class="table1__rowFont">
                 <td>${releaseTask.id}</td>
                 <td class="releaseTask__info" id="${releaseTask.id}">${releaseTask.name}</td>
-                <td>${releaseTask.currentStatusID}</td>
-                <td class="priorityLevel">${releaseTask.currentPriorityID}</td>
+                <td id="${releaseTask.currentStatusID}">${releaseTask.status.name}</td>
+                <td id="${releaseTask.currentPriorityID}">${releaseTask.priority.name}</td>
                 <td>${dueTime}</td>
-                <td>${releaseTask.assignedEmployeeID}</td>
+                <td id="${releaseTask.assignedEmployeeID}">${releaseTask.employee.name}</td>
             </tr>
                 `
             }).join("")}
@@ -36,6 +38,7 @@ export default function ReleaseTasks(releaseTasks) {
 }
 
 function FormatTime(time){
+    //TODO:  Change this to use Momento package
     var date = new Date(time);
     return (date.getHours()<10?'0':'') + date.getHours() + ":" +  (date.getMinutes()<10?'0':'') + date.getMinutes() + ":" + (date.getSeconds()<10?'0':'') + date.getSeconds();
 }
