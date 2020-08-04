@@ -18,10 +18,10 @@ export default function ReleaseTaskEdit(releaseTask) {
         </select>
         <h4>Priority:
         <select class="edit-releaseTask__currentPriority" type="dropdown" value="${releaseTask.priority.name}"></h4>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-            <option value="critical">Critical</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+        <option value="critical">Critical</option>
         </select>
         <h4>Assigned To:
         <select class="edit-releaseTask__assignedEmployeed" type="dropdown" value="${releaseTask.employee.name}"></h4>
@@ -30,9 +30,10 @@ export default function ReleaseTaskEdit(releaseTask) {
             <option value="ron">Ron</option>
             <option value="dan">Dan</option>
         </select>
-        <br><br>
-        <button class="edit-releaseTask__submit"> Save Your Changes </button>
-        <button class="edit__releaseTaskButton__back" id=${releaseTask.id}>Back</button>
 
+        <h4></h4>
+
+        <button class="edit-releaseTask__submit"> Save Your Changes </button>
+        <button class="edit__releaseTaskButton__back" id=${releaseTask.id}">Back</button>
     `
 }
