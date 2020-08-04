@@ -3,23 +3,23 @@ export default function ReleaseTask(releaseTask) {
     <h1 class="table-2__header"  id="${releaseTask.id}">${releaseTask.name}</h1>
     <section class="releaseTask__detailsInfo">
         <ul class="releaseTask__detailsInfolist">
-            <li class="releaseTask__currentDueTime"><u><b>DUE-TIME:</b></u> ${releaseTask.currentDueTime}</li>
+            <li class="releaseTask__currentDueTime"><b>Due:</b> ${releaseTask.currentDueTime}</li>
             <br>
-            <li class="releaseTask__id" ><u><b>ID:</b></u> ${releaseTask.id}</li>
+            <li class="releaseTask__id" ><b>ID:</b> ${releaseTask.id}</li>
             <br>
-            <li class="releaseTask__name" id="${releaseTask.id}"><u><b>NAME:</b></u> ${releaseTask.name}</li>
+            <li class="releaseTask__name" id="${releaseTask.id}"><b>Task Name:</b> ${releaseTask.name}</li>
             <br>
-            <li class="releaseTask__description"><u><b>DESCRIPTION:</b></u> ${releaseTask.description}</li>
+            <li class="releaseTask__description"><b>Description:</b> ${releaseTask.description}</li>
             <br>
-            <li class="releaseTask__currentStatusName"><u><b>STATUS-NAME:</b></u> ${releaseTask.status.name}</li>   
+            <li class="releaseTask__currentStatusName"><b>Status:</b> ${releaseTask.status.name}</li>   
             <br>
-            <li class="releaseTask__currentPriorityName"><u><b>PRIORITY-NAME:</b></u> ${releaseTask.priority.name}</li>
+            <li class="releaseTask__currentPriorityName"><b>Priority:</b> ${releaseTask.priority.name}</li>
             <br>
-            <li class="releaseTask__createdDate"><u><b>CREATED:</b></u> ${releaseTask.createdDate}</li>
+            <li class="releaseTask__createdDate"><b>Created:</b> ${releaseTask.createdDate}</li>
             <br>
-            <li class="releaseTask__lastModifiedDate"><u><b>LAST-MODIFIED:</b></u> ${releaseTask.lastModifiedDate}</li>
+            <li class="releaseTask__lastModifiedDate"><b>Last Modified:</b> ${releaseTask.lastModifiedDate}</li>
             <br>
-            <li class="releaseTask__assignedEmployeeName"><u><b>ASSIGNED-TO:</b></u> ${releaseTask.employee.name}</li>
+            <li class="releaseTask__assignedEmployeeName"><b>Assigned To:</b> ${releaseTask.employee.name}</li>
             <br>
         </ul>
         <div class="edit-button">
