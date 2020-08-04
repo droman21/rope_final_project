@@ -7,7 +7,8 @@ export default function ReleaseTasks(releaseTasks) {
         </section>
         <section>
             <div class="floatLeft-container">
-                <table class="table1" id="table1Id" style="width:100%; float:left">        
+                <table class="table1" id="table1Id" style="width:100%; float:left"> 
+                <tbody class="table1__body">       
                     <tr class="table_header">
                         <th class="table_headerFont">ID</th>
                         <th>Task Name</th>
@@ -21,7 +22,7 @@ export default function ReleaseTasks(releaseTasks) {
         //console.log(releaseTask);
         //console.log(releaseTask.status.name);
         return `
-            <tr id="table1__rowHighlight" class="table1__rowFont">
+            <tr id="rowId" class="table1__rowFont">
                 <td>${releaseTask.id}</td>
                 <td class="releaseTask__info" id="${releaseTask.id}">${releaseTask.name}</td>
                 <td id="${releaseTask.currentStatusID}">${releaseTask.status.name}</td>
@@ -30,8 +31,9 @@ export default function ReleaseTasks(releaseTasks) {
                 <td id="${releaseTask.assignedEmployeeID}">${releaseTask.employee.name}</td>
             </tr>
                 `
-            }).join("")}
-                </table>
+    }).join("")}
+                </tbody>
+            </table>
             </div>    
         </section>
     `
