@@ -18,19 +18,12 @@ let currentSelectedRowID = 0;
 let statusData = fetch("https://localhost:44302/api/status")
 .then(response => response.json())
 .then(data => {
-    console.log('functionData');
-    console.log(data);
     statusData = data;
-    console.log('functionStatus');
-    console.log(statusData);
     return statusData;
 })
 .catch(err => console.log(err));
 
 export default function pagebuild() {
-    //getStatusData();
-    console.log('mainStatus');
-    console.log(statusData);
     header()
     // footer()
     //navHome()
@@ -38,20 +31,6 @@ export default function pagebuild() {
     //showAlert();
     // showStatus()
     // showPriority()    
-}
-
-function getStatusData(){
-    fetch("https://localhost:44302/api/status")
-    .then(response => response.json())
-    .then(data => {
-        //console.log('functionData');
-        //console.log(data);
-        status = data;
-        //console.log('functionStatus');
-        //console.log(status);
-        return status;
-    })
-    .catch(err => console.log(err))
 }
 
 function header() {
@@ -117,10 +96,10 @@ appDivRight.addEventListener('click', function () {
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
         const statusDrop = `
-            <select class="edit-releaseTask__currentStatus" type="dropdown"></h4>
+            <select class="edit-releaseTask__Status" type="dropdown"></h4>
             ${statusData.map(sd => {
                 return `
-                <option value="${sd.value}">${sd.name}</option>
+                <option class="edit-releaseTask__newStatusID" value="${sd.value}">${sd.name}</option>
                 `
             })}
             </select>
@@ -144,7 +123,9 @@ appDivRight.addEventListener('click', function () {
         //console.log(description);
         const createdDate = event.target.parentElement.querySelector('.edit-releaseTask__createdDate').value;
         const currentDueTime = event.target.parentElement.querySelector('.edit-releaseTask__currentDueTime').value;
-        const statusID = 1;
+        //const statusID = 1;
+        const newStatusID = event.target.parentElement.querySelector('.edit-releaseTask__Status').value;
+        console.log('newstatus='+newStatusID);
         const priorityID = 1;
         const employeeID = 1;
         const isVisible = true;
@@ -160,7 +141,7 @@ appDivRight.addEventListener('click', function () {
             IsVisible: isVisible,
             LastModifiedDate: formatedDate,
             CreatedDate: createdDate,
-            CurrentStatusID: statusID,
+            CurrentStatusID: newStatusID,
             CurrentPriorityID: priorityID,
             AssignedEmployeeID: employeeID
         };
