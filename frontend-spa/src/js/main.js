@@ -104,24 +104,24 @@ appDivRight.addEventListener('click', function () {
         //console.log(name);
         const description = event.target.parentElement.querySelector('.edit-releaseTask__description').value;
         //console.log(description);
+        const createdDate = event.target.parentElement.querySelector('.edit-releaseTask__createdDate').value;
+        const currentDueTime = event.target.parentElement.querySelector('.edit-releaseTask__currentDueTime').value;
         const statusID = 1;
         const priorityID = 1;
-        //const dueTime = Date.now();
         const employeeID = 1;
         const isVisible = true;
         var lastModifiedDate = new Date();
-        //const formatedDate = lastModifiedDate.toISOString().slice(0,19).replace('T', ' ');
-        const formatedDate = lastModifiedDate.toUTCString();
+        const formatedDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
         //console.log(lastModifiedDate);
         //console.log(formatedDate);
         const releaseEdit = {
             id: releaseTaskId,
             Name: name,
             Description: description,
-            //CurrentDueTime: formatedDate,
+            CurrentDueTime: currentDueTime,
             IsVisible: isVisible,
-            LastModifiedDate: lastModifiedDate,
-            //CreatedDate: formatedDate,
+            LastModifiedDate: formatedDate,
+            CreatedDate: createdDate,
             CurrentStatusID: statusID,
             CurrentPriorityID: priorityID,
             AssignedEmployeeID: employeeID
