@@ -34,6 +34,10 @@ export default function ReleaseTask(releaseTask) {
         <div class="edit-button">
             <button class="edit__releaseTaskButton" id="${releaseTask.id}">Edit</button>
         </div>
+        <div class="add-comment-button">
+            <button class="add__commentButton" id="${releaseTask.id}">Add Comment</button>
+        </div>
+        
     </section>
 
     `
