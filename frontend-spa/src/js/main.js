@@ -47,7 +47,6 @@ function showReleaseTasks() {
         .then(response => response.json())
         .then(releaseTasks => {
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-            //releaseTaskNameButton();
             highlightSelectedRow();
             highlightSpecificRow(1);
         })
@@ -58,41 +57,31 @@ function showReleaseTasks() {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-
-
-        
-        // console.log('before row highlight');
-        // var table = document.getElementById('table1Id');
-        // //var cells = table.getElementsByTagName('td');
-        // console.log(table);
-        // var rowSelected = table.getElementsByTagName('tr')[1];
-        // rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
-        // rowSelected.className += " selected";
-        // console.log('before row highlight');
-
-
-}
-function releaseTaskNameButton() {
-    const releaseTaskItem = document.querySelectorAll('.releaseTask__info');
-    releaseTaskItem.forEach(element => {
-        element.addEventListener('click', function () {
-            const releaseTaskId = element.id;
-            const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-            const releaseTaskCallback = releaseTask => {
-                appDivRight.innerHTML = ReleaseTask(releaseTask);
-            };
-            apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-        })
-    })
 }
 
-function getStatusName(statusId) {
-    const statusEndpoint = `https://localhost:44302/api/status/${statusId}`;
-    fetch(`https://localhost:44302/api/status/${statusId}`)
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
-}
+// function releaseTaskNameButton() {
+//     //THIS CODE SHOULD NO LONGER BE NEEDED.  TO BE DELETED DURING FINAL CODE CLEANUP PHASE
+//     const releaseTaskItem = document.querySelectorAll('.releaseTask__info');
+//     releaseTaskItem.forEach(element => {
+//         element.addEventListener('click', function () {
+//             const releaseTaskId = element.id;
+//             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+//             const releaseTaskCallback = releaseTask => {
+//                 appDivRight.innerHTML = ReleaseTask(releaseTask);
+//             };
+//             apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+//         })
+//     })
+// }
+
+// function getStatusName(statusId) {
+//     //THIS CODE SHOULD NO LONGER BE NEEDED.  TO BE DELETED DURING FINAL CODE CLEANUP PHASE
+//     const statusEndpoint = `https://localhost:44302/api/status/${statusId}`;
+//     fetch(`https://localhost:44302/api/status/${statusId}`)
+//         .then(response => response.json())
+//         .then(data => console.log(data))
+//         .catch(err => console.log(err))
+// }
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
@@ -114,11 +103,11 @@ appDivRight.addEventListener('click', function () {
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit-releaseTask__submit')) {
         const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
-        console.log(releaseTaskId);
+        //console.log(releaseTaskId);
         const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
-        console.log(name);
+        //console.log(name);
         const description = event.target.parentElement.querySelector('.edit-releaseTask__description').value;
-        console.log(description);
+        //console.log(description);
         const statusID = 1;
         const priorityID = 1;
         //const dueTime = Date.now();
@@ -127,8 +116,8 @@ appDivRight.addEventListener('click', function () {
         var lastModifiedDate = new Date();
         //const formatedDate = lastModifiedDate.toISOString().slice(0,19).replace('T', ' ');
         const formatedDate = lastModifiedDate.toUTCString();
-        console.log(lastModifiedDate);
-        console.log(formatedDate);
+        //console.log(lastModifiedDate);
+        //console.log(formatedDate);
         const releaseEdit = {
             id: releaseTaskId,
             Name: name,
@@ -141,16 +130,15 @@ appDivRight.addEventListener('click', function () {
             CurrentPriorityID: priorityID,
             AssignedEmployeeID: employeeID
         };
-        console.log(releaseEdit);
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
         apiActions.putRequest2(
             releaseTaskEndpoint,
             releaseEdit
         )
-        console.log('changed saved');
-        console.log("alert pop")
+
         //without the alert the page reposts with old data, even though it did save
+        //TODO:  Convert this to a Popup?  or add more detail to the alert popup
         alert('Changes Saved');
 
         //Reload the Left Table
@@ -158,28 +146,16 @@ appDivRight.addEventListener('click', function () {
             .then(response => response.json())
             .then(releaseTasks => {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                //releaseTaskNameButton();
-                //var rowIndex = highlightSelectedRow();
                 highlightSelectedRow();
-                console.log('row='+ rowIndex);
-                // var selectedRowID = document.getElementById(releaseTaskId);
-                // console.log('selected row task id');
-                // console.log(selectedRowID);
-                 highlightSpecificRow(rowIndex);
+                highlightSpecificRow(rowIndex);
             })
             .catch(err => console.log(err))
-        console.log("left table reloaded")
 
         //Reload the Right Table
         const releaseTaskCallback = releaseTask => {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
-        console.log('right table reloaded');
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-        console.log('after get req');
-
-
-
     }
 })
 
@@ -221,7 +197,6 @@ function highlightSelectedRow() {
         cell.onclick = function () {
             var rowId = this.parentNode.rowIndex;
             rowIndex = rowId;
-            console.log('in for loop rowindex='+ rowIndex);
             var rowsNotSelected = table.getElementsByTagName('tr');
             for (var row = 1; row < rowsNotSelected.length; row++) {
                 rowsNotSelected[row].style.backgroundColor = "white";
@@ -235,23 +210,16 @@ function highlightSelectedRow() {
             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
             const releaseTaskCallback = releaseTask => {
                 appDivRight.innerHTML = ReleaseTask(releaseTask);
-                console.log("new highlight on click")
             };
             apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         }
     }
-    //console.log('the row index is'+ rowIndex);
-    //return rowIndex;
 }
 
 function highlightSpecificRow(rowId) {
-    console.log('highlight undone');
-    console.log(rowId);
     var table = document.getElementById('table1Id');
-    console.log(table);
-    var cells = table.getElementsByTagName('td');
+    //var cells = table.getElementsByTagName('td');
     var rowSelected = table.getElementsByTagName('tr')[rowId];
-    console.log(rowSelected);
     rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
     rowSelected.className += " selected";
 
@@ -269,14 +237,11 @@ function highlightSpecificRow(rowId) {
 //     //})
 
 // })
+
 appDivRight.addEventListener('click', function(releaseTask){
-    console.log("in ADD event listener appdivright edit release task")
     if (event.target.classList.contains('edit__releaseTaskButton__back')){
-        console.log('inside edit task event listener');
         //const ReleaseTask = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton__back').id;
-        // console.log(releaseTaskId)
-        // console.log(releaseTask)
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTask => {
