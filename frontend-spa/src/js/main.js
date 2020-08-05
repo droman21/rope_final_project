@@ -13,7 +13,7 @@ import Header from './components/Header';
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
-
+let rowIndex = 0;
 
 export default function pagebuild() {
     header()
@@ -94,6 +94,9 @@ function getStatusName(statusId) {
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
+        const tableRowIndex = event.target.parentElement.rowIndex;
+        console.log('rowindex='+ tableRowIndex);
+
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
         console.log('edit paage displayed')
@@ -154,19 +157,21 @@ appDivRight.addEventListener('click', function () {
             .then(releaseTasks => {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 //releaseTaskNameButton();
-                //highlightSelectedRow();
+                var rowIndex = highlightSelectedRow();
+                console.log('row='+ rowIndex);
                 // var selectedRowID = document.getElementById(releaseTaskId);
                 // console.log('selected row task id');
                 // console.log(selectedRowID);
-                // highlightSpecificRow(2);
+                 highlightSpecificRow(rowIndex);
             })
             .catch(err => console.log(err))
+        console.log("left table reloaded")
 
         //Reload the Right Table
         const releaseTaskCallback = releaseTask => {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
-            console.log("left table reloads")
         };
+        console.log('right table reloaded');
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         console.log('after get req');
 
@@ -207,11 +212,13 @@ appDivRight.addEventListener('click', function () {
 function highlightSelectedRow() {
     var table = document.getElementById('table1Id');
     var cells = table.getElementsByTagName('td');
-
+    
     for (let i = 0; i < cells.length; i++) {
         var cell = cells[i];
         cell.onclick = function () {
             var rowId = this.parentNode.rowIndex;
+            rowIndex = rowId;
+            console.log('in for loop rowindex='+ rowIndex);
             var rowsNotSelected = table.getElementsByTagName('tr');
             for (var row = 1; row < rowsNotSelected.length; row++) {
                 rowsNotSelected[row].style.backgroundColor = "white";
@@ -230,6 +237,8 @@ function highlightSelectedRow() {
             apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         }
     }
+    console.log('the row index is'+ rowIndex);
+    return rowIndex;
 }
 
 function highlightSpecificRow(rowId) {
@@ -258,8 +267,9 @@ function highlightSpecificRow(rowId) {
 
 // })
 appDivRight.addEventListener('click', function(releaseTask){
-    console.log("in event listener")
+    console.log("in ADD event listener appdivright edit release task")
     if (event.target.classList.contains('edit__releaseTaskButton__back')){
+        console.log('inside edit task event listener');
         //const ReleaseTask = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton__back').id;
         // console.log(releaseTaskId)
