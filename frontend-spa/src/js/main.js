@@ -23,6 +23,23 @@ let statusData = fetch("https://localhost:44302/api/status")
 })
 .catch(err => console.log(err));
 
+let priorityData = fetch("https://localhost:44302/api/priority")
+.then(response => response.json())
+.then(data => {
+    priorityData = data;
+    return priorityData;
+})
+.catch(err => console.log(err));
+
+let employeeData = fetch("https://localhost:44302/api/employee")
+.then(response => response.json())
+.then(data => {
+    employeeData = data;
+    return employeeData;
+})
+.catch(err => console.log(err));
+
+
 export default function pagebuild() {
     header()
     // footer()
@@ -104,10 +121,28 @@ appDivRight.addEventListener('click', function () {
             })}
             </select>
         `
+        const priorityDrop = `
+            <select class="edit-releaseTask__Priority" type="dropdown"></h4>
+            ${priorityData.map(pd => {
+                return `
+                <option class="edit-releaseTask__newPriorityID" value="${pd.value}">${pd.name}</option>
+                `
+            })}
+            </select>
+        `
+        const employeeDrop = `
+            <select class="edit-releaseTask__Employee" type="dropdown"></h4>
+            ${employeeData.map(ed => {
+                return `
+                <option class="edit-releaseTask__newEmployeeID" value="${ed.id}">${ed.name}</option>
+                `
+            })}
+            </select>
+        `
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
-                ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit,statusDrop);
+                ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit,statusDrop,priorityDrop,employeeDrop);
             }
         )
     }
@@ -125,9 +160,13 @@ appDivRight.addEventListener('click', function () {
         const currentDueTime = event.target.parentElement.querySelector('.edit-releaseTask__currentDueTime').value;
         //const statusID = 1;
         const newStatusID = event.target.parentElement.querySelector('.edit-releaseTask__Status').value;
-        console.log('newstatus='+newStatusID);
-        const priorityID = 1;
-        const employeeID = 1;
+        //console.log('newstatus='+newStatusID);
+        //const priorityID = 1;
+        const newPriorityID = event.target.parentElement.querySelector('.edit-releaseTask__Priority').value;
+        //console.log('newpriority='+ newPriorityID);
+        //const employeeID = 1;
+        const newEmployeeID = event.target.parentElement.querySelector('.edit-releaseTask__Employee').value;
+        //console.log('newemp='+ newEmployeeID);
         const isVisible = true;
         var lastModifiedDate = new Date();
         const formatedDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
@@ -142,8 +181,8 @@ appDivRight.addEventListener('click', function () {
             LastModifiedDate: formatedDate,
             CreatedDate: createdDate,
             CurrentStatusID: newStatusID,
-            CurrentPriorityID: priorityID,
-            AssignedEmployeeID: employeeID
+            CurrentPriorityID: newPriorityID,
+            AssignedEmployeeID: newEmployeeID
         };
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
