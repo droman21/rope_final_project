@@ -20,7 +20,6 @@ export default function pagebuild() {
     // footer()
     //navHome()
     showReleaseTasks();
-    //highlightSpecificRow(1);
     //showAlert();
     // showStatus()
     // showPriority()    
@@ -50,6 +49,7 @@ function showReleaseTasks() {
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
             //releaseTaskNameButton();
             highlightSelectedRow();
+            highlightSpecificRow(1);
         })
         .catch(err => console.log(err))
 
@@ -58,6 +58,8 @@ function showReleaseTasks() {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+
+
         
         // console.log('before row highlight');
         // var table = document.getElementById('table1Id');
@@ -157,7 +159,8 @@ appDivRight.addEventListener('click', function () {
             .then(releaseTasks => {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 //releaseTaskNameButton();
-                var rowIndex = highlightSelectedRow();
+                //var rowIndex = highlightSelectedRow();
+                highlightSelectedRow();
                 console.log('row='+ rowIndex);
                 // var selectedRowID = document.getElementById(releaseTaskId);
                 // console.log('selected row task id');
@@ -237,8 +240,8 @@ function highlightSelectedRow() {
             apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         }
     }
-    console.log('the row index is'+ rowIndex);
-    return rowIndex;
+    //console.log('the row index is'+ rowIndex);
+    //return rowIndex;
 }
 
 function highlightSpecificRow(rowId) {
