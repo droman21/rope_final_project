@@ -68,6 +68,7 @@ function navHome() {
 }
 
 function showReleaseTasks() {
+
     fetch("https://localhost:44302/api/releaseTask")
         .then(response => response.json())
         .then(releaseTasks => {
