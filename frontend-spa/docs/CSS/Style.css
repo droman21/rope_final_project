@@ -36,9 +36,6 @@ background-color: green;
 #table1__rowHighlight :focus{
     background-color: red;
 }
-
-
-
 .table-2 {
     height: 267px;
     max-height: 267px;
@@ -106,11 +103,11 @@ tbody {
 .edit__releaseTaskButton{
     color: black;
     font-weight: bold;
-    background-color: chartreuse;
+    background-color: rgb(9, 255, 0);
     border-radius: 15px;
 }
 .edit-releaseTask__submit{
-    background-color: chocolate;
+    background-color: rgb(245, 91, 2);
     font-weight: bold;
     border-radius: 10px;
 }
@@ -142,7 +139,7 @@ tbody {
     font-weight: bold;
 }
 .add-comment__submit{
-    background-color: chocolate;
+    background-color: rgb(245, 91, 2);
     font-weight: bold;
     border-radius: 10px;
 }
