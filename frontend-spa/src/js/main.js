@@ -5,7 +5,7 @@ import apiActions from './api/apiActions';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
 import ReleaseTaskEdit from './components/ReleaseTaskEdit';
-// import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
+import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
 import Header from './components/Header';
 // import Footer from './components/Footer';
 import CommentPost from './components/CommentPost';
@@ -236,6 +236,44 @@ appDivRight.addEventListener('click', function () {
     }
 })
 
+appDivLeft.addEventListener('click', function () {
+    if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
+        console.log("new task clicked")
+        appDivRight.innerHTML = ReleaseTaskPostSection();
+    }
+})
+
+appDivRight.addEventListener('click', function () {
+    if (event.target.classList.contains('create-releaseTask__submit')) {
+        const name = event.target.parentElement.querySelector('.create-releaseTask__name').value;
+        const description = event.target.parentElement.querySelector('.create-releaseTask__description').value;
+        const currentDueTime = event.target.parentElement.querySelector('.create-releaseTask__currentDueTime').value;
+        const currentStatusID = event.target.parentElement.querySelector('.create-releaseTask__currentStatusId').value;
+        const currentPriorityID = event.target.parentElement.querySelector('.create-releaseTask__currentPriorityId').value;
+        const assignedEmployeeID = event.target.parentElement.querySelector('.create-releaseTask__assignedEmployeeId').value;
+        var lastModifiedDate = new Date();
+        const formatedCurrentDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
+        var requestBody = {
+            Name: name,
+            Description: description,
+            CreatedDate:formatedCurrentDate,
+            IsVisisble: true,
+            CurrentDueTime: formatedCurrentDate,
+            LastModifiedDate: formatedCurrentDate,
+            CurrentStatusID: currentStatusID,
+            CurrentPriorityID: currentPriorityID,
+            AssignedEmployeeID: assignedEmployeeID,
+        }
+        console.log(requestBody)
+        apiActions.postRequest(
+            "https://localhost:44302/api/releaseTask",
+            requestBody,
+            newReleaseTasks => {
+                appDivLeft.innerHTML = ReleaseTasks(newReleaseTasks);
+            }
+        )
+    }
+})
 // function changePriorityColor() {
 
 //     var priorityThreshold = ${priority.id },

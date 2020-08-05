@@ -142,6 +142,15 @@ tbody {
     cursor: pointer;
     font-weight: bold;
 }
+.create-releaseTask__submit{
+    background-color: chocolate;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.create-releaseTask__submit:hover{
+    background-color: yellow;
+    cursor: pointer;
+
 .add-comment__submit{
     background-color: rgb(245, 91, 2);
     font-weight: bold;
@@ -160,4 +169,5 @@ tbody {
     background-color: yellow;
     cursor: pointer;
     font-weight: bold;
+
 }
