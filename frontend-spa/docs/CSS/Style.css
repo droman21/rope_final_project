@@ -124,10 +124,12 @@ tbody {
 .edit__releaseTaskButton__back{
     background-color: white;
     border-radius: 8px;
+    font-weight: bold;
 }
 .edit__releaseTaskButton__back:hover{
     background-color: yellow;
     cursor: pointer;
+    font-weight: bold;
 }
 #alert{
     background-color: white;

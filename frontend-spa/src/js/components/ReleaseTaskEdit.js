@@ -1,5 +1,6 @@
 //import Employee from "./Employee";
-export default function ReleaseTaskEdit(releaseTask) {
+export default function ReleaseTaskEdit(releaseTask, priorities) {
+    console.log(releaseTask);
     return `
     <h1>Edit the release task fields below.</h1>
         <input class="edit-releaseTask__id" hidden="true" value="${releaseTask.id}">
@@ -18,14 +19,15 @@ export default function ReleaseTaskEdit(releaseTask) {
             <option value="cancelled">Cancelled</option>
         </select>
         <h4>Priority:
-        <select class="edit-releaseTask__currentPriority" type="dropdown" value="${releaseTask.priority.name}"></h4>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-            <option value="critical">Critical</option>
+        <select class="edit-releaseTask__currentPriority" type="dropdown"></h4>
+            ${releaseTask.map(priority => {
+                return `
+                    <option class="edit-task__priorityId" value="${priority.id}">${priority.name}</option>
+                `
+            }).join("")}
         </select>
         <h4>Assigned To:
-        <select class="edit-releaseTask__assignedEmployeed" type="dropdown" value="${releaseTask.employee.name}"></h4>
+        <select class="edit-releaseTask__assignedEmployeed" type="dropdown"></h4>
             <option value="dakota">Dakota</option>
             <option value="bernard">Bernard</option>
             <option value="ron">Ron</option>

@@ -88,12 +88,18 @@ appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
+        const priorities = apiActions.getRequest2(
+            "https://localhost:44302/api/priority"
+            
+        );
+        console.log(priorities);
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
-            releaseTaskEdit => {
-                ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit);
+            releaseTask => {
+                ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTask, releaseTask.priority);
             }
         )
+        
     }
 })
 

@@ -4,6 +4,11 @@ function getRequest(location, callback) {
         .then(data => callback(data))
         .catch(err => console.log(err))
 }
+function getRequest2(location, callback) {
+    fetch(location)
+        .then(response => response.json())
+        .catch(err => console.log(err))
+}
 
 function postRequest(location, requestBody, callback) {
     fetch(location, {
@@ -69,6 +74,7 @@ function putRequest2(location, requestBody){
 
 export default {
     getRequest,
+    getRequest2,
     postRequest,
     postRequest2,
     deleteRequest,
