@@ -114,7 +114,6 @@ appDivRight.addEventListener('click', function () {
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
         const statusDrop = `
-            <select class="edit-releaseTask__Status" type="dropdown"></h4>
             ${statusData.map(sd => {
                 return `
                 <option class="edit-releaseTask__newStatusID" value="${sd.value}">${sd.name}</option>
@@ -144,10 +143,31 @@ appDivRight.addEventListener('click', function () {
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
                 ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit,statusDrop,priorityDrop,employeeDrop);
+                console.log('releaseTaskEdit');
+                console.log(releaseTaskEdit);
+                console.log('releaseTaskEdit='+releaseTaskEdit);
+                //var obj = JSON.parse(releaseTaskEdit);
+                //var newdata = releaseTaskEdit.data.CurrentStatusID;
+                var newdata = releaseTaskEdit.currentStatusID;
+                console.log('after parse');
+                console.log(newdata);
+                //var currStID = obj.CurrentStatusID;
+                //console.log(currStID);
+                selectElement('statusDropID',newdata);
             }
         )
     }
 })
+
+function selectElement(id, valueToSelect){
+    console.log(id);
+    //let valueToSelect = releaseTaskEdit.CurrentStatusID;
+    console.log(valueToSelect);
+    let element = document.getElementById(id);
+    //let element = document.querySelector('.edit-releaseTask__Status');
+    console.log(element);
+    element.value = valueToSelect;
+}
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit-releaseTask__submit')) {
