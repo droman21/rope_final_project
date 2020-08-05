@@ -18,7 +18,9 @@ table, th, td {
 /* .active table1__body{
 background-color: green;
 } */
-
+#appRow tr a.appRight{
+    background-color: rgb(173, 204, 209);
+}
 #appRow tr a.appLeft {
     background-color: white;
 }
@@ -36,13 +38,10 @@ background-color: green;
 #table1__rowHighlight :focus{
     background-color: red;
 }
-
-
-
 .table-2 {
     height: 267px;
     max-height: 267px;
-     display: block;
+    display: block;
     background-color: white;
 }
 .table-2_header{
@@ -52,7 +51,9 @@ background-color: green;
 .floatLeft { width: 65%; float: left; }
 .floatRight {width: 50%; float: right; }
 
-.container { overflow: hidden; }
+.container {
+    overflow: scroll;
+}
 
 .table_header{
     background-color: rgb(21, 21, 146);
@@ -106,11 +107,11 @@ tbody {
 .edit__releaseTaskButton{
     color: black;
     font-weight: bold;
-    background-color: chartreuse;
+    background-color: rgb(9, 255, 0);
     border-radius: 15px;
 }
 .edit-releaseTask__submit{
-    background-color: chocolate;
+    background-color: rgb(245, 91, 2);
     font-weight: bold;
     border-radius: 10px;
 }
@@ -124,10 +125,12 @@ tbody {
 .edit__releaseTaskButton__back{
     background-color: white;
     border-radius: 8px;
+    font-weight: bold;
 }
 .edit__releaseTaskButton__back:hover{
     background-color: yellow;
     cursor: pointer;
+    font-weight: bold;
 }
 #alert{
     background-color: white;
@@ -135,6 +138,25 @@ tbody {
     font-weight: bold;
 }
 #alert:hover{
+    background-color: yellow;
+    cursor: pointer;
+    font-weight: bold;
+}
+.add-comment__submit{
+    background-color: rgb(245, 91, 2);
+    font-weight: bold;
+    border-radius: 10px;
+}
+.add-comment__submit:hover{
+    background-color: yellow;
+    cursor: pointer;
+}
+.add__commentButton{
+    background-color: white;
+    border-radius: 8px;
+    font-weight: bold;
+}
+.add__commentButton:hover{
     background-color: yellow;
     cursor: pointer;
     font-weight: bold;

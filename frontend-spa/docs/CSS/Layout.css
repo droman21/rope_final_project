@@ -5,3 +5,11 @@ display: flex;
 .edit-button{
     margin-left: 75%;
 }
+.appRight{
+    position: auto;
+    right: auto;
+    width: 670px;
+}
+.appLeft{
+    overflow: scroll;
+}

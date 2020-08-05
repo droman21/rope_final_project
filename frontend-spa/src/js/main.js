@@ -156,6 +156,7 @@ appDivRight.addEventListener('click', function () {
                 selectElement('statusDropID',newdata);
             }
         )
+        
     }
 })
 
