@@ -1,5 +1,5 @@
 //import Employee from "./Employee";
-export default function ReleaseTaskEdit(releaseTask) {
+export default function ReleaseTaskEdit(releaseTask, statusDrop) {
     return `
     <h1>Edit the release task fields below.</h1>
         <input class="edit-releaseTask__id" hidden="true" value="${releaseTask.id}">
@@ -11,12 +11,7 @@ export default function ReleaseTaskEdit(releaseTask) {
         <h4>Description:
         <input class="edit-releaseTask__description" type="text" value="${releaseTask.description}"></h4>
         <h4>Status:
-        <select class="edit-releaseTask__currentStatus" type="dropdown" value="${releaseTask.status.name}"></h4>
-            <option value="new">New</option>
-            <option value="in_progress">In Progress</option>
-            <option value="done">Done</option>
-            <option value="cancelled">Cancelled</option>
-        </select>
+        ${statusDrop}
         <h4>Priority:
         <select class="edit-releaseTask__currentPriority" type="dropdown" value="${releaseTask.priority.name}"></h4>
             <option value="low">Low</option>

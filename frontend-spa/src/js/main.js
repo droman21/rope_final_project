@@ -15,8 +15,22 @@ const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 let currentSelectedRowID = 0;
+let statusData = fetch("https://localhost:44302/api/status")
+.then(response => response.json())
+.then(data => {
+    console.log('functionData');
+    console.log(data);
+    statusData = data;
+    console.log('functionStatus');
+    console.log(statusData);
+    return statusData;
+})
+.catch(err => console.log(err));
 
 export default function pagebuild() {
+    //getStatusData();
+    console.log('mainStatus');
+    console.log(statusData);
     header()
     // footer()
     //navHome()
@@ -24,6 +38,20 @@ export default function pagebuild() {
     //showAlert();
     // showStatus()
     // showPriority()    
+}
+
+function getStatusData(){
+    fetch("https://localhost:44302/api/status")
+    .then(response => response.json())
+    .then(data => {
+        //console.log('functionData');
+        //console.log(data);
+        status = data;
+        //console.log('functionStatus');
+        //console.log(status);
+        return status;
+    })
+    .catch(err => console.log(err))
 }
 
 function header() {
@@ -88,10 +116,19 @@ appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
+        const statusDrop = `
+            <select class="edit-releaseTask__currentStatus" type="dropdown"></h4>
+            ${statusData.map(sd => {
+                return `
+                <option value="${sd.value}">${sd.name}</option>
+                `
+            })}
+            </select>
+        `
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
-                ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit);
+                ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit,statusDrop);
             }
         )
     }
