@@ -18,7 +18,9 @@ table, th, td {
 /* .active table1__body{
 background-color: green;
 } */
-
+#appRow tr a.appRight{
+    background-color: rgb(173, 204, 209);
+}
 #appRow tr a.appLeft {
     background-color: white;
 }
@@ -39,7 +41,7 @@ background-color: green;
 .table-2 {
     height: 267px;
     max-height: 267px;
-     display: block;
+    display: block;
     background-color: white;
 }
 .table-2_header{
@@ -49,7 +51,9 @@ background-color: green;
 .floatLeft { width: 65%; float: left; }
 .floatRight {width: 50%; float: right; }
 
-.container { overflow: hidden; }
+.container {
+    overflow: scroll;
+}
 
 .table_header{
     background-color: rgb(21, 21, 146);

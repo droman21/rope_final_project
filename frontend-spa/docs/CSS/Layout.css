@@ -10,3 +10,6 @@ display: flex;
     right: auto;
     width: 670px;
 }
+.appLeft{
+    overflow: scroll;
+}
