@@ -1,4 +1,4 @@
-export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop) {
+export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop,currentSelectedRowID) {
     return `
         <h1 class="releaseTaskPostSection"> Create New Release Task <h1>
         <section class="create-releaseTask__post">
@@ -25,6 +25,8 @@ export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeD
         <h6>Due Time:
         <input class="create-releaseTask__currentDueTime" type="text" placeholder="Set Due Time"> </h6>
         <button class="create-releaseTask__submit">Save Your Task</button>
+        <button class="edit__releaseTaskButton__back" id=${currentSelectedRowID}>Back</button>
+
         </section>
         
     `

@@ -33,11 +33,11 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop,priorityDrop,emp
     `
 }
 
-function selectElement(id, valueToSelect){
-    console.log(valueToSelect);
-    console.log(id);
-    let element = document.getElementById(id);
-    //let element = document.querySelector('.edit-releaseTask__Status');
-    console.log(element);
-    element.value = valueToSelect;
-}
+// function selectElement(id, valueToSelect){
+//     console.log(valueToSelect);
+//     console.log(id);
+//     let element = document.getElementById(id);
+//     //let element = document.querySelector('.edit-releaseTask__Status');
+//     console.log(element);
+//     element.value = valueToSelect;
+// }

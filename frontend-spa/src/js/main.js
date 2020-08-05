@@ -14,7 +14,7 @@ import CommentPost from './components/CommentPost';
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
-let currentSelectedRowID = 0;
+let currentSelectedRowID = 1;
 let statusData = fetch("https://localhost:44302/api/status")
 .then(response => response.json())
 .then(data => {
@@ -232,7 +232,7 @@ appDivLeft.addEventListener('click', function () {
                 `
             })}
         `
-    appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop);
+    appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop,currentSelectedRowID);
     }
 })
 
