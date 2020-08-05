@@ -113,6 +113,7 @@ appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
+        //TODO:  The next 21 lines are repeated elsewhere in code
         const statusDrop = `
             ${statusData.map(sd => {
                 return `
@@ -209,7 +210,29 @@ appDivRight.addEventListener('click', function () {
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
         console.log("new task clicked")
-        appDivRight.innerHTML = ReleaseTaskPostSection();
+        //TODO:  The next 21 lines are repeated elsewhere in code
+        const statusDrop = `
+        ${statusData.map(sd => {
+            return `
+            <option class="edit-releaseTask__newStatusID" value="${sd.value}">${sd.name}</option>
+            `
+        })}
+        `
+        const priorityDrop = `
+            ${priorityData.map(pd => {
+                return `
+                <option class="edit-releaseTask__newPriorityID" value="${pd.value}">${pd.name}</option>
+                `
+            })}
+        `
+        const employeeDrop = `
+            ${employeeData.map(ed => {
+                return `
+                <option class="edit-releaseTask__newEmployeeID" value="${ed.id}">${ed.name}</option>
+                `
+            })}
+        `
+    appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop);
     }
 })
 
@@ -218,9 +241,9 @@ appDivRight.addEventListener('click', function () {
         const name = event.target.parentElement.querySelector('.create-releaseTask__name').value;
         const description = event.target.parentElement.querySelector('.create-releaseTask__description').value;
         const currentDueTime = event.target.parentElement.querySelector('.create-releaseTask__currentDueTime').value;
-        const currentStatusID = event.target.parentElement.querySelector('.create-releaseTask__currentStatusId').value;
-        const currentPriorityID = event.target.parentElement.querySelector('.create-releaseTask__currentPriorityId').value;
-        const assignedEmployeeID = event.target.parentElement.querySelector('.create-releaseTask__assignedEmployeeId').value;
+        const currentStatusID = event.target.parentElement.querySelector('.create-releaseTask__Status').value;
+        const currentPriorityID = event.target.parentElement.querySelector('.create-releaseTask__Priority').value;
+        const assignedEmployeeID = event.target.parentElement.querySelector('.create-releaseTask__Employee').value;
         var lastModifiedDate = new Date();
         const formatedCurrentDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
         var requestBody = {
