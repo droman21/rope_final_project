@@ -8,6 +8,7 @@ import ReleaseTaskEdit from './components/ReleaseTaskEdit';
 // import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
 import Header from './components/Header';
 // import Footer from './components/Footer';
+import CommentPost from './components/CommentPost';
 
 
 const appDiv = document.querySelector('.app');
@@ -133,6 +134,7 @@ appDivRight.addEventListener('click', function () {
             releaseEdit
         )
 
+        //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
         alert('Changes Saved');
@@ -243,4 +245,67 @@ appDivRight.addEventListener('click', function(releaseTask){
             }
         )
     }           
+})
+
+appDivRight.addEventListener('click', function () {
+    if (event.target.classList.contains('add__commentButton')) {
+        const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
+        const releaseTaskId = event.target.parentElement.querySelector('.add__commentButton').id;
+        apiActions.getRequest(
+            `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
+            addComment => {
+                ReleaseTaskEditSection.innerHTML = CommentPost(releaseTaskId, addComment);
+            }
+        )
+    }
+})
+
+appDivRight.addEventListener('click', function () {
+    if (event.target.classList.contains('add-comment__submit')) {
+        console.log('in save comment');
+        const releaseTaskId = event.target.parentElement.querySelector('.add-comment__submit').id;
+        const isVisible = true;
+        const commentDetails = event.target.parentElement.querySelector('.add-comment__details').value;
+        console.log(releaseTaskId);
+        console.log(isVisible);
+        console.log(commentDetails);
+
+        const newCommentBody = {
+            Details: commentDetails,
+            IsVisible: isVisible,
+            ReleaseTaskID: releaseTaskId
+        }
+
+        console.log(newCommentBody);
+
+        apiActions.postRequest2(
+            "https://localhost:44302/api/comment",
+            newCommentBody
+            )
+
+        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+
+        //TODO:  The next 20 lines are repeated elsewhere in main.js
+        //without the alert the page reposts with old data, even though it did save
+        //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+        alert('Changes Saved');
+
+        //Reload the Left Table
+        fetch("https://localhost:44302/api/releaseTask")
+            .then(response => response.json())
+            .then(releaseTasks => {
+                appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+                highlightSelectedRow();
+                highlightSpecificRow(currentSelectedRowID);
+            })
+            .catch(err => console.log(err))
+
+        //Reload the Right Table
+        const releaseTaskCallback = releaseTask => {
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+
+
+    }
 })
