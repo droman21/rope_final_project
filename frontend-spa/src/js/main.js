@@ -160,22 +160,32 @@ appDivRight.addEventListener('click', function () {
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
         console.log("new task clicked")
-        const releaseTaskPostSection = document.querySelector('.create-releaseTask__post');
-        releaseTaskPostSection.innerHTML = ReleaseTaskPostSection();
+        appDivRight.innerHTML = ReleaseTaskPostSection();
     }
 })
 
-appDivLeft.addEventListener('click', function () {
+appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('create-releaseTask__submit')) {
-        const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
-        const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
-        const description = event.target.parentElement.querySelector('.edit-releaseTask__description').value;
+        const name = event.target.parentElement.querySelector('.create-releaseTask__name').value;
+        const description = event.target.parentElement.querySelector('.create-releaseTask__description').value;
+        const currentDueTime = event.target.parentElement.querySelector('.create-releaseTask__currentDueTime').value;
+        const currentStatusID = event.target.parentElement.querySelector('.create-releaseTask__currentStatusId').value;
+        const currentPriorityID = event.target.parentElement.querySelector('.create-releaseTask__currentPriorityId').value;
+        const assignedEmployeeID = event.target.parentElement.querySelector('.create-releaseTask__assignedEmployeeId').value;
+        var lastModifiedDate = new Date();
+        const formatedCurrentDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
         var requestBody = {
             Name: name,
             Description: description,
-            CreatedDate: Date.now()
-            
+            CreatedDate:formatedCurrentDate,
+            IsVisisble: true,
+            CurrentDueTime: formatedCurrentDate,
+            LastModifiedDate: formatedCurrentDate,
+            CurrentStatusID: currentStatusID,
+            CurrentPriorityID: currentPriorityID,
+            AssignedEmployeeID: assignedEmployeeID,
         }
+        console.log(requestBody)
         apiActions.postRequest(
             "https://localhost:44302/api/releaseTask",
             requestBody,

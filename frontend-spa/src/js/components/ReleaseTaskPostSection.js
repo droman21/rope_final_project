@@ -5,12 +5,12 @@ export default function ReleaseTaskPostSection() {
         <input class="create-releaseTask__name" type="text" placeholder="Release Task Name">
         <input class="create-releaseTask__description" type="text" placeholder="Release Task Description">
         <input class="create-releaseTask__currentStatusId"  type="text" placeholder="Current Status ID">
+        <input class="create-releaseTask__currentPriorityId"  type="text" placeholder="Current Priority ID">
         <input class="create-releaseTask__assignedEmployeeId" type="text"placeholder="Employee ID">
         <input class="create-releaseTask__currentDueTime" type="text" placeholder="Set Due Time">
         <button class="create-releaseTask__submit">Save Your Task</button>
         </section>
         
-        }
     `
 }
 
