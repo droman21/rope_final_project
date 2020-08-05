@@ -139,3 +139,12 @@ tbody {
     cursor: pointer;
     font-weight: bold;
 }
+.create-releaseTask__submit{
+    background-color: chocolate;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.create-releaseTask__submit:hover{
+    background-color: yellow;
+    cursor: pointer;
+}
