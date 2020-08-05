@@ -139,3 +139,22 @@ tbody {
     cursor: pointer;
     font-weight: bold;
 }
+.add-comment__submit{
+    background-color: chocolate;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.add-comment__submit:hover{
+    background-color: yellow;
+    cursor: pointer;
+}
+.add__commentButton{
+    background-color: white;
+    border-radius: 8px;
+    font-weight: bold;
+}
+.add__commentButton:hover{
+    background-color: yellow;
+    cursor: pointer;
+    font-weight: bold;
+}
