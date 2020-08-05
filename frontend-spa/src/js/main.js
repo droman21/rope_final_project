@@ -13,7 +13,7 @@ import Header from './components/Header';
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
-let rowIndex = 0;
+let currentSelectedRowID = 0;
 
 export default function pagebuild() {
     header()
@@ -85,12 +85,8 @@ function showReleaseTasks() {
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
-        const tableRowIndex = event.target.parentElement.rowIndex;
-        console.log('rowindex='+ tableRowIndex);
-
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
-        console.log('edit paage displayed')
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
@@ -147,7 +143,7 @@ appDivRight.addEventListener('click', function () {
             .then(releaseTasks => {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 highlightSelectedRow();
-                highlightSpecificRow(rowIndex);
+                highlightSpecificRow(currentSelectedRowID);
             })
             .catch(err => console.log(err))
 
@@ -196,7 +192,7 @@ function highlightSelectedRow() {
         var cell = cells[i];
         cell.onclick = function () {
             var rowId = this.parentNode.rowIndex;
-            rowIndex = rowId;
+            currentSelectedRowID = rowId;
             var rowsNotSelected = table.getElementsByTagName('tr');
             for (var row = 1; row < rowsNotSelected.length; row++) {
                 rowsNotSelected[row].style.backgroundColor = "white";
@@ -218,7 +214,6 @@ function highlightSelectedRow() {
 
 function highlightSpecificRow(rowId) {
     var table = document.getElementById('table1Id');
-    //var cells = table.getElementsByTagName('td');
     var rowSelected = table.getElementsByTagName('tr')[rowId];
     rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
     rowSelected.className += " selected";
@@ -240,7 +235,6 @@ function highlightSpecificRow(rowId) {
 
 appDivRight.addEventListener('click', function(releaseTask){
     if (event.target.classList.contains('edit__releaseTaskButton__back')){
-        //const ReleaseTask = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton__back').id;
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
