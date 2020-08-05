@@ -119,25 +119,20 @@ appDivRight.addEventListener('click', function () {
                 <option class="edit-releaseTask__newStatusID" value="${sd.value}">${sd.name}</option>
                 `
             })}
-            </select>
         `
         const priorityDrop = `
-            <select class="edit-releaseTask__Priority" type="dropdown"></h4>
             ${priorityData.map(pd => {
                 return `
                 <option class="edit-releaseTask__newPriorityID" value="${pd.value}">${pd.name}</option>
                 `
             })}
-            </select>
         `
         const employeeDrop = `
-            <select class="edit-releaseTask__Employee" type="dropdown"></h4>
             ${employeeData.map(ed => {
                 return `
                 <option class="edit-releaseTask__newEmployeeID" value="${ed.id}">${ed.name}</option>
                 `
             })}
-            </select>
         `
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
@@ -148,12 +143,16 @@ appDivRight.addEventListener('click', function () {
                 console.log('releaseTaskEdit='+releaseTaskEdit);
                 //var obj = JSON.parse(releaseTaskEdit);
                 //var newdata = releaseTaskEdit.data.CurrentStatusID;
-                var newdata = releaseTaskEdit.currentStatusID;
+                var currStatusID = releaseTaskEdit.currentStatusID;
+                var currPriorityID = releaseTaskEdit.currentPriorityID;
+                var currAssignedEmployeeID = releaseTaskEdit.assignedEmployeeID;
                 console.log('after parse');
-                console.log(newdata);
+                //console.log(newdata);
                 //var currStID = obj.CurrentStatusID;
                 //console.log(currStID);
-                selectElement('statusDropID',newdata);
+                selectElement('statusDropID',currStatusID);
+                selectElement('priorityDropID',currPriorityID);
+                selectElement('employeeDropID',currAssignedEmployeeID);
             }
         )
         
