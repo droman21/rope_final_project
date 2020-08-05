@@ -5,7 +5,7 @@ import apiActions from './api/apiActions';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
 import ReleaseTaskEdit from './components/ReleaseTaskEdit';
-// import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
+import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
 import Header from './components/Header';
 // import Footer from './components/Footer';
 import CommentPost from './components/CommentPost';
@@ -157,6 +157,34 @@ appDivRight.addEventListener('click', function () {
     }
 })
 
+appDivLeft.addEventListener('click', function () {
+    if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
+        console.log("new task clicked")
+        const releaseTaskPostSection = document.querySelector('.create-releaseTask__post');
+        releaseTaskPostSection.innerHTML = ReleaseTaskPostSection();
+    }
+})
+
+appDivLeft.addEventListener('click', function () {
+    if (event.target.classList.contains('create-releaseTask__submit')) {
+        const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
+        const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
+        const description = event.target.parentElement.querySelector('.edit-releaseTask__description').value;
+        var requestBody = {
+            Name: name,
+            Description: description,
+            CreatedDate: Date.now()
+            
+        }
+        apiActions.postRequest(
+            "https://localhost:44302/api/releaseTask",
+            requestBody,
+            newReleaseTasks => {
+                appDivLeft.innerHTML = ReleaseTasks(newReleaseTasks);
+            }
+        )
+    }
+})
 // function changePriorityColor() {
 
 //     var priorityThreshold = ${priority.id },

@@ -1,22 +1,16 @@
-export default ReleaseTaskPostSection(releaseTasks) {
+export default function ReleaseTaskPostSection() {
     return `
         <h1 class="releaseTaskPostSection"> Create New Release Task <h1>
         <section class="create-releaseTask__post">
-            ${releaseTasks.map(releaseTask => {
-                return `
-        <input class="create-releaseTask__id" type"hidden" value="${releaseTask.Id}>
-        <input class="create-releaseTask__name" type="text" value="${releaseTask.name}">
-        <input class="create-releaseTask__description" type="text" value="${releaseTask.description}">
-        <select class="releaseTask__currentStatusId"  type="dropdown" value="${releaseTask.currentStatusId}"></select>
-        <input class="releaseTask__assignedEmployeeId" type="text" value="${releaseTask.employeeId}">
-        <input class="releaseTask__isVisible"  type="text" value="${releaseTask.isVisible}">
-        <input class="releaseTask__currentDueTime" type="text" value="${releaseTask.currentDueTime}">
-        <input class="releaseTask__createdTime" type="text" value="${releaseTask.createdTime}">
-        <input class="releaseTask__lastModifiedTime"  type="text" value="${releaseTask.lastModifiedTime}">
+        <input class="create-releaseTask__name" type="text" placeholder="Release Task Name">
+        <input class="create-releaseTask__description" type="text" placeholder="Release Task Description">
+        <input class="create-releaseTask__currentStatusId"  type="text" placeholder="Current Status ID">
+        <input class="create-releaseTask__assignedEmployeeId" type="text"placeholder="Employee ID">
+        <input class="create-releaseTask__currentDueTime" type="text" placeholder="Set Due Time">
         <button class="create-releaseTask__submit">Save Your Task</button>
         </section>
-        `
-        }).join("")}
+        
+        }
     `
 }
 
