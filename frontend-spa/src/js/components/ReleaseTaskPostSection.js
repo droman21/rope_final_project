@@ -2,12 +2,18 @@ export default function ReleaseTaskPostSection() {
     return `
         <h1 class="releaseTaskPostSection"> Create New Release Task <h1>
         <section class="create-releaseTask__post">
-        <input class="create-releaseTask__name" type="text" placeholder="Release Task Name">
-        <input class="create-releaseTask__description" type="text" placeholder="Release Task Description">
-        <input class="create-releaseTask__currentStatusId"  type="text" placeholder="Current Status ID">
-        <input class="create-releaseTask__currentPriorityId"  type="text" placeholder="Current Priority ID">
-        <input class="create-releaseTask__assignedEmployeeId" type="text"placeholder="Employee ID">
-        <input class="create-releaseTask__currentDueTime" type="text" placeholder="Set Due Time">
+        <h6>Task Name:
+        <input class="create-releaseTask__name" type="text" placeholder="Release Task Name"></h6>
+        <h6>Description:
+        <input class="create-releaseTask__description" type="text" placeholder="Release Task Description"></h6>
+        <h6>Status:
+        <input class="create-releaseTask__currentStatusId"  type="text" placeholder="Current Status ID"> </h6>
+        <h6> Priority:
+        <input class="create-releaseTask__currentPriorityId"  type="text" placeholder="Current Priority ID"> </h6>
+        <h6>Employee:
+        <input class="create-releaseTask__assignedEmployeeId" type="text"placeholder="Employee ID"></h6>
+        <h6>Due Time:
+        <input class="create-releaseTask__currentDueTime" type="text" placeholder="Set Due Time"> </h6>
         <button class="create-releaseTask__submit">Save Your Task</button>
         </section>
         
