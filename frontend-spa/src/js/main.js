@@ -250,35 +250,6 @@ appDivRight.addEventListener('click', function () {
 //      alert('row index='+row.rowIndex);
 //  }
 
-
-
-appDivLeft.addEventListener('click', function(){
-    console.log("in show alert")
-    const tasksDrop = HandleDropDowns.TasksDropDown();
-    console.log('tasksDrop in main.js');
-    console.log(tasksDrop);
-    console.log('after');
-
-    tasksDrop.forEach(element => {
-        //console.log(element.name);
-        //console.log(element.currentDueTime);
-        if (element.currentDueTime == "2020-08-19T20:00:00"){
-            console.log(element.name);
-            console.log(element.currentDueTime);
-        }
-    });
-
-    //const alertButton = document.getElementsByName('alertButton');
-    //console.log(alertButton);
-    //const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
-    //console.log(alertItem);
-//    alertButton.addEventListener('click', function () {
-//        console.log("in eventlistener")
-        //alert("${releaseTask.name}","${releasetask.currentDueTime}")
-    //})
-
-})
-
 appDivRight.addEventListener('click', function(releaseTask){
     if (event.target.classList.contains('edit__releaseTaskButton__back')){
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton__back').id;
@@ -361,6 +332,31 @@ function ExecuteTimer(){
     console.log('in timer');
     console.log(AllTasks);
     //const xTasks = HandleDropDowns.TasksDropDown();
-
-
 }
+
+appDivLeft.addEventListener('click', function(){
+    console.log("in show alert")
+    const tasks = HandleDropDowns.TasksDropDown();
+    //let i=0;
+    tasks.forEach(element => {
+        //console.log('i='+i);
+        let curr = (new Date(element.currentDueTime));
+        let now = (new Date());
+        if (curr < now){
+            console.log('This task is overdue');
+            console.log(element.name);
+            console.log(element.currentDueTime);
+        }
+        //i++;
+    });
+
+    //const alertButton = document.getElementsByName('alertButton');
+    //console.log(alertButton);
+    //const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
+    //console.log(alertItem);
+//    alertButton.addEventListener('click', function () {
+//        console.log("in eventlistener")
+        //alert("${releaseTask.name}","${releasetask.currentDueTime}")
+    //})
+
+})
