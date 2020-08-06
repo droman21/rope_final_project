@@ -258,10 +258,20 @@ appDivLeft.addEventListener('click', function(){
     console.log('tasksDrop in main.js');
     console.log(tasksDrop);
     console.log('after');
-    const alertButton = document.getElementsByName('alertButton');
-    console.log(alertButton);
-    const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
-    console.log(alertItem);
+
+    tasksDrop.forEach(element => {
+        //console.log(element.name);
+        //console.log(element.currentDueTime);
+        if (element.currentDueTime == "2020-08-19T20:00:00"){
+            console.log(element.name);
+            console.log(element.currentDueTime);
+        }
+    });
+
+    //const alertButton = document.getElementsByName('alertButton');
+    //console.log(alertButton);
+    //const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
+    //console.log(alertItem);
 //    alertButton.addEventListener('click', function () {
 //        console.log("in eventlistener")
         //alert("${releaseTask.name}","${releasetask.currentDueTime}")
