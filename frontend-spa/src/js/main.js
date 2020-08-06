@@ -4,6 +4,7 @@
 import apiActions from './api/apiActions';
 import SelectDropDownID from './components/SelectDropDownID';
 import HandleTaskRows from './components/HandleTaskRows';
+import HandleDropDowns from './components/HandleDropDowns';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
 import ReleaseTaskEdit from './components/ReleaseTaskEdit';
@@ -16,13 +17,13 @@ const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 let currentSelectedRowID = 1;
-let statusData = fetch("https://localhost:44302/api/status")
-.then(response => response.json())
-.then(data => {
-    statusData = data;
-    return statusData;
-})
-.catch(err => console.log(err));
+// let statusData = fetch("https://localhost:44302/api/status")
+// .then(response => response.json())
+// .then(data => {
+//     statusData = data;
+//     return statusData;
+// })
+// .catch(err => console.log(err));
 
 let priorityData = fetch("https://localhost:44302/api/priority")
 .then(response => response.json())
@@ -60,13 +61,13 @@ function header() {
 //     footerElement.innerHTML = Footer();
 // }
 
-function navHome() {
-    const homeButton = document.querySelector('.nav__home');
-    homeButton.addEventListener('click', function () {
-        console.log('navhome');
-        appDiv.innerHTML = showReleaseTasks();
-    })
-}
+// function navHome() {
+//     const homeButton = document.querySelector('.nav__home');
+//     homeButton.addEventListener('click', function () {
+//         console.log('navhome');
+//         appDiv.innerHTML = showReleaseTasks();
+//     })
+// }
 
 function showReleaseTasks() {
 
@@ -92,13 +93,14 @@ appDivRight.addEventListener('click', function () {
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
         //TODO:  The next 21 lines are repeated elsewhere in code
-        const statusDrop = `
-            ${statusData.map(sd => {
-                return `
-                <option class="edit-releaseTask__newStatusID" value="${sd.value}">${sd.name}</option>
-                `
-            })}
-        `
+        // const statusDrop = `
+        //     ${statusData.map(sd => {
+        //         return `
+        //         <option class="edit-releaseTask__newStatusID" value="${sd.value}">${sd.name}</option>
+        //         `
+        //     })}
+        // `
+        const statusDrop = HandleDropDowns.StatusDropDown();
         const priorityDrop = `
             ${priorityData.map(pd => {
                 return `
