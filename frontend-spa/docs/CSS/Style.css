@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     background-color: rgb(2, 3, 51);
 }
 table, th, td {
@@ -43,52 +43,53 @@ background-color: green;
     max-height: 267px;
     display: block;
     background-color: white;
+    width: auto;
 }
 .table-2_header{
     background-color: rgb(219, 219, 106);
+    white-space: nowrap;
 }
-
 .floatLeft { width: 65%; float: left; }
 .floatRight {width: 50%; float: right; }
 
 .container {
     overflow: scroll;
 }
-
 .table_header{
     background-color: rgb(21, 21, 146);
     color: white;
 }
 .table1__rowFont{
     background-color: white;
-
 }
-.header{
+/* .header{
     font-size: 35px;
     font-weight: bold;
     background-color: rgb(2, 3, 56);
     color: rgb(226, 141, 71);
     opacity: 0.7;
     
-}
+} */
 tbody {
     background-color: whitesmoke;
 }
-
 .appLeft h1{
-    border-style: solid;
-    margin-right: 36%;
+    border-style: dashed;
+    margin-right: 38%;
     box-shadow: 2px 2px;
+    color: rgb(255, 115, 0);
+    font-weight: bold;
+    font-size: 35px;
 }
-
 .table-2__header{
     margin-left: 20%;
-    font-size: 40px;
-
+    font-size: 28px;
 }
 .appRight {
     background-color: rgb(173, 204, 209);
     border-radius: 8px;
+    overflow: hidden;
+    height: 100%;
 }
 .add__releaseTaskButton{
     color: white;
@@ -143,7 +144,7 @@ tbody {
     font-weight: bold;
 }
 .create-releaseTask__submit{
-    background-color: chocolate;
+    background-color: rgb(245, 91, 2);
     font-weight: bold;
     border-radius: 10px;
 }
@@ -169,5 +170,7 @@ tbody {
     background-color: yellow;
     cursor: pointer;
     font-weight: bold;
-
+}
+.aboutuscopy{
+    color: white;
 }

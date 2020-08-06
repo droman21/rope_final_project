@@ -1,5 +1,5 @@
 .table1-rowFont{
-display: flex;
+    display: flex;
     justify-items: center;
 }
 .edit-button{
@@ -8,8 +8,52 @@ display: flex;
 .appRight{
     position: auto;
     right: auto;
-    width: 670px;
+    width: auto;
+    height: 160px;
 }
 .appLeft{
     overflow: scroll;
+    position: auto;
+    left: auto;
+    width: 670px;
+    height: 470px;
+}
+.releaseTaskPostSection{
+    position: auto;
+    right: auto;
+    width: auto;
+    height: 160px;
+}
+nav{
+    position: top;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    background: rgb(138, 1, 138); opacity:0.6;
+    font-weight: bold;
+    color: white;
+    border-radius: 8px;
+    border-color: grey;
+    border: grey;
+}
+nav a{
+    color: white;
+    text-decoration: none;
+    padding: .5em 2em;
+    border-color: grey;
+    border: grey;
+    border-style: solid;
+    border-radius: 8px;
+}
+nav a:hover{
+    background: yellow;
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+    border-color: grey;
+    border: grey;
+    border-style: solid;
 }
