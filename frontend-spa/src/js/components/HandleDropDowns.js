@@ -31,21 +31,6 @@ let AllTasks = fetch("https://localhost:44302/api/releaseTask")
 })
 .catch(err => console.log(err));
 
-// function TasksDropDown(){
-//     console.log('in handle drops');
-//     console.log(AllTasks)
-//     console.log('still in handle drops');
-//     //const tasks = `
-//     // ${AllTasks.map(task => {
-//     //     return `
-//     //     ${task.name}
-//     //     `
-//     // })}
-//     // `
-//     return AllTasks;
-
-// }
-
 function StatusDropDown(){
     const statusDrop = `
     ${statusData.map(sd => {
@@ -85,5 +70,4 @@ export default {
     StatusDropDown,
     PriorityDropDown,
     EmployeeDropDown
-    //TasksDropDown
 }

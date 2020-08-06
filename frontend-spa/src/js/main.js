@@ -337,7 +337,6 @@ function ExecuteTimer(){
 
 appDivLeft.addEventListener('click', function(){
     console.log("in show alert")
-    //const tasks = HandleDropDowns.TasksDropDown();
     const tasks = Reminders.TasksArray();
     //let i=0;
     tasks.forEach(element => {
