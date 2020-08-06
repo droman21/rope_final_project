@@ -8,12 +8,13 @@ display: flex;
 .appRight{
     position: auto;
     right: auto;
-    width: 580px;
-    height: 220px;
+    width: auto;
+    height: 160px;
 }
 .appLeft{
     overflow: scroll;
     position: auto;
+    left: auto;
     width: 670px;
     height: 470px;
 }

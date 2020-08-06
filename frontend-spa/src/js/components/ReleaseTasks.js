@@ -1,8 +1,8 @@
 export default function ReleaseTasks(releaseTasks) {
     return `
-        <h1>R.O.P.E. Application</h1>
-        <h2>Release Tasks</h2>
-        <br>
+    <h1>R.O.P.E. Application</h1>
+    <h2>Release Tasks</h2>
+    <br>
         <section class="releaseTask__buttons">
         <button class="add__releaseTaskButton"><b>New Task</b></a></button> <button type="button" name="alertButton" id="alert">Reminders</button>
         </section>

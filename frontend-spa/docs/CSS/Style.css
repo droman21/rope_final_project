@@ -54,7 +54,6 @@ background-color: green;
 .container {
     overflow: scroll;
 }
-
 .table_header{
     background-color: rgb(21, 21, 146);
     color: white;
@@ -88,7 +87,7 @@ tbody {
 .appRight {
     background-color: rgb(173, 204, 209);
     border-radius: 8px;
-    overflow: scroll;
+    overflow: hidden;
     height: 100%;
 }
 .add__releaseTaskButton{
