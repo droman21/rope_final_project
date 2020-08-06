@@ -25,21 +25,21 @@ let currentSelectedRowID = 1;
 // })
 // .catch(err => console.log(err));
 
-let priorityData = fetch("https://localhost:44302/api/priority")
-.then(response => response.json())
-.then(data => {
-    priorityData = data;
-    return priorityData;
-})
-.catch(err => console.log(err));
+// let priorityData = fetch("https://localhost:44302/api/priority")
+// .then(response => response.json())
+// .then(data => {
+//     priorityData = data;
+//     return priorityData;
+// })
+// .catch(err => console.log(err));
 
-let employeeData = fetch("https://localhost:44302/api/employee")
-.then(response => response.json())
-.then(data => {
-    employeeData = data;
-    return employeeData;
-})
-.catch(err => console.log(err));
+// let employeeData = fetch("https://localhost:44302/api/employee")
+// .then(response => response.json())
+// .then(data => {
+//     employeeData = data;
+//     return employeeData;
+// })
+// .catch(err => console.log(err));
 
 
 export default function pagebuild() {
@@ -92,29 +92,10 @@ appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
-        //TODO:  The next 21 lines are repeated elsewhere in code
-        // const statusDrop = `
-        //     ${statusData.map(sd => {
-        //         return `
-        //         <option class="edit-releaseTask__newStatusID" value="${sd.value}">${sd.name}</option>
-        //         `
-        //     })}
-        // `
         const statusDrop = HandleDropDowns.StatusDropDown();
-        const priorityDrop = `
-            ${priorityData.map(pd => {
-                return `
-                <option class="edit-releaseTask__newPriorityID" value="${pd.value}">${pd.name}</option>
-                `
-            })}
-        `
-        const employeeDrop = `
-            ${employeeData.map(ed => {
-                return `
-                <option class="edit-releaseTask__newEmployeeID" value="${ed.id}">${ed.name}</option>
-                `
-            })}
-        `
+        const priorityDrop = HandleDropDowns.PriorityDropDown();
+        const employeeDrop = HandleDropDowns.EmployeeDropDown();
+
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
@@ -186,29 +167,10 @@ appDivRight.addEventListener('click', function () {
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
         console.log("new task clicked")
-        //TODO:  The next 21 lines are repeated elsewhere in code
-        const statusDrop = `
-        ${statusData.map(sd => {
-            return `
-            <option class="edit-releaseTask__newStatusID" value="${sd.value}">${sd.name}</option>
-            `
-        })}
-        `
-        const priorityDrop = `
-            ${priorityData.map(pd => {
-                return `
-                <option class="edit-releaseTask__newPriorityID" value="${pd.value}">${pd.name}</option>
-                `
-            })}
-        `
-        const employeeDrop = `
-            ${employeeData.map(ed => {
-                return `
-                <option class="edit-releaseTask__newEmployeeID" value="${ed.id}">${ed.name}</option>
-                `
-            })}
-        `
-    appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop,currentSelectedRowID);
+        const statusDrop = HandleDropDowns.StatusDropDown();
+        const priorityDrop = HandleDropDowns.PriorityDropDown();
+        const employeeDrop = HandleDropDowns.EmployeeDropDown();
+        appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop,currentSelectedRowID);
     }
 })
 
