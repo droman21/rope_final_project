@@ -169,5 +169,7 @@ tbody {
     background-color: yellow;
     cursor: pointer;
     font-weight: bold;
-
+}
+.aboutuscopy{
+    color: white;
 }
