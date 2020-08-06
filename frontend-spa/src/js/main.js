@@ -3,6 +3,7 @@
 // import Status from './components/Status';
 import apiActions from './api/apiActions';
 import SelectDropDownID from './components/SelectDropDownID';
+import HandleTaskRows from './components/HandleTaskRows';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
 import ReleaseTaskEdit from './components/ReleaseTaskEdit';
@@ -73,8 +74,9 @@ function showReleaseTasks() {
         .then(response => response.json())
         .then(releaseTasks => {
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-            highlightSelectedRow();
-            highlightSpecificRow(1);
+            currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+            console.log('inshowrel='+currentSelectedRowID);
+            HandleTaskRows.highlightSpecificRow(1);
         })
         .catch(err => console.log(err))
 
@@ -123,11 +125,6 @@ appDivRight.addEventListener('click', function () {
     }
 })
 
-// function selectElement(id, valueToSelect){
-//     let element = document.getElementById(id);
-//     element.value = valueToSelect;
-// }
-
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit-releaseTask__submit')) {
         const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
@@ -170,8 +167,9 @@ appDivRight.addEventListener('click', function () {
             .then(response => response.json())
             .then(releaseTasks => {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                highlightSelectedRow();
-                highlightSpecificRow(currentSelectedRowID);
+                currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
             })
             .catch(err => console.log(err))
 
@@ -252,8 +250,9 @@ appDivRight.addEventListener('click', function () {
             .then(response => response.json())
             .then(releaseTasks => {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                highlightSelectedRow();
-                highlightSpecificRow(1);
+                currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                HangleTaskRows.highlightSpecificRow(1);
             })
             .catch(err => console.log(err))
 
@@ -300,41 +299,6 @@ appDivRight.addEventListener('click', function () {
 //  }
 
 
-function highlightSelectedRow() {
-    var table = document.getElementById('table1Id');
-    var cells = table.getElementsByTagName('td');
-    
-    for (let i = 0; i < cells.length; i++) {
-        var cell = cells[i];
-        cell.onclick = function () {
-            var rowId = this.parentNode.rowIndex;
-            currentSelectedRowID = rowId;
-            var rowsNotSelected = table.getElementsByTagName('tr');
-            for (var row = 1; row < rowsNotSelected.length; row++) {
-                rowsNotSelected[row].style.backgroundColor = "white";
-                rowsNotSelected[row].classList.remove('selected');
-            }
-            var rowSelected = table.getElementsByTagName('tr')[rowId];
-            rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
-            rowSelected.className += " selected";
-
-            const releaseTaskId = rowSelected.cells[0].innerHTML;
-            const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-            const releaseTaskCallback = releaseTask => {
-                appDivRight.innerHTML = ReleaseTask(releaseTask);
-            };
-            apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-        }
-    }
-}
-
-function highlightSpecificRow(rowId) {
-    var table = document.getElementById('table1Id');
-    var rowSelected = table.getElementsByTagName('tr')[rowId];
-    rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
-    rowSelected.className += " selected";
-
-}
 
 // appDivLeft.addEventListener('click', function(){
 //     console.log("in show alert")
@@ -409,8 +373,10 @@ appDivRight.addEventListener('click', function () {
             .then(response => response.json())
             .then(releaseTasks => {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                highlightSelectedRow();
-                highlightSpecificRow(currentSelectedRowID);
+                currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                console.log(currentSelectedRowID);
+                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
             })
             .catch(err => console.log(err))
 
