@@ -19,13 +19,6 @@ const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 let currentSelectedRowID = 1;
 var AppTimer = null;
-// let AllTasks = fetch("https://localhost:44302/api/releaseTask")
-// .then(response => response.json())
-// .then(data => {
-//     AllTasks = data;
-//     return AllTasks;
-// })
-// .catch(err => console.log(err));
 
 
 export default function pagebuild() {
@@ -37,8 +30,9 @@ export default function pagebuild() {
     //showAlert();
     // showStatus();
     // showPriority();
+
+    //TODO:  Uncomment the following line before demos and final release
     //AppTimer = setInterval(ExecuteTimer,15000);    
-    ExecuteTimer();
 }
 
 function header() {
@@ -67,6 +61,12 @@ function showReleaseTasks() {
             currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
             HandleTaskRows.highlightSpecificRow(1);
         })
+        // .then(releaseTasks => {
+        //     releaseTasks = releaseTasks.filter(task => task.currentStatusID = 1);
+        //     appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+        //     currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        //     HandleTaskRows.highlightSpecificRow(1);
+        // })
         .catch(err => console.log(err))
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
@@ -107,7 +107,6 @@ appDivRight.addEventListener('click', function () {
         const newStatusID = event.target.parentElement.querySelector('.edit-releaseTask__Status').value;
         const newPriorityID = event.target.parentElement.querySelector('.edit-releaseTask__Priority').value;
         const newEmployeeID = event.target.parentElement.querySelector('.edit-releaseTask__Employee').value;
-        const isVisible = true;
         var lastModifiedDate = new Date();
         const formatedDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
         const releaseEdit = {
@@ -115,7 +114,7 @@ appDivRight.addEventListener('click', function () {
             Name: name,
             Description: description,
             CurrentDueTime: currentDueTime,
-            IsVisible: isVisible,
+            IsVisisble: true,
             LastModifiedDate: formatedDate,
             CreatedDate: createdDate,
             CurrentStatusID: newStatusID,
@@ -329,35 +328,19 @@ appDivRight.addEventListener('click', function () {
 })
 
 function ExecuteTimer(){
-
-    //console.log('in timer');
-    //console.log(AllTasks);
-    //const xTasks = HandleDropDowns.TasksDropDown();
-}
-
-appDivLeft.addEventListener('click', function(){
-    console.log("in show alert")
     const tasks = Reminders.TasksArray();
-    //let i=0;
     tasks.forEach(element => {
-        //console.log('i='+i);
         let curr = (new Date(element.currentDueTime));
         let now = (new Date());
         if (curr < now){
-            console.log('This task is overdue');
-            console.log(element.name);
-            console.log(element.currentDueTime);
+            alert('Warning.  The following task is overdue\n\n'+element.name);
         }
-        //i++;
     });
+}
 
-    //const alertButton = document.getElementsByName('alertButton');
-    //console.log(alertButton);
-    //const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
-    //console.log(alertItem);
-//    alertButton.addEventListener('click', function () {
-//        console.log("in eventlistener")
-        //alert("${releaseTask.name}","${releasetask.currentDueTime}")
-    //})
+appDivLeft.addEventListener('click', function(){
 
+    if (event.target.parentElement.classList.contains('reminders__button')) {
+        ExecuteTimer();
+    }
 })

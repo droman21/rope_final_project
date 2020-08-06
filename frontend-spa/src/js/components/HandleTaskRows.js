@@ -15,7 +15,6 @@ function highlightSelectedRow() {
         cell.onclick = function () {
             var rowId = this.parentNode.rowIndex;
             selectedRowId = rowId;
-            console.log('in comp='+selectedRowId);
             var rowsNotSelected = table.getElementsByTagName('tr');
             for (var row = 1; row < rowsNotSelected.length; row++) {
                 rowsNotSelected[row].style.backgroundColor = "white";
