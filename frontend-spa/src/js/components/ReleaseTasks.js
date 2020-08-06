@@ -4,7 +4,8 @@ export default function ReleaseTasks(releaseTasks) {
     <h2>Release Tasks</h2>
     <br>
         <section class="releaseTask__buttons">
-        <button class="add__releaseTaskButton"><b>New Task</b></a></button> <button type="button" name="alertButton" id="alert">Reminders</button>
+        <button class="add__releaseTaskButton"><b>New Task</b></a></button> 
+        <button class="reminders__button"><b>Reminders</b></button>
         </section>
         <section>
             <div class="floatLeft-container">
