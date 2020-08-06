@@ -2,6 +2,7 @@
 // import Priority from './components/Priority';
 // import Status from './components/Status';
 import apiActions from './api/apiActions';
+import SelectDropDownID from './components/SelectDropDownID';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
 import ReleaseTaskEdit from './components/ReleaseTaskEdit';
@@ -9,7 +10,6 @@ import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
 import Header from './components/Header';
 // import Footer from './components/Footer';
 import CommentPost from './components/CommentPost';
-
 
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
@@ -85,30 +85,6 @@ function showReleaseTasks() {
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
 }
 
-// function releaseTaskNameButton() {
-//     //THIS CODE SHOULD NO LONGER BE NEEDED.  TO BE DELETED DURING FINAL CODE CLEANUP PHASE
-//     const releaseTaskItem = document.querySelectorAll('.releaseTask__info');
-//     releaseTaskItem.forEach(element => {
-//         element.addEventListener('click', function () {
-//             const releaseTaskId = element.id;
-//             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-//             const releaseTaskCallback = releaseTask => {
-//                 appDivRight.innerHTML = ReleaseTask(releaseTask);
-//             };
-//             apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-//         })
-//     })
-// }
-
-// function getStatusName(statusId) {
-//     //THIS CODE SHOULD NO LONGER BE NEEDED.  TO BE DELETED DURING FINAL CODE CLEANUP PHASE
-//     const statusEndpoint = `https://localhost:44302/api/status/${statusId}`;
-//     fetch(`https://localhost:44302/api/status/${statusId}`)
-//         .then(response => response.json())
-//         .then(data => console.log(data))
-//         .catch(err => console.log(err))
-// }
-
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
@@ -139,18 +115,18 @@ appDivRight.addEventListener('click', function () {
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
                 ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit,statusDrop,priorityDrop,employeeDrop);
-                selectElement('statusDropID',releaseTaskEdit.currentStatusID);
-                selectElement('priorityDropID',releaseTaskEdit.currentPriorityID);
-                selectElement('employeeDropID',releaseTaskEdit.assignedEmployeeID);
+                SelectDropDownID.selectElement('statusDropID',releaseTaskEdit.currentStatusID);
+                SelectDropDownID.selectElement('priorityDropID',releaseTaskEdit.currentPriorityID);
+                SelectDropDownID.selectElement('employeeDropID',releaseTaskEdit.assignedEmployeeID);
             }
         )
     }
 })
 
-function selectElement(id, valueToSelect){
-    let element = document.getElementById(id);
-    element.value = valueToSelect;
-}
+// function selectElement(id, valueToSelect){
+//     let element = document.getElementById(id);
+//     element.value = valueToSelect;
+// }
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit-releaseTask__submit')) {
