@@ -112,10 +112,11 @@ appDivRight.addEventListener('click', function () {
             .catch(err => console.log(err))
 
         //Reload the Right Table
+        const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
         const releaseTaskCallback = releaseTask => {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
 
     }
 })
