@@ -18,16 +18,26 @@ const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 let currentSelectedRowID = 1;
 var AppTimer = null;
+let AllTasks = fetch("https://localhost:44302/api/releaseTask")
+.then(response => response.json())
+.then(data => {
+    AllTasks = data;
+    return AllTasks;
+})
+.catch(err => console.log(err));
+
 
 export default function pagebuild() {
     header()
     // footer()
     //navHome()
     showReleaseTasks();
+    console.log(AllTasks);
     //showAlert();
     // showStatus();
     // showPriority();
     //AppTimer = setInterval(ExecuteTimer,15000);    
+    ExecuteTimer();
 }
 
 function header() {
@@ -63,6 +73,7 @@ function showReleaseTasks() {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+
 }
 
 appDivRight.addEventListener('click', function () {
@@ -241,18 +252,22 @@ appDivRight.addEventListener('click', function () {
 
 
 
-// appDivLeft.addEventListener('click', function(){
-//     console.log("in show alert")
-//     const alertButton = document.getElementsByName('alertButton');
-//     console.log(alertButton);
-//     const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
-//     console.log(alertItem);
-// //    alertButton.addEventListener('click', function () {
-// //        console.log("in eventlistener")
-//         alert("${releaseTask.name}","${releasetask.currentDueTime}")
-//     //})
+appDivLeft.addEventListener('click', function(){
+    console.log("in show alert")
+    const tasksDrop = HandleDropDowns.TasksDropDown();
+    console.log('tasksDrop in main.js');
+    console.log(tasksDrop);
+    console.log('after');
+    const alertButton = document.getElementsByName('alertButton');
+    console.log(alertButton);
+    const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
+    console.log(alertItem);
+//    alertButton.addEventListener('click', function () {
+//        console.log("in eventlistener")
+        //alert("${releaseTask.name}","${releasetask.currentDueTime}")
+    //})
 
-// })
+})
 
 appDivRight.addEventListener('click', function(releaseTask){
     if (event.target.classList.contains('edit__releaseTaskButton__back')){
@@ -332,6 +347,10 @@ appDivRight.addEventListener('click', function () {
 })
 
 function ExecuteTimer(){
-    //alert('Timer Message');
-    
+
+    console.log('in timer');
+    console.log(AllTasks);
+    //const xTasks = HandleDropDowns.TasksDropDown();
+
+
 }

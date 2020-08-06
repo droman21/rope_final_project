@@ -23,9 +23,30 @@ let employeeData = fetch("https://localhost:44302/api/employee")
 })
 .catch(err => console.log(err));
 
+let AllTasks = fetch("https://localhost:44302/api/releaseTask")
+.then(response => response.json())
+.then(data => {
+    AllTasks = data;
+    return AllTasks;
+})
+.catch(err => console.log(err));
+
+function TasksDropDown(){
+    console.log('in handle drops');
+    console.log(AllTasks)
+    console.log('still in handle drops');
+    //const tasks = `
+    // ${AllTasks.map(task => {
+    //     return `
+    //     ${task.name}
+    //     `
+    // })}
+    // `
+    return AllTasks;
+
+}
 
 function StatusDropDown(){
-
     const statusDrop = `
     ${statusData.map(sd => {
         return `
@@ -37,7 +58,6 @@ function StatusDropDown(){
 }
 
 function PriorityDropDown() {
-    
     const priorityDrop = `
     ${priorityData.map(pd => {
         return `
@@ -64,5 +84,6 @@ function EmployeeDropDown() {
 export default {
     StatusDropDown,
     PriorityDropDown,
-    EmployeeDropDown
+    EmployeeDropDown,
+    TasksDropDown
 }
