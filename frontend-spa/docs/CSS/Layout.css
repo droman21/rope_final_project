@@ -26,7 +26,7 @@ nav{
     display: flex;
     flex-flow: row;
     justify-content: center;
-    background: rgb(21, 21, 146); opacity:0.6;
+    background: rgb(2, 3, 51); opacity:0.6;
     font-weight: bold;
     color: white;
     border-radius: 8px;

@@ -43,9 +43,11 @@ background-color: green;
     max-height: 267px;
     display: block;
     background-color: white;
+    width: auto;
 }
 .table-2_header{
     background-color: rgb(219, 219, 106);
+    white-space: nowrap;
 }
 .floatLeft { width: 65%; float: left; }
 .floatRight {width: 50%; float: right; }
@@ -81,7 +83,7 @@ tbody {
 }
 .table-2__header{
     margin-left: 20%;
-    font-size: 40px;
+    font-size: 28px;
 }
 .appRight {
     background-color: rgb(173, 204, 209);
