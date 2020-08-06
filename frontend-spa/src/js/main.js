@@ -62,9 +62,7 @@ function showReleaseTasks() {
         //     HandleTaskRows.highlightSpecificRow(1);
         // })
         .then(releaseTasks => {
-            //console.log(releaseTasks);
             releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-            //console.log(releaseTasks);
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
             currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
             HandleTaskRows.highlightSpecificRow(1);
@@ -78,6 +76,49 @@ function showReleaseTasks() {
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
 
 }
+
+
+appDivRight.addEventListener('click', function () {
+    if (event.target.classList.contains('delete_releaseTaskButton')) {
+        console.log('in delete task');
+        const releaseTaskId = event.target.parentElement.querySelector('.delete_releaseTaskButton').id;
+        console.log(releaseTaskId);
+        const releaseEdit = {
+            id: releaseTaskId,
+            IsVisisble: false
+        };
+
+        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+        apiActions.patchRequest(
+            releaseTaskEndpoint,
+            releaseEdit
+        )
+
+        //TODO:  The next 20 lines are repeated elsewhere in main.js
+        //without the alert the page reposts with old data, even though it did save
+        //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+        alert('Changes Saved');
+
+        //Reload the Left Table
+        fetch("https://localhost:44302/api/releaseTask")
+            .then(response => response.json())
+            .then(releaseTasks => {
+                appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+                currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
+            })
+            .catch(err => console.log(err))
+
+        //Reload the Right Table
+        const releaseTaskCallback = releaseTask => {
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+
+    }
+})
+
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
