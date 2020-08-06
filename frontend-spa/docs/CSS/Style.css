@@ -74,7 +74,7 @@ tbody {
     background-color: whitesmoke;
 }
 .appLeft h1{
-    border-style: dotted;
+    border-style: dashed;
     margin-right: 38%;
     box-shadow: 2px 2px;
     color: rgb(255, 115, 0);
