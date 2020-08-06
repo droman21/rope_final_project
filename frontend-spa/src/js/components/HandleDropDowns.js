@@ -31,20 +31,20 @@ let AllTasks = fetch("https://localhost:44302/api/releaseTask")
 })
 .catch(err => console.log(err));
 
-function TasksDropDown(){
-    console.log('in handle drops');
-    console.log(AllTasks)
-    console.log('still in handle drops');
-    //const tasks = `
-    // ${AllTasks.map(task => {
-    //     return `
-    //     ${task.name}
-    //     `
-    // })}
-    // `
-    return AllTasks;
+// function TasksDropDown(){
+//     console.log('in handle drops');
+//     console.log(AllTasks)
+//     console.log('still in handle drops');
+//     //const tasks = `
+//     // ${AllTasks.map(task => {
+//     //     return `
+//     //     ${task.name}
+//     //     `
+//     // })}
+//     // `
+//     return AllTasks;
 
-}
+// }
 
 function StatusDropDown(){
     const statusDrop = `
@@ -84,6 +84,6 @@ function EmployeeDropDown() {
 export default {
     StatusDropDown,
     PriorityDropDown,
-    EmployeeDropDown,
-    TasksDropDown
+    EmployeeDropDown
+    //TasksDropDown
 }

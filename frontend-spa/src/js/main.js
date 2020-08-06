@@ -5,6 +5,7 @@ import apiActions from './api/apiActions';
 import SelectDropDownID from './components/SelectDropDownID';
 import HandleTaskRows from './components/HandleTaskRows';
 import HandleDropDowns from './components/HandleDropDowns';
+import Reminders from './components/Reminders';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
 import ReleaseTaskEdit from './components/ReleaseTaskEdit';
@@ -18,13 +19,13 @@ const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 let currentSelectedRowID = 1;
 var AppTimer = null;
-let AllTasks = fetch("https://localhost:44302/api/releaseTask")
-.then(response => response.json())
-.then(data => {
-    AllTasks = data;
-    return AllTasks;
-})
-.catch(err => console.log(err));
+// let AllTasks = fetch("https://localhost:44302/api/releaseTask")
+// .then(response => response.json())
+// .then(data => {
+//     AllTasks = data;
+//     return AllTasks;
+// })
+// .catch(err => console.log(err));
 
 
 export default function pagebuild() {
@@ -32,7 +33,7 @@ export default function pagebuild() {
     // footer()
     //navHome()
     showReleaseTasks();
-    console.log(AllTasks);
+    //console.log(AllTasks);
     //showAlert();
     // showStatus();
     // showPriority();
@@ -329,14 +330,15 @@ appDivRight.addEventListener('click', function () {
 
 function ExecuteTimer(){
 
-    console.log('in timer');
-    console.log(AllTasks);
+    //console.log('in timer');
+    //console.log(AllTasks);
     //const xTasks = HandleDropDowns.TasksDropDown();
 }
 
 appDivLeft.addEventListener('click', function(){
     console.log("in show alert")
-    const tasks = HandleDropDowns.TasksDropDown();
+    //const tasks = HandleDropDowns.TasksDropDown();
+    const tasks = Reminders.TasksArray();
     //let i=0;
     tasks.forEach(element => {
         //console.log('i='+i);
