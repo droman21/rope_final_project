@@ -74,6 +74,7 @@ function showReleaseTasks() {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        console.log('in show tasks'+currentSelectedRowID);
 
 }
 
@@ -117,6 +118,8 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
+        console.log('indeletetask'+currentSelectedRowID);
+
 
     }
 })
@@ -139,6 +142,8 @@ appDivRight.addEventListener('click', function () {
                 SelectDropDownID.selectElement('employeeDropID',releaseTaskEdit.assignedEmployeeID);
             }
         )
+        console.log('in edit task'+currentSelectedRowID);
+
     }
 })
 
@@ -185,6 +190,7 @@ appDivRight.addEventListener('click', function () {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                console.log('line 193='+currentSelectedRowID);
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
             })
@@ -195,12 +201,15 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        console.log('in edit save'+currentSelectedRowID);
+
     }
 })
 
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
         console.log("new task clicked")
+        console.log('in add task'+currentSelectedRowID);
         const statusDrop = HandleDropDowns.StatusDropDown();
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
@@ -299,7 +308,10 @@ appDivRight.addEventListener('click', function () {
 
 appDivRight.addEventListener('click', function(releaseTask){
     if (event.target.classList.contains('edit__releaseTaskButton__back')){
+        console.log('in back'+currentSelectedRowID);
+
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton__back').id;
+        console.log('in back2='+releaseTaskId);
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTask => {
@@ -319,6 +331,8 @@ appDivRight.addEventListener('click', function () {
                 ReleaseTaskEditSection.innerHTML = CommentPost(releaseTaskId, addComment);
             }
         )
+        console.log('in add comment'+currentSelectedRowID);
+
     }
 })
 
@@ -359,7 +373,7 @@ appDivRight.addEventListener('click', function () {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                console.log(currentSelectedRowID);
+                console.log('in submit comment'+currentSelectedRowID);
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
             })
@@ -370,6 +384,7 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        console.log('bottom submit comment'+currentSelectedRowID);
 
 
     }
@@ -389,6 +404,26 @@ function ExecuteTimer(){
 appDivLeft.addEventListener('click', function(){
 
     if (event.target.parentElement.classList.contains('reminders__button')) {
-        ExecuteTimer();
+        if (event.shiftKey){
+            fetch("https://localhost:44302/api/releaseTask")
+            .then(response => response.json())
+            .then(releaseTasks => {
+                appDivRight.innerHTML = ReleaseTasks(releaseTasks);
+                //currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                //HandleTaskRows.highlightSpecificRow(1);
+            })
+            .catch(err => console.log(err))
+        }
+        else {
+            ExecuteTimer();
+        }
+        
     }
 })
+
+// appDivLeft.addEventListener('click', function(){
+//     console.log('new function');
+//     if (event.target.parentElement.classList.contains('headerClass')) {
+//         console.log('header clicked');
+//     }
+// })
