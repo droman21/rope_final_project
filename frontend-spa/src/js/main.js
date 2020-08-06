@@ -17,30 +17,7 @@ const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 let currentSelectedRowID = 1;
-// let statusData = fetch("https://localhost:44302/api/status")
-// .then(response => response.json())
-// .then(data => {
-//     statusData = data;
-//     return statusData;
-// })
-// .catch(err => console.log(err));
-
-// let priorityData = fetch("https://localhost:44302/api/priority")
-// .then(response => response.json())
-// .then(data => {
-//     priorityData = data;
-//     return priorityData;
-// })
-// .catch(err => console.log(err));
-
-// let employeeData = fetch("https://localhost:44302/api/employee")
-// .then(response => response.json())
-// .then(data => {
-//     employeeData = data;
-//     return employeeData;
-// })
-// .catch(err => console.log(err));
-
+var AppTimer = null;
 
 export default function pagebuild() {
     header()
@@ -48,8 +25,9 @@ export default function pagebuild() {
     //navHome()
     showReleaseTasks();
     //showAlert();
-    // showStatus()
-    // showPriority()    
+    // showStatus();
+    // showPriority();
+    //AppTimer = setInterval(ExecuteTimer,15000);    
 }
 
 function header() {
@@ -76,7 +54,6 @@ function showReleaseTasks() {
         .then(releaseTasks => {
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
             currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-            console.log('inshowrel='+currentSelectedRowID);
             HandleTaskRows.highlightSpecificRow(1);
         })
         .catch(err => console.log(err))
@@ -216,7 +193,7 @@ appDivRight.addEventListener('click', function () {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                HangleTaskRows.highlightSpecificRow(1);
+                HandleTaskRows.highlightSpecificRow(1);
             })
             .catch(err => console.log(err))
 
@@ -353,3 +330,8 @@ appDivRight.addEventListener('click', function () {
 
     }
 })
+
+function ExecuteTimer(){
+    //alert('Timer Message');
+    
+}
