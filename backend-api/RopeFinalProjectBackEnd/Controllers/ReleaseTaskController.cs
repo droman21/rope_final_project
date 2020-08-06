@@ -50,6 +50,14 @@ namespace RopeFinalProjectBackEnd.Controllers
             return releaseTasksRepo.GetAll();
         }
 
+        //PATCH: api/ReleaseTask/5
+        [HttpPatch("{id}")]
+        public IEnumerable<ReleaseTask> Patch(int id, [FromBody] ReleaseTask value)
+        {
+            releaseTasksRepo.UpdateFields(value);
+            return releaseTasksRepo.GetAll();
+        }
+
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public IEnumerable<ReleaseTask> Delete(int id)

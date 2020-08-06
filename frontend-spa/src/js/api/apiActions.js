@@ -72,6 +72,18 @@ function putRequest2(location, requestBody){
 
 }
 
+function patchRequest(location, requestBody){
+    fetch(location, {
+        method: 'PATCH',
+        body: JSON.stringify(requestBody),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+}
+
 export default {
     getRequest,
     getRequest2,
@@ -79,5 +91,6 @@ export default {
     postRequest2,
     deleteRequest,
     putRequest,
-    putRequest2
+    putRequest2,
+    patchRequest
 };

@@ -19,13 +19,6 @@ const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 let currentSelectedRowID = 1;
 var AppTimer = null;
-// let AllTasks = fetch("https://localhost:44302/api/releaseTask")
-// .then(response => response.json())
-// .then(data => {
-//     AllTasks = data;
-//     return AllTasks;
-// })
-// .catch(err => console.log(err));
 
 
 export default function pagebuild() {
@@ -37,8 +30,9 @@ export default function pagebuild() {
     //showAlert();
     // showStatus();
     // showPriority();
+
+    //TODO:  Uncomment the following line before demos and final release
     //AppTimer = setInterval(ExecuteTimer,15000);    
-    ExecuteTimer();
 }
 
 function header() {
@@ -62,7 +56,13 @@ function showReleaseTasks() {
 
     fetch("https://localhost:44302/api/releaseTask")
         .then(response => response.json())
+        // .then(releaseTasks => {
+        //     appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+        //     currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        //     HandleTaskRows.highlightSpecificRow(1);
+        // })
         .then(releaseTasks => {
+            releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
             currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
             HandleTaskRows.highlightSpecificRow(1);
@@ -74,8 +74,56 @@ function showReleaseTasks() {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        console.log('in show tasks'+currentSelectedRowID);
 
 }
+
+
+appDivRight.addEventListener('click', function () {
+    if (event.target.classList.contains('delete_releaseTaskButton')) {
+        console.log('in delete task');
+        const releaseTaskId = event.target.parentElement.querySelector('.delete_releaseTaskButton').id;
+        console.log(releaseTaskId);
+        const releaseEdit = {
+            id: releaseTaskId,
+            IsVisisble: false
+        };
+
+        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+        apiActions.patchRequest(
+            releaseTaskEndpoint,
+            releaseEdit
+        )
+
+        //TODO:  The next 20 lines are repeated elsewhere in main.js
+        //without the alert the page reposts with old data, even though it did save
+        //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+        alert('Task Deleted');
+
+        //Reload the Left Table
+        fetch("https://localhost:44302/api/releaseTask")
+            .then(response => response.json())
+            .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+                appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+                currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                HandleTaskRows.highlightSpecificRow(1);
+            })
+            .catch(err => console.log(err))
+
+        //Reload the Right Table
+        const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
+        const releaseTaskCallback = releaseTask => {
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+        apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
+        console.log('indeletetask'+currentSelectedRowID);
+
+
+    }
+})
+
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
@@ -94,6 +142,8 @@ appDivRight.addEventListener('click', function () {
                 SelectDropDownID.selectElement('employeeDropID',releaseTaskEdit.assignedEmployeeID);
             }
         )
+        console.log('in edit task'+currentSelectedRowID);
+
     }
 })
 
@@ -107,7 +157,6 @@ appDivRight.addEventListener('click', function () {
         const newStatusID = event.target.parentElement.querySelector('.edit-releaseTask__Status').value;
         const newPriorityID = event.target.parentElement.querySelector('.edit-releaseTask__Priority').value;
         const newEmployeeID = event.target.parentElement.querySelector('.edit-releaseTask__Employee').value;
-        const isVisible = true;
         var lastModifiedDate = new Date();
         const formatedDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
         const releaseEdit = {
@@ -115,7 +164,7 @@ appDivRight.addEventListener('click', function () {
             Name: name,
             Description: description,
             CurrentDueTime: currentDueTime,
-            IsVisible: isVisible,
+            IsVisisble: true,
             LastModifiedDate: formatedDate,
             CreatedDate: createdDate,
             CurrentStatusID: newStatusID,
@@ -138,8 +187,10 @@ appDivRight.addEventListener('click', function () {
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                console.log('line 193='+currentSelectedRowID);
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
             })
@@ -150,12 +201,15 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        console.log('in edit save'+currentSelectedRowID);
+
     }
 })
 
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
         console.log("new task clicked")
+        console.log('in add task'+currentSelectedRowID);
         const statusDrop = HandleDropDowns.StatusDropDown();
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
@@ -196,12 +250,13 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert('Changes Saved');
+        alert('Task Added');
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
@@ -253,7 +308,10 @@ appDivRight.addEventListener('click', function () {
 
 appDivRight.addEventListener('click', function(releaseTask){
     if (event.target.classList.contains('edit__releaseTaskButton__back')){
+        console.log('in back'+currentSelectedRowID);
+
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton__back').id;
+        console.log('in back2='+releaseTaskId);
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTask => {
@@ -273,6 +331,8 @@ appDivRight.addEventListener('click', function () {
                 ReleaseTaskEditSection.innerHTML = CommentPost(releaseTaskId, addComment);
             }
         )
+        console.log('in add comment'+currentSelectedRowID);
+
     }
 })
 
@@ -310,9 +370,10 @@ appDivRight.addEventListener('click', function () {
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                console.log(currentSelectedRowID);
+                console.log('in submit comment'+currentSelectedRowID);
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
             })
@@ -323,41 +384,46 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        console.log('bottom submit comment'+currentSelectedRowID);
 
 
     }
 })
 
 function ExecuteTimer(){
-
-    //console.log('in timer');
-    //console.log(AllTasks);
-    //const xTasks = HandleDropDowns.TasksDropDown();
-}
-
-appDivLeft.addEventListener('click', function(){
-    console.log("in show alert")
     const tasks = Reminders.TasksArray();
-    //let i=0;
     tasks.forEach(element => {
-        //console.log('i='+i);
         let curr = (new Date(element.currentDueTime));
         let now = (new Date());
         if (curr < now){
-            console.log('This task is overdue');
-            console.log(element.name);
-            console.log(element.currentDueTime);
+            alert('Warning.  The following task is overdue\n\n'+element.name);
         }
-        //i++;
     });
+}
 
-    //const alertButton = document.getElementsByName('alertButton');
-    //console.log(alertButton);
-    //const alertItem = document.getElementsByClassName('releaseTask__currentDueTime', 'releaseTask__name')
-    //console.log(alertItem);
-//    alertButton.addEventListener('click', function () {
-//        console.log("in eventlistener")
-        //alert("${releaseTask.name}","${releasetask.currentDueTime}")
-    //})
+appDivLeft.addEventListener('click', function(){
 
+    if (event.target.parentElement.classList.contains('reminders__button')) {
+        if (event.shiftKey){
+            fetch("https://localhost:44302/api/releaseTask")
+            .then(response => response.json())
+            .then(releaseTasks => {
+                appDivRight.innerHTML = ReleaseTasks(releaseTasks);
+                //currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                //HandleTaskRows.highlightSpecificRow(1);
+            })
+            .catch(err => console.log(err))
+        }
+        else {
+            ExecuteTimer();
+        }
+        
+    }
 })
+
+// appDivLeft.addEventListener('click', function(){
+//     console.log('new function');
+//     if (event.target.parentElement.classList.contains('headerClass')) {
+//         console.log('header clicked');
+//     }
+// })

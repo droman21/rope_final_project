@@ -1,5 +1,5 @@
 
-let AllTasks = fetch("https://localhost:44302/api/releaseTask")
+let AllTasks = fetch("https://localhost:44302/api/releaseTask", {cache: "no-store"})
 .then(response => response.json())
 .then(data => {
     AllTasks = data;
@@ -8,8 +8,8 @@ let AllTasks = fetch("https://localhost:44302/api/releaseTask")
 .catch(err => console.log(err));
 
 function TasksArray(){
-    //console.log('in handle drops');
-    //console.log(AllTasks)
+    console.log('in Task Array');
+    console.log(AllTasks)
     return AllTasks;
 
 }

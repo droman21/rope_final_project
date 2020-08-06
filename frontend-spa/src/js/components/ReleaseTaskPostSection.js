@@ -1,29 +1,28 @@
 export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop,currentSelectedRowID) {
     return `
-        <h1 class="releaseTaskPostSection"> Create New Release Task <h1>
+        <h1 class="releaseTaskPostSection"> Create New Release Task</h1>
         <section class="create-releaseTask__post">
-        <h6>Task Name:
-        <input class="create-releaseTask__name" type="text" placeholder="Release Task Name"></h6>
-        <h6>Description:
-        <input class="create-releaseTask__description" type="text" placeholder="Release Task Description"></h6>
+        <h4>Task Name:
+        <input class="create-releaseTask__name" type="text" placeholder="Release Task Name"></h4>
+        <h4>Description:</h4><textarea rows="4" cols="50"<input class="create-releaseTask__description" type="text" placeholder="Enter Release Task Description Here"></textarea>
         
-        <h6>Status:
+        <h4>Status:
         <select id="statusDropID" class="create-releaseTask__Status" type="dropdown">
-        ${statusDrop}</h6>
+        ${statusDrop}</h4>
         </select>
 
-        <h6>Priority:
+        <h4>Priority:
         <select id="priorityDropID" class="create-releaseTask__Priority" type="dropdown">
-        ${priorityDrop}</h6>
+        ${priorityDrop}</h4>
         </select>
 
-        <h6>Employee:
-        <select id="employeeDropID" class="create-releaseTask__Employee" type="dropdown"></h4>
-        ${employeeDrop}</h6>
+        <h4>Employee:
+        <select id="employeeDropID" class="create-releaseTask__Employee" type="dropdown">
+        ${employeeDrop}</h4>
         </select>
 
-        <h6>Due Time:
-        <input class="create-releaseTask__currentDueTime" type="text" placeholder="Set Due Time"> </h6>
+        <h4>Due Time:
+        <input class="create-releaseTask__currentDueTime" type="text" placeholder="Set Due Time"> </h4>
         <button class="create-releaseTask__submit">Save Your Task</button>
         <button class="edit__releaseTaskButton__back" id=${currentSelectedRowID}>Back</button>
 

@@ -15,9 +15,7 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop, priorityDrop, e
         <input class="edit-releaseTask__createdDate" hidden="true" value="${releaseTask.createdDate}">
         <h4>Task Name:
         <input class="edit-releaseTask__name" type="text" value="${releaseTask.name}"></h4>
-        
-        <h4>Description:
-        <input class="edit-releaseTask__description" type="text" value="${releaseTask.description}"></h4>
+        <h4>Description:</h4> <textarea rows="4" cols="50"<input class="edit-releaseTask__description" type="text" placeholder="Add New Description Here" value="${releaseTask.description}"></textarea>
         
         
         
