@@ -47,7 +47,6 @@ background-color: green;
 .table-2_header{
     background-color: rgb(219, 219, 106);
 }
-
 .floatLeft { width: 65%; float: left; }
 .floatRight {width: 50%; float: right; }
 
@@ -60,7 +59,6 @@ background-color: green;
 }
 .table1__rowFont{
     background-color: white;
-
 }
 /* .header{
     font-size: 35px;
@@ -74,11 +72,12 @@ tbody {
     background-color: whitesmoke;
 }
 .appLeft h1{
-    border-style: dashed;
+    border-style: dotted;
     margin-right: 38%;
     box-shadow: 2px 2px;
     color: rgb(255, 115, 0);
     font-weight: bold;
+    font-size: 35px;
 }
 .table-2__header{
     margin-left: 20%;
