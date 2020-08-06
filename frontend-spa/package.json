@@ -18,5 +18,8 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "moment": "^2.27.0"
+  }
 }
