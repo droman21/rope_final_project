@@ -171,3 +171,27 @@ tbody {
     font-weight: bold;
 
 }
+.edit-container{
+    border: solid;
+}
+.edit-releaseTask__header{
+    margin-left: 200px;
+}
+.edit__releaseTask h4{
+    margin-left: 10%;
+}
+#editStyle{
+    border: solid;
+    border-radius: 5%;
+}
+.edit-releaseTask__description{
+    border-radius: 2px;
+    min-width: 80%;
+}
+.edit-releaseTask__name{
+    min-width: 80%;
+    border-radius: 2px;
+}
+select{
+    width:20%;
+}
