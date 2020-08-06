@@ -150,7 +150,7 @@ tbody {
 .create-releaseTask__submit:hover{
     background-color: yellow;
     cursor: pointer;
-
+}
 .add-comment__submit{
     background-color: rgb(245, 91, 2);
     font-weight: bold;

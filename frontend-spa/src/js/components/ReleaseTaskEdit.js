@@ -10,15 +10,21 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop,priorityDrop,emp
         <input class="edit-releaseTask__name" type="text" value="${releaseTask.name}"></h4>
         <h4>Description:
         <input class="edit-releaseTask__description" type="text" value="${releaseTask.description}"></h4>
-        <input type="text" value=${releaseTask.currentStatusID}>
         
         <h4>Status:
-        <select id="statusDropID" class="edit-releaseTask__Status" type="dropdown"></h4>
+        <select id="statusDropID" class="edit-releaseTask__Status" type="dropdown">
         ${statusDrop}</h4>
+        </select>
+
         <h4>Priority:
+        <select id="priorityDropID" class="edit-releaseTask__Priority" type="dropdown">
         ${priorityDrop}</h4>
+        </select>
+
         <h4>Assigned To:
-        ${employeeDrop}</h4>
+        <select id="employeeDropID" class="edit-releaseTask__Employee" type="dropdown"></h4>
+        ${employeeDrop}
+        </select>
         
         <h4></h4>
         <br><br>
@@ -27,11 +33,11 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop,priorityDrop,emp
     `
 }
 
-function selectElement(id, valueToSelect){
-    console.log(valueToSelect);
-    console.log(id);
-    let element = document.getElementById(id);
-    //let element = document.querySelector('.edit-releaseTask__Status');
-    console.log(element);
-    element.value = valueToSelect;
-}
+// function selectElement(id, valueToSelect){
+//     console.log(valueToSelect);
+//     console.log(id);
+//     let element = document.getElementById(id);
+//     //let element = document.querySelector('.edit-releaseTask__Status');
+//     console.log(element);
+//     element.value = valueToSelect;
+// }

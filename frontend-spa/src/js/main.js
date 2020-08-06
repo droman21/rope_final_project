@@ -14,7 +14,7 @@ import CommentPost from './components/CommentPost';
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
-let currentSelectedRowID = 0;
+let currentSelectedRowID = 1;
 let statusData = fetch("https://localhost:44302/api/status")
 .then(response => response.json())
 .then(data => {
@@ -113,87 +113,58 @@ appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton').id;
+        //TODO:  The next 21 lines are repeated elsewhere in code
         const statusDrop = `
             ${statusData.map(sd => {
                 return `
                 <option class="edit-releaseTask__newStatusID" value="${sd.value}">${sd.name}</option>
                 `
             })}
-            </select>
         `
         const priorityDrop = `
-            <select class="edit-releaseTask__Priority" type="dropdown"></h4>
             ${priorityData.map(pd => {
                 return `
                 <option class="edit-releaseTask__newPriorityID" value="${pd.value}">${pd.name}</option>
                 `
             })}
-            </select>
         `
         const employeeDrop = `
-            <select class="edit-releaseTask__Employee" type="dropdown"></h4>
             ${employeeData.map(ed => {
                 return `
                 <option class="edit-releaseTask__newEmployeeID" value="${ed.id}">${ed.name}</option>
                 `
             })}
-            </select>
         `
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
                 ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit,statusDrop,priorityDrop,employeeDrop);
-                console.log('releaseTaskEdit');
-                console.log(releaseTaskEdit);
-                console.log('releaseTaskEdit='+releaseTaskEdit);
-                //var obj = JSON.parse(releaseTaskEdit);
-                //var newdata = releaseTaskEdit.data.CurrentStatusID;
-                var newdata = releaseTaskEdit.currentStatusID;
-                console.log('after parse');
-                console.log(newdata);
-                //var currStID = obj.CurrentStatusID;
-                //console.log(currStID);
-                selectElement('statusDropID',newdata);
+                selectElement('statusDropID',releaseTaskEdit.currentStatusID);
+                selectElement('priorityDropID',releaseTaskEdit.currentPriorityID);
+                selectElement('employeeDropID',releaseTaskEdit.assignedEmployeeID);
             }
         )
-        
     }
 })
 
 function selectElement(id, valueToSelect){
-    console.log(id);
-    //let valueToSelect = releaseTaskEdit.CurrentStatusID;
-    console.log(valueToSelect);
     let element = document.getElementById(id);
-    //let element = document.querySelector('.edit-releaseTask__Status');
-    console.log(element);
     element.value = valueToSelect;
 }
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit-releaseTask__submit')) {
         const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
-        //console.log(releaseTaskId);
         const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
-        //console.log(name);
         const description = event.target.parentElement.querySelector('.edit-releaseTask__description').value;
-        //console.log(description);
         const createdDate = event.target.parentElement.querySelector('.edit-releaseTask__createdDate').value;
         const currentDueTime = event.target.parentElement.querySelector('.edit-releaseTask__currentDueTime').value;
-        //const statusID = 1;
         const newStatusID = event.target.parentElement.querySelector('.edit-releaseTask__Status').value;
-        //console.log('newstatus='+newStatusID);
-        //const priorityID = 1;
         const newPriorityID = event.target.parentElement.querySelector('.edit-releaseTask__Priority').value;
-        //console.log('newpriority='+ newPriorityID);
-        //const employeeID = 1;
         const newEmployeeID = event.target.parentElement.querySelector('.edit-releaseTask__Employee').value;
-        //console.log('newemp='+ newEmployeeID);
         const isVisible = true;
         var lastModifiedDate = new Date();
         const formatedDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
-        //console.log(lastModifiedDate);
-        //console.log(formatedDate);
         const releaseEdit = {
             id: releaseTaskId,
             Name: name,
@@ -239,7 +210,29 @@ appDivRight.addEventListener('click', function () {
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
         console.log("new task clicked")
-        appDivRight.innerHTML = ReleaseTaskPostSection();
+        //TODO:  The next 21 lines are repeated elsewhere in code
+        const statusDrop = `
+        ${statusData.map(sd => {
+            return `
+            <option class="edit-releaseTask__newStatusID" value="${sd.value}">${sd.name}</option>
+            `
+        })}
+        `
+        const priorityDrop = `
+            ${priorityData.map(pd => {
+                return `
+                <option class="edit-releaseTask__newPriorityID" value="${pd.value}">${pd.name}</option>
+                `
+            })}
+        `
+        const employeeDrop = `
+            ${employeeData.map(ed => {
+                return `
+                <option class="edit-releaseTask__newEmployeeID" value="${ed.id}">${ed.name}</option>
+                `
+            })}
+        `
+    appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop,currentSelectedRowID);
     }
 })
 
@@ -248,9 +241,9 @@ appDivRight.addEventListener('click', function () {
         const name = event.target.parentElement.querySelector('.create-releaseTask__name').value;
         const description = event.target.parentElement.querySelector('.create-releaseTask__description').value;
         const currentDueTime = event.target.parentElement.querySelector('.create-releaseTask__currentDueTime').value;
-        const currentStatusID = event.target.parentElement.querySelector('.create-releaseTask__currentStatusId').value;
-        const currentPriorityID = event.target.parentElement.querySelector('.create-releaseTask__currentPriorityId').value;
-        const assignedEmployeeID = event.target.parentElement.querySelector('.create-releaseTask__assignedEmployeeId').value;
+        const currentStatusID = event.target.parentElement.querySelector('.create-releaseTask__Status').value;
+        const currentPriorityID = event.target.parentElement.querySelector('.create-releaseTask__Priority').value;
+        const assignedEmployeeID = event.target.parentElement.querySelector('.create-releaseTask__Employee').value;
         var lastModifiedDate = new Date();
         const formatedCurrentDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
         var requestBody = {
@@ -272,6 +265,34 @@ appDivRight.addEventListener('click', function () {
                 appDivLeft.innerHTML = ReleaseTasks(newReleaseTasks);
             }
         )
+
+        //TODO:  The next 20 lines are repeated elsewhere in main.js
+        //without the alert the page reposts with old data, even though it did save
+        //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+        alert('Changes Saved');
+
+        //Reload the Left Table
+        fetch("https://localhost:44302/api/releaseTask")
+            .then(response => response.json())
+            .then(releaseTasks => {
+                appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+                highlightSelectedRow();
+                highlightSpecificRow(1);
+            })
+            .catch(err => console.log(err))
+
+        //Reload the Right Table
+        //TODO:  Since we don't have an ID (from SQL) for this add we need to default it to 1
+        //          so that the display still works with the table row highlighted with the
+        //          task details being displayed.  If we have time to conver to a 'Release Task Number'
+        //          instead of the SQL ID we could then highlight the newly added row
+        //const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
+        const releaseTaskCallback = releaseTask => {
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+
     }
 })
 // function changePriorityColor() {
