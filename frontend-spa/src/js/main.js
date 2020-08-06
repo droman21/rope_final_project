@@ -97,16 +97,17 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert('Changes Saved');
+        alert('Task Deleted');
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
+                HandleTaskRows.highlightSpecificRow(1);
             })
             .catch(err => console.log(err))
 
@@ -180,6 +181,7 @@ appDivRight.addEventListener('click', function () {
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
@@ -238,12 +240,13 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert('Changes Saved');
+        alert('Task Added');
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
@@ -352,6 +355,7 @@ appDivRight.addEventListener('click', function () {
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
                 console.log(currentSelectedRowID);

@@ -19,30 +19,24 @@ namespace RopeFinalProjectBackEnd.Repositories
             db = context;
         }
 
-        //public override void UpdateFields(ReleaseTask entity, params Expression<func<t, object="">>[] includeProperties)
+        //public override void UpdateFields(ReleaseTask entity)
         //{
-        //    //base.Patch(entity);
-        //    using (var context = new ReleaseTasksAPIContext())
+        //    var t2 = entity;
+        //    using (var db = new ReleaseTasksAPIContext())
         //    {
-        //        var dbEntry = context.Entry(entity);
-        //        foreach (var includeProperty in includeProperties)
-        //        {
-        //            dbEntry.Property(includeProperty).IsModified = true;
-        //        }
-        //        context.SaveChanges();
+        //        db.ReleaseTasks.Attach(t2);
+        //        db.Entry(t2).Property(x => x.IsVisisble).IsModified = true;
+        //        db.SaveChanges();
         //    }
         //}
-        //</func<t,>
 
         public override void UpdateFields(ReleaseTask entity)
         {
-            //base.UpdateFields(entity);
-            //var temp = new ReleaseTask();
-            var t2 = entity;
+            //var t2 = entity;
             using (var db = new ReleaseTasksAPIContext())
             {
-                db.ReleaseTasks.Attach(t2);
-                db.Entry(t2).Property(x => x.IsVisisble).IsModified = true;
+                db.ReleaseTasks.Attach(entity);
+                db.Entry(entity).Property(e => e.IsVisisble).IsModified = true;
                 db.SaveChanges();
             }
         }
