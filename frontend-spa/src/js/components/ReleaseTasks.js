@@ -1,6 +1,6 @@
 export default function ReleaseTasks(releaseTasks) {
     return `
-        <h1>Release Tasks</h1>
+        <h1 class="headerClass">Release Tasks</h1>
         <br>
         <section class="releaseTask__buttons">
         <button class="add__releaseTaskButton"><b>New Task</b></a></button> 

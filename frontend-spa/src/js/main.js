@@ -62,9 +62,7 @@ function showReleaseTasks() {
         //     HandleTaskRows.highlightSpecificRow(1);
         // })
         .then(releaseTasks => {
-            //console.log(releaseTasks);
             releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-            //console.log(releaseTasks);
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
             currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
             HandleTaskRows.highlightSpecificRow(1);
@@ -76,8 +74,56 @@ function showReleaseTasks() {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        console.log('in show tasks'+currentSelectedRowID);
 
 }
+
+
+appDivRight.addEventListener('click', function () {
+    if (event.target.classList.contains('delete_releaseTaskButton')) {
+        console.log('in delete task');
+        const releaseTaskId = event.target.parentElement.querySelector('.delete_releaseTaskButton').id;
+        console.log(releaseTaskId);
+        const releaseEdit = {
+            id: releaseTaskId,
+            IsVisisble: false
+        };
+
+        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+        apiActions.patchRequest(
+            releaseTaskEndpoint,
+            releaseEdit
+        )
+
+        //TODO:  The next 20 lines are repeated elsewhere in main.js
+        //without the alert the page reposts with old data, even though it did save
+        //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+        alert('Task Deleted');
+
+        //Reload the Left Table
+        fetch("https://localhost:44302/api/releaseTask")
+            .then(response => response.json())
+            .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+                appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+                currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                HandleTaskRows.highlightSpecificRow(1);
+            })
+            .catch(err => console.log(err))
+
+        //Reload the Right Table
+        const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
+        const releaseTaskCallback = releaseTask => {
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+        apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
+        console.log('indeletetask'+currentSelectedRowID);
+
+
+    }
+})
+
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
@@ -96,6 +142,8 @@ appDivRight.addEventListener('click', function () {
                 SelectDropDownID.selectElement('employeeDropID',releaseTaskEdit.assignedEmployeeID);
             }
         )
+        console.log('in edit task'+currentSelectedRowID);
+
     }
 })
 
@@ -139,8 +187,10 @@ appDivRight.addEventListener('click', function () {
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                console.log('line 193='+currentSelectedRowID);
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
             })
@@ -151,12 +201,15 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        console.log('in edit save'+currentSelectedRowID);
+
     }
 })
 
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
         console.log("new task clicked")
+        console.log('in add task'+currentSelectedRowID);
         const statusDrop = HandleDropDowns.StatusDropDown();
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
@@ -197,12 +250,13 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert('Changes Saved');
+        alert('Task Added');
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
@@ -254,7 +308,10 @@ appDivRight.addEventListener('click', function () {
 
 appDivRight.addEventListener('click', function(releaseTask){
     if (event.target.classList.contains('edit__releaseTaskButton__back')){
+        console.log('in back'+currentSelectedRowID);
+
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton__back').id;
+        console.log('in back2='+releaseTaskId);
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTask => {
@@ -274,6 +331,8 @@ appDivRight.addEventListener('click', function () {
                 ReleaseTaskEditSection.innerHTML = CommentPost(releaseTaskId, addComment);
             }
         )
+        console.log('in add comment'+currentSelectedRowID);
+
     }
 })
 
@@ -311,9 +370,10 @@ appDivRight.addEventListener('click', function () {
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                console.log(currentSelectedRowID);
+                console.log('in submit comment'+currentSelectedRowID);
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
             })
@@ -324,6 +384,7 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        console.log('bottom submit comment'+currentSelectedRowID);
 
 
     }
@@ -343,6 +404,26 @@ function ExecuteTimer(){
 appDivLeft.addEventListener('click', function(){
 
     if (event.target.parentElement.classList.contains('reminders__button')) {
-        ExecuteTimer();
+        if (event.shiftKey){
+            fetch("https://localhost:44302/api/releaseTask")
+            .then(response => response.json())
+            .then(releaseTasks => {
+                appDivRight.innerHTML = ReleaseTasks(releaseTasks);
+                //currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                //HandleTaskRows.highlightSpecificRow(1);
+            })
+            .catch(err => console.log(err))
+        }
+        else {
+            ExecuteTimer();
+        }
+        
     }
 })
+
+// appDivLeft.addEventListener('click', function(){
+//     console.log('new function');
+//     if (event.target.parentElement.classList.contains('headerClass')) {
+//         console.log('header clicked');
+//     }
+// })
