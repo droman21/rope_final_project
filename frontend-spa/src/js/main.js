@@ -56,17 +56,19 @@ function showReleaseTasks() {
 
     fetch("https://localhost:44302/api/releaseTask")
         .then(response => response.json())
-        .then(releaseTasks => {
-            appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-            currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-            HandleTaskRows.highlightSpecificRow(1);
-        })
         // .then(releaseTasks => {
-        //     releaseTasks = releaseTasks.filter(task => task.currentStatusID = 1);
         //     appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
         //     currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         //     HandleTaskRows.highlightSpecificRow(1);
         // })
+        .then(releaseTasks => {
+            //console.log(releaseTasks);
+            releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+            //console.log(releaseTasks);
+            appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+            currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+            HandleTaskRows.highlightSpecificRow(1);
+        })
         .catch(err => console.log(err))
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
