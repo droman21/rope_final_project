@@ -75,8 +75,8 @@ tbody {
     background-color: whitesmoke;
 }
 .appLeft h1{
-    border-style: solid;
-    margin-right: 36%;
+    border-style: dashed;
+    margin-right: 38%;
     box-shadow: 2px 2px;
     color: rgb(255, 115, 0);
     font-weight: bold;
@@ -84,7 +84,6 @@ tbody {
 .table-2__header{
     margin-left: 20%;
     font-size: 40px;
-
 }
 .appRight {
     background-color: rgb(173, 204, 209);
@@ -145,7 +144,7 @@ tbody {
     font-weight: bold;
 }
 .create-releaseTask__submit{
-    background-color: chocolate;
+    background-color: rgb(245, 91, 2);
     font-weight: bold;
     border-radius: 10px;
 }
