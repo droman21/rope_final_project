@@ -25,24 +25,25 @@ nav{
     font-weight: bold;
     color: white;
     border-radius: 8px;
-    border-color: white;
-    border: white;
-    
+    border-color: grey;
+    border: grey;
+
 }
 nav a{
     color: white;
     text-decoration: none;
     padding: .5em 2em;
-    border-color: white;
-    border: white;
+    border-color: grey;
+    border: grey;
     border-style: solid;
+    border-radius: 8px;
 }
 nav a:hover{
     background: yellow;
     color: black;
     font-weight: bold;
     border-radius: 8px;
-    border-color: white;
-    border: white;
+    border-color: grey;
+    border: grey;
     border-style: solid;
 }

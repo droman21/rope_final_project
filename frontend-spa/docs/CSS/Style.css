@@ -74,13 +74,13 @@ background-color: green;
 tbody {
     background-color: whitesmoke;
 }
-
 .appLeft h1{
     border-style: solid;
     margin-right: 36%;
     box-shadow: 2px 2px;
+    color: rgb(255, 115, 0);
+    font-weight: bold;
 }
-
 .table-2__header{
     margin-left: 20%;
     font-size: 40px;
@@ -89,6 +89,8 @@ tbody {
 .appRight {
     background-color: rgb(173, 204, 209);
     border-radius: 8px;
+    overflow: scroll;
+    height: 100%;
 }
 .add__releaseTaskButton{
     color: white;
