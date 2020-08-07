@@ -217,3 +217,17 @@ select{
 .aboutuscopy{
     color: white;
 }
+.startapp{
+    font-size: 35px;
+    background-color: rgb(47, 223, 41);
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 4px 4px grey
+}
+.startapp:hover{
+    background-color: yellow;
+    color: black;
+    cursor: pointer;
+    box-shadow: 4px 4px grey
+}
