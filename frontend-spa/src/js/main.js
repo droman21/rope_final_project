@@ -316,9 +316,13 @@ appDivLeft.addEventListener('click', function () {
     }
 })
 
+ function capitalizeFirstLetter(someString){
+     return someString.charAt(0).toUpperCase() + someString.slice(1);
+ }
+
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('create-releaseTask__submit')) {
-        const name = event.target.parentElement.querySelector('.create-releaseTask__name').value;
+        let name = event.target.parentElement.querySelector('.create-releaseTask__name').value;
         const description = event.target.parentElement.querySelector('.create-releaseTask__description').value;
         const currentDueTime = event.target.parentElement.querySelector('.create-releaseTask__currentDueTime').value;
         const currentStatusID = event.target.parentElement.querySelector('.create-releaseTask__Status').value;
@@ -326,6 +330,7 @@ appDivRight.addEventListener('click', function () {
         const assignedEmployeeID = event.target.parentElement.querySelector('.create-releaseTask__Employee').value;
         var lastModifiedDate = new Date();
         const formatedCurrentDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
+        name = capitalizeFirstLetter(name);
         var requestBody = {
             Name: name,
             Description: description,
