@@ -21,6 +21,7 @@ const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 let currentSelectedRowID = 1;
 var AppTimer = null;
+let nameSortOrder = "ascending";
 //const activeTasks = ActiveTasks.ActiveTasksArray();
 
 
@@ -60,8 +61,12 @@ function StartApp(){
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('startapp')) {
         console.log('start app clicked');
+
         const activeTasks = ActiveTasks.ActiveTasksArray();
-        console.log(activeTasks);
+        // console.log(activeTasks);
+        // activeTasks.sort((a,b) => (a.currentDueTime > b.currentDueTime) ? 1: -1);
+        // console.log(activeTasks);
+
         appDivLeft.innerHTML = ReleaseTasks(activeTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
@@ -71,9 +76,27 @@ appDivLeft.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+    }
+})
 
+appDivLeft.addEventListener('click', function () {
+    
+    if (event.target.classList.contains('table_header__Name')){
+        console.log('header-name clicked');
+        const activeTasks = ActiveTasks.ActiveTasksArray();
 
+        if (nameSortOrder == "ascending"){
+            activeTasks.sort((a,b) => (a.name > b.name) ? 1: -1);
+            nameSortOrder = "descending";
+        }
+        else {
+            activeTasks.sort((a,b) => (a.name < b.name) ? 1: -1);
+            nameSortOrder = "ascending";
+        }
 
+        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        HandleTaskRows.highlightSpecificRow(1);
     }
 })
 
