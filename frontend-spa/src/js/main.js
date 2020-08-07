@@ -88,13 +88,7 @@ appDivLeft.addEventListener('click', function () {
 appDivLeft.addEventListener('click', function () {
     
     if (event.target.classList.contains('table_header__ID')){
-        //console.log('header-name clicked');
-        //console.log('before='+idSortOrder);
-
         idSortOrder = Sort.ID(idSortOrder);
-
-        //console.log('after='+idSortOrder);
-
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }
@@ -372,6 +366,14 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+
+        // console.log('before sort');
+        // idSortOrder = Sort.ID('descending');
+        // console.log('after sort');
+        // currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        // console.log('after highlight row call');
+        // HandleTaskRows.highlightSpecificRow(1);
+        // console.log('after row 1 highligh call');
 
     }
 })
