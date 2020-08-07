@@ -205,6 +205,7 @@ appDivRight.addEventListener('click', function () {
 
         //Reload the Right Table
         const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
+
         const releaseTaskCallback = releaseTask => {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
@@ -223,8 +224,6 @@ appDivRight.addEventListener('click', function () {
         const statusDrop = HandleDropDowns.StatusDropDown();
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
-
-        
 
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,

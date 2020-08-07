@@ -1,10 +1,12 @@
+import moment from "moment";
+
 export default function ReleaseTask(releaseTask) {
 
     return `
     <h1 class="table-2__header"  id="${releaseTask.id}">${releaseTask.name}</h1>
     <section class="releaseTask__detailsInfo">
         <ul class="releaseTask__detailsInfolist">
-            <li class="releaseTask__currentDueTime"><b>Due:</b> ${releaseTask.currentDueTime}</li>
+            <li class="releaseTask__currentDueTime"><b>Due:</b> ${moment(releaseTask.currentDueTime).format(('MMMM Do YYYY, h:mm a'))}</li>
             <br>
             <li class="releaseTask__id" ><b>ID:</b> ${releaseTask.id}</li>
             <br>
@@ -16,9 +18,9 @@ export default function ReleaseTask(releaseTask) {
             <br>
             <li class="releaseTask__currentPriorityName"><b>Priority:</b> ${releaseTask.priority.name}</li>
             <br>
-            <li class="releaseTask__createdDate"><b>Created:</b> ${releaseTask.createdDate}</li>
+            <li class="releaseTask__createdDate"><b>Created:</b> ${moment(releaseTask.createdDate).format(('MMMM Do YYYY, h:mm a'))}</li>
             <br>
-            <li class="releaseTask__lastModifiedDate"><b>Last Modified:</b> ${releaseTask.lastModifiedDate}</li>
+            <li class="releaseTask__lastModifiedDate"><b>Last Modified:</b> ${moment(releaseTask.lastModifiedDate).format(('MMMM Do YYYY, h:mm a'))}</li>
             <br>
             <li class="releaseTask__assignedEmployeeName"><b>Assigned To:</b> ${releaseTask.employee.name}</li>
             <br>
