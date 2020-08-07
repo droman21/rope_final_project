@@ -23,6 +23,8 @@ let currentSelectedRowID = 1;
 var AppTimer = null;
 let nameSortOrder = "ascending";
 let statusSortOrder = "ascending";
+let prioritySortOrder = "ascending";
+let employeeSortOrder = "ascending";
 //const activeTasks = ActiveTasks.ActiveTasksArray();
 
 
@@ -113,6 +115,48 @@ appDivLeft.addEventListener('click', function() {
         else {
             activeTasks.sort((a,b) => (a.currentStatusID < b.currentStatusID) ? 1: -1);
             statusSortOrder = "ascending";
+        }
+
+        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        HandleTaskRows.highlightSpecificRow(1);
+
+    }
+})
+
+appDivLeft.addEventListener('click', function() {
+    if (event.target.classList.contains('table_header__Priority')){
+        console.log('header-status clicked');
+        const activeTasks = ActiveTasks.ActiveTasksArray();
+        
+        if (prioritySortOrder == "ascending"){
+            activeTasks.sort((a,b) => (a.currentPriorityID > b.currentPriorityID) ? 1: -1);
+            prioritySortOrder = "descending";
+        }
+        else {
+            activeTasks.sort((a,b) => (a.currentPriorityID < b.currentPriorityID) ? 1: -1);
+            prioritySortOrder = "ascending";
+        }
+
+        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        HandleTaskRows.highlightSpecificRow(1);
+
+    }
+})
+
+appDivLeft.addEventListener('click', function() {
+    if (event.target.classList.contains('table_header__AssignedTo')){
+        console.log('header-status clicked');
+        const activeTasks = ActiveTasks.ActiveTasksArray();
+        
+        if (employeeSortOrder == "ascending"){
+            activeTasks.sort((a,b) => (a.employee.name > b.employee.name) ? 1: -1);
+            employeeSortOrder = "descending";
+        }
+        else {
+            activeTasks.sort((a,b) => (a.employee.name < b.employee.name) ? 1: -1);
+            employeeSortOrder = "ascending";
         }
 
         appDivLeft.innerHTML = ReleaseTasks(activeTasks);
