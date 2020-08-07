@@ -181,7 +181,7 @@ appDivRight.addEventListener('click', function () {
         };
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-        var response = confirm("Are you sure you want to delete this task?");
+        var response = confirm("Click OK to delete this task?");
 
         if (response == true){
 
@@ -319,10 +319,6 @@ appDivLeft.addEventListener('click', function () {
     }
 })
 
- function capitalizeFirstLetter(someString){
-     return someString.charAt(0).toUpperCase() + someString.slice(1);
- }
-
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('create-releaseTask__submit')) {
         let name = event.target.parentElement.querySelector('.create-releaseTask__name').value;
@@ -333,7 +329,7 @@ appDivRight.addEventListener('click', function () {
         const assignedEmployeeID = event.target.parentElement.querySelector('.create-releaseTask__Employee').value;
         var lastModifiedDate = new Date();
         const formatedCurrentDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
-        name = capitalizeFirstLetter(name);
+        name = name.charAt(0).toUpperCase() + name.slice(1);
         var requestBody = {
             Name: name,
             Description: description,
