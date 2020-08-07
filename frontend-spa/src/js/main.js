@@ -181,38 +181,41 @@ appDivRight.addEventListener('click', function () {
         };
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-        apiActions.patchRequest(
-            releaseTaskEndpoint,
-            releaseEdit
-        )
+        var response = confirm("Click OK to delete this task?");
 
-        //TODO:  The next 20 lines are repeated elsewhere in main.js
-        //without the alert the page reposts with old data, even though it did save
-        //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert('Task Deleted');
+        if (response == true){
 
-        //Reload the Left Table
-        fetch("https://localhost:44302/api/releaseTask")
-            .then(response => response.json())
-            .then(releaseTasks => {
-                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-                appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                HandleTaskRows.highlightSpecificRow(1);
-            })
-            .catch(err => console.log(err))
+            apiActions.patchRequest(
+                releaseTaskEndpoint,
+                releaseEdit
+            )
 
-        //Reload the Right Table
-        const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
+            //TODO:  The next 20 lines are repeated elsewhere in main.js
+            //without the alert the page reposts with old data, even though it did save
+            //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+            alert('Task Deleted');
 
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
-        console.log('indeletetask'+currentSelectedRowID);
+            //Reload the Left Table
+            fetch("https://localhost:44302/api/releaseTask")
+                .then(response => response.json())
+                .then(releaseTasks => {
+                    releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+                    appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+                    currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                    //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                    HandleTaskRows.highlightSpecificRow(1);
+                })
+                .catch(err => console.log(err))
 
+            //Reload the Right Table
+            const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
 
+            const releaseTaskCallback = releaseTask => {
+                appDivRight.innerHTML = ReleaseTask(releaseTask);
+            };
+            apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
+            console.log('indeletetask'+currentSelectedRowID);
+        }
     }
 })
 
@@ -316,10 +319,6 @@ appDivLeft.addEventListener('click', function () {
     }
 })
 
- function capitalizeFirstLetter(someString){
-     return someString.charAt(0).toUpperCase() + someString.slice(1);
- }
-
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('create-releaseTask__submit')) {
         let name = event.target.parentElement.querySelector('.create-releaseTask__name').value;
@@ -330,7 +329,7 @@ appDivRight.addEventListener('click', function () {
         const assignedEmployeeID = event.target.parentElement.querySelector('.create-releaseTask__Employee').value;
         var lastModifiedDate = new Date();
         const formatedCurrentDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
-        name = capitalizeFirstLetter(name);
+        name = name.charAt(0).toUpperCase() + name.slice(1);
         var requestBody = {
             Name: name,
             Description: description,
