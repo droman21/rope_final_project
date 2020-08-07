@@ -88,43 +88,22 @@ appDivLeft.addEventListener('click', function () {
 appDivLeft.addEventListener('click', function () {
     
     if (event.target.classList.contains('table_header__ID')){
-        console.log('header-name clicked');
-        console.log('before='+idSortOrder);
-        idSortOrder = Sort.SortTable(idSortOrder,"id");
-        console.log('after='+idSortOrder);
-        // const activeTasks = ActiveTasks.ActiveTasksArray();
+        //console.log('header-name clicked');
+        //console.log('before='+idSortOrder);
 
-        // if (idSortOrder == "ascending"){
-        //     activeTasks.sort((a,b) => (a.id > b.id) ? 1: -1);
-        //     idSortOrder = "descending";
-        // }
-        // else {
-        //     activeTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
-        //     idSortOrder = "ascending";
-        // }
+        idSortOrder = Sort.ID(idSortOrder);
 
-        // appDivLeft.innerHTML = ReleaseTasks(activeTasks);
-         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-         HandleTaskRows.highlightSpecificRow(1);
+        //console.log('after='+idSortOrder);
+
+        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        HandleTaskRows.highlightSpecificRow(1);
     }
 })
 
 appDivLeft.addEventListener('click', function () {
     
     if (event.target.classList.contains('table_header__Name')){
-        console.log('header-name clicked');
-        const activeTasks = ActiveTasks.ActiveTasksArray();
-
-        if (nameSortOrder == "ascending"){
-            activeTasks.sort((a,b) => (a.name > b.name) ? 1: -1);
-            nameSortOrder = "descending";
-        }
-        else {
-            activeTasks.sort((a,b) => (a.name < b.name) ? 1: -1);
-            nameSortOrder = "ascending";
-        }
-
-        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        nameSortOrder = Sort.Name(nameSortOrder);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }
@@ -132,85 +111,33 @@ appDivLeft.addEventListener('click', function () {
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__Status')){
-        console.log('header-status clicked');
-        const activeTasks = ActiveTasks.ActiveTasksArray();
-        
-        if (statusSortOrder == "ascending"){
-            activeTasks.sort((a,b) => (a.currentStatusID > b.currentStatusID) ? 1: -1);
-            statusSortOrder = "descending";
-        }
-        else {
-            activeTasks.sort((a,b) => (a.currentStatusID < b.currentStatusID) ? 1: -1);
-            statusSortOrder = "ascending";
-        }
-
-        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        statusSortOrder = Sort.Status(statusSortOrder);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
-
     }
 })
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__Priority')){
-        console.log('header-status clicked');
-        const activeTasks = ActiveTasks.ActiveTasksArray();
-        
-        if (prioritySortOrder == "ascending"){
-            activeTasks.sort((a,b) => (a.currentPriorityID > b.currentPriorityID) ? 1: -1);
-            prioritySortOrder = "descending";
-        }
-        else {
-            activeTasks.sort((a,b) => (a.currentPriorityID < b.currentPriorityID) ? 1: -1);
-            prioritySortOrder = "ascending";
-        }
-
-        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        prioritySortOrder = Sort.Priority(prioritySortOrder);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
-
     }
 })
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__AssignedTo')){
-        console.log('header-status clicked');
-        const activeTasks = ActiveTasks.ActiveTasksArray();
-        
-        if (employeeSortOrder == "ascending"){
-            activeTasks.sort((a,b) => (a.employee.name > b.employee.name) ? 1: -1);
-            employeeSortOrder = "descending";
-        }
-        else {
-            activeTasks.sort((a,b) => (a.employee.name < b.employee.name) ? 1: -1);
-            employeeSortOrder = "ascending";
-        }
-
-        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        employeeSortOrder = Sort.Employee(employeeSortOrder);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
-
     }
 })
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__DueTime')){
-        console.log('header-status clicked');
-        const activeTasks = ActiveTasks.ActiveTasksArray();
-        
-        if (dueTimeSortOrder == "ascending"){
-            activeTasks.sort((a,b) => (a.currentDueTime > b.currentDueTime) ? 1: -1);
-            dueTimeSortOrder = "descending";
-        }
-        else {
-            activeTasks.sort((a,b) => (a.currentDueTime < b.currentDueTime) ? 1: -1);
-            dueTimeSortOrder = "ascending";
-        }
-
-        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        dueTimeSortOrder = Sort.DueTime(dueTimeSortOrder);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
-
     }
 })
 
