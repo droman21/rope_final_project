@@ -1,7 +1,7 @@
 export default function CommentPost(releaseTaskId) {
     return `
     <div class="commentpostcomponent"
-    <h2>Enter the Comment details below.</h2>
+    <h4>Enter the Comment details below.</h4>
     <input class="edit-releaseTask__id" hidden="true" value="${releaseTaskId}">
     <textarea rows="4" cols="50" <input class="add-comment__details" type="text" placeholder="Add Comment Here"></textarea>
     <br><br>
