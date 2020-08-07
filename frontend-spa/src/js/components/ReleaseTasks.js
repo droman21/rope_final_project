@@ -19,7 +19,7 @@ export default function ReleaseTasks(releaseTasks) {
                         <th class="table_header__Status" style="width: 90px;">Status</th>
                         <th class="table_header__Priority" style="width: 75px;">Priority</th>
                         <th class="table_header__DueTime" style="width: 150px;">Due Date&Time</th>
-                        <th class="table_header__AssignedTo" style="width: 90px;">Assigned To</th>
+                        <th class="table_header__AssignedTo" style="width: 90px;">Assigned</th>
                     </tr>
         ${releaseTasks.map(releaseTask => {
         //var dueTime = FormatTime(releaseTask.currentDueTime);
