@@ -22,6 +22,7 @@ const appDivRight = document.querySelector('.appRight');
 let currentSelectedRowID = 1;
 var AppTimer = null;
 let nameSortOrder = "ascending";
+let statusSortOrder = "ascending";
 //const activeTasks = ActiveTasks.ActiveTasksArray();
 
 
@@ -97,6 +98,27 @@ appDivLeft.addEventListener('click', function () {
         appDivLeft.innerHTML = ReleaseTasks(activeTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
+    }
+})
+
+appDivLeft.addEventListener('click', function() {
+    if (event.target.classList.contains('table_header__Status')){
+        console.log('header-status clicked');
+        const activeTasks = ActiveTasks.ActiveTasksArray();
+        
+        if (statusSortOrder == "ascending"){
+            activeTasks.sort((a,b) => (a.currentStatusID > b.currentStatusID) ? 1: -1);
+            statusSortOrder = "descending";
+        }
+        else {
+            activeTasks.sort((a,b) => (a.currentStatusID < b.currentStatusID) ? 1: -1);
+            statusSortOrder = "ascending";
+        }
+
+        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        HandleTaskRows.highlightSpecificRow(1);
+
     }
 })
 
