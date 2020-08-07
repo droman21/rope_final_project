@@ -392,9 +392,11 @@ appDivRight.addEventListener('click', function () {
 })
 
 function ExecuteTimer(){
-    
+
     const tasks = Reminders.TasksArray();
-    
+    console.log(tasks);
+    tasks.sort((a,b) => (a.id < b.id) ? 1: -1);
+    console.log(tasks);
     tasks.forEach(element => {
         let curr = (new Date(element.currentDueTime));
         let now = (new Date());
