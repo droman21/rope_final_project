@@ -7,7 +7,7 @@ export default function CommentPost(releaseTaskId) {
     <br><br>
     <button class="add-comment__submit" id="${releaseTaskId}">Save</button>
     <button class="edit__releaseTaskButton__back" id=${releaseTaskId}>Back</button>
-
+    </div>
 
     `
 }

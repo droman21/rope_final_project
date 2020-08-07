@@ -4,7 +4,7 @@
 export default function ReleaseTaskEdit(releaseTask, statusDrop, priorityDrop, employeeDrop) {
     return `
     <section class="edit-container">
-    <h3 class="edit-releaseTask__header"> Edit the release task fields below.</h3>
+    <h3 class="edit-releaseTask__header">Edit the release task fields below.</h3>
         <h4>Assigned To:
         <select id="employeeDropID" class="edit-releaseTask__Employee" type="dropdown"></h4>
         ${employeeDrop}
