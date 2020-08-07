@@ -16,6 +16,7 @@ import Header from './components/Header';
 import CommentPost from './components/CommentPost';
 import HomePage from './components/HomePage';
 import Sort from './components/Sort';
+import moment from "moment";
 
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
@@ -204,6 +205,7 @@ appDivRight.addEventListener('click', function () {
 
         //Reload the Right Table
         const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
+
         const releaseTaskCallback = releaseTask => {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
@@ -226,6 +228,7 @@ appDivRight.addEventListener('click', function () {
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
+                console.log(releaseTaskEdit.currentDueTime);
                 ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit,statusDrop,priorityDrop,employeeDrop);
                 SelectDropDownID.selectElement('statusDropID',releaseTaskEdit.currentStatusID);
                 SelectDropDownID.selectElement('priorityDropID',releaseTaskEdit.currentPriorityID);
@@ -303,7 +306,13 @@ appDivLeft.addEventListener('click', function () {
         const statusDrop = HandleDropDowns.StatusDropDown();
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
-        appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop,currentSelectedRowID);
+        const currentDate = new Date();
+        //const formatedDate = moment(currentDate).format('yyyy-MM-DDTh:mm:ss');
+        const formatedDate = moment(currentDate).format('YYYY-MM-DDTh:mm');
+        
+        console.log(currentDate);
+        console.log(formatedDate);
+        appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop, priorityDrop, employeeDrop, currentSelectedRowID, formatedDate);
     }
 })
 
@@ -322,7 +331,7 @@ appDivRight.addEventListener('click', function () {
             Description: description,
             CreatedDate:formatedCurrentDate,
             IsVisisble: true,
-            CurrentDueTime: formatedCurrentDate,
+            CurrentDueTime: currentDueTime,
             LastModifiedDate: formatedCurrentDate,
             CurrentStatusID: currentStatusID,
             CurrentPriorityID: currentPriorityID,

@@ -8,10 +8,10 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop, priorityDrop, e
     <h3 class="edit-releaseTask__header"> Edit the release task fields below.</h3>
 
         <h4>Task Name:
-        <input class="edit-releaseTask__name" type="text" value="${releaseTask.name}"></h4>
+        <input class="edit-releaseTask__name" type="text"  value="${releaseTask.name}"></h4>
         
-        <h4>Description:</h4>
-        <textarea rows="4" cols="50"<input class="edit-releaseTask__description" type="text" placeholder="Add New Description Here" value="${releaseTask.description}"></textarea>
+        <input class="edit-releaseTask__description" hidden="true" value="${releaseTask.description}">
+        <h4>Description: <div>${releaseTask.description}</div></h4>
         
         <h4>Status:
         <select id="statusDropID" class="edit-releaseTask__Status" type="dropdown">
@@ -29,7 +29,7 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop, priorityDrop, e
         </select>
 
         <h4 id="style-edit">Due:
-        <input class="edit-releaseTask__currentDueTime" type="time" value="${releaseTask.currentDueTime}"></h4>
+        <input class="edit-releaseTask__currentDueTime" type="datetime-local" value="${releaseTask.currentDueTime}"></h4>
         </section>
 
         <input class="edit-releaseTask__id" hidden="true" value="${releaseTask.id}">
