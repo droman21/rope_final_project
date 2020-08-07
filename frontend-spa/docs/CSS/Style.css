@@ -191,17 +191,22 @@ tbody {
     cursor: pointer;
     font-weight: bold;
 }
+.edit__releaseTask h4{
+    margin-left: 10%;
+}
+#editStyle{
+    border: solid;
+    border-radius: 5%;
+}
+
 .edit-container{
     border: solid;
 }
 .edit-releaseTask__header{
     margin-left: 70px;
 }
-.edit__releaseTask h4{
-    margin-left: 10%;
-}
 .edit-releaseTask__name{
-    min-width: 45%;
+    min-width: 50%;
 }
 select{
     width:20%;
