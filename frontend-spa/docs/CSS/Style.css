@@ -87,7 +87,6 @@ tbody {
 }
 .appRight {
     background-color: rgb(173, 204, 209);
-    border-radius: 8px;
     overflow: hidden;
     height: 100%;
 }
