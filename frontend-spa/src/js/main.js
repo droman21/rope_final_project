@@ -181,38 +181,41 @@ appDivRight.addEventListener('click', function () {
         };
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-        apiActions.patchRequest(
-            releaseTaskEndpoint,
-            releaseEdit
-        )
+        var response = confirm("Are you sure you want to delete this task?");
 
-        //TODO:  The next 20 lines are repeated elsewhere in main.js
-        //without the alert the page reposts with old data, even though it did save
-        //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert('Task Deleted');
+        if (response == true){
 
-        //Reload the Left Table
-        fetch("https://localhost:44302/api/releaseTask")
-            .then(response => response.json())
-            .then(releaseTasks => {
-                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-                appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                HandleTaskRows.highlightSpecificRow(1);
-            })
-            .catch(err => console.log(err))
+            apiActions.patchRequest(
+                releaseTaskEndpoint,
+                releaseEdit
+            )
 
-        //Reload the Right Table
-        const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
+            //TODO:  The next 20 lines are repeated elsewhere in main.js
+            //without the alert the page reposts with old data, even though it did save
+            //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+            alert('Task Deleted');
 
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
-        console.log('indeletetask'+currentSelectedRowID);
+            //Reload the Left Table
+            fetch("https://localhost:44302/api/releaseTask")
+                .then(response => response.json())
+                .then(releaseTasks => {
+                    releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+                    appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+                    currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                    //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                    HandleTaskRows.highlightSpecificRow(1);
+                })
+                .catch(err => console.log(err))
 
+            //Reload the Right Table
+            const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
 
+            const releaseTaskCallback = releaseTask => {
+                appDivRight.innerHTML = ReleaseTask(releaseTask);
+            };
+            apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
+            console.log('indeletetask'+currentSelectedRowID);
+        }
     }
 })
 
