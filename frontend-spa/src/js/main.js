@@ -308,7 +308,9 @@ appDivLeft.addEventListener('click', function () {
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
         const currentDate = new Date();
-        const formatedDate = moment(currentDate).format('yyyy-MM-DDThh:mm');
+        //const formatedDate = moment(currentDate).format('yyyy-MM-DDTh:mm:ss');
+        const formatedDate = moment(currentDate).format('YYYY-MM-DDTh:mm');
+        
         console.log(currentDate);
         console.log(formatedDate);
         appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop, priorityDrop, employeeDrop, currentSelectedRowID, formatedDate);
@@ -330,7 +332,7 @@ appDivRight.addEventListener('click', function () {
             Description: description,
             CreatedDate:formatedCurrentDate,
             IsVisisble: true,
-            CurrentDueTime: formatedCurrentDate,
+            CurrentDueTime: currentDueTime,
             LastModifiedDate: formatedCurrentDate,
             CurrentStatusID: currentStatusID,
             CurrentPriorityID: currentPriorityID,
