@@ -15,6 +15,7 @@ import Header from './components/Header';
 // import Footer from './components/Footer';
 import CommentPost from './components/CommentPost';
 import HomePage from './components/HomePage';
+import Sort from './components/Sort';
 
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
@@ -88,20 +89,23 @@ appDivLeft.addEventListener('click', function () {
     
     if (event.target.classList.contains('table_header__ID')){
         console.log('header-name clicked');
-        const activeTasks = ActiveTasks.ActiveTasksArray();
+        console.log('before='+idSortOrder);
+        idSortOrder = Sort.SortTable(idSortOrder,"id");
+        console.log('after='+idSortOrder);
+        // const activeTasks = ActiveTasks.ActiveTasksArray();
 
-        if (idSortOrder == "ascending"){
-            activeTasks.sort((a,b) => (a.id > b.id) ? 1: -1);
-            idSortOrder = "descending";
-        }
-        else {
-            activeTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
-            idSortOrder = "ascending";
-        }
+        // if (idSortOrder == "ascending"){
+        //     activeTasks.sort((a,b) => (a.id > b.id) ? 1: -1);
+        //     idSortOrder = "descending";
+        // }
+        // else {
+        //     activeTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
+        //     idSortOrder = "ascending";
+        // }
 
-        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
-        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-        HandleTaskRows.highlightSpecificRow(1);
+        // appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+         HandleTaskRows.highlightSpecificRow(1);
     }
 })
 
