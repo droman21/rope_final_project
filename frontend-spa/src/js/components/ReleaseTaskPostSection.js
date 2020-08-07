@@ -2,6 +2,9 @@ export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeD
     return `
         <h1 class="releaseTaskPostSection"> Create New Release Task <h1>
         <section class="create-releaseTask__post">
+        <h6>Due Time:
+        <input class="create-releaseTask__currentDueTime" type="text" placeholder="Set Due Time"> </h6>
+        
         <h6>Task Name:
         <input class="create-releaseTask__name" type="text" placeholder="Release Task Name"></h6>
         <h6>Description:
@@ -21,11 +24,11 @@ export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeD
         <select id="employeeDropID" class="create-releaseTask__Employee" type="dropdown"></h4>
         ${employeeDrop}</h6>
         </select>
-
-        <h6>Due Time:
-        <input class="create-releaseTask__currentDueTime" type="text" placeholder="Set Due Time"> </h6>
+        <br>
+        <br>
         <button class="create-releaseTask__submit">Save Your Task</button>
         <button class="edit__releaseTaskButton__back" id=${currentSelectedRowID}>Back</button>
+
 
         </section>
         
