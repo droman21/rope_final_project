@@ -16,13 +16,19 @@
     position: auto;
     left: auto;
     width: 670px;
-    height: 490px;
+    height: 470px;
 }
 .releaseTaskPostSection{
     position: auto;
     right: auto;
     width: auto;
     height: 160px;
+}
+.commentpostcomponent{
+    position: auto;
+    right: auto;
+    width: auto;
+    height: auto;
 }
 nav{
     position: top;
@@ -35,7 +41,7 @@ nav{
     background: rgb(138, 1, 138); opacity:0.6;
     font-weight: bold;
     color: white;
-    border-radius: 8px;
+    border-radius: 5px;
     border-color: grey;
     border: grey;
 }

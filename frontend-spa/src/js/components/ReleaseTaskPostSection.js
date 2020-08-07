@@ -1,6 +1,6 @@
 export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop,currentSelectedRowID) {
     return `
-        <h1 class="releaseTaskPostSection"> Create New Release Task</h1>
+    <h1 class="releaseTaskPostSection">Create New Release Task</h1>
         <section class="create-releaseTask__post">
         <h4>Task Name:
         <input class="create-releaseTask__name" type="text" placeholder="Release Task Name"></h4>
