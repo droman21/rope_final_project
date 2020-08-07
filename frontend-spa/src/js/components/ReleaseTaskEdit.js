@@ -10,8 +10,8 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop, priorityDrop, e
         <h4>Task Name:
         <input class="edit-releaseTask__name" type="text"  value="${releaseTask.name}"></h4>
         
-        <h4>Description:</h4>
-        <textarea rows="4" cols="50"<input class="edit-releaseTask__description" type="text" value="${releaseTask.description}"></textarea>
+        <input class="edit-releaseTask__description" hidden="true" value="${releaseTask.description}">
+        <h4>Description: <div>${releaseTask.description}</div></h4>
         
         <h4>Status:
         <select id="statusDropID" class="edit-releaseTask__Status" type="dropdown">
