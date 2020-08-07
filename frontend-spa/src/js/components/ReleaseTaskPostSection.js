@@ -1,4 +1,4 @@
-export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop,currentSelectedRowID) {
+export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop,currentSelectedRowID, currentDate) {
     return `
     <section class="create-releaseTask__post">
 
@@ -26,7 +26,7 @@ export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeD
         </select>
 
         <h4>Due Time:
-        <input class="create-releaseTask__currentDueTime"  type="time" placeholder="Set Due Time"> </h4>
+        <input class="create-releaseTask__currentDueTime"  type="datetime-local" value="${currentDate}"> </h4>
         </section>
 
         <br><br>

@@ -16,6 +16,7 @@ import Header from './components/Header';
 import CommentPost from './components/CommentPost';
 import HomePage from './components/HomePage';
 import Sort from './components/Sort';
+import moment from "moment";
 
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
@@ -223,9 +224,12 @@ appDivRight.addEventListener('click', function () {
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
 
+        
+
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
+                console.log(releaseTaskEdit.currentDueTime);
                 ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit,statusDrop,priorityDrop,employeeDrop);
                 SelectDropDownID.selectElement('statusDropID',releaseTaskEdit.currentStatusID);
                 SelectDropDownID.selectElement('priorityDropID',releaseTaskEdit.currentPriorityID);
@@ -303,7 +307,11 @@ appDivLeft.addEventListener('click', function () {
         const statusDrop = HandleDropDowns.StatusDropDown();
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
-        appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop,currentSelectedRowID);
+        const currentDate = new Date();
+        const formatedDate = moment(currentDate).format('yyyy-MM-DDThh:mm');
+        console.log(currentDate);
+        console.log(formatedDate);
+        appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop, priorityDrop, employeeDrop, currentSelectedRowID, formatedDate);
     }
 })
 
