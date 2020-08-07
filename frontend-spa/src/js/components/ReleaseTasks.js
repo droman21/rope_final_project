@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export default function ReleaseTasks(releaseTasks) {
     return `
     <h1>R.O.P.E. Application</h1>
@@ -16,11 +18,11 @@ export default function ReleaseTasks(releaseTasks) {
                         <th class="table_header__Name" style="width: 250px;">Task Name</th>
                         <th class="table_header__Status" style="width: 90px;">Status</th>
                         <th class="table_header__Priority" style="width: 75px;">Priority</th>
-                        <th class="table_header__DueTime" style="width: 75px;">DueTime</th>
+                        <th class="table_header__DueTime" style="width: 150px;">Due Date&Time</th>
                         <th class="table_header__AssignedTo" style="width: 90px;">Assigned To</th>
                     </tr>
         ${releaseTasks.map(releaseTask => {
-        var dueTime = FormatTime(releaseTask.currentDueTime);
+        //var dueTime = FormatTime(releaseTask.currentDueTime);
         //console.log(releaseTask);
         //console.log(releaseTask.status.name);
         return `
@@ -29,7 +31,7 @@ export default function ReleaseTasks(releaseTasks) {
                 <td class="releaseTask__info" id="${releaseTask.id}">${releaseTask.name}</td>
                 <td id="${releaseTask.currentStatusID}">${releaseTask.status.name}</td>
                 <td id="${releaseTask.currentPriorityID}">${releaseTask.priority.name}</td>
-                <td>${dueTime}</td>
+                <td>${moment(releaseTask.currentDueTime).format('MMM DD, h:mm a')}</td>
                 <td id="${releaseTask.assignedEmployeeID}">${releaseTask.employee.name}</td>
             </tr>
                 `
