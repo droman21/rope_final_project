@@ -198,6 +198,13 @@ tbody {
     border: solid;
     border-radius: 5%;
 }
+
+.edit-container{
+    border: solid;
+}
+.edit-releaseTask__header{
+    margin-left: 70px;
+}
 .edit-releaseTask__name{
     min-width: 50%;
 }
