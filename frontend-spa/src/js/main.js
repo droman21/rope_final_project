@@ -260,6 +260,7 @@ appDivRight.addEventListener('click', function () {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                console.log('in Add Task fetch, current row='+currentSelectedRowID);
                 HandleTaskRows.highlightSpecificRow(1);
             })
             .catch(err => console.log(err))
@@ -391,7 +392,9 @@ appDivRight.addEventListener('click', function () {
 })
 
 function ExecuteTimer(){
+    
     const tasks = Reminders.TasksArray();
+    
     tasks.forEach(element => {
         let curr = (new Date(element.currentDueTime));
         let now = (new Date());
@@ -408,6 +411,8 @@ appDivLeft.addEventListener('click', function(){
             fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
+                //releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+
                 appDivRight.innerHTML = ReleaseTasks(releaseTasks);
                 //currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
                 //HandleTaskRows.highlightSpecificRow(1);
