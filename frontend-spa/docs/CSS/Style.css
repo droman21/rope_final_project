@@ -170,7 +170,26 @@ tbody {
     background-color: yellow;
     cursor: pointer;
     font-weight: bold;
-
+}
+.delete_releaseTaskButton{
+    background-color: white;
+    border-radius: 8px;
+    font-weight: bold;
+}
+.delete_releaseTaskButton:hover{
+    background-color: yellow;
+    cursor: pointer;
+    font-weight: bold;
+}
+.reminders__button{
+    background-color: white;
+    border-radius: 8px;
+    font-weight: bold;
+}
+.reminders__button:hover{
+    background-color: yellow;
+    cursor: pointer;
+    font-weight: bold;
 }
 .edit-container{
     border: solid;
