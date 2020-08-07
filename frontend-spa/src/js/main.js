@@ -25,6 +25,8 @@ let nameSortOrder = "ascending";
 let statusSortOrder = "ascending";
 let prioritySortOrder = "ascending";
 let employeeSortOrder = "ascending";
+let dueTimeSortOrder = "ascending";
+let idSortOrder = "descending";
 //const activeTasks = ActiveTasks.ActiveTasksArray();
 
 
@@ -79,6 +81,27 @@ appDivLeft.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+    }
+})
+
+appDivLeft.addEventListener('click', function () {
+    
+    if (event.target.classList.contains('table_header__ID')){
+        console.log('header-name clicked');
+        const activeTasks = ActiveTasks.ActiveTasksArray();
+
+        if (idSortOrder == "ascending"){
+            activeTasks.sort((a,b) => (a.id > b.id) ? 1: -1);
+            idSortOrder = "descending";
+        }
+        else {
+            activeTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
+            idSortOrder = "ascending";
+        }
+
+        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        HandleTaskRows.highlightSpecificRow(1);
     }
 })
 
@@ -157,6 +180,27 @@ appDivLeft.addEventListener('click', function() {
         else {
             activeTasks.sort((a,b) => (a.employee.name < b.employee.name) ? 1: -1);
             employeeSortOrder = "ascending";
+        }
+
+        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        HandleTaskRows.highlightSpecificRow(1);
+
+    }
+})
+
+appDivLeft.addEventListener('click', function() {
+    if (event.target.classList.contains('table_header__DueTime')){
+        console.log('header-status clicked');
+        const activeTasks = ActiveTasks.ActiveTasksArray();
+        
+        if (dueTimeSortOrder == "ascending"){
+            activeTasks.sort((a,b) => (a.currentDueTime > b.currentDueTime) ? 1: -1);
+            dueTimeSortOrder = "descending";
+        }
+        else {
+            activeTasks.sort((a,b) => (a.currentDueTime < b.currentDueTime) ? 1: -1);
+            dueTimeSortOrder = "ascending";
         }
 
         appDivLeft.innerHTML = ReleaseTasks(activeTasks);
