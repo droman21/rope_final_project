@@ -18,11 +18,11 @@
     width: 670px;
     height: 450px;
 }
-.releaseTaskPostSection{
+.create-releaseTask__post{
     position: auto;
     right: auto;
     width: auto;
-    height: 160px;
+    height: 440px;
 }
 .commentpostcomponent{
     position: auto;
