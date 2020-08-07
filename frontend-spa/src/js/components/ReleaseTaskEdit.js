@@ -26,11 +26,6 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop, priorityDrop, e
         ${priorityDrop}</h4>
         </select>
 
-        <h4>Assigned To:
-        <select id="employeeDropID" class="edit-releaseTask__Employee" type="dropdown"></h4>
-        ${employeeDrop}
-        </select>
-
         <h4 id="style-edit">Due:
         <input class="edit-releaseTask__currentDueTime" type="datetime-local" value="${releaseTask.currentDueTime}"></h4>
         </section>
