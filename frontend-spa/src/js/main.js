@@ -6,6 +6,7 @@ import SelectDropDownID from './components/SelectDropDownID';
 import HandleTaskRows from './components/HandleTaskRows';
 import HandleDropDowns from './components/HandleDropDowns';
 import Reminders from './components/Reminders';
+import ActiveTasks from './components/ActiveTasks';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
 import ReleaseTaskEdit from './components/ReleaseTaskEdit';
@@ -13,23 +14,22 @@ import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
 import Header from './components/Header';
 // import Footer from './components/Footer';
 import CommentPost from './components/CommentPost';
+import HomePage from './components/HomePage';
 
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 let currentSelectedRowID = 1;
 var AppTimer = null;
+//const activeTasks = ActiveTasks.ActiveTasksArray();
 
 
 export default function pagebuild() {
     header()
     // footer()
     //navHome()
-    showReleaseTasks();
-    //console.log(AllTasks);
-    //showAlert();
-    // showStatus();
-    // showPriority();
+    //showReleaseTasks();
+    StartApp();
 
     //TODO:  Uncomment the following line before demos and final release
     //AppTimer = setInterval(ExecuteTimer,15000);    
@@ -52,15 +52,35 @@ function header() {
 //     })
 // }
 
+function StartApp(){
+
+    appDivLeft.innerHTML = HomePage();
+}
+
+appDivLeft.addEventListener('click', function () {
+    if (event.target.parentElement.classList.contains('startapp')) {
+        console.log('start app clicked');
+        const activeTasks = ActiveTasks.ActiveTasksArray();
+        console.log(activeTasks);
+        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        HandleTaskRows.highlightSpecificRow(1);
+
+        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
+        const releaseTaskCallback = releaseTask => {
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+
+
+
+    }
+})
+
 function showReleaseTasks() {
 
     fetch("https://localhost:44302/api/releaseTask")
         .then(response => response.json())
-        // .then(releaseTasks => {
-        //     appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-        //     currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-        //     HandleTaskRows.highlightSpecificRow(1);
-        // })
         .then(releaseTasks => {
             releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
@@ -68,6 +88,18 @@ function showReleaseTasks() {
             HandleTaskRows.highlightSpecificRow(1);
         })
         .catch(err => console.log(err))
+
+    console.log('before array call');
+    //const activeTasks = ActiveTasks.ActiveTasksArray();
+    //const tasks = Reminders.AllTasks();
+    //ExecuteTimer();
+    //test();
+    //alert('Welcome');
+    //console.log(activeTasks);
+    //console.log(tasks);
+    //activeTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
+    //console.log(activeTasks);
+
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
         const releaseTaskCallback = releaseTask => {
@@ -404,6 +436,12 @@ function ExecuteTimer(){
             alert('Warning.  The following task is overdue\n\n'+element.name);
         }
     });
+
+    const activeTasks = ActiveTasks.ActiveTasksArray();
+    console.log(activeTasks);
+    tasks.sort((a,b) => (a.id < b.id) ? 1: -1);
+    console.log(activeTasks);
+
 }
 
 appDivLeft.addEventListener('click', function(){
