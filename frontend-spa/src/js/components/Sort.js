@@ -19,11 +19,11 @@ function ID(sortorder) {
         sortorder = "descending";
     }
     else {
-        activeTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
+        ReloadActiveTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
         sortorder = "ascending";
     }
 
-    appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+    appDivLeft.innerHTML = ReleaseTasks(ReloadActiveTasks);
 
     console.log('sortorder to return='+ sortorder);
     return sortorder;

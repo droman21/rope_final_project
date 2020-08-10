@@ -23,6 +23,9 @@ let AllActiveTasks =
         let data2 = await data.filter(task => task.isVisisble == true);
         let data3 = await data2;
         //let data4 = await data3;
+        console.log('in Reload, after fetch');
+        console.log(data3);
+        alert('wait');
         return data3;
     
     }
