@@ -25,7 +25,8 @@ let AllActiveTasks =
         //let data4 = await data3;
         console.log('in Reload, after fetch');
         console.log(data3);
-        alert('wait');
+        console.log('after data 3 log');
+        //alert('wait');
         return data3;
     
     }

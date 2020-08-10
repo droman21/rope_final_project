@@ -10,22 +10,26 @@ function ID(sortorder) {
     const activeTasks = ActiveTasks.ActiveTasksArray();
     console.log('activeTasks');
     console.log(activeTasks);
+    console.log('after activeTasks log');
     const ReloadActiveTasks = ActiveTasks.ReloadActiveTasksArray();
     console.log('reloadActiveTasks');
     console.log(ReloadActiveTasks);
     
     if (sortorder == "ascending"){
+        console.log('in if');
         ReloadActiveTasks.sort((a,b) => (a.id > b.id) ? 1: -1);
         sortorder = "descending";
     }
     else {
+        console.log('in else');
         ReloadActiveTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
         sortorder = "ascending";
     }
 
+    console.log('just before ReleaseTasks call');
     appDivLeft.innerHTML = ReleaseTasks(ReloadActiveTasks);
 
-    console.log('sortorder to return='+ sortorder);
+    console.log('After ReleaseTasks call. sortorder to return='+ sortorder);
     return sortorder;
 }
 
