@@ -6,7 +6,7 @@ import SelectDropDownID from './components/SelectDropDownID';
 import HandleTaskRows from './components/HandleTaskRows';
 import HandleDropDowns from './components/HandleDropDowns';
 import Reminders from './components/Reminders';
-import ActiveTasks from './components/ActiveTasks';
+//import ActiveTasks from './components/ActiveTasks';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
 import ReleaseTaskEdit from './components/ReleaseTaskEdit';
@@ -15,7 +15,7 @@ import Header from './components/Header';
 // import Footer from './components/Footer';
 import CommentPost from './components/CommentPost';
 import HomePage from './components/HomePage';
-import Sort from './components/Sort';
+//import Sort from './components/Sort';
 import moment from "moment";
 
 const appDiv = document.querySelector('.app');
@@ -30,6 +30,8 @@ let employeeSortOrder = "ascending";
 let dueTimeSortOrder = "ascending";
 let idSortOrder = "descending";
 //const activeTasks = ActiveTasks.ActiveTasksArray();
+
+let currentReleaseTasks = null;
 
 
 export default function pagebuild() {
@@ -68,30 +70,39 @@ function StartApp(){
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('startapp')) {
         console.log('start app clicked');
+        
+        console.log('now calling showReleaseTasks');
+        showReleaseTasks();
 
-        const activeTasks = ActiveTasks.ActiveTasksArray();
-        // console.log(activeTasks);
-        // activeTasks.sort((a,b) => (a.currentDueTime > b.currentDueTime) ? 1: -1);
-        // console.log(activeTasks);
+        // const activeTasks = ActiveTasks.ActiveTasksArray();
+        // // console.log(activeTasks);
+        // // activeTasks.sort((a,b) => (a.currentDueTime > b.currentDueTime) ? 1: -1);
+        // // console.log(activeTasks);
 
-        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
-        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-        HandleTaskRows.highlightSpecificRow(1);
+        // appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        // currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        // HandleTaskRows.highlightSpecificRow(1);
 
-        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        // const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
+        // const releaseTaskCallback = releaseTask => {
+        //     appDivRight.innerHTML = ReleaseTask(releaseTask);
+        // };
+        // apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
     }
 })
 
 appDivLeft.addEventListener('click', function () {
     
     if (event.target.classList.contains('table_header__ID')){
-        idSortOrder = Sort.ID(idSortOrder);
-        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-        HandleTaskRows.highlightSpecificRow(1);
+        // idSortOrder = Sort.ID(idSortOrder);
+        // currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        // HandleTaskRows.highlightSpecificRow(1);
+
+        console.log('attempting sort by ID');
+        console.log(currentReleaseTasks);
+        //currentReleaseTasks.sort((a,b) => (a.id > b.id) ? 1: -1);
+        currentReleaseTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
+        appDivLeft.innerHTML = ReleaseTasks(currentReleaseTasks);
     }
 })
 
@@ -141,10 +152,19 @@ function showReleaseTasks() {
     fetch("https://localhost:44302/api/releaseTask")
         .then(response => response.json())
         .then(releaseTasks => {
+            console.log(releaseTasks);
             releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
             currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
             HandleTaskRows.highlightSpecificRow(1);
+            currentReleaseTasks = releaseTasks;
+            
+            console.log(`global currentReleaseTasks variable from showReleaseTasks function:`);
+            console.log(currentReleaseTasks);
+            console.log(`releaseTasks fetched from showReleaseTasks function:`);
+            console.log(releaseTasks);
+            console.log(`global currentReleaseTasks variable from showReleaseTasks function: ${JSON.stringify(currentReleaseTasks)}`);
+
         })
         .catch(err => console.log(err))
 
@@ -365,6 +385,9 @@ appDivRight.addEventListener('click', function () {
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 console.log('in Add Task fetch, current row='+currentSelectedRowID);
                 HandleTaskRows.highlightSpecificRow(1);
+                console.log('reassigning currentReleaseTasks to new values');
+                currentReleaseTasks = releaseTasks;
+
             })
             .catch(err => console.log(err))
 
