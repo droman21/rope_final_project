@@ -242,3 +242,11 @@ select{
     background-color: yellow;
     color: black
 }
+
+.IconHeading {
+    display: flex;
+    flex: 0 25em;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 25em;
+}
