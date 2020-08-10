@@ -21,8 +21,10 @@ export default function ReleaseTask(releaseTask) {
             imageSrc="images/rope.png"
     }
     return `
-    <h1 class="table-2__header"  id="${releaseTask.id}">${releaseTask.name}</h1>
-    <img src="${imageSrc}" width="100" height="100">
+    <div class="IconHeading">
+        <img src="${imageSrc}" width="100" height="100">
+        <h1 class="table-2__header"  id="${releaseTask.id}">${releaseTask.name}</h1>
+    </div>
     <section class="releaseTask__detailsInfo">
         <ul class="releaseTask__detailsInfolist">
             <li class="releaseTask__currentDueTime"><b>Due:</b> ${moment(releaseTask.currentDueTime).format(('MMMM Do YYYY, h:mm a'))}</li>
