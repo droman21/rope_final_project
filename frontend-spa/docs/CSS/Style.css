@@ -233,3 +233,12 @@ select{
     cursor: pointer;
     box-shadow: 4px 4px grey
 }
+#columnHeader {
+    background-color: rgb(21, 21, 146);
+    color: white;
+}
+
+#columnHeader.activated {
+    background-color: yellow;
+    color: black
+}
