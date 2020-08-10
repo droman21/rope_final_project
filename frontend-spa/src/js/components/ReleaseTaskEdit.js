@@ -15,7 +15,7 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop, priorityDrop, e
         
         
         <h4>Description:</h4>
-        <textarea class="new">${releaseTask.description}</textarea>
+        <textarea class="new" rows="4" cols="50" >${releaseTask.description}</textarea>
         
         <h4>Status:
         <select id="statusDropID" class="edit-releaseTask__Status" type="dropdown">
