@@ -2,8 +2,27 @@ import moment from "moment";
 
 export default function ReleaseTask(releaseTask) {
 
+    let imageSrc = "";
+
+    switch(releaseTask.priority.value){
+        case 1:
+            imageSrc="images/critical.png"
+            break;
+        case 2:
+            imageSrc="images/high.png"
+            break;
+        case 3:
+            imageSrc="images/medium.png"
+            break;
+        case 4:
+            imageSrc="images/low.png"
+            break;
+        default:
+            imageSrc="images/rope.png"
+    }
     return `
     <h1 class="table-2__header"  id="${releaseTask.id}">${releaseTask.name}</h1>
+    <img src="${imageSrc}" width="100" height="100">
     <section class="releaseTask__detailsInfo">
         <ul class="releaseTask__detailsInfolist">
             <li class="releaseTask__currentDueTime"><b>Due:</b> ${moment(releaseTask.currentDueTime).format(('MMMM Do YYYY, h:mm a'))}</li>
