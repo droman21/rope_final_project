@@ -1,17 +1,17 @@
 
 
-// let AllActiveTasks =
-//     fetch("https://localhost:44302/api/releaseTask")
-//     .then(response => response.json())
-//     .then(releaseTasks => {
-//         console.log('In let AllActiveTasks');
-//         releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-//         AllActiveTasks = releaseTasks;
-//         console.log(releaseTasks);
-//         //console.log(AllActiveTasks);
-//         return AllActiveTasks;
-//     })
-//     .catch(err => console.log(err));
+let AllActiveTasks =
+    fetch("https://localhost:44302/api/releaseTask")
+    .then(response => response.json())
+    .then(releaseTasks => {
+        console.log('In let AllActiveTasks');
+        releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+        AllActiveTasks = releaseTasks;
+        console.log(releaseTasks);
+        //console.log(AllActiveTasks);
+        return AllActiveTasks;
+    })
+    .catch(err => console.log(err));
 
 function getAllACtiveTasks (){
     //let AllActiveTasks =

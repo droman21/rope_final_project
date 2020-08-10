@@ -17,20 +17,28 @@ function ID(sortorder) {
     const ReloadActiveTasks = ActiveTasks.ReloadActiveTasksArray();
     console.log('reloadActiveTasks');
     console.log(ReloadActiveTasks);
+
+    var at1 = "https://localhost:44302/api/releaseTask";
+    var url = at1;
+    var out = new XMLHttpRequest();
+    out.open('GET', url, true);
+    //out.onload = function(){};
+    console.log('out');
+    console.log(out);
     
     if (sortorder == "ascending"){
         console.log('in if');
-        ReloadActiveTasks.sort((a,b) => (a.id > b.id) ? 1: -1);
+        at1.sort((a,b) => (a.id > b.id) ? 1: -1);
         sortorder = "descending";
     }
     else {
         console.log('in else');
-        ReloadActiveTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
+        at1.sort((a,b) => (a.id < b.id) ? 1: -1);
         sortorder = "ascending";
     }
 
     console.log('just before ReleaseTasks call');
-    appDivLeft.innerHTML = ReleaseTasks(ReloadActiveTasks);
+    appDivLeft.innerHTML = ReleaseTasks(at1);
 
     console.log('After ReleaseTasks call. sortorder to return='+ sortorder);
     return sortorder;
