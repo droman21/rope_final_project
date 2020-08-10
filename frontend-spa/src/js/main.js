@@ -69,12 +69,13 @@ appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('startapp')) {
         console.log('start app clicked');
 
-        const activeTasks = ActiveTasks.ActiveTasksArray();
+        //const activeTasks = ActiveTasks.ActiveTasksArray();
+        const activeTasks1 = ActiveTasks.getAllACtiveTasks();
         // console.log(activeTasks);
         // activeTasks.sort((a,b) => (a.currentDueTime > b.currentDueTime) ? 1: -1);
         // console.log(activeTasks);
 
-        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+        appDivLeft.innerHTML = ReleaseTasks(activeTasks1);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
 

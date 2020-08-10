@@ -7,7 +7,10 @@ const appDivLeft = document.querySelector('.appLeft');
 
 function ID(sortorder) {
     console.log('in sort ID table');
+    //console.log(ActiveTasks.AllActiveTasks);
     const activeTasks = ActiveTasks.ActiveTasksArray();
+    const activeTasks1 = ActiveTasks.AllActiveTasks;
+    console.log(activeTasks1);
     console.log('activeTasks');
     console.log(activeTasks);
     console.log('after activeTasks log');
@@ -34,6 +37,7 @@ function ID(sortorder) {
 }
 
 async function getNewArray(){
+    console.log('in async getnewarray');
     let tasksarray = await ActiveTasks.ReloadActiveTasksArray();
     console.log(tasksarray);
     return tasksarray;
@@ -41,7 +45,10 @@ async function getNewArray(){
 
 function Name(sortorder) {
     const activeTasks = ActiveTasks.ActiveTasksArray();
-    const newActiveTasks = getNewArray();
+    //const newActiveTasks = getNewArray();
+    console.log('before call to getNewArray');
+    //getNewArray(newActiveTasks);
+    let newActiveTasks = getNewArray();
     console.log('newactivetasks');
     console.log(newActiveTasks);
     console.log('after newactive tasks');

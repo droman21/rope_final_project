@@ -1,6 +1,8 @@
 import moment from "moment";
 
 export default function ReleaseTasks(releaseTasks) {
+    console.log('in release tasks component');
+    console.log(releaseTasks);
     return `
     <h1>R.O.P.E. Application</h1>
     <h2>Release Tasks</h2>
