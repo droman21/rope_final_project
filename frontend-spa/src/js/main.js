@@ -182,7 +182,7 @@ appDivRight.addEventListener('click', function () {
         };
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-        var response = confirm("Click OK to delete this task?");
+        var response = swal("Click OK to delete this task?", "", "warning");
 
         if (response == true){
 
@@ -194,7 +194,7 @@ appDivRight.addEventListener('click', function () {
             //TODO:  The next 20 lines are repeated elsewhere in main.js
             //without the alert the page reposts with old data, even though it did save
             //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-            alert('Task Deleted');
+            swal("Task Deleted", "", "success");
 
             //Reload the Left Table
             fetch("https://localhost:44302/api/releaseTask")
@@ -275,6 +275,8 @@ appDivRight.addEventListener('click', function () {
             releaseEdit
         )
 
+        
+
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
@@ -354,7 +356,7 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert('Task Added');
+        swal("Task Added", "", "success");
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -477,7 +479,7 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert('Changes Saved');
+        swal("Changes Saved", "", "success");
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -513,7 +515,7 @@ function ExecuteTimer(){
         let curr = (new Date(element.currentDueTime));
         let now = (new Date());
         if (curr < now){
-            alert('Warning.  The following task is overdue\n\n'+element.name);
+            swal("Warning. The following task is overdue \n\n'+element.name", "", "warning");
         }
     });
 
