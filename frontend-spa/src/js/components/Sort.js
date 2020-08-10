@@ -1,5 +1,6 @@
 import ReleaseTasks from './ReleaseTasks';
 import ActiveTasks from './ActiveTasks';
+import ReleaseTask from './ReleaseTask';
 
 const appDivLeft = document.querySelector('.appLeft');
 
@@ -7,9 +8,14 @@ const appDivLeft = document.querySelector('.appLeft');
 function ID(sortorder) {
     console.log('in sort ID table');
     const activeTasks = ActiveTasks.ActiveTasksArray();
+    console.log('activeTasks');
+    console.log(activeTasks);
+    const ReloadActiveTasks = ActiveTasks.ReloadActiveTasksArray();
+    console.log('reloadActiveTasks');
+    console.log(ReloadActiveTasks);
     
     if (sortorder == "ascending"){
-        activeTasks.sort((a,b) => (a.id > b.id) ? 1: -1);
+        ReloadActiveTasks.sort((a,b) => (a.id > b.id) ? 1: -1);
         sortorder = "descending";
     }
     else {

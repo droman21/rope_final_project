@@ -11,11 +11,23 @@ let AllActiveTasks =
     .catch(err => console.log(err));
 
     function ActiveTasksArray(){
-        //console.log('in Task Array');
+        console.log('in ActiveTasksArray');
         //console.log(AllActiveTasks)
         return AllActiveTasks;
     }
+
+    async function ReloadActiveTasksArray(){
+        console.log('in ReloadActiveTasks');
+        let AllActiveTasks = await fetch("https://localhost:44302/api/releaseTask");
+        let data = await AllActiveTasks.json()
+        let data2 = await data.filter(task => task.isVisisble == true);
+        let data3 = await data2;
+        //let data4 = await data3;
+        return data3;
+    
+    }
     
     export default {
-        ActiveTasksArray
+        ActiveTasksArray,
+        ReloadActiveTasksArray
     }
