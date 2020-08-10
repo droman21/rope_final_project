@@ -33,19 +33,29 @@ function ID(sortorder) {
     return sortorder;
 }
 
+async function getNewArray(){
+    let tasksarray = await ActiveTasks.ReloadActiveTasksArray();
+    console.log(tasksarray);
+    return tasksarray;
+}
+
 function Name(sortorder) {
     const activeTasks = ActiveTasks.ActiveTasksArray();
+    const newActiveTasks = getNewArray();
+    console.log('newactivetasks');
+    console.log(newActiveTasks);
+    console.log('after newactive tasks');
 
     if (sortorder == "ascending"){
-        activeTasks.sort((a,b) => (a.name > b.name) ? 1: -1);
+        newActiveTasks.sort((a,b) => (a.name > b.name) ? 1: -1);
         sortorder = "descending";
     }
     else {
-        activeTasks.sort((a,b) => (a.name < b.name) ? 1: -1);
+        newActiveTasks.sort((a,b) => (a.name < b.name) ? 1: -1);
         sortorder = "ascending";
     }
 
-    appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+    appDivLeft.innerHTML = ReleaseTasks(newActiveTasks);
     return sortorder;
 }
 
