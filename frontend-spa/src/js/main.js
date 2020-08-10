@@ -182,6 +182,7 @@ appDivRight.addEventListener('click', function () {
                 apiActions.deleteRequest2(
                     releaseTaskEndpoint
                 )
+                alert('Task Deleted');
             }
         }
         else {
@@ -199,12 +200,12 @@ appDivRight.addEventListener('click', function () {
                     releaseTaskEndpoint,
                     releaseEdit
                 )
+                alert('Task Deleted');
             }
         }
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert('Task Deleted');
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
