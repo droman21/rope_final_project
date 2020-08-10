@@ -247,7 +247,7 @@ appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit-releaseTask__submit')) {
         const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
         const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
-        const description = event.target.parentElement.querySelector('.edit-releaseTask__description').value;
+        const description = event.target.parentElement.querySelector('.new').value;
         const createdDate = event.target.parentElement.querySelector('.edit-releaseTask__createdDate').value;
         const currentDueTime = event.target.parentElement.querySelector('.edit-releaseTask__currentDueTime').value;
         const newStatusID = event.target.parentElement.querySelector('.edit-releaseTask__Status').value;
