@@ -20,6 +20,7 @@
   },
   "description": "",
   "dependencies": {
-    "moment": "^2.27.0"
+    "moment": "^2.27.0",
+    "sweetalert": "^2.1.2"
   }
 }

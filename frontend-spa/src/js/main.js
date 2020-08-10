@@ -17,6 +17,7 @@ import CommentPost from './components/CommentPost';
 import HomePage from './components/HomePage';
 import Sort from './components/Sort';
 import moment from "moment";
+import swal from 'sweetalert';
 
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
@@ -277,7 +278,7 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert('Changes Saved');
+        swal("Changes Saved", "", "success");
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
