@@ -173,11 +173,10 @@ function showReleaseTasks() {
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('delete_releaseTaskButton')) {
-        
+        const releaseTaskId = event.target.parentElement.querySelector('.delete_releaseTaskButton').id;
+        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+
         if (event.shiftKey){
-            console.log('in shift delete');
-            const releaseTaskId = event.target.parentElement.querySelector('.delete_releaseTaskButton').id;
-            const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
             var response = confirm("Click OK to PERMINENTLY delete this task?");
             if (response == true){
                 apiActions.deleteRequest2(
@@ -187,51 +186,47 @@ appDivRight.addEventListener('click', function () {
         }
         else {
 
-            console.log('in delete task');
-            const releaseTaskId = event.target.parentElement.querySelector('.delete_releaseTaskButton').id;
-            console.log(releaseTaskId);
             const releaseEdit = {
                 id: releaseTaskId,
                 IsVisisble: false
             };
 
-            const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
             var response = confirm("Click OK to delete this task?");
-
+        
             if (response == true){
 
                 apiActions.patchRequest(
                     releaseTaskEndpoint,
                     releaseEdit
                 )
-
-                //TODO:  The next 20 lines are repeated elsewhere in main.js
-                //without the alert the page reposts with old data, even though it did save
-                //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-                alert('Task Deleted');
-
-                //Reload the Left Table
-                fetch("https://localhost:44302/api/releaseTask")
-                    .then(response => response.json())
-                    .then(releaseTasks => {
-                        releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-                        appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                        //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                        HandleTaskRows.highlightSpecificRow(1);
-                    })
-                    .catch(err => console.log(err))
-
-                //Reload the Right Table
-                const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
-
-                const releaseTaskCallback = releaseTask => {
-                    appDivRight.innerHTML = ReleaseTask(releaseTask);
-                };
-                apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
-                console.log('indeletetask'+currentSelectedRowID);
             }
         }
+        //TODO:  The next 20 lines are repeated elsewhere in main.js
+        //without the alert the page reposts with old data, even though it did save
+        //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+        alert('Task Deleted');
+
+        //Reload the Left Table
+        fetch("https://localhost:44302/api/releaseTask")
+            .then(response => response.json())
+            .then(releaseTasks => {
+                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+                appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+                currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                HandleTaskRows.highlightSpecificRow(1);
+            })
+            .catch(err => console.log(err))
+
+        //Reload the Right Table
+        const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
+
+        const releaseTaskCallback = releaseTask => {
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+        apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
+        console.log('indeletetask'+currentSelectedRowID);
+        
     }
 
 })
