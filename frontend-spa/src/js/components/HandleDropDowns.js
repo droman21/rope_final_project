@@ -37,7 +37,7 @@ function StatusDropDown(){
         return `
         <option class="edit-releaseTask__newStatusID" value="${sd.value}">${sd.name}</option>
         `
-    })}
+    }).join("")}
     `
     return statusDrop;
 }
@@ -48,7 +48,7 @@ function PriorityDropDown() {
         return `
         <option class="edit-releaseTask__newPriorityID" value="${pd.value}">${pd.name}</option>
         `
-    })}
+    }).join("")}
     `
     return priorityDrop;
 }
@@ -60,7 +60,7 @@ function EmployeeDropDown() {
         return `
         <option class="edit-releaseTask__newEmployeeID" value="${ed.id}">${ed.name}</option>
         `
-    })}
+    }).join("")}
     `
     return employeeDrop;
 }
