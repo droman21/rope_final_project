@@ -73,9 +73,10 @@ appDivLeft.addEventListener('click', function () {
 appDivLeft.addEventListener('click', function () {
     
     if (event.target.classList.contains('table_header__ID')){
-        //idSortOrder = Sort.ID(idSortOrder);
-        currActiveReleaseTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
-        appDivLeft.innerHTML = ReleaseTasks(currActiveReleaseTasks);
+        idSortOrder = Sort.ID(idSortOrder,currActiveReleaseTasks );
+        
+        //currActiveReleaseTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
+        //appDivLeft.innerHTML = ReleaseTasks(currActiveReleaseTasks);
 
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);

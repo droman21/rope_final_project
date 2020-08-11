@@ -1,12 +1,12 @@
 import ReleaseTasks from './ReleaseTasks';
-import ActiveTasks from './ActiveTasks';
+//import ActiveTasks from './ActiveTasks';
 
 const appDivLeft = document.querySelector('.appLeft');
 
 
-function ID(sortorder) {
+function ID(sortorder, activeTasks) {
     console.log('in sort ID table');
-    const activeTasks = ActiveTasks.ActiveTasksArray();
+    //const activeTasks = ActiveTasks.ActiveTasksArray();
     
     if (sortorder == "ascending"){
         activeTasks.sort((a,b) => (a.id > b.id) ? 1: -1);
