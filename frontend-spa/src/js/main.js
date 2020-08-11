@@ -222,7 +222,7 @@ appDivRight.addEventListener('click', function () {
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit-releaseTask__submit')) {
         const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
-        const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
+        let name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
         const description = event.target.parentElement.querySelector('.new').value;
         const createdDate = event.target.parentElement.querySelector('.edit-releaseTask__createdDate').value;
         const currentDueTime = event.target.parentElement.querySelector('.edit-releaseTask__currentDueTime').value;
@@ -231,6 +231,7 @@ appDivRight.addEventListener('click', function () {
         const newEmployeeID = event.target.parentElement.querySelector('.edit-releaseTask__Employee').value;
         var lastModifiedDate = new Date();
         const formatedDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
+        name = name.charAt(0).toUpperCase() + name.slice(1);
         const releaseEdit = {
             id: releaseTaskId,
             Name: name,
@@ -282,8 +283,10 @@ appDivLeft.addEventListener('click', function () {
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
         const currentDate = new Date();
-        const formatedDate = moment(currentDate).format('YYYY-MM-DDTh:mm');
-        appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop, priorityDrop, employeeDrop, currentSelectedRowID, formatedDate);
+        console.log(currentDate);
+        //const formatedDate = moment(currentDate).format('yyyy-MM-ddThh:mm');
+        //console.log(formatedDate);
+        appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop, priorityDrop, employeeDrop, currentSelectedRowID, currentDate);
     }
 })
 
@@ -419,23 +422,14 @@ appDivRight.addEventListener('click', function () {
 
 function ExecuteTimer(){
 
-    const tasks = Reminders.TasksArray();
-    console.log(tasks);
-    tasks.sort((a,b) => (a.id < b.id) ? 1: -1);
-    console.log(tasks);
-    tasks.forEach(element => {
-        let curr = (new Date(element.currentDueTime));
+    currActiveReleaseTasks.sort((a,b) => (a.currentDueTime > b.currentDueTime) ? 1: -1);
+    currActiveReleaseTasks.forEach(rt => {
+        let curr = (new Date(rt.currentDueTime));
         let now = (new Date());
         if (curr < now){
-            alert('Warning.  The following task is overdue\n\n'+element.name);
+            alert('Warning.  The following task is overdue\n\n'+rt.name);
         }
     });
-
-    const activeTasks = ActiveTasks.ActiveTasksArray();
-    console.log(activeTasks);
-    tasks.sort((a,b) => (a.id < b.id) ? 1: -1);
-    console.log(activeTasks);
-
 }
 
 appDivLeft.addEventListener('click', function(){
@@ -446,7 +440,6 @@ appDivLeft.addEventListener('click', function(){
             .then(response => response.json())
             .then(releaseTasks => {
                 //releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-
                 appDivRight.innerHTML = ReleaseTasks(releaseTasks);
                 //currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
                 //HandleTaskRows.highlightSpecificRow(1);
@@ -456,6 +449,5 @@ appDivLeft.addEventListener('click', function(){
         else {
             ExecuteTimer();
         }
-        
     }
 })
