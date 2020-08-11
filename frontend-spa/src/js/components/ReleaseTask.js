@@ -5,6 +5,9 @@ export default function ReleaseTask(releaseTask) {
     return `
     <h1 class="table-2__header"  id="${releaseTask.id}">${releaseTask.name}</h1>
     <section class="releaseTask__detailsInfo">
+    <button class="edit__releaseTaskButton" id="${releaseTask.id}">Edit</button>
+    <button class="add__commentButton" id="${releaseTask.id}">Add Comment</button>
+    <button class="delete_releaseTaskButton" id="${releaseTask.id}">Delete</button>
         <ul class="releaseTask__detailsInfolist">
             <li class="releaseTask__currentDueTime"><b>Due:</b> ${moment(releaseTask.currentDueTime).format(('MMMM Do YYYY, h:mm a'))}</li>
             <br>
@@ -33,9 +36,6 @@ export default function ReleaseTask(releaseTask) {
             </ul>
             <br>
         </ul>
-            <button class="edit__releaseTaskButton" id="${releaseTask.id}">Edit</button>
-            <button class="add__commentButton" id="${releaseTask.id}">Add Comment</button>
-            <button class="delete_releaseTaskButton" id="${releaseTask.id}">Delete</button>
         
     </section>
 
