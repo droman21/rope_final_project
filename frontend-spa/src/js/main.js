@@ -65,7 +65,6 @@ function StartApp(){
 
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('startapp')) {
-        console.log('start app clicked');
         showReleaseTasks();
     }
 })
@@ -138,15 +137,11 @@ function showReleaseTasks() {
         })
         .catch(err => console.log(err))
 
-    console.log('before array call');
-
     const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
     const releaseTaskCallback = releaseTask => {
         appDivRight.innerHTML = ReleaseTask(releaseTask);
     };
     apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-    console.log('in show tasks'+currentSelectedRowID);
-
 }
 
 
@@ -205,10 +200,7 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
-        console.log('indeletetask'+currentSelectedRowID);
-        
     }
-
 })
 
 
@@ -223,15 +215,12 @@ appDivRight.addEventListener('click', function () {
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
-                console.log(releaseTaskEdit.currentDueTime);
                 ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit,statusDrop,priorityDrop,employeeDrop);
                 SelectDropDownID.selectElement('statusDropID',releaseTaskEdit.currentStatusID);
                 SelectDropDownID.selectElement('priorityDropID',releaseTaskEdit.currentPriorityID);
                 SelectDropDownID.selectElement('employeeDropID',releaseTaskEdit.assignedEmployeeID);
             }
         )
-        console.log('in edit task'+currentSelectedRowID);
-
     }
 })
 
@@ -279,7 +268,6 @@ appDivRight.addEventListener('click', function () {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                console.log('line 193='+currentSelectedRowID);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
                 currActiveReleaseTasks = releaseTasks;
             })
@@ -290,23 +278,16 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-        console.log('in edit save'+currentSelectedRowID);
-
     }
 })
 
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
-        console.log("new task clicked")
-        console.log('in add task'+currentSelectedRowID);
         const statusDrop = HandleDropDowns.StatusDropDown();
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
         const currentDate = new Date();
         const formatedDate = moment(currentDate).format('YYYY-MM-DDTh:mm');
-        
-        console.log(currentDate);
-        console.log(formatedDate);
         appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop, priorityDrop, employeeDrop, currentSelectedRowID, formatedDate);
     }
 })
@@ -333,7 +314,6 @@ appDivRight.addEventListener('click', function () {
             CurrentPriorityID: currentPriorityID,
             AssignedEmployeeID: assignedEmployeeID,
         }
-        console.log(requestBody)
         apiActions.postRequest(
             "https://localhost:44302/api/releaseTask",
             requestBody,
@@ -354,7 +334,6 @@ appDivRight.addEventListener('click', function () {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                console.log('in Add Task fetch, current row='+currentSelectedRowID);
                 HandleTaskRows.highlightSpecificRow(1);
                 currActiveReleaseTasks = releaseTasks;
             })
@@ -376,10 +355,7 @@ appDivRight.addEventListener('click', function () {
 
 appDivRight.addEventListener('click', function(releaseTask){
     if (event.target.classList.contains('edit__releaseTaskButton__back')){
-        console.log('in back'+currentSelectedRowID);
-
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton__back').id;
-        console.log('in back2='+releaseTaskId);
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTask => {
@@ -399,28 +375,20 @@ appDivRight.addEventListener('click', function () {
                 ReleaseTaskEditSection.innerHTML = CommentPost(releaseTaskId, addComment);
             }
         )
-        console.log('in add comment'+currentSelectedRowID);
-
     }
 })
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('add-comment__submit')) {
-        console.log('in save comment');
         const releaseTaskId = event.target.parentElement.querySelector('.add-comment__submit').id;
         const isVisible = true;
         const commentDetails = event.target.parentElement.querySelector('.add-comment__details').value;
-        console.log(releaseTaskId);
-        console.log(isVisible);
-        console.log(commentDetails);
 
         const newCommentBody = {
             Details: commentDetails,
             IsVisible: isVisible,
             ReleaseTaskID: releaseTaskId
         }
-
-        console.log(newCommentBody);
 
         apiActions.postRequest2(
             "https://localhost:44302/api/comment",
@@ -441,7 +409,6 @@ appDivRight.addEventListener('click', function () {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                console.log('in submit comment'+currentSelectedRowID);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
                 currActiveReleaseTasks = releaseTasks;
             })
@@ -452,9 +419,6 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-        console.log('bottom submit comment'+currentSelectedRowID);
-
-
     }
 })
 

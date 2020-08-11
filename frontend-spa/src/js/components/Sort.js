@@ -15,8 +15,6 @@ function ID(sortorder, activeTasks) {
     }
 
     appDivLeft.innerHTML = ReleaseTasks(activeTasks);
-
-    console.log('sortorder to return='+ sortorder);
     return sortorder;
 }
 
@@ -48,7 +46,6 @@ function Status(sortorder, activeTasks){
 
     appDivLeft.innerHTML = ReleaseTasks(activeTasks);
     return sortorder;
-
 }
 
 function Priority(sortorder, activeTasks){
