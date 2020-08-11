@@ -2,8 +2,6 @@ import moment from "moment";
 
 export default function ReleaseTasks(releaseTasks) {
     return `
-    <h1>R.O.P.E. Application</h1>
-    <h2>Release Tasks</h2>
     <br>
         <section class="releaseTask__buttons">
         <button class="add__releaseTaskButton"><b>New Task</b></a></button> 
@@ -16,7 +14,7 @@ export default function ReleaseTasks(releaseTasks) {
                     <tr class="table_header">
                         <th class="table_header__ID" style="width: 25px;" class="table_headerFont">ID</th>
                         <th class="table_header__Name" style="width: 250px;">Task Name</th>
-                        <th class="table_header__Status" style="width: 90px;">Status</th>
+                        <th class="table_header__Status" style="width: 120px;">Status</th>
                         <th class="table_header__Priority" style="width: 75px;">Priority</th>
                         <th class="table_header__DueTime" style="width: 150px;">Due Date&Time</th>
                         <th class="table_header__AssignedTo" style="width: 90px;">Assigned</th>
