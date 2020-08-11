@@ -103,6 +103,9 @@ appDivLeft.addEventListener('click', function () {
         //currentReleaseTasks.sort((a,b) => (a.id > b.id) ? 1: -1);
         currentReleaseTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
         appDivLeft.innerHTML = ReleaseTasks(currentReleaseTasks);
+        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+        HandleTaskRows.highlightSpecificRow(1);
+
     }
 })
 
@@ -309,6 +312,7 @@ appDivRight.addEventListener('click', function () {
                 console.log('line 193='+currentSelectedRowID);
                 //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
+                currentReleaseTasks = releaseTasks;
             })
             .catch(err => console.log(err))
 
