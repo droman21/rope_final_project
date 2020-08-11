@@ -1,6 +1,3 @@
-// import Employee from './components/Employee';
-// import Priority from './components/Priority';
-// import Status from './components/Status';
 import apiActions from './api/apiActions';
 import SelectDropDownID from './components/SelectDropDownID';
 import HandleTaskRows from './components/HandleTaskRows';
@@ -30,7 +27,6 @@ let prioritySortOrder = "ascending";
 let employeeSortOrder = "ascending";
 let dueTimeSortOrder = "ascending";
 let idSortOrder = "descending";
-//const activeTasks = ActiveTasks.ActiveTasksArray();
 
 let currActiveReleaseTasks = null;
 
@@ -71,20 +67,6 @@ appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('startapp')) {
         console.log('start app clicked');
         showReleaseTasks();
-        //const activeTasks = ActiveTasks.ActiveTasksArray();
-        // console.log(activeTasks);
-        // activeTasks.sort((a,b) => (a.currentDueTime > b.currentDueTime) ? 1: -1);
-        // console.log(activeTasks);
-
-        // appDivLeft.innerHTML = ReleaseTasks(activeTasks);
-        // currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-        // HandleTaskRows.highlightSpecificRow(1);
-
-        // const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
-        // const releaseTaskCallback = releaseTask => {
-        //     appDivRight.innerHTML = ReleaseTask(releaseTask);
-        // };
-        // apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
     }
 })
 
@@ -156,23 +138,13 @@ function showReleaseTasks() {
         .catch(err => console.log(err))
 
     console.log('before array call');
-    //const activeTasks = ActiveTasks.ActiveTasksArray();
-    //const tasks = Reminders.AllTasks();
-    //ExecuteTimer();
-    //test();
-    //alert('Welcome');
-    //console.log(activeTasks);
-    //console.log(tasks);
-    //activeTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
-    //console.log(activeTasks);
 
-
-        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-        console.log('in show tasks'+currentSelectedRowID);
+    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
+    const releaseTaskCallback = releaseTask => {
+        appDivRight.innerHTML = ReleaseTask(releaseTask);
+    };
+    apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+    console.log('in show tasks'+currentSelectedRowID);
 
 }
 
@@ -220,7 +192,6 @@ appDivRight.addEventListener('click', function () {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(1);
                 currActiveReleaseTasks = releaseTasks;
             })
@@ -297,7 +268,8 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        swal("Changes Saved", "", "success");
+        //swal("Changes Saved", "", "success");
+        alert('Changes Saved');
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -307,7 +279,6 @@ appDivRight.addEventListener('click', function () {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
                 console.log('line 193='+currentSelectedRowID);
-                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
                 currActiveReleaseTasks = releaseTasks;
             })
@@ -331,7 +302,6 @@ appDivLeft.addEventListener('click', function () {
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
         const currentDate = new Date();
-        //const formatedDate = moment(currentDate).format('yyyy-MM-DDTh:mm:ss');
         const formatedDate = moment(currentDate).format('YYYY-MM-DDTh:mm');
         
         console.log(currentDate);
@@ -383,7 +353,6 @@ appDivRight.addEventListener('click', function () {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 console.log('in Add Task fetch, current row='+currentSelectedRowID);
                 HandleTaskRows.highlightSpecificRow(1);
                 currActiveReleaseTasks = releaseTasks;
@@ -401,44 +370,8 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-
-        // console.log('before sort');
-        // idSortOrder = Sort.ID('descending');
-        // console.log('after sort');
-        // currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-        // console.log('after highlight row call');
-        // HandleTaskRows.highlightSpecificRow(1);
-        // console.log('after row 1 highligh call');
-
     }
 })
-// function changePriorityColor() {
-
-//     var priorityThreshold = ${priority.id },
-//         priorityColor = document.querySelector('.priorityLevel');
-
-//     function changeColor(val) {
-//         var color = "green";
-
-//         if (val = 3) {
-//             color = "yellow"
-//         }
-//         if (val = 2) {
-//             color = "orange";
-//         }
-//         if (val = 1) {
-//             color = "red";
-//         }
-
-//         priorityColor.style.color = color;
-//     }
-// }
-
-// changeColor(colorThreshold);
-
-//  function rowHighlightHandler(row){
-//      alert('row index='+row.rowIndex);
-//  }
 
 appDivRight.addEventListener('click', function(releaseTask){
     if (event.target.classList.contains('edit__releaseTaskButton__back')){
@@ -508,7 +441,6 @@ appDivRight.addEventListener('click', function () {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
                 console.log('in submit comment'+currentSelectedRowID);
-                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
                 currActiveReleaseTasks = releaseTasks;
             })
@@ -567,10 +499,3 @@ appDivLeft.addEventListener('click', function(){
         
     }
 })
-
-// appDivLeft.addEventListener('click', function(){
-//     console.log('new function');
-//     if (event.target.parentElement.classList.contains('headerClass')) {
-//         console.log('header clicked');
-//     }
-// })
