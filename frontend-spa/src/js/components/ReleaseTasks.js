@@ -28,7 +28,7 @@ export default function ReleaseTasks(releaseTasks) {
                 <td>${releaseTask.id}</td>
                 <td class="releaseTask__info" id="${releaseTask.id}">${releaseTask.name}</td>
                 <td id="${releaseTask.currentStatusID}">${releaseTask.status.name}</td>
-                <td id="${releaseTask.currentPriorityID}">${releaseTask.priority.name}</td>
+                <td class="priority__value" style="background-color:${releaseTask.priority.value}" id="${releaseTask.currentPriorityID}">${releaseTask.priority.name}</td>
                 <td>${moment(releaseTask.currentDueTime).format('MMM DD, h:mm a')}</td>
                 <td id="${releaseTask.assignedEmployeeID}">${releaseTask.employee.name}</td>
             </tr>
@@ -46,3 +46,4 @@ function FormatTime(time){
     var date = new Date(time);
     return (date.getHours()<10?'0':'') + date.getHours() + ":" +  (date.getMinutes()<10?'0':'') + date.getMinutes() + ":" + (date.getSeconds()<10?'0':'') + date.getSeconds();
 }
+

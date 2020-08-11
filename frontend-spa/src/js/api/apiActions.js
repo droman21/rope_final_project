@@ -46,6 +46,17 @@ function deleteRequest(location, callback) {
         .catch(err => console.log(err))
 }
 
+function deleteRequest2(location){
+    fetch(location, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+}
+
 function putRequest(location, requestBody, callback) {
     fetch(location, {
         method: 'PUT',
@@ -90,6 +101,7 @@ export default {
     postRequest,
     postRequest2,
     deleteRequest,
+    deleteRequest2,
     putRequest,
     putRequest2,
     patchRequest
