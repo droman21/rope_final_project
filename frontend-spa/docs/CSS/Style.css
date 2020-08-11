@@ -257,8 +257,8 @@ select{
 
 .homepageHeader{
     color: rgb(218, 216, 216);
-
-  .IconHeading {
+}
+.IconHeading {
     display: flex;
     flex: 0 25em;
     flex-grow: 0;

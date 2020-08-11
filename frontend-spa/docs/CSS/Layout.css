@@ -72,6 +72,7 @@ nav a:hover{
 }
 .post,.releaseTask__detailsInfo{
     padding: 2em;
+}
 ::-webkit-scrollbar{
     background-color: rgb(59, 57, 57);
     width: 10px;
