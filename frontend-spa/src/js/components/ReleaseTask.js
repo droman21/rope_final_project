@@ -2,8 +2,29 @@ import moment from "moment";
 
 export default function ReleaseTask(releaseTask) {
 
+    let imageSrc = "";
+
+    switch(releaseTask.priority.value){
+        case 1:
+            imageSrc="images/critical.png"
+            break;
+        case 2:
+            imageSrc="images/high.png"
+            break;
+        case 3:
+            imageSrc="images/medium.png"
+            break;
+        case 4:
+            imageSrc="images/low.png"
+            break;
+        default:
+            imageSrc="images/rope.png"
+    }
     return `
-    <h1 class="table-2__header"  id="${releaseTask.id}">${releaseTask.name}</h1>
+    <div class="IconHeading">
+        <img src="${imageSrc}" width="100" height="100">
+        <h1 class="table-2__header"  id="${releaseTask.id}">${releaseTask.name}</h1>
+    </div>
     <section class="releaseTask__detailsInfo">
     <button class="edit__releaseTaskButton" id="${releaseTask.id}">Edit</button>
     <button class="add__commentButton" id="${releaseTask.id}">Add Comment</button>
