@@ -1,4 +1,4 @@
-export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeDrop,currentSelectedRowID, currentDate) {
+export default function ReleaseTaskPostSection(statusDrop, priorityDrop, employeeDrop, currentSelectedRowID, releaseTask, currentDate) {
     return `
     <section class="post">
         <section class="create-releaseTask__post">
@@ -26,9 +26,10 @@ export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeD
             <select id="employeeDropID" class="create-releaseTask__Employee" type="dropdown">
             ${employeeDrop}</h4>
             </select>
-        </section> </section>
+        </section> 
         <button class="create-releaseTask__submit">Save</button>
         <button class="edit__releaseTaskButton__back" id=${currentSelectedRowID}>Back</button>
+    </section>
     `
 }
 

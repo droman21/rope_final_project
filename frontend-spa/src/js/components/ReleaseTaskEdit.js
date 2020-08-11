@@ -26,14 +26,7 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop, priorityDrop, e
         <select id="employeeDropID" class="edit-releaseTask__Employee" type="dropdown"></h4>
         ${employeeDrop}
         </select>
-
         
-        
-        
-       
-
-       
-
         </section>
 
         <input class="edit-releaseTask__id" hidden="true" value="${releaseTask.id}">
