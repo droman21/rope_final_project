@@ -86,7 +86,6 @@ tbody {
     font-size: 35px;
 }
 .table-2__header{
-    margin-left: 20%;
     font-size: 28px;
 }
 .appRight {
@@ -200,18 +199,6 @@ tbody {
 #editStyle{
     border: solid;
     border-radius: 5%;
-}
-.table-2__header{
-    margin-left: 42%;
-}
-.edit-container{
-    margin-left: 30px;
-}
-.edit-releaseTask__header{
-    margin-left: 70px;
-}
-.edit-releaseTask__name{
-    min-width: 50%;
 }
 select{
     width:20%;

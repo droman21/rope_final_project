@@ -63,3 +63,9 @@ nav a:hover{
     border: grey;
     border-style: solid;
 }
+.commentpostcomponent {
+    padding: 5em;
+}
+.post,.releaseTask__detailsInfo{
+    padding: 2em;
+}
