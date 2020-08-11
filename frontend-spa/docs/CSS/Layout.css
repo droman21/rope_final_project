@@ -38,7 +38,7 @@ nav{
     display: flex;
     flex-flow: row;
     justify-content: center;
-    background: rgb(138, 1, 138); opacity:0.6;
+    background: rgb(71, 71, 71); opacity:0.6;
     font-weight: bold;
     color: white;
     border-radius: 5px;
