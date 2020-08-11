@@ -6,17 +6,20 @@
     margin-left: 75%;
 }
 .appRight{
+    overflow: scroll;
+    overflow-x: hidden;
     position: auto;
     right: auto;
     width: 580px;
-    height: 130px;
+    height: 500px;
 }
 .appLeft{
     overflow: scroll;
+    overflow-x: hidden;
     position: auto;
     left: auto;
     width: 670px;
-    height: 450px;
+    height: 500px;
 }
 .create-releaseTask__post{
     position: auto;
@@ -62,4 +65,15 @@ nav a:hover{
     border-color: grey;
     border: grey;
     border-style: solid;
+}
+::-webkit-scrollbar{
+    background-color: rgb(59, 57, 57);
+    width: 10px;
+}
+::-webkit-scrollbar-corner{
+    background-color: rgb(59, 57, 57);
+}
+::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 7px;
 }

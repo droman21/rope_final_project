@@ -92,9 +92,7 @@ tbody {
 }
 .appRight {
     background-color: #4b4a4a;
-    overflow: hidden;
     color: white;
-    height: 100%;
 }
 .add__releaseTaskButton{
     color: white;
