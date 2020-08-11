@@ -18,7 +18,7 @@ table.mainTable{
 .table1__rowFont.disabled, .table1__rowFont:hover{color: blue; font-weight: bolder;}
 
 .table1__body tr:first-child:hover{
-    background-color:rgb(21, 21, 146);
+    background-color:#D9B08C;
 }
 /* .active table1__body{
 background-color: green;
