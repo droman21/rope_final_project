@@ -194,7 +194,7 @@ appDivRight.addEventListener('click', function () {
             //TODO:  The next 20 lines are repeated elsewhere in main.js
             //without the alert the page reposts with old data, even though it did save
             //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-            swal("Task Deleted", "", "success");
+            alert("Task Deleted");
 
             //Reload the Left Table
             fetch("https://localhost:44302/api/releaseTask")
@@ -280,7 +280,7 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        swal("Changes Saved", "", "success");
+        alert("Changes Saved");
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -356,7 +356,7 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        swal("Task Added", "", "success");
+        alert("Task Added");
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -479,7 +479,7 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        swal("Changes Saved", "", "success");
+        alert("Changes Saved");
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -515,7 +515,7 @@ function ExecuteTimer(){
         let curr = (new Date(element.currentDueTime));
         let now = (new Date());
         if (curr < now){
-            swal("Warning. The following task is overdue \n\n'+element.name", "", "warning");
+            alert("Warning. The following task is overdue \n\n'+element.name", "", "warning");
         }
     });
 

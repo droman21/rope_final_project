@@ -11,7 +11,7 @@
     position: auto;
     right: auto;
     width: 580px;
-    height: 500px;
+    height: 490px;
 }
 .appLeft{
     overflow: scroll;
@@ -19,7 +19,7 @@
     position: auto;
     left: auto;
     width: 670px;
-    height: 500px;
+    height: 490px;
 }
 .create-releaseTask__post{
     position: auto;
@@ -39,8 +39,7 @@ nav{
     left: 0;
     width: 100%;
     display: flex;
-    flex-flow: row;
-    justify-content: center;
+    flex-flow: row;;
     background: rgb(71, 71, 71); opacity:0.6;
     font-weight: bold;
     color: white;
@@ -76,4 +75,7 @@ nav a:hover{
 ::-webkit-scrollbar-thumb {
     background: red; 
     border-radius: 7px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
 }
