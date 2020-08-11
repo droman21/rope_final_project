@@ -6,17 +6,22 @@
     margin-left: 75%;
 }
 .appRight{
+    padding: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
     position: auto;
     right: auto;
     width: 580px;
-    height: 130px;
+    height: 490px;
 }
 .appLeft{
+    padding: 10px;
     overflow: scroll;
+    overflow-x: hidden;
     position: auto;
     left: auto;
     width: 670px;
-    height: 450px;
+    height: 490px;
 }
 .create-releaseTask__post{
     position: auto;
@@ -36,9 +41,8 @@ nav{
     left: 0;
     width: 100%;
     display: flex;
-    flex-flow: row;
-    justify-content: center;
-    background: rgb(138, 1, 138); opacity:0.6;
+    flex-flow: row;;
+    background: rgb(71, 71, 71); opacity:0.6;
     font-weight: bold;
     color: white;
     border-radius: 5px;
@@ -62,4 +66,18 @@ nav a:hover{
     border-color: grey;
     border: grey;
     border-style: solid;
+}
+::-webkit-scrollbar{
+    background-color: rgb(59, 57, 57);
+    width: 10px;
+}
+::-webkit-scrollbar-corner{
+    background-color: rgb(59, 57, 57);
+}
+::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 7px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
 }

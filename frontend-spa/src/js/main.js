@@ -144,6 +144,7 @@ appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('delete_releaseTaskButton')) {
         const releaseTaskId = event.target.parentElement.querySelector('.delete_releaseTaskButton').id;
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+        //var response = swal("Click OK to delete this task?", "", "warning");
 
         if (event.shiftKey){
             var response = confirm("Click OK to PERMINENTLY delete this task?");
@@ -161,6 +162,10 @@ appDivRight.addEventListener('click', function () {
                 IsVisisble: false
             };
 
+            //TODO:  The next 20 lines are repeated elsewhere in main.js
+            //without the alert the page reposts with old data, even though it did save
+            //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+            //alert("Task Deleted");
             var response = confirm("Click OK to delete this task?");
         
             if (response == true){
@@ -251,11 +256,12 @@ appDivRight.addEventListener('click', function () {
             releaseEdit
         )
 
+        
+
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        //swal("Changes Saved", "", "success");
-        alert('Changes Saved');
+        alert("Changes Saved");
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -323,7 +329,7 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert('Task Added');
+        alert("Task Added");
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -398,7 +404,7 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert('Changes Saved');
+        alert("Changes Saved");
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
