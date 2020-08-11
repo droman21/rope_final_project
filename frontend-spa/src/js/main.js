@@ -1,12 +1,9 @@
-// import Employee from './components/Employee';
-// import Priority from './components/Priority';
-// import Status from './components/Status';
 import apiActions from './api/apiActions';
 import SelectDropDownID from './components/SelectDropDownID';
 import HandleTaskRows from './components/HandleTaskRows';
 import HandleDropDowns from './components/HandleDropDowns';
 import Reminders from './components/Reminders';
-import ActiveTasks from './components/ActiveTasks';
+//import ActiveTasks from './components/ActiveTasks';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
 import ReleaseTaskEdit from './components/ReleaseTaskEdit';
@@ -30,8 +27,8 @@ let prioritySortOrder = "ascending";
 let employeeSortOrder = "ascending";
 let dueTimeSortOrder = "ascending";
 let idSortOrder = "descending";
-//const activeTasks = ActiveTasks.ActiveTasksArray();
 
+let currActiveReleaseTasks = null;
 
 export default function pagebuild() {
     header()
@@ -68,29 +65,14 @@ function StartApp(){
 
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('startapp')) {
-        console.log('start app clicked');
-
-        const activeTasks = ActiveTasks.ActiveTasksArray();
-        // console.log(activeTasks);
-        // activeTasks.sort((a,b) => (a.currentDueTime > b.currentDueTime) ? 1: -1);
-        // console.log(activeTasks);
-
-        appDivLeft.innerHTML = ReleaseTasks(activeTasks);
-        currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-        HandleTaskRows.highlightSpecificRow(1);
-
-        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        showReleaseTasks();
     }
 })
 
 appDivLeft.addEventListener('click', function () {
     
     if (event.target.classList.contains('table_header__ID')){
-        idSortOrder = Sort.ID(idSortOrder);
+        idSortOrder = Sort.ID(idSortOrder,currActiveReleaseTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }
@@ -99,7 +81,7 @@ appDivLeft.addEventListener('click', function () {
 appDivLeft.addEventListener('click', function () {
     
     if (event.target.classList.contains('table_header__Name')){
-        nameSortOrder = Sort.Name(nameSortOrder);
+        nameSortOrder = Sort.Name(nameSortOrder,currActiveReleaseTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }
@@ -107,7 +89,7 @@ appDivLeft.addEventListener('click', function () {
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__Status')){
-        statusSortOrder = Sort.Status(statusSortOrder);
+        statusSortOrder = Sort.Status(statusSortOrder,currActiveReleaseTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }
@@ -115,7 +97,7 @@ appDivLeft.addEventListener('click', function() {
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__Priority')){
-        prioritySortOrder = Sort.Priority(prioritySortOrder);
+        prioritySortOrder = Sort.Priority(prioritySortOrder,currActiveReleaseTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }
@@ -123,7 +105,7 @@ appDivLeft.addEventListener('click', function() {
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__AssignedTo')){
-        employeeSortOrder = Sort.Employee(employeeSortOrder);
+        employeeSortOrder = Sort.Employee(employeeSortOrder,currActiveReleaseTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }
@@ -131,7 +113,7 @@ appDivLeft.addEventListener('click', function() {
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__DueTime')){
-        dueTimeSortOrder = Sort.DueTime(dueTimeSortOrder);
+        dueTimeSortOrder = Sort.DueTime(dueTimeSortOrder,currActiveReleaseTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }
@@ -146,28 +128,15 @@ function showReleaseTasks() {
             appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
             currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
             HandleTaskRows.highlightSpecificRow(1);
+            currActiveReleaseTasks = releaseTasks;
         })
         .catch(err => console.log(err))
 
-    console.log('before array call');
-    //const activeTasks = ActiveTasks.ActiveTasksArray();
-    //const tasks = Reminders.AllTasks();
-    //ExecuteTimer();
-    //test();
-    //alert('Welcome');
-    //console.log(activeTasks);
-    //console.log(tasks);
-    //activeTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
-    //console.log(activeTasks);
-
-
-        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-        console.log('in show tasks'+currentSelectedRowID);
-
+    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
+    const releaseTaskCallback = releaseTask => {
+        appDivRight.innerHTML = ReleaseTask(releaseTask);
+    };
+    apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
 }
 
 
@@ -214,8 +183,8 @@ appDivRight.addEventListener('click', function () {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(1);
+                currActiveReleaseTasks = releaseTasks;
             })
             .catch(err => console.log(err))
 
@@ -226,10 +195,7 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
-        console.log('indeletetask'+currentSelectedRowID);
-        
     }
-
 })
 
 
@@ -244,15 +210,12 @@ appDivRight.addEventListener('click', function () {
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTaskEdit => {
-                console.log(releaseTaskEdit.currentDueTime);
                 ReleaseTaskEditSection.innerHTML = ReleaseTaskEdit(releaseTaskEdit,statusDrop,priorityDrop,employeeDrop);
                 SelectDropDownID.selectElement('statusDropID',releaseTaskEdit.currentStatusID);
                 SelectDropDownID.selectElement('priorityDropID',releaseTaskEdit.currentPriorityID);
                 SelectDropDownID.selectElement('employeeDropID',releaseTaskEdit.assignedEmployeeID);
             }
         )
-        console.log('in edit task'+currentSelectedRowID);
-
     }
 })
 
@@ -290,7 +253,8 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        swal("Changes Saved", "", "success");
+        //swal("Changes Saved", "", "success");
+        alert('Changes Saved');
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -299,9 +263,8 @@ appDivRight.addEventListener('click', function () {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                console.log('line 193='+currentSelectedRowID);
-                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
+                currActiveReleaseTasks = releaseTasks;
             })
             .catch(err => console.log(err))
 
@@ -310,24 +273,16 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-        console.log('in edit save'+currentSelectedRowID);
-
     }
 })
 
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
-        console.log("new task clicked")
-        console.log('in add task'+currentSelectedRowID);
         const statusDrop = HandleDropDowns.StatusDropDown();
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
         const currentDate = new Date();
-        //const formatedDate = moment(currentDate).format('yyyy-MM-DDTh:mm:ss');
         const formatedDate = moment(currentDate).format('YYYY-MM-DDTh:mm');
-        
-        console.log(currentDate);
-        console.log(formatedDate);
         appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop, priorityDrop, employeeDrop, currentSelectedRowID, formatedDate);
     }
 })
@@ -354,7 +309,6 @@ appDivRight.addEventListener('click', function () {
             CurrentPriorityID: currentPriorityID,
             AssignedEmployeeID: assignedEmployeeID,
         }
-        console.log(requestBody)
         apiActions.postRequest(
             "https://localhost:44302/api/releaseTask",
             requestBody,
@@ -375,9 +329,8 @@ appDivRight.addEventListener('click', function () {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                console.log('in Add Task fetch, current row='+currentSelectedRowID);
                 HandleTaskRows.highlightSpecificRow(1);
+                currActiveReleaseTasks = releaseTasks;
             })
             .catch(err => console.log(err))
 
@@ -392,51 +345,12 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-
-        // console.log('before sort');
-        // idSortOrder = Sort.ID('descending');
-        // console.log('after sort');
-        // currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-        // console.log('after highlight row call');
-        // HandleTaskRows.highlightSpecificRow(1);
-        // console.log('after row 1 highligh call');
-
     }
 })
-// function changePriorityColor() {
-
-//     var priorityThreshold = ${priority.id },
-//         priorityColor = document.querySelector('.priorityLevel');
-
-//     function changeColor(val) {
-//         var color = "green";
-
-//         if (val = 3) {
-//             color = "yellow"
-//         }
-//         if (val = 2) {
-//             color = "orange";
-//         }
-//         if (val = 1) {
-//             color = "red";
-//         }
-
-//         priorityColor.style.color = color;
-//     }
-// }
-
-// changeColor(colorThreshold);
-
-//  function rowHighlightHandler(row){
-//      alert('row index='+row.rowIndex);
-//  }
 
 appDivRight.addEventListener('click', function(releaseTask){
     if (event.target.classList.contains('edit__releaseTaskButton__back')){
-        console.log('in back'+currentSelectedRowID);
-
         const releaseTaskId = event.target.parentElement.querySelector('.edit__releaseTaskButton__back').id;
-        console.log('in back2='+releaseTaskId);
         apiActions.getRequest(
             `https://localhost:44302/api/releaseTask/${releaseTaskId}`,
             releaseTask => {
@@ -456,28 +370,20 @@ appDivRight.addEventListener('click', function () {
                 ReleaseTaskEditSection.innerHTML = CommentPost(releaseTaskId, addComment);
             }
         )
-        console.log('in add comment'+currentSelectedRowID);
-
     }
 })
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('add-comment__submit')) {
-        console.log('in save comment');
         const releaseTaskId = event.target.parentElement.querySelector('.add-comment__submit').id;
         const isVisible = true;
         const commentDetails = event.target.parentElement.querySelector('.add-comment__details').value;
-        console.log(releaseTaskId);
-        console.log(isVisible);
-        console.log(commentDetails);
 
         const newCommentBody = {
             Details: commentDetails,
             IsVisible: isVisible,
             ReleaseTaskID: releaseTaskId
         }
-
-        console.log(newCommentBody);
 
         apiActions.postRequest2(
             "https://localhost:44302/api/comment",
@@ -498,9 +404,8 @@ appDivRight.addEventListener('click', function () {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                console.log('in submit comment'+currentSelectedRowID);
-                //apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowID);
+                currActiveReleaseTasks = releaseTasks;
             })
             .catch(err => console.log(err))
 
@@ -509,9 +414,6 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-        console.log('bottom submit comment'+currentSelectedRowID);
-
-
     }
 })
 
@@ -557,10 +459,3 @@ appDivLeft.addEventListener('click', function(){
         
     }
 })
-
-// appDivLeft.addEventListener('click', function(){
-//     console.log('new function');
-//     if (event.target.parentElement.classList.contains('headerClass')) {
-//         console.log('header clicked');
-//     }
-// })
