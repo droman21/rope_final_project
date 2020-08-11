@@ -27,7 +27,7 @@ background-color: green;
     background-color: rgb(173, 204, 209);
 }
 #appRow tr a.appLeft {
-    background-color: #116466;
+    background-color: #169496;
 }
 /* #appRow tr a:active,
 #appRow tr a:focus{
@@ -47,7 +47,7 @@ background-color: green;
     height: 267px;
     max-height: 267px;
     display: block;
-    background-color: #116466;
+    background-color: #169496;
     width: auto;
 }
 .table-2_header{
@@ -65,7 +65,7 @@ background-color: green;
     color: black;
 }
 .table1__rowFont{
-    background-color: #15797a;
+    background-color: #169496;
     color: rgb(0, 0, 0);
 }
 /* .header{
@@ -246,8 +246,8 @@ select{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 #columnHeader {
-    background-color: rgb(21, 21, 146);
-    color: white;
+    background-color: #D9B08C;
+    color: black;
 }
 
 #columnHeader.activated {
