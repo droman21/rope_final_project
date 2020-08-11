@@ -10,7 +10,8 @@ import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
 import Header from './components/Header';
 // import Footer from './components/Footer';
 import CommentPost from './components/CommentPost';
-import HomePage from './components/HomePage';
+import HomePageLeft from './components/HomePageLeft';
+import HomePageRight from './components/HomePageRight';
 import Sort from './components/Sort';
 import moment from "moment";
 import swal from 'sweetalert';
@@ -59,7 +60,8 @@ function header() {
 
 function StartApp(){
 
-    appDivLeft.innerHTML = HomePage();
+    appDivLeft.innerHTML = HomePageLeft();
+    appDivRight.innerHTML = HomePageRight();
 }
 
 appDivLeft.addEventListener('click', function () {
