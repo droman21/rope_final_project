@@ -222,7 +222,7 @@ appDivRight.addEventListener('click', function () {
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit-releaseTask__submit')) {
         const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
-        const name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
+        let name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
         const description = event.target.parentElement.querySelector('.new').value;
         const createdDate = event.target.parentElement.querySelector('.edit-releaseTask__createdDate').value;
         const currentDueTime = event.target.parentElement.querySelector('.edit-releaseTask__currentDueTime').value;
@@ -231,6 +231,7 @@ appDivRight.addEventListener('click', function () {
         const newEmployeeID = event.target.parentElement.querySelector('.edit-releaseTask__Employee').value;
         var lastModifiedDate = new Date();
         const formatedDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
+        name = name.charAt(0).toUpperCase() + name.slice(1);
         const releaseEdit = {
             id: releaseTaskId,
             Name: name,
