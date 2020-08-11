@@ -257,11 +257,19 @@ select{
 
 .homepageHeader{
     color: rgb(218, 216, 216);
+}
 
-  .IconHeading {
+.IconHeading {
     display: flex;
     flex: 0 25em;
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 25em;
+}
+
+.title {
+    text-align: center;
+    box-shadow: lightskyblue 2px 2px;
+    font-size: 30px;
+    font-weight: bolder;
 }
