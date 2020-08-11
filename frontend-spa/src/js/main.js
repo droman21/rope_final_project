@@ -73,7 +73,7 @@ appDivLeft.addEventListener('click', function () {
 appDivLeft.addEventListener('click', function () {
     
     if (event.target.classList.contains('table_header__ID')){
-        idSortOrder = Sort.ID(idSortOrder,currActiveReleaseTasks );
+        idSortOrder = Sort.ID(idSortOrder,currActiveReleaseTasks);
         
         //currActiveReleaseTasks.sort((a,b) => (a.id < b.id) ? 1: -1);
         //appDivLeft.innerHTML = ReleaseTasks(currActiveReleaseTasks);
@@ -87,7 +87,7 @@ appDivLeft.addEventListener('click', function () {
 appDivLeft.addEventListener('click', function () {
     
     if (event.target.classList.contains('table_header__Name')){
-        nameSortOrder = Sort.Name(nameSortOrder);
+        nameSortOrder = Sort.Name(nameSortOrder,currActiveReleaseTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }
@@ -95,7 +95,7 @@ appDivLeft.addEventListener('click', function () {
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__Status')){
-        statusSortOrder = Sort.Status(statusSortOrder);
+        statusSortOrder = Sort.Status(statusSortOrder,currActiveReleaseTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }
@@ -103,7 +103,7 @@ appDivLeft.addEventListener('click', function() {
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__Priority')){
-        prioritySortOrder = Sort.Priority(prioritySortOrder);
+        prioritySortOrder = Sort.Priority(prioritySortOrder,currActiveReleaseTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }
@@ -111,7 +111,7 @@ appDivLeft.addEventListener('click', function() {
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__AssignedTo')){
-        employeeSortOrder = Sort.Employee(employeeSortOrder);
+        employeeSortOrder = Sort.Employee(employeeSortOrder,currActiveReleaseTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }
@@ -119,7 +119,7 @@ appDivLeft.addEventListener('click', function() {
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__DueTime')){
-        dueTimeSortOrder = Sort.DueTime(dueTimeSortOrder);
+        dueTimeSortOrder = Sort.DueTime(dueTimeSortOrder,currActiveReleaseTasks);
         currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
         HandleTaskRows.highlightSpecificRow(1);
     }

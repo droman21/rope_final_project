@@ -3,10 +3,7 @@ import ReleaseTasks from './ReleaseTasks';
 
 const appDivLeft = document.querySelector('.appLeft');
 
-
 function ID(sortorder, activeTasks) {
-    console.log('in sort ID table');
-    //const activeTasks = ActiveTasks.ActiveTasksArray();
     
     if (sortorder == "ascending"){
         activeTasks.sort((a,b) => (a.id > b.id) ? 1: -1);
@@ -23,8 +20,7 @@ function ID(sortorder, activeTasks) {
     return sortorder;
 }
 
-function Name(sortorder) {
-    const activeTasks = ActiveTasks.ActiveTasksArray();
+function Name(sortorder, activeTasks) {
 
     if (sortorder == "ascending"){
         activeTasks.sort((a,b) => (a.name > b.name) ? 1: -1);
@@ -39,8 +35,7 @@ function Name(sortorder) {
     return sortorder;
 }
 
-function Status(sortorder){
-    const activeTasks = ActiveTasks.ActiveTasksArray();
+function Status(sortorder, activeTasks){
         
     if (sortorder == "ascending"){
         activeTasks.sort((a,b) => (a.currentStatusID > b.currentStatusID) ? 1: -1);
@@ -56,8 +51,7 @@ function Status(sortorder){
 
 }
 
-function Priority(sortorder){
-    const activeTasks = ActiveTasks.ActiveTasksArray();
+function Priority(sortorder, activeTasks){
         
     if (sortorder == "ascending"){
         activeTasks.sort((a,b) => (a.currentPriorityID > b.currentPriorityID) ? 1: -1);
@@ -72,8 +66,7 @@ function Priority(sortorder){
     return sortorder;
 }
 
-function Employee (sortorder){
-    const activeTasks = ActiveTasks.ActiveTasksArray();
+function Employee (sortorder, activeTasks){
         
     if (sortorder == "ascending"){
         activeTasks.sort((a,b) => (a.employee.name > b.employee.name) ? 1: -1);
@@ -88,8 +81,7 @@ function Employee (sortorder){
     return sortorder;
 }
 
-function DueTime (sortorder){
-    const activeTasks = ActiveTasks.ActiveTasksArray();
+function DueTime (sortorder, activeTasks){
         
     if (sortorder == "ascending"){
         activeTasks.sort((a,b) => (a.currentDueTime > b.currentDueTime) ? 1: -1);
