@@ -2,8 +2,7 @@ import apiActions from './api/apiActions';
 import SelectDropDownID from './components/SelectDropDownID';
 import HandleTaskRows from './components/HandleTaskRows';
 import HandleDropDowns from './components/HandleDropDowns';
-import Reminders from './components/Reminders';
-//import ActiveTasks from './components/ActiveTasks';
+//import Reminders from './components/Reminders';
 import ReleaseTasks from './components/ReleaseTasks';
 import ReleaseTask from './components/ReleaseTask';
 import ReleaseTaskEdit from './components/ReleaseTaskEdit';
@@ -94,6 +93,8 @@ appDivLeft.addEventListener('click', function() {
         HandleTaskRows.highlightSpecificRow(1);
     }
 })
+
+
 
 appDivLeft.addEventListener('click', function() {
     if (event.target.classList.contains('table_header__Priority')){
