@@ -4,60 +4,47 @@ export default function ReleaseTask(releaseTask) {
 
     let imageSrc = "";
 
-    switch(releaseTask.priority.value){
+    switch (releaseTask.priority.value) {
         case 1:
-            imageSrc="images/critical.png"
+            imageSrc = "images/critical.png"
             break;
         case 2:
-            imageSrc="images/high.png"
+            imageSrc = "images/high.png"
             break;
         case 3:
-            imageSrc="images/medium.png"
+            imageSrc = "images/medium.png"
             break;
         case 4:
-            imageSrc="images/low.png"
+            imageSrc = "images/low.png"
             break;
         default:
-            imageSrc="images/rope.png"
+            imageSrc = "images/rope.png"
     }
     return `
     <div class="IconHeading">
         <img src="${imageSrc}" width="100" height="100">
-        <h1 class="table-2__header"  id="${releaseTask.id}">${releaseTask.name}</h1>
+        <h2 class="table-2__header"  id="${releaseTask.id}">${releaseTask.id}: ${releaseTask.name}</h2>
     </div>
     <section class="releaseTask__detailsInfo">
-        <ul class="releaseTask__detailsInfolist">
-            <li class="releaseTask__currentDueTime"><b>Due:</b> ${moment(releaseTask.currentDueTime).format(('MMMM Do YYYY, h:mm a'))}</li>
-            <br>
-            <li class="releaseTask__id" ><b>ID:</b> ${releaseTask.id}</li>
-            <br>
-            <li class="releaseTask__name" id="${releaseTask.id}"><b>Task Name:</b> ${releaseTask.name}</li>
-            <br>
-            <li class="releaseTask__description"><b>Description:</b> ${releaseTask.description}</li>
-            <br>
-            <li class="releaseTask__currentStatusName"><b>Status:</b> ${releaseTask.status.name}</li>   
-            <br>
-            <li class="releaseTask__currentPriorityName"><b>Priority:</b> ${releaseTask.priority.name}</li>
-            <br>
-            <li class="releaseTask__createdDate"><b>Created:</b> ${moment(releaseTask.createdDate).format(('MMMM Do YYYY, h:mm a'))}</li>
-            <br>
-            <li class="releaseTask__lastModifiedDate"><b>Last Modified:</b> ${moment(releaseTask.lastModifiedDate).format(('MMMM Do YYYY, h:mm a'))}</li>
-            <br>
-            <li class="releaseTask__assignedEmployeeName"><b>Assigned To:</b> ${releaseTask.employee.name}</li>
-            <br>
+        <div class="releaseTask__detailsInfolist">
+            <p class="releaseTask__currentPriorityName"><b>Priority:</b> ${releaseTask.priority.name}</p>
+            <p class="releaseTask__currentDueTime"><b>Due:</b> ${moment(releaseTask.currentDueTime).format(('MMMM Do YYYY, h:mm a'))}</p>
+            <p class="releaseTask__currentStatusName"><b>Status:</b> ${releaseTask.status.name}</p>   
+            <p class="releaseTask__assignedEmployeeName"><b>Assigned To:</b> ${releaseTask.employee.name}</p>
+            <p class="releaseTask__description"><b>Description:</b> ${releaseTask.description}</p>
+            <p class="releaseTask__lastModifiedDate"><b>Last Modified:</b> ${moment(releaseTask.lastModifiedDate).format(('MMMM Do YYYY, h:mm a'))}</p>
             <ul class="releaseTask__comment"><b>Comments:</b>
-            ${releaseTask.comments.map(comment => {
-                return `
-                <li>${comment.details}</li>
-                        `
-                    }).join("")}
+                ${releaseTask.comments.map(comment => {
+                    return `
+                    <li type="date">${comment.details}</li>
+                    `
+                }).join("")}
             </ul>
-            <br>
-        </ul>
-            <button class="edit__releaseTaskButton" id="${releaseTask.id}">Edit</button>
-            <button class="add__commentButton" id="${releaseTask.id}">Add Comment</button>
-            <button class="delete_releaseTaskButton" id="${releaseTask.id}">Delete</button>
-        
+            <p class="releaseTask__createdDate"><b>Created:</b> ${moment(releaseTask.createdDate).format(('MMMM Do YYYY, h:mm a'))}</p>
+        </div>
+        <button class="edit__releaseTaskButton" id="${releaseTask.id}">Edit</button>
+        <button class="add__commentButton" id="${releaseTask.id}">Add Comment</button>
+        <button class="delete_releaseTaskButton" id="${releaseTask.id}">Delete</button>
     </section>
 
     `
