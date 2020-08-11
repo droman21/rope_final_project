@@ -78,25 +78,25 @@ background-color: green;
 tbody {
     background-color: #242424;
 }
-.appLeft h1{
+/* .appLeft h1{
     border-style: dashed;
     margin-right: 38%;
     box-shadow: 2px 2px;
     color: rgb(255, 115, 0);
     font-weight: bold;
     font-size: 35px;
-}
+} */
 .table-2__header{
     margin-left: 20%;
     font-size: 28px;
 }
 .appRight {
     background-color: #242424;
-    color: white;
+    color: rgb(218, 216, 216);
 }
 .add__releaseTaskButton{
     color: white;
-    background-color: red;
+    background-color: rgb(153, 3, 3);
     border-radius: 6px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
@@ -134,7 +134,7 @@ tbody {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .edit__releaseTaskButton__back{
-    background-color: white;
+    background-color: rgb(185, 184, 184);
     border-radius: 8px;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -146,7 +146,7 @@ tbody {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 #alert{
-    background-color: white;
+    background-color: rgb(185, 184, 184);
     border-radius: 8px;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -180,7 +180,7 @@ tbody {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .add__commentButton{
-    background-color: white;
+    background-color: rgb(185, 184, 184);
     border-radius: 8px;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -192,7 +192,7 @@ tbody {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .delete_releaseTaskButton{
-    background-color: white;
+    background-color: rgb(185, 184, 184);
     border-radius: 8px;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -204,7 +204,7 @@ tbody {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .reminders__button{
-    background-color: white;
+    background-color: rgb(185, 184, 184);
     border-radius: 8px;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -238,7 +238,7 @@ select{
     width:20%;
 }
 .aboutuscopy{
-    color: white;
+    color: rgb(218, 216, 216);
 }
 .startapp{
     font-size: 25px;
@@ -248,6 +248,7 @@ select{
     cursor: pointer;
     box-shadow: 4px 4px grey;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 0.5em;
 }
 .startapp:hover{
     background-color: yellow;
@@ -264,4 +265,8 @@ select{
 #columnHeader.activated {
     background-color: yellow;
     color: black
+}
+
+.homepageHeader{
+    color: rgb(218, 216, 216);
 }

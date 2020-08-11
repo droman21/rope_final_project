@@ -6,6 +6,7 @@
     margin-left: 75%;
 }
 .appRight{
+    padding: 10px;
     overflow: scroll;
     overflow-x: hidden;
     position: auto;
@@ -14,6 +15,7 @@
     height: 490px;
 }
 .appLeft{
+    padding: 10px;
     overflow: scroll;
     overflow-x: hidden;
     position: auto;
