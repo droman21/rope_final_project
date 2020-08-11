@@ -65,7 +65,8 @@ background-color: green;
     color: black;
 }
 .table1__rowFont{
-    background-color: #116466;
+    background-color: #15797a;
+    color: rgb(0, 0, 0);
 }
 /* .header{
     font-size: 35px;
@@ -94,7 +95,7 @@ tbody {
     color: rgb(218, 216, 216);
 }
 .add__releaseTaskButton{
-    color: white;
+    color: black;
     background-color: #07aa02;
     border-radius: 6px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;

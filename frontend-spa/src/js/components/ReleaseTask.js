@@ -26,6 +26,9 @@ export default function ReleaseTask(releaseTask) {
         <h2 class="table-2__header"  id="${releaseTask.id}">${releaseTask.id}: ${releaseTask.name}</h2>
     </div>
     <section class="releaseTask__detailsInfo">
+    <button class="edit__releaseTaskButton" id="${releaseTask.id}">Edit</button>
+    <button class="add__commentButton" id="${releaseTask.id}">Add Comment</button>
+    <button class="delete_releaseTaskButton" id="${releaseTask.id}">Delete</button>
         <div class="releaseTask__detailsInfolist">
             <p class="releaseTask__currentPriorityName"><b>Priority:</b> ${releaseTask.priority.name}</p>
             <p class="releaseTask__currentDueTime"><b>Due:</b> ${moment(releaseTask.currentDueTime).format(('MMMM Do YYYY, h:mm a'))}</p>
@@ -42,9 +45,6 @@ export default function ReleaseTask(releaseTask) {
             </ul>
             <p class="releaseTask__createdDate"><b>Created:</b> ${moment(releaseTask.createdDate).format(('MMMM Do YYYY, h:mm a'))}</p>
         </div>
-        <button class="edit__releaseTaskButton" id="${releaseTask.id}">Edit</button>
-        <button class="add__commentButton" id="${releaseTask.id}">Add Comment</button>
-        <button class="delete_releaseTaskButton" id="${releaseTask.id}">Delete</button>
     </section>
 
     `
