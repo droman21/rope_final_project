@@ -22,7 +22,7 @@ export default function ReleaseTaskPostSection(statusDrop,priorityDrop,employeeD
         </select>
 
         <h4>Due Time:
-        <input class="create-releaseTask__currentDueTime"  type="datetime-local" value="${currentDate}"> </h4>
+        <input class="create-releaseTask__currentDueTime"  type="datetime-local" value="${Date()}"> </h4>
         </section>
 
         <button class="create-releaseTask__submit">Save</button>
