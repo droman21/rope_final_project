@@ -34,8 +34,8 @@ export default function pagebuild() {
     header()
     // footer()
     //navHome()
-    //showReleaseTasks();
-    StartApp();
+    showReleaseTasks();
+    //StartApp();
 
     //TODO:  Uncomment the following line before demos and final release
     //AppTimer = setInterval(ExecuteTimer,15000);    
@@ -64,11 +64,12 @@ function StartApp(){
     appDivRight.innerHTML = HomePageRight();
 }
 
-appDivLeft.addEventListener('click', function () {
-    if (event.target.parentElement.classList.contains('startapp')) {
-        showReleaseTasks();
-    }
-})
+// appDivLeft.addEventListener('click', function () {
+//     if (event.target.parentElement != null && event.target.parentElement.classList.contains('startapp')){
+//     // if (event.target.parentElement.classList.contains('startapp')) {
+//         showReleaseTasks();
+//     }
+// })
 
 appDivLeft.addEventListener('click', function () {
     
@@ -286,18 +287,18 @@ appDivRight.addEventListener('click', function () {
     }
 })
 
-appDivLeft.addEventListener('click', function () {
-    if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
-        const statusDrop = HandleDropDowns.StatusDropDown();
-        const priorityDrop = HandleDropDowns.PriorityDropDown();
-        const employeeDrop = HandleDropDowns.EmployeeDropDown();
-        const currentDate = new Date();
-        console.log(currentDate);
-        //const formatedDate = moment(currentDate).format('yyyy-MM-ddThh:mm');
-        //console.log(formatedDate);
-        appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop, priorityDrop, employeeDrop, currentSelectedRowID, currentDate);
-    }
-})
+// appDivLeft.addEventListener('click', function () {
+//     if (event.target.parentElement != null && event.target.parentElement.classList.contains('add__releaseTaskButton')) {
+//         const statusDrop = HandleDropDowns.StatusDropDown();
+//         const priorityDrop = HandleDropDowns.PriorityDropDown();
+//         const employeeDrop = HandleDropDowns.EmployeeDropDown();
+//         const currentDate = new Date();
+//         console.log(currentDate);
+//         //const formatedDate = moment(currentDate).format('yyyy-MM-ddThh:mm');
+//         //console.log(formatedDate);
+//         appDivRight.innerHTML = ReleaseTaskPostSection(statusDrop, priorityDrop, employeeDrop, currentSelectedRowID, currentDate);
+//     }
+// })
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('create-releaseTask__submit')) {
@@ -441,22 +442,22 @@ function ExecuteTimer(){
     });
 }
 
-appDivLeft.addEventListener('click', function(){
+// appDivLeft.addEventListener('click', function(){
 
-    if (event.target.parentElement.classList.contains('reminders__button')) {
-        if (event.shiftKey){
-            fetch("https://localhost:44302/api/releaseTask")
-            .then(response => response.json())
-            .then(releaseTasks => {
-                //releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-                appDivRight.innerHTML = ReleaseTasks(releaseTasks);
-                //currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
-                //HandleTaskRows.highlightSpecificRow(1);
-            })
-            .catch(err => console.log(err))
-        }
-        else {
-            ExecuteTimer();
-        }
-    }
-})
+//     if (event.target.parentElement != null && event.target.parentElement.classList.contains('reminders__button')) {
+//         if (event.shiftKey){
+//             fetch("https://localhost:44302/api/releaseTask")
+//             .then(response => response.json())
+//             .then(releaseTasks => {
+//                 //releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+//                 appDivRight.innerHTML = ReleaseTasks(releaseTasks);
+//                 //currentSelectedRowID = HandleTaskRows.highlightSelectedRow();
+//                 //HandleTaskRows.highlightSpecificRow(1);
+//             })
+//             .catch(err => console.log(err))
+//         }
+//         else {
+//             ExecuteTimer();
+//         }
+//     }
+// })

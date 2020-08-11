@@ -10,7 +10,7 @@ const appDivRight = document.querySelector('.appRight');
 var selectedRowId = 0;
 
 function OnSelectedIndexChange(){
-    console.log('left status clicked');
+    console.log('left status called clicked');
 }
 
 function highlightSelectedRow() {
@@ -34,8 +34,8 @@ function highlightSelectedRow() {
             const statusDrop = HandleDropDowns.StatusDropDown();
             const releaseTaskId = rowSelected.cells[0].innerHTML;
             
-            //rowSelected.cells[2].innerHTML = `<select id="${releaseTaskId}" style="width:100px;" class="Leftedit-releaseTask__Status" onChange=OnSelectedIndexChange() type="dropdown">${statusDrop}</select>`;
-            //SelectDropDownID.selectElement2('.Leftedit-releaseTask__Status',2);
+            rowSelected.cells[2].innerHTML = `<select id="${releaseTaskId}" style="width:100px;" class="Leftedit-releaseTask__Status" onChange="${OnSelectedIndexChange()}" type="dropdown">${statusDrop}</select>`;
+            SelectDropDownID.selectElement2('.Leftedit-releaseTask__Status',2);
             ////SelectDropDownID.selectElement('LeftstatusDropID',releaseTaskEdit.currentStatusID);
             
             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
