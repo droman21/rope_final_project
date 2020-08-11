@@ -85,6 +85,12 @@ tbody {
     font-weight: bold;
     font-size: 35px;
 }
+.title {
+    text-align: center;
+    box-shadow: lightskyblue 2px 2px;
+    font-size: 30px;
+    font-weight: bolder;
+}
 .table-2__header{
     margin-left: 20%;
     font-size: 28px;
