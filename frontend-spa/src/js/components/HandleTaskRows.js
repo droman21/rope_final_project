@@ -24,7 +24,7 @@ function highlightSelectedRow() {
             selectedRowId = rowId;
             var rowsNotSelected = table.getElementsByTagName('tr');
             for (var row = 1; row < rowsNotSelected.length; row++) {
-                rowsNotSelected[row].style.backgroundColor = "#116466";
+                rowsNotSelected[row].style.backgroundColor = "#107475";
                 rowsNotSelected[row].classList.remove('selected');
             }
             var rowSelected = table.getElementsByTagName('tr')[rowId];

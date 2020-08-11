@@ -96,7 +96,7 @@ tbody {
 }
 .add__releaseTaskButton{
     color: black;
-    background-color: #07aa02;
+    background-color: rgb(19, 184, 14);
     border-radius: 6px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
@@ -114,7 +114,7 @@ tbody {
 .edit__releaseTaskButton{
     color: black;
     font-weight: bold;
-    background-color: #07aa02;
+    background-color: rgb(19, 184, 14);
     border-radius: 15px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
@@ -230,7 +230,7 @@ select{
 }
 .startapp{
     font-size: 25px;
-    background-color: rgb(47, 223, 41);
+    background-color: rgb(19, 184, 14);
     color: black;
     border-radius: 8px;
     cursor: pointer;

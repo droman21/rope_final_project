@@ -81,9 +81,10 @@ nav a:hover{
     background-color: rgb(59, 57, 57);
 }
 ::-webkit-scrollbar-thumb {
-    background: #D9B08C; 
+    background: #116466; 
     border-radius: 7px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #ac8b6e;
+    background: #FFCB9A;
+    
 }
