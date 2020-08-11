@@ -30,22 +30,14 @@ function highlightSelectedRow() {
             var rowSelected = table.getElementsByTagName('tr')[rowId];
             rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
             rowSelected.className += " selected";
-            //rowSelected.cells[2].innerHTML = "TEST";
             
             const statusDrop = HandleDropDowns.StatusDropDown();
-            //console.log(statusDrop);
-            //const statusDropHTML =`<select id="statusDropID" class="edit-releaseTask__Status" type="dropdown">${statusDrop}</h4></select>"`
-            
             const releaseTaskId = rowSelected.cells[0].innerHTML;
             
-            //console.log(statusDropHTML);
-            //statusDrop.Attributes.Add("onChange", "return OnSelectedIndexChange();");
             //rowSelected.cells[2].innerHTML = `<select id="${releaseTaskId}" style="width:100px;" class="Leftedit-releaseTask__Status" onChange=OnSelectedIndexChange() type="dropdown">${statusDrop}</select>`;
-            rowSelected.cells[2].innerHTML = `<select id="${releaseTaskId}" style="width:100px;" class="Leftedit-releaseTask__Status" onChange=OnSelectedIndexChange() type="dropdown">${statusDrop}</select>`;
-            SelectDropDownID.selectElement2('.Leftedit-releaseTask__Status',2);
-            //SelectDropDownID.selectElement('LeftstatusDropID',releaseTaskEdit.currentStatusID);
+            //SelectDropDownID.selectElement2('.Leftedit-releaseTask__Status',2);
+            ////SelectDropDownID.selectElement('LeftstatusDropID',releaseTaskEdit.currentStatusID);
             
-            console.log('releaseID='+releaseTaskId);
             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
             const releaseTaskCallback = releaseTask => {
                 appDivRight.innerHTML = ReleaseTask(releaseTask);
