@@ -84,15 +84,17 @@ function highlightSelectedRow() {
 }
 
 function highlightSpecificRow(rowId) {
+    console.log('hightlight spec row');
+    console.log('rowId='+rowId);
     var table = document.getElementById('table1Id');
     var cells = table.getElementsByTagName('td');
     var rows = table.getElementsByTagName('tr');
     console.log(rows.length);
     for (var row = 1; row < rows.length; row++) {
         console.log(rows[row].cells[0].innerHTML);
-        if (row[0].innerHTML == rowId){
-            console.log('ID='+cells[0].innerHTML);
-            var rowSelected = table.getElementsByTagName('tr')[rowId];
+        if (rows[row].cells[0].innerHTML == rowId){
+            console.log('ID='+rows[row].cells[0].innerHTML);
+            var rowSelected = table.getElementsByTagName('tr')[row];
             rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
             rowSelected.className += " selected";
             break;
