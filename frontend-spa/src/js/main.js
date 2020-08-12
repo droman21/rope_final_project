@@ -81,7 +81,7 @@ appDivLeft.addEventListener('click', function () {
         console.log('tableheaderID='+currentSelectedRowTaskID);
         currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
         console.log('tableheaderIDa='+currentSelectedRowTaskID);
-        HandleTaskRows.highlightSpecificRow(1);
+        HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
     }
 })
 
@@ -92,7 +92,7 @@ appDivLeft.addEventListener('click', function () {
         console.log('tableheaderName='+currentSelectedRowTaskID);
         currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
         console.log('tableheaderNameB='+currentSelectedRowTaskID);
-        HandleTaskRows.highlightSpecificRow(1);
+        HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
     }
 })
 
@@ -102,7 +102,7 @@ appDivLeft.addEventListener('click', function () {
         console.log('tableheaderStatus='+currentSelectedRowTaskID);
         currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
         console.log('tableheaderStatusB='+currentSelectedRowTaskID);
-        HandleTaskRows.highlightSpecificRow(1);
+        HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
     }
 })
 
@@ -112,7 +112,7 @@ appDivLeft.addEventListener('click', function () {
     if (event.target.classList.contains('table_header__Priority')) {
         prioritySortOrder = Sort.Priority(prioritySortOrder, currActiveReleaseTasks);
         currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-        HandleTaskRows.highlightSpecificRow(1);
+        HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
     }
 })
 
@@ -122,7 +122,7 @@ appDivLeft.addEventListener('click', function () {
         console.log('tableheaderAssigned='+currentSelectedRowTaskID);
         currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
         console.log('tableheaderAssignedB='+currentSelectedRowTaskID);
-        HandleTaskRows.highlightSpecificRow(1);
+        HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
     }
 })
 
@@ -132,7 +132,7 @@ appDivLeft.addEventListener('click', function () {
         console.log('tableheaderDue='+currentSelectedRowTaskID);
         currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
         console.log('tableheaderDueB='+currentSelectedRowTaskID);
-        HandleTaskRows.highlightSpecificRow(1);
+        HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
     }
 })
 
@@ -412,7 +412,8 @@ appDivRight.addEventListener('click', function () {
         })
             .then(response => response.json())
             .then(
-                data => newReleaseTaskID = data)
+                data => {
+                    newReleaseTaskID = data})
 //                data => console.log(data))
             .catch(err => console.log(err))
 
@@ -432,21 +433,25 @@ appDivRight.addEventListener('click', function () {
                 currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
                 console.log('AddSaveB='+currentSelectedRowTaskID);
                 HandleTaskRows.highlightSpecificRow(newReleaseTaskID);
+                console.log('in reload left new id='+newReleaseTaskID);
+                //Reload the Right Table
+                const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${newReleaseTaskID}`;
+                const releaseTaskCallback = releaseTask => {
+                    appDivRight.innerHTML = ReleaseTask(releaseTask);
+                };
+
+        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+
                 currActiveReleaseTasks = releaseTasks;
             })
             .catch(err => console.log(err))
 
-        //Reload the Right Table
-        //TODO:  Since we don't have an ID (from SQL) for this add we need to default it to 1
-        //          so that the display still works with the table row highlighted with the
-        //          task details being displayed.  If we have time to conver to a 'Release Task Number'
-        //          instead of the SQL ID we could then highlight the newly added row
-        //const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        // //Reload the Right Table
+        // const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${newReleaseTaskID}`;
+        // const releaseTaskCallback = releaseTask => {
+        //     appDivRight.innerHTML = ReleaseTask(releaseTask);
+        // };
+        // apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
     }
 })
 
