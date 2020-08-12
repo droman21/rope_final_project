@@ -259,6 +259,10 @@ select{
     color: rgb(218, 216, 216);
 }
 
+.homepageLeft{
+    color: rgb(185, 184, 184);
+}
+
 .IconHeading {
     display: flex;
     flex: 0 25em;
@@ -273,3 +277,4 @@ select{
     font-size: 30px;
     font-weight: bolder;
 }
+
