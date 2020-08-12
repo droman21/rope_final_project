@@ -89,3 +89,14 @@ nav a:hover{
 ::-webkit-scrollbar-thumb:hover {
     background: #FFCB9A;
 }
+.footer{
+    display: flex;
+    flex-flow: row;;
+    background: rgb(71, 71, 71); opacity:0.6;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    border-color: grey;
+    justify-content: center;
+    position: bottom;
+}
