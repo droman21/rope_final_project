@@ -8,13 +8,13 @@ import ReleaseTask from './components/ReleaseTask';
 import ReleaseTaskEdit from './components/ReleaseTaskEdit';
 import ReleaseTaskPostSection from './components/ReleaseTaskPostSection';
 import Header from './components/Header';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 import CommentPost from './components/CommentPost';
 import HomePageLeft from './components/HomePageLeft';
 import HomePageRight from './components/HomePageRight';
 import Sort from './components/Sort';
 import moment from "moment";
-import swal from 'sweetalert';
+//import swal from 'sweetalert';
 
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
@@ -32,7 +32,7 @@ let currActiveReleaseTasks = null;
 
 export default function pagebuild() {
     header()
-    // footer()
+    footer()
     //navHome()
     //showReleaseTasks();
     StartApp();
@@ -45,10 +45,10 @@ function header() {
     const header = document.querySelector('.header');
     header.innerHTML = Header();
 }
-// function footer() {
-//     const footerElement = document.querySelector('.footer');
-//     footerElement.innerHTML = Footer();
-// }
+function footer() {
+    const footerElement = document.querySelector('.footer');
+    footerElement.innerHTML = Footer();
+}
 
 // function navHome() {
 //     const homeButton = document.querySelector('.nav__home');
