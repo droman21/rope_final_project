@@ -48,6 +48,8 @@ nav{
     border-radius: 5px;
     border-color: grey;
     border: grey;
+    vertical-align: middle;
+    text-align: center;
 }
 nav a{
     color: white;
@@ -86,5 +88,4 @@ nav a:hover{
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #FFCB9A;
-    
 }
