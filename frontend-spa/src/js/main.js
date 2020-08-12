@@ -229,7 +229,7 @@ appDivRight.addEventListener('click', function () {
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit-releaseTask__submit')) {
-        const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
+        console.log('edit submit clicked');
         let name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
         const description = event.target.parentElement.querySelector('.new').value;
         const createdDate = event.target.parentElement.querySelector('.edit-releaseTask__createdDate').value;
@@ -237,6 +237,7 @@ appDivRight.addEventListener('click', function () {
         const newStatusID = event.target.parentElement.querySelector('.edit-releaseTask__Status').value;
         const newPriorityID = event.target.parentElement.querySelector('.edit-releaseTask__Priority').value;
         const newEmployeeID = event.target.parentElement.querySelector('.edit-releaseTask__Employee').value;
+        const releaseTaskId = event.target.parentElement.querySelector('.edit-releaseTask__id').value;
         var lastModifiedDate = new Date();
         const formatedDate = lastModifiedDate.toLocaleDateString() + " " + lastModifiedDate.toLocaleTimeString();
         name = name.charAt(0).toUpperCase() + name.slice(1);
