@@ -1,6 +1,6 @@
 export default function HomePageLeft() {
     return `
-    <h1 class="homepageLeft">R.O.P.E. Application</h1>
+    <h1 class="homepageLeft">R.O.P.E.</h1>
     <br>
     <h2 class="homepageLeft">Release <br>
     Operations <br>
