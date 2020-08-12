@@ -48,6 +48,6 @@ export default function HomePageRight() {
     <ul>
         <li>Users in the "release manager" role have hide/delete permissions</li>
     </ul>
-}
+
     `
 }
