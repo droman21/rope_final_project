@@ -43,11 +43,14 @@ export default function pagebuild() {
 
 function header() {
     const header = document.querySelector('.header');
+    console.log(header);
     header.innerHTML = Header();
 }
 function footer() {
-    const footerElement = document.querySelector('.footer');
-    footerElement.innerHTML = Footer();
+    const footer = document.querySelector('.footer');
+    console.log(footer);
+    //footerElement.innerHTML = Footer();
+    footer.innerHTML = Footer();
 }
 
 // function navHome() {
