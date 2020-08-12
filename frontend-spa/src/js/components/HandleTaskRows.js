@@ -8,6 +8,8 @@ const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 var selectedRowId = 0;
+var selectedIndex = null;
+
 
 function OnSelectedIndexClick(){
     console.log('left status called clicked');
@@ -43,7 +45,7 @@ function OnSelectedIndexClick(){
 function highlightSelectedRow() {
     var table = document.getElementById('table1Id');
     var cells = table.getElementsByTagName('td');
-    
+
     for (let i = 0; i < cells.length; i++) {
         var cell = cells[i];
         cell.onclick = function () {
@@ -55,6 +57,10 @@ function highlightSelectedRow() {
                 rowsNotSelected[row].classList.remove('selected');
             }
             var rowSelected = table.getElementsByTagName('tr')[rowId];
+
+            selectedIndex = rowSelected.cells[0].innerHTML;
+            console.log(selectedIndex);
+
             rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
             rowSelected.className += " selected";
             
@@ -74,14 +80,24 @@ function highlightSelectedRow() {
             apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         }
     }
-    return selectedRowId;
+    return selectedIndex;
 }
 
 function highlightSpecificRow(rowId) {
     var table = document.getElementById('table1Id');
-    var rowSelected = table.getElementsByTagName('tr')[rowId];
-    rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
-    rowSelected.className += " selected";
+    var cells = table.getElementsByTagName('td');
+    var rows = table.getElementsByTagName('tr');
+    console.log(rows.length);
+    for (var row = 1; row < rows.length; row++) {
+        console.log(rows[row].cells[0].innerHTML);
+        if (row[0].innerHTML == rowId){
+            console.log('ID='+cells[0].innerHTML);
+            var rowSelected = table.getElementsByTagName('tr')[rowId];
+            rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
+            rowSelected.className += " selected";
+            break;
+        }
+    }
 }
 
 export default {
