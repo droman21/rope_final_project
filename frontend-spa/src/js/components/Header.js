@@ -7,6 +7,5 @@ export default function Header(_){
         <a href="AboutApp.html" target="_blank">About the App</a>
     
     </nav>
-
     `
 }
