@@ -377,7 +377,7 @@ appDivRight.addEventListener('click', function (releaseTask) {
                 appDivRight.innerHTML = ReleaseTask(releaseTask);
                 //ADD IN HIGHLIGHTED SELECTED ROW TO REQUEST
                 //THIS LINE OF CODE HIGHLIGHTS ROW ID
-                 HandleTaskRows.highlightSpecificRow(1);
+                 //HandleTaskRows.highlightSpecificRow(1);
             }
 
         )
