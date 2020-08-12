@@ -1,12 +1,21 @@
-.priority__value[id$="1"]{
-    background-color:red;
+.priorityValue[id$="1"],.priorityColor[id$="1"]{
     color: white;
+    animation: blinkingBackground 3s infinite;
 }
-.priority__value[id$="2"]{
-     background-color:orange;
+@keyframes blinkingBackground{
+    0%		{ background-color:red;}
+    25%		{ background-color: darkred;}
+    50%		{ background-color: red;}
+    75%		{ background-color: darkred;}
+    100%	{ background-color: red;}
 }
 
-
+.priorityValue[id$="2"],.priorityColor[id$="2"]{
+     background-color:rgb(219, 123, 13);
+}
+.priorityColor{
+    border-radius: 5px;
+}
 /* Grabs all id's with index of ONE */
 /* [id$="1"]{
     background-color: orange;
