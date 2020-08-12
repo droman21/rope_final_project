@@ -29,10 +29,10 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop, priorityDrop, e
         ${employeeDrop}
         </select>
         
-        </section>
-
         <input class="edit-releaseTask__id" hidden="true" value="${releaseTask.id}">
         <input class="edit-releaseTask__createdDate" hidden="true" value="${releaseTask.createdDate}">
+        </section>
+
         
         <h4></h4>
 
