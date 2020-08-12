@@ -65,7 +65,7 @@ function StartApp() {
 }
 
 appDivLeft.addEventListener('click', function () {
-    if (event.target.parentElement.classList.contains('startapp')) {
+    if (event.target.parentElement != null && event.target.parentElement.classList.contains('startapp')){
         showReleaseTasks();
     }
 })
@@ -288,7 +288,7 @@ appDivRight.addEventListener('click', function () {
 })
 
 appDivLeft.addEventListener('click', function () {
-    if (event.target.parentElement.classList.contains('add__releaseTaskButton')) {
+    if (event.target.parentElement != null && event.target.parentElement.classList.contains('add__releaseTaskButton')) {
         const statusDrop = HandleDropDowns.StatusDropDown();
         const priorityDrop = HandleDropDowns.PriorityDropDown();
         const employeeDrop = HandleDropDowns.EmployeeDropDown();
@@ -456,8 +456,8 @@ function ExecuteTimer() {
 
 appDivLeft.addEventListener('click', function () {
 
-    if (event.target.parentElement.classList.contains('reminders__button')) {
-        if (event.shiftKey) {
+    if (event.target.parentElement != null && event.target.parentElement.classList.contains('reminders__button')) {
+        if (event.shiftKey){
             fetch("https://localhost:44302/api/releaseTask")
                 .then(response => response.json())
                 .then(releaseTasks => {

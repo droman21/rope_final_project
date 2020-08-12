@@ -9,8 +9,35 @@ const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 var selectedRowId = 0;
 
-function OnSelectedIndexChange(){
-    console.log('left status clicked');
+function OnSelectedIndexClick(){
+    console.log('left status called clicked');
+    const selectedItem = event.target.parentElement.querySelector('.Leftedit-releaseTask__Status').value;
+    console.log('selected item='+selectedItem);
+
+    const releaseTaskId = event.target.parentElement.querySelector('.Leftedit-releaseTask__Status').id;
+    console.log('in html relid='+releaseTaskId);
+    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+
+    const releaseEdit = {
+            id: releaseTaskId,
+            CurrentStatusID: selectedItem
+    };
+
+    apiActions.patchRequest(
+            releaseTaskEndpoint,
+            releaseEdit
+    )
+
+    // fetch(releaseTaskEndpoint, {
+    // method: 'PATCH',
+    // body: JSON.stringify(releaseEdit),
+    // headers: {
+    //     "Content-Type": "application/json"
+    // }
+    // })
+    //     .then(response => response.json())
+    //     .catch(err => console.log(err))
+
 }
 
 function highlightSelectedRow() {
@@ -31,12 +58,14 @@ function highlightSelectedRow() {
             rowSelected.style.backgroundColor = "rgb(173, 204, 209)";
             rowSelected.className += " selected";
             
-            const statusDrop = HandleDropDowns.StatusDropDown();
             const releaseTaskId = rowSelected.cells[0].innerHTML;
             
-            //rowSelected.cells[2].innerHTML = `<select id="${releaseTaskId}" style="width:100px;" class="Leftedit-releaseTask__Status" onChange=OnSelectedIndexChange() type="dropdown">${statusDrop}</select>`;
-            //SelectDropDownID.selectElement2('.Leftedit-releaseTask__Status',2);
-            ////SelectDropDownID.selectElement('LeftstatusDropID',releaseTaskEdit.currentStatusID);
+            //const statusDrop = HandleDropDowns.StatusDropDown();
+            // console.log('before set HTML');
+            // rowSelected.cells[2].innerHTML = `<select id="${releaseTaskId}" style="width:100px;" class="Leftedit-releaseTask__Status" onChange="${OnSelectedIndexChange()}" type="dropdown">${statusDrop}</select>`;
+            // console.log('before set drop value');
+            // SelectDropDownID.selectElement2('.Leftedit-releaseTask__Status',2);
+            // //SelectDropDownID.selectElement('LeftstatusDropID',releaseTaskEdit.currentStatusID);
             
             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
             const releaseTaskCallback = releaseTask => {
