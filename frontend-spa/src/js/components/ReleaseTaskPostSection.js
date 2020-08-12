@@ -3,6 +3,8 @@ export default function ReleaseTaskPostSection(statusDrop, priorityDrop, employe
     <section class="post">
         <section class="create-releaseTask__post">
             <h1 class="releaseTaskPostSection">Add New Release Task</h1>
+            <button class="create-releaseTask__submit">Save</button>
+            <button class="edit__releaseTaskButton__back" id=${currentSelectedRowID}>Back</button>
         
             <h4>Task Name:
             <input class="create-releaseTask__name" type="text" placeholder="Release Task Name"></h4>
@@ -27,8 +29,6 @@ export default function ReleaseTaskPostSection(statusDrop, priorityDrop, employe
             ${employeeDrop}</h4>
             </select>
         </section> 
-        <button class="create-releaseTask__submit">Save</button>
-        <button class="edit__releaseTaskButton__back" id=${currentSelectedRowID}>Back</button>
     </section>
     `
 }

@@ -72,6 +72,7 @@ nav a:hover{
 }
 .post,.releaseTask__detailsInfo{
     padding: 2em;
+}
 ::-webkit-scrollbar{
     background-color: rgb(59, 57, 57);
     width: 10px;
@@ -80,9 +81,10 @@ nav a:hover{
     background-color: rgb(59, 57, 57);
 }
 ::-webkit-scrollbar-thumb {
-    background: red; 
+    background: #116466; 
     border-radius: 7px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #b30000;
+    background: #FFCB9A;
+    
 }
