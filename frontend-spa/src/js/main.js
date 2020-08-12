@@ -146,16 +146,20 @@ function showReleaseTasks() {
             console.log('showtasks='+currentSelectedRowTaskID);
             currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
             console.log('showtasksB='+currentSelectedRowTaskID);
-            HandleTaskRows.highlightSpecificRow(1);
+            var table = document.getElementById('table1Id');
+            var rows = table.getElementsByTagName('tr');
+            let firstReleaseTaskID = rows[1].cells[0].innerHTML;
+            HandleTaskRows.highlightSpecificRow(firstReleaseTaskID);
+            const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${firstReleaseTaskID}`;
+            const releaseTaskCallback = releaseTask => {
+                appDivRight.innerHTML = ReleaseTask(releaseTask);
+            };
+            apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        
             currActiveReleaseTasks = releaseTasks;
         })
         .catch(err => console.log(err))
 
-    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/1`;
-    const releaseTaskCallback = releaseTask => {
-        appDivRight.innerHTML = ReleaseTask(releaseTask);
-    };
-    apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
 }
 
 
@@ -185,19 +189,18 @@ appDivRight.addEventListener('click', function () {
                     console.log('Delete='+currentSelectedRowTaskID);
                     currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
                     console.log('DeleteB='+currentSelectedRowTaskID);
-                    HandleTaskRows.highlightSpecificRow(1);
-                    currActiveReleaseTasks = releaseTasks;
+                    var table = document.getElementById('table1Id');
+                    var rows = table.getElementsByTagName('tr');
+                    let firstReleaseTaskID = rows[1].cells[0].innerHTML;
+                    HandleTaskRows.highlightSpecificRow(firstReleaseTaskID);
+                    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${firstReleaseTaskID}`;
+                    const releaseTaskCallback = releaseTask => {
+                        appDivRight.innerHTML = ReleaseTask(releaseTask);
+                    };
+                    apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                            currActiveReleaseTasks = releaseTasks;
                 })
                 .catch(err => console.log(err))
-
-            //Reload the Right Table
-            const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
-
-            const releaseTaskCallback = releaseTask => {
-                appDivRight.innerHTML = ReleaseTask(releaseTask);
-            };
-            apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
-
             }
         }
         else {
@@ -233,7 +236,16 @@ appDivRight.addEventListener('click', function () {
                     console.log('Delete='+currentSelectedRowTaskID);
                     currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
                     console.log('DeleteB='+currentSelectedRowTaskID);
-                    HandleTaskRows.highlightSpecificRow(1);
+                    var table = document.getElementById('table1Id');
+                    var rows = table.getElementsByTagName('tr');
+                    let firstReleaseTaskID = rows[1].cells[0].innerHTML;
+                    HandleTaskRows.highlightSpecificRow(firstReleaseTaskID);
+                    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${firstReleaseTaskID}`;
+                    const releaseTaskCallback = releaseTask => {
+                        appDivRight.innerHTML = ReleaseTask(releaseTask);
+                    };
+                    apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                            currActiveReleaseTasks = releaseTasks;
                     currActiveReleaseTasks = releaseTasks;
                 })
                 .catch(err => console.log(err))
