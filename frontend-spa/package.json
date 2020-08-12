@@ -21,6 +21,7 @@
   "description": "",
   "dependencies": {
     "moment": "^2.27.0",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^9.17.1"
   }
 }

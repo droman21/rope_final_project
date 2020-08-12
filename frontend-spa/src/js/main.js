@@ -15,6 +15,7 @@ import HomePageRight from './components/HomePageRight';
 import Sort from './components/Sort';
 import moment from "moment";
 //import swal from 'sweetalert';
+import swal from 'sweetalert2';
 
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
@@ -222,7 +223,8 @@ appDivRight.addEventListener('click', function () {
                     releaseTaskEndpoint,
                     releaseEdit
                 )
-                alert('Task Deleted');
+                //alert('Task Deleted');
+                swal.fire('test321');
                 //TODO:  The next 20 lines are repeated elsewhere in main.js
                 //without the alert the page reposts with old data, even though it did save
                 //TODO:  Convert this to a Popup?  or add more detail to the alert popup
