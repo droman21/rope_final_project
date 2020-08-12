@@ -36,13 +36,13 @@ export default function ReleaseTask(releaseTask) {
             <p class="releaseTask__assignedEmployeeName"><b>Assigned To:</b> ${releaseTask.employee.name}</p>
             <p class="releaseTask__description"><b>Description:</b> ${releaseTask.description}</p>
             <p class="releaseTask__lastModifiedDate"><b>Last Modified:</b> ${moment(releaseTask.lastModifiedDate).format(('MMMM Do YYYY, h:mm a'))}</p>
-            <ul class="releaseTask__comment"><b>Comments:</b>
+        <ul class="releaseTask__comment"><b>Comments:</b>
                 ${releaseTask.comments.map(comment => {
                     return `
                     <li type="date">${comment.details}</li>
                     `
                 }).join("")}
-            </ul>
+        </ul>
             <p class="releaseTask__createdDate"><b>Created:</b> ${moment(releaseTask.createdDate).format(('MMMM Do YYYY, h:mm a'))}</p>
         </div>
     </section>

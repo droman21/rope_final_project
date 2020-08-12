@@ -5,6 +5,8 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop, priorityDrop, e
     return `
     <section class="edit-container">
     <h3 class="edit-releaseTask__header">Edit the release task fields below.</h3>
+    <button class="edit-releaseTask__submit">Save</button>
+    <button class="edit__releaseTaskButton__back" id=${releaseTask.id}>Back</button>
         <h4>Task Name:
         <input class="edit-releaseTask__name" type="text"  value="${releaseTask.name}"></h4>
         <h4>Description:</h4>
@@ -27,17 +29,16 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop, priorityDrop, e
         ${employeeDrop}
         </select>
         
-        </section>
-
         <input class="edit-releaseTask__id" hidden="true" value="${releaseTask.id}">
         <input class="edit-releaseTask__createdDate" hidden="true" value="${releaseTask.createdDate}">
+        </section>
+
         
         <h4></h4>
 
         <br><br>
 
-        <button class="edit-releaseTask__submit">Save</button>
-        <button class="edit__releaseTaskButton__back" id=${releaseTask.id}>Back</button>
+
     `
 }
 
