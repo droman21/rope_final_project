@@ -29,6 +29,7 @@ let dueTimeSortOrder = "ascending";
 let idSortOrder = "descending";
 
 let currActiveReleaseTasks = null;
+let newReleaseTaskID = null;
 
 export default function pagebuild() {
     header()
@@ -349,15 +350,24 @@ appDivRight.addEventListener('click', function () {
         //         appDivLeft.innerHTML = ReleaseTasks(newReleaseTasks);
         //     }
         // )
-        apiActions.postRequest2(
-            "https://localhost:44302/api/releaseTask",
-            requestBody
-        )
+        fetch("https://localhost:44302/api/releaseTask", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestBody),
+        })
+            .then(response => response.json())
+            .then(
+                data => newReleaseTaskID = data)
+//                data => console.log(data))
+            .catch(err => console.log(err))
 
-        //TODO:  The next 20 lines are repeated elsewhere in main.js
-        //without the alert the page reposts with old data, even though it did save
-        //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert("Task Added");
+            //TODO:  The next 20 lines are repeated elsewhere in main.js
+            //without the alert the page reposts with old data, even though it did save
+            //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+            alert("Task Added");
+            console.log('new task ID='+newReleaseTaskID);
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -368,7 +378,7 @@ appDivRight.addEventListener('click', function () {
                 console.log('AddSave='+currentSelectedRowTaskID);
                 currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
                 console.log('AddSaveB='+currentSelectedRowTaskID);
-                HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
+                HandleTaskRows.highlightSpecificRow(newReleaseTaskID);
                 currActiveReleaseTasks = releaseTasks;
             })
             .catch(err => console.log(err))
