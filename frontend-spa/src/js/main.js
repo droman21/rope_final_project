@@ -15,6 +15,7 @@ import HomePageRight from './components/HomePageRight';
 import Sort from './components/Sort';
 import moment from "moment";
 //import swal from 'sweetalert';
+import swal from 'sweetalert2';
 
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
@@ -167,98 +168,149 @@ appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('delete_releaseTaskButton')) {
         const releaseTaskId = event.target.parentElement.querySelector('.delete_releaseTaskButton').id;
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-        //var response = swal("Click OK to delete this task?", "", "warning");
 
         if (event.shiftKey) {
-            var response = confirm("Click OK to PERMANENTLY delete this task?");
-            if (response == true) {
-                apiActions.deleteRequest2(
-                    releaseTaskEndpoint
-                )
-                alert('Task Deleted');
-                //TODO:  The next 20 lines are repeated elsewhere in main.js
-                //without the alert the page reposts with old data, even though it did save
-                //TODO:  Convert this to a Popup?  or add more detail to the alert popup
 
-                //Reload the Left Table
-                fetch("https://localhost:44302/api/releaseTask")
-                .then(response => response.json())
-                .then(releaseTasks => {
-                    releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-                    appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                    console.log('Delete='+currentSelectedRowTaskID);
-                    currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                    console.log('DeleteB='+currentSelectedRowTaskID);
-                    var table = document.getElementById('table1Id');
-                    var rows = table.getElementsByTagName('tr');
-                    let firstReleaseTaskID = rows[1].cells[0].innerHTML;
-                    HandleTaskRows.highlightSpecificRow(firstReleaseTaskID);
-                    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${firstReleaseTaskID}`;
-                    const releaseTaskCallback = releaseTask => {
-                        appDivRight.innerHTML = ReleaseTask(releaseTask);
-                    };
-                    apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                            currActiveReleaseTasks = releaseTasks;
-                })
-                .catch(err => console.log(err))
-            }
+            swal.fire({
+                title: 'PERMANENT--Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.value) {
+                    apiActions.deleteRequest2(
+                        releaseTaskEndpoint
+                    )
+                    swal.fire({
+                        icon:'success',
+                        title:'Task Delete',
+                        text:'Task has been PERMANENTLY deleted.'
+                    });    
+                    //TODO:  The next 20 lines are repeated elsewhere in main.js
+                    //without the alert the page reposts with old data, even though it did save
+                    //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+                    //Reload the Left Table
+                    fetch("https://localhost:44302/api/releaseTask")
+                    .then(response => response.json())
+                    .then(releaseTasks => {
+                        releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+                        appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+                        console.log('Delete='+currentSelectedRowTaskID);
+                        currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
+                        console.log('DeleteB='+currentSelectedRowTaskID);
+                        var table = document.getElementById('table1Id');
+                        var rows = table.getElementsByTagName('tr');
+                        let firstReleaseTaskID = rows[1].cells[0].innerHTML;
+                        HandleTaskRows.highlightSpecificRow(firstReleaseTaskID);
+                        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${firstReleaseTaskID}`;
+                        const releaseTaskCallback = releaseTask => {
+                            appDivRight.innerHTML = ReleaseTask(releaseTask);
+                        };
+                        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                                currActiveReleaseTasks = releaseTasks;
+                    })
+                    .catch(err => console.log(err))
+                }
+              })
+
+
+            // var response = confirm("Click OK to PERMANENTLY delete this task?");
+            // if (response == true) {
+            //     apiActions.deleteRequest2(
+            //         releaseTaskEndpoint
+            //     )
+            //     //alert('Task Deleted');
+            //      swal.fire({
+            //          icon:'success',
+            //          title:'Task Delete',
+            //          text:'Task has been PERMANENTLY deleted.'
+            //      });
+                //swal.fire('TEST');
+                // //TODO:  The next 20 lines are repeated elsewhere in main.js
+                // //without the alert the page reposts with old data, even though it did save
+                // //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+
+                // //Reload the Left Table
+                // fetch("https://localhost:44302/api/releaseTask")
+                // .then(response => response.json())
+                // .then(releaseTasks => {
+                //     releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+                //     appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+                //     console.log('Delete='+currentSelectedRowTaskID);
+                //     currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
+                //     console.log('DeleteB='+currentSelectedRowTaskID);
+                //     var table = document.getElementById('table1Id');
+                //     var rows = table.getElementsByTagName('tr');
+                //     let firstReleaseTaskID = rows[1].cells[0].innerHTML;
+                //     HandleTaskRows.highlightSpecificRow(firstReleaseTaskID);
+                //     const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${firstReleaseTaskID}`;
+                //     const releaseTaskCallback = releaseTask => {
+                //         appDivRight.innerHTML = ReleaseTask(releaseTask);
+                //     };
+                //     apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                //             currActiveReleaseTasks = releaseTasks;
+                // })
+                // .catch(err => console.log(err))
+            // }
         }
         else {
-
-            const releaseEdit = {
-                id: releaseTaskId,
-                IsVisisble: false
-            };
-
-            //TODO:  The next 20 lines are repeated elsewhere in main.js
-            //without the alert the page reposts with old data, even though it did save
-            //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-            //alert("Task Deleted");
-            var response = confirm("Click OK to delete this task?");
-
-            if (response == true) {
-
-                apiActions.patchRequest(
-                    releaseTaskEndpoint,
-                    releaseEdit
-                )
-                alert('Task Deleted');
-                //TODO:  The next 20 lines are repeated elsewhere in main.js
-                //without the alert the page reposts with old data, even though it did save
-                //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-
-                //Reload the Left Table
-                fetch("https://localhost:44302/api/releaseTask")
-                .then(response => response.json())
-                .then(releaseTasks => {
-                    releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-                    appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                    console.log('Delete='+currentSelectedRowTaskID);
-                    currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                    console.log('DeleteB='+currentSelectedRowTaskID);
-                    var table = document.getElementById('table1Id');
-                    var rows = table.getElementsByTagName('tr');
-                    let firstReleaseTaskID = rows[1].cells[0].innerHTML;
-                    HandleTaskRows.highlightSpecificRow(firstReleaseTaskID);
-                    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${firstReleaseTaskID}`;
-                    const releaseTaskCallback = releaseTask => {
-                        appDivRight.innerHTML = ReleaseTask(releaseTask);
+            swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.value) {
+                    const releaseEdit = {
+                        id: releaseTaskId,
+                        IsVisisble: false
                     };
-                    apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                            currActiveReleaseTasks = releaseTasks;
-                    currActiveReleaseTasks = releaseTasks;
-                })
-                .catch(err => console.log(err))
+        
+                    apiActions.patchRequest(
+                        releaseTaskEndpoint,
+                        releaseEdit
+                    )
 
-            //Reload the Right Table
-            const releaseTaskEndpoint2 = `https://localhost:44302/api/releaseTask/1`;
+                    swal.fire({
+                        icon:'success',
+                        title:'Task Delete',
+                        text:'Task has been deleted.'
+                    });    
+                    //TODO:  The next 20 lines are repeated elsewhere in main.js
+                    //without the alert the page reposts with old data, even though it did save
+                    //TODO:  Convert this to a Popup?  or add more detail to the alert popup
+                    //Reload the Left Table
+                    fetch("https://localhost:44302/api/releaseTask")
+                    .then(response => response.json())
+                    .then(releaseTasks => {
+                        releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+                        appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+                        console.log('Delete='+currentSelectedRowTaskID);
+                        currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
+                        console.log('DeleteB='+currentSelectedRowTaskID);
+                        var table = document.getElementById('table1Id');
+                        var rows = table.getElementsByTagName('tr');
+                        let firstReleaseTaskID = rows[1].cells[0].innerHTML;
+                        HandleTaskRows.highlightSpecificRow(firstReleaseTaskID);
+                        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${firstReleaseTaskID}`;
+                        const releaseTaskCallback = releaseTask => {
+                            appDivRight.innerHTML = ReleaseTask(releaseTask);
+                        };
+                        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+                                currActiveReleaseTasks = releaseTasks;
+                    })
+                    .catch(err => console.log(err))
+                }
+              })
 
-            const releaseTaskCallback = releaseTask => {
-                appDivRight.innerHTML = ReleaseTask(releaseTask);
-            };
-            apiActions.getRequest(releaseTaskEndpoint2, releaseTaskCallback);
 
-            }
+
         }
 
         // //TODO:  The next 20 lines are repeated elsewhere in main.js
@@ -348,7 +400,13 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert("Changes Saved");
+        //alert("Changes Saved");
+        swal.fire({
+            icon:'success',
+            title:'Task Edit',
+            text:'Task has been edited.'
+        });
+
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -432,7 +490,13 @@ appDivRight.addEventListener('click', function () {
             //TODO:  The next 20 lines are repeated elsewhere in main.js
             //without the alert the page reposts with old data, even though it did save
             //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-            alert("Task Added");
+            //alert("Task Added");
+            swal.fire({
+                icon:'success',
+                title:'Task Add',
+                text:'Task has been added.'
+            });
+
             console.log('new task ID='+newReleaseTaskID);
 
         //Reload the Left Table
@@ -526,7 +590,13 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert("Changes Saved");
+        //alert("Changes Saved");
+        swal.fire({
+            icon:'success',
+            title:'Add Comment',
+            text:'Comment had been added.'
+        });
+
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -558,6 +628,12 @@ function ExecuteTimer() {
         let now = (new Date());
         if (curr < now) {
             alert('Warning.  The following task is overdue\n\n' + rt.name);
+            // swal.fire({
+            //     icon:'info',
+            //     title:'Task Due',
+            //     text:'Warning. The folloiwing task is overdue\n\n' + rt.name
+            // });
+
         }
     });
 }
