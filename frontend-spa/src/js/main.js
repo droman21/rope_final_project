@@ -176,7 +176,13 @@ appDivRight.addEventListener('click', function () {
                 apiActions.deleteRequest2(
                     releaseTaskEndpoint
                 )
-                alert('Task Deleted');
+                //alert('Task Deleted');
+                 swal.fire({
+                     icon:'success',
+                     title:'Task Delete',
+                     text:'Task has been PERMANENTLY deleted.'
+                 });
+                //swal.fire('TEST');
                 //TODO:  The next 20 lines are repeated elsewhere in main.js
                 //without the alert the page reposts with old data, even though it did save
                 //TODO:  Convert this to a Popup?  or add more detail to the alert popup
@@ -224,8 +230,12 @@ appDivRight.addEventListener('click', function () {
                     releaseEdit
                 )
                 //alert('Task Deleted');
-                swal.fire('test321');
-                //TODO:  The next 20 lines are repeated elsewhere in main.js
+                swal.fire({
+                    icon:'success',
+                    title:'Task Delete',
+                    text:'Task has been deleted.'
+                });
+               //TODO:  The next 20 lines are repeated elsewhere in main.js
                 //without the alert the page reposts with old data, even though it did save
                 //TODO:  Convert this to a Popup?  or add more detail to the alert popup
 
@@ -350,7 +360,13 @@ appDivRight.addEventListener('click', function () {
         //TODO:  The next 20 lines are repeated elsewhere in main.js
         //without the alert the page reposts with old data, even though it did save
         //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-        alert("Changes Saved");
+        //alert("Changes Saved");
+        swal.fire({
+            icon:'success',
+            title:'Task Edit',
+            text:'Task has been edited.'
+        });
+
 
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
@@ -434,7 +450,13 @@ appDivRight.addEventListener('click', function () {
             //TODO:  The next 20 lines are repeated elsewhere in main.js
             //without the alert the page reposts with old data, even though it did save
             //TODO:  Convert this to a Popup?  or add more detail to the alert popup
-            alert("Task Added");
+            //alert("Task Added");
+            swal.fire({
+                icon:'success',
+                title:'Task Add',
+                text:'Task has been added.'
+            });
+
             console.log('new task ID='+newReleaseTaskID);
 
         //Reload the Left Table
