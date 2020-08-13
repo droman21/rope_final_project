@@ -32,18 +32,10 @@ let newReleaseTaskID = null;
 export default function pagebuild() {
     header()
     footer()
-    //Option1
-    // swal.fire({
-    //     title:'Welcome to R.O.P.E',
-    //     text:'Release Operations Process Enforcer.'
-    // });    
-    // showReleaseTasks();
-
-    //Option2
     StartApp();
 
-    //TODO:  Uncomment the following line before demos and final release
-    AppTimer = setInterval(ExecuteTimer,60000);    
+    //TODO: Uncomment the following line to active Popup Reminders
+    //AppTimer = setInterval(ExecuteTimer, 180000);    
 }
 
 function header() {
@@ -440,6 +432,8 @@ appDivLeft.addEventListener('click', function () {
                 .then(releaseTasks => {
                     //releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                     appDiv.innerHTML = ReleaseTasks(releaseTasks);
+                    //appDivLeft.innerHTML = null;
+                    //appDivRight.innerHTML = null;
                     //currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
                     //HandleTaskRows.highlightSpecificRow(1);
                 })
