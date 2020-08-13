@@ -7,7 +7,7 @@ export default function ReleaseTaskPostSection(statusDrop, priorityDrop, employe
             <button class="edit__releaseTaskButton__back" id=${currentSelectedRowID}>Back</button>
         
             <h4 class="releaseTask__detailsInfolist">Task Name:&ensp;&ensp;
-            <input class="create-releaseTask__name" type="text" placeholder="Release Task Name"></h4>
+            <input class="create-releaseTask__name" type="text" size="37" placeholder="Release Task Name"></h4>
         
             <h4 class="releaseTask__detailsInfolist">Due Time:&ensp;&ensp;
             <input class="create-releaseTask__currentDueTime"  type="datetime-local" value="${Date()}"> </h4>
