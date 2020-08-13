@@ -14,7 +14,7 @@ import HomePageRight from './components/HomePageRight';
 import Sort from './components/Sort';
 import swal from 'sweetalert2';
 
-//const appDiv = document.querySelector('.app');
+const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
 let currentSelectedRowTaskID = 1;
@@ -238,7 +238,6 @@ appDivRight.addEventListener('click', function () {
     }
 })
 
-
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit__releaseTaskButton')) {
         const ReleaseTaskEditSection = document.querySelector('.releaseTask__detailsInfo');
@@ -301,7 +300,6 @@ appDivRight.addEventListener('click', function () {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-
     }
 })
 
@@ -410,21 +408,11 @@ appDivRight.addEventListener('click', function () {
             text:'Comment had been added.'
         });
 
-        //Reload the Left Table - keeping current selected row
-        fetch("https://localhost:44302/api/releaseTask")
-            .then(response => response.json())
-            .then(releaseTasks => {
-                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-                appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
-                const releaseTaskCallback = releaseTask => {
-                    appDivRight.innerHTML = ReleaseTask(releaseTask);
-                };
-                apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                currActiveReleaseTasks = releaseTasks;
-            })
-            .catch(err => console.log(err))
+        getReleaseTasksShowCurrent();
+        const releaseTaskCallback = releaseTask => {
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
     }
 })
 
@@ -435,13 +423,12 @@ function ExecuteTimer() {
         let curr = (new Date(rt.currentDueTime));
         let now = (new Date());
         if (curr < now) {
-            alert('Warning.  The following task is overdue\n\n' + rt.name);
-            // swal.fire({
-            //     icon:'info',
-            //     title:'Task Due',
-            //     text:'Warning. The folloiwing task is overdue\n\n' + rt.name
-            // });
-
+            //alert('Warning.  The following task is overdue\n\n' + rt.name);
+            swal.fire({
+                icon:'info',
+                title:'Task Due',
+                text:'Warning. The folloiwing task is overdue\n\n' + rt.name
+            });
         }
     });
 }
@@ -454,14 +441,23 @@ appDivLeft.addEventListener('click', function () {
                 .then(response => response.json())
                 .then(releaseTasks => {
                     //releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-                    appDivRight.innerHTML = ReleaseTasks(releaseTasks);
+                    appDiv.innerHTML = ReleaseTasks(releaseTasks);
                     //currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
                     //HandleTaskRows.highlightSpecificRow(1);
                 })
                 .catch(err => console.log(err))
-        }
+                swal.fire({
+                    icon:'info',
+                    title:'ALL Tasks View',
+                    text:'Warning. This is informational only.  Any click will return to the main program.'
+                });
+            }
         else {
             ExecuteTimer();
         }
     }
+})
+
+appDiv.addEventListener('click', function() {
+    appDiv.innerHTML = null;
 })
