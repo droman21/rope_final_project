@@ -35,14 +35,6 @@ namespace RopeFinalProjectBackEnd.Controllers
         }
 
         // POST: api/ReleaseTask
-        //[HttpPost]
-        //public IEnumerable<ReleaseTask> Post([FromBody] ReleaseTask value)
-        //{
-        //    releaseTasksRepo.Create(value);
-        //    return releaseTasksRepo.GetAll();
-        //}
-
-        // POST: api/ReleaseTask
         [HttpPost]
         public int Post([FromBody] ReleaseTask value)
         {

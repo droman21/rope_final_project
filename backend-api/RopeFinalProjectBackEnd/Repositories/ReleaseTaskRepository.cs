@@ -19,20 +19,8 @@ namespace RopeFinalProjectBackEnd.Repositories
             db = context;
         }
 
-        //public override void UpdateFields(ReleaseTask entity)
-        //{
-        //    var t2 = entity;
-        //    using (var db = new ReleaseTasksAPIContext())
-        //    {
-        //        db.ReleaseTasks.Attach(t2);
-        //        db.Entry(t2).Property(x => x.IsVisisble).IsModified = true;
-        //        db.SaveChanges();
-        //    }
-        //}
-
         public override void UpdateFields(ReleaseTask entity)
         {
-            //var t2 = entity;
             using (var db = new ReleaseTasksAPIContext())
             {
                 db.ReleaseTasks.Attach(entity);
@@ -54,32 +42,13 @@ namespace RopeFinalProjectBackEnd.Repositories
         public override IEnumerable<ReleaseTask> GetAll()
         {
             var releaseTasks = db.ReleaseTasks
-            //this line gives a lambda error
-            //.Include(rt => rt.Status.Name).Where(rt => rt.CurrentStatusID == rt.Status.ID).FirstOrDefault();
-
-            //this line works but returns incorrect data
-            //.Include(rt => rt.Status).Where(s => s.CurrentStatusID == 1).ToList();
-
-            //this line works but returns all other tasks with StatusIDs that match the current StatusID
             .Include(rt => rt.Status).Where(s => s.CurrentStatusID == s.Status.ID)
             .Include(rt => rt.Priority).Where(p => p.CurrentPriorityID == p.Priority.ID)
             .Include(rt => rt.Employee).Where(e => e.AssignedEmployeeID == e.Employee.ID)
             .Include(rt => rt.Comments)
             .ToList();
 
-            //return db.ReleaseTasks.Include("ReleaseTask").ToList();
             return releaseTasks;
         }
-
-        //public override IEnumerable<ReleaseTask> GetAll()
-        //{
-        //    var releaseTasks = db.ReleaseTasks
-        //        .Include(s => s.Status)
-        //        //.ThenInclude(s => s.Name)
-        //        .Where(s => s.CurrentStatusID == s.Status.ID)
-        //        .ToList();
-        //    return releaseTasks;
-        //}
-
     }
 }

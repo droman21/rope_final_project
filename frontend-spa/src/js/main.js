@@ -541,17 +541,17 @@ appDivRight.addEventListener('click', function (releaseTask) {
             }
         )
     }
-    if (event.target.classList.contains('edit__releaseTaskButton__back')) {
-        apiActions.getRequest(`https://localhost:44302/api/releaseTask/1`,
-            releaseTask => {
-                appDivRight.innerHTML = ReleaseTask(releaseTask);
-                //ADD IN HIGHLIGHTED SELECTED ROW TO REQUEST
-                //THIS LINE OF CODE HIGHLIGHTS ROW ID
-                 //HandleTaskRows.highlightSpecificRow(1);
-            }
+    // if (event.target.classList.contains('edit__releaseTaskButton__back')) {
+    //     apiActions.getRequest(`https://localhost:44302/api/releaseTask/1`,
+    //         releaseTask => {
+    //             appDivRight.innerHTML = ReleaseTask(releaseTask);
+    //             //ADD IN HIGHLIGHTED SELECTED ROW TO REQUEST
+    //             //THIS LINE OF CODE HIGHLIGHTS ROW ID
+    //              //HandleTaskRows.highlightSpecificRow(1);
+    //         }
 
-        )
-    }
+    //     )
+    // }
 
 })
 

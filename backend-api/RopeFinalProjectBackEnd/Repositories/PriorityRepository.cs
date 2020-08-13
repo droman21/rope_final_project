@@ -12,7 +12,6 @@ namespace RopeFinalProjectBackEnd.Repositories
     {
         public PriorityRepository(ReleaseTasksAPIContext context) : base(context)
         {
-
         }
     }
 }
