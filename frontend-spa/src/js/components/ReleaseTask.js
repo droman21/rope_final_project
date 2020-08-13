@@ -39,7 +39,7 @@ export default function ReleaseTask(releaseTask) {
             <p class="releaseTask__comment"><b>Comments:</b>
                 ${releaseTask.comments.map(comment => {
                     return `
-                    <li type="date">${comment.details}</li>
+                    <li type="date"><span class="details">${comment.details}<span></li>
                     `
                 }).join("")}
             </p>
