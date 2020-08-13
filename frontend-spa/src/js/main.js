@@ -184,13 +184,13 @@ appDivRight.addEventListener('click', function () {
         if (event.shiftKey) {
 
             swal.fire({
-                title: 'PERMANENT--Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Are you sure?',
+                text: "This is a permanent deletion!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, Delete it'
               }).then((result) => {
                 if (result.value) {
                     apiActions.deleteRequest2(
@@ -199,7 +199,7 @@ appDivRight.addEventListener('click', function () {
                     swal.fire({
                         icon:'success',
                         title:'Task Delete',
-                        text:'Task has been PERMANENTLY deleted.'
+                        text:'Task has been deleted.'
                     });    
                     getReleaseTasksShowFirst();
                 }
@@ -208,7 +208,7 @@ appDivRight.addEventListener('click', function () {
         else {
             swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                text: "",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
