@@ -3,9 +3,9 @@ export default function Header(_){
      <nav class="nav"
         <h1 class ="headerTitle">R.O.P.E.</h1>
         <div class="header-container">
-        <img src="images/twisted-rope.png" alt="TwistedRope" style="width:1300px; height:50px;"/>
-        <a href="about_us.html" target="_blank">About Us</a>
-        <a href="AboutApp.html" target="_blank">About R.O.P.E.</a>
+            <img src="images/twisted-rope.png" alt="TwistedRope" style="width:1300px; height:50px;"/>
+            <a class="button1" href="AboutApp.html" target="_blank">About R.O.P.E.</a>
+            <a class="button2" href="about_us.html" target="_blank">About Us</a>
         </div>
     
     </nav>
