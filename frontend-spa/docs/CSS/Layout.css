@@ -54,11 +54,16 @@ nav{
 nav a{
     color: white;
     text-decoration: none;
-    padding: .5em 2em;
+    /* padding: .5em 2em; */
     border-color: grey;
     border: grey;
     border-style: solid;
     border-radius: 8px;
+
+    position: absolute;
+    left:5em;
+    padding:1em 2.5em;
+
 }
 nav a:hover{
     background: yellow;
@@ -74,13 +79,11 @@ nav a:hover{
     display:inline-block;
     position:relative;
 }
-.header-container a{
+/* .header-container a{
     position: absolute;
     left:8em;
-    border-radius:0.75em;
-    color:white;
-    padding:1em 2.5em; 
-}
+    padding:1em 2.5em;
+} */
 
 .commentpostcomponent {
     padding: 5em;
