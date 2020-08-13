@@ -120,8 +120,7 @@ appDivLeft.addEventListener('click', function () {
     }
 })
 
-function showReleaseTasks() {
-
+function getReleaseTasks(){
     fetch("https://localhost:44302/api/releaseTask")
         .then(response => response.json())
         .then(releaseTasks => {
@@ -140,6 +139,10 @@ function showReleaseTasks() {
             currActiveReleaseTasks = releaseTasks;
         })
         .catch(err => console.log(err))
+}
+
+function showReleaseTasks() {
+    getReleaseTasks();
 }
 
 appDivRight.addEventListener('click', function () {
@@ -167,25 +170,7 @@ appDivRight.addEventListener('click', function () {
                         title:'Task Delete',
                         text:'Task has been PERMANENTLY deleted.'
                     });    
-                    //TODO:  The next 20 lines are repeated elsewhere in main.js
-                    fetch("https://localhost:44302/api/releaseTask")
-                    .then(response => response.json())
-                    .then(releaseTasks => {
-                        releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-                        appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                        currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                        var table = document.getElementById('table1Id');
-                        var rows = table.getElementsByTagName('tr');
-                        let firstReleaseTaskID = rows[1].cells[0].innerHTML;
-                        HandleTaskRows.highlightSpecificRow(firstReleaseTaskID);
-                        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${firstReleaseTaskID}`;
-                        const releaseTaskCallback = releaseTask => {
-                            appDivRight.innerHTML = ReleaseTask(releaseTask);
-                        };
-                        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                                currActiveReleaseTasks = releaseTasks;
-                    })
-                    .catch(err => console.log(err))
+                    getReleaseTasks();
                 }
               })
         }
@@ -215,25 +200,7 @@ appDivRight.addEventListener('click', function () {
                         title:'Task Delete',
                         text:'Task has been deleted.'
                     });    
-                    //TODO:  The next 20 lines are repeated elsewhere in main.js
-                    fetch("https://localhost:44302/api/releaseTask")
-                    .then(response => response.json())
-                    .then(releaseTasks => {
-                        releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-                        appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                        currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                        var table = document.getElementById('table1Id');
-                        var rows = table.getElementsByTagName('tr');
-                        let firstReleaseTaskID = rows[1].cells[0].innerHTML;
-                        HandleTaskRows.highlightSpecificRow(firstReleaseTaskID);
-                        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${firstReleaseTaskID}`;
-                        const releaseTaskCallback = releaseTask => {
-                            appDivRight.innerHTML = ReleaseTask(releaseTask);
-                        };
-                        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                                currActiveReleaseTasks = releaseTasks;
-                    })
-                    .catch(err => console.log(err))
+                    getReleaseTasks();
                 }
               })
         }
@@ -293,14 +260,13 @@ appDivRight.addEventListener('click', function () {
             releaseEdit
         )
 
-        //TODO:  The next 20 lines are repeated elsewhere in main.js
         swal.fire({
             icon:'success',
             title:'Task Edit',
             text:'Task has been edited.'
         });
 
-        //Reload the Left Table
+        //Reload the Left Table -- this one is different than others that default to first row selection
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
@@ -308,15 +274,13 @@ appDivRight.addEventListener('click', function () {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
+                const releaseTaskCallback = releaseTask => {
+                    appDivRight.innerHTML = ReleaseTask(releaseTask);
+                };
+                apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 currActiveReleaseTasks = releaseTasks;
             })
             .catch(err => console.log(err))
-
-        //Reload the Right Table
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
     }
 })
 
@@ -365,14 +329,13 @@ appDivRight.addEventListener('click', function () {
                     newReleaseTaskID = data})
             .catch(err => console.log(err))
 
-            //TODO:  The next 20 lines are repeated elsewhere in main.js
             swal.fire({
                 icon:'success',
                 title:'Task Add',
                 text:'Task has been added.'
             });
 
-        //Reload the Left Table
+        //Reload the Left Table - this one is different as we highlight the new row
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
@@ -384,9 +347,7 @@ appDivRight.addEventListener('click', function () {
                 const releaseTaskCallback = releaseTask => {
                     appDivRight.innerHTML = ReleaseTask(releaseTask);
                 };
-
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-
+                apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 currActiveReleaseTasks = releaseTasks;
             })
             .catch(err => console.log(err))
@@ -437,14 +398,13 @@ appDivRight.addEventListener('click', function () {
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
 
-        //TODO:  The next 20 lines are repeated elsewhere in main.js
         swal.fire({
             icon:'success',
             title:'Add Comment',
             text:'Comment had been added.'
         });
 
-        //Reload the Left Table
+        //Reload the Left Table - keeping current selected row
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
@@ -452,15 +412,13 @@ appDivRight.addEventListener('click', function () {
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
                 currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
+                const releaseTaskCallback = releaseTask => {
+                    appDivRight.innerHTML = ReleaseTask(releaseTask);
+                };
+                apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
                 currActiveReleaseTasks = releaseTasks;
             })
             .catch(err => console.log(err))
-
-        //Reload the Right Table
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
     }
 })
 
