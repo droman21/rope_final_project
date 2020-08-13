@@ -5,41 +5,22 @@ body {
 }
 table, th, td {
     border: 1px solid black;
-    /* border-collapse: collapse; */
 }
 table.mainTable{
     margin-left: auto;
     margin-right: auto;
 }
-/* .table1__body tr:hover{
-    background-color: rgb(173, 204, 209);
-    background-color: yellow;
-} */
 .table1__rowFont.disabled, .table1__rowFont:hover{color: blue; font-weight: bolder;}
 
 .table1__body tr:first-child:hover{
     background-color:#D9B08C;
 }
-/* .active table1__body{
-background-color: green;
-} */
 #appRow tr a.appRight{
     background-color: rgb(173, 204, 209);
 }
 #appRow tr a.appLeft {
     background-color: #169496;
 }
-/* #appRow tr a:active,
-#appRow tr a:focus{
-    background-color: rgb(173, 204, 209);
-} */
-
-/* #appRow tr :focus{
-    background-color: rgb(173, 204, 209);
-    background-color: red;
-} */
-
-/* #table1__rowHighlight tr:active */
 #table1__rowHighlight :focus{
     background-color: red;
 }
@@ -68,25 +49,9 @@ background-color: green;
     background-color: #169496;
     color: rgb(0, 0, 0);
 }
-/* .header{
-    font-size: 35px;
-    font-weight: bold;
-    background-color: rgb(2, 3, 56);
-    color: rgb(226, 141, 71);
-    opacity: 0.7;
-    
-} */
 tbody {
     background-color: #242424;
 }
-/* .appLeft h1{
-    border-style: dashed;
-    margin-right: 38%;
-    box-shadow: 2px 2px;
-    color: rgb(255, 115, 0);
-    font-weight: bold;
-    font-size: 35px;
-} */
 .table-2__header{
     font-size: 28px;
 }
@@ -215,9 +180,6 @@ tbody {
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-/* .edit__releaseTask h4{
-    margin-left: 10%;
-} */
 #editStyle{
     border: solid;
     border-radius: 5%;
@@ -276,5 +238,13 @@ select{
     box-shadow: lightskyblue 2px 2px;
     font-size: 30px;
     font-weight: bolder;
+}
+
+.releaseTask__detailsInfolist {
+    color: #D9B08C;
+}
+
+.details {
+    color: whitesmoke;
 }
 

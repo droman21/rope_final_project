@@ -13,15 +13,10 @@
 .priorityValue[id$="2"],.priorityColor[id$="2"]{
      background-color:rgb(219, 123, 13);
 }
+.priorityValue[id$="3"],.priorityColor[id$="3"]{
+    background-color:rgb(35, 170, 22);
+}
+
 .priorityColor{
     border-radius: 5px;
 }
-/* Grabs all id's with index of ONE */
-/* [id$="1"]{
-    background-color: orange;
-} */
-
-/* Colors entire column RED
-/* .priority__value{
-    background-color: red
-} */ 

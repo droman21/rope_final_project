@@ -65,7 +65,6 @@ function EmployeeDropDown() {
     return employeeDrop;
 }
 
-
 export default {
     StatusDropDown,
     PriorityDropDown,

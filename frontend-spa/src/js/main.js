@@ -32,9 +32,13 @@ let newReleaseTaskID = null;
 export default function pagebuild() {
     header()
     footer()
-    //navHome()
-    //showReleaseTasks();
-    StartApp();
+    // swal.fire({
+    //     title:'Welcome to R.O.P.E',
+    //     text:'Release Operations Process Enforcer.'
+    // });    
+
+    showReleaseTasks();
+    //StartApp();
 
     //TODO:  Uncomment the following line before demos and final release
     //AppTimer = setInterval(ExecuteTimer,15000);    
@@ -49,14 +53,6 @@ function footer() {
     const footer = document.querySelector('.footer');
     footer.innerHTML = Footer();
 }
-
-// function navHome() {
-//     const homeButton = document.querySelector('.nav__home');
-//     homeButton.addEventListener('click', function () {
-//         console.log('navhome');
-//         appDiv.innerHTML = showReleaseTasks();
-//     })
-// }
 
 function StartApp() {
 
