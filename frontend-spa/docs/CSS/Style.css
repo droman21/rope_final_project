@@ -240,3 +240,11 @@ select{
     font-weight: bolder;
 }
 
+.releaseTask__detailsInfolist {
+    color: #D9B08C;
+}
+
+.details {
+    color: whitesmoke;
+}
+

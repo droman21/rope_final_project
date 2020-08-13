@@ -5,24 +5,24 @@ export default function ReleaseTaskEdit(releaseTask, statusDrop, priorityDrop, e
     <h3 class="edit-releaseTask__header">Edit the release task fields below.</h3>
     <button class="edit-releaseTask__submit">Save</button>
     <button class="edit__releaseTaskButton__back" id=${releaseTask.id}>Back</button>
-        <h4>Task Name:
+        <h4 class="releaseTask__detailsInfolist">Task Name:&ensp;&ensp;
         <input class="edit-releaseTask__name" type="text"  value="${releaseTask.name}"></h4>
-        <h4>Description:</h4>
+        <h4 class="releaseTask__detailsInfolist">Description:</h4>
         <textarea class="new" rows="4" cols="50" >${releaseTask.description}</textarea>
-        <h4>Priority:
+        <h4 class="releaseTask__detailsInfolist">Priority:&ensp;&ensp;
         <select id="priorityDropID" class="edit-releaseTask__Priority" type="dropdown">
         ${priorityDrop}</h4>
         </select>
 
-        <h4 id="style-edit">Due:
+        <h4 class="releaseTask__detailsInfolist" id="style-edit">Due:&ensp;&ensp;
         <input class="edit-releaseTask__currentDueTime" type="datetime-local" value="${releaseTask.currentDueTime}"></h4>
         
-        <h4>Status:
+        <h4 class="releaseTask__detailsInfolist">Status:&ensp;&ensp;
         <select id="statusDropID" class="edit-releaseTask__Status" type="dropdown">
         ${statusDrop}</h4>
         </select>
 
-        <h4>Assigned To:
+        <h4 class="releaseTask__detailsInfolist">Assigned To:&ensp;&ensp;
         <select id="employeeDropID" class="edit-releaseTask__Employee" type="dropdown"></h4>
         ${employeeDrop}
         </select>
