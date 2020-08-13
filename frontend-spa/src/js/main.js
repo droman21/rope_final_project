@@ -173,9 +173,7 @@ appDivRight.addEventListener('click', function () {
                     .then(releaseTasks => {
                         releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                         appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                        console.log('Delete='+currentSelectedRowTaskID);
                         currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                        console.log('DeleteB='+currentSelectedRowTaskID);
                         var table = document.getElementById('table1Id');
                         var rows = table.getElementsByTagName('tr');
                         let firstReleaseTaskID = rows[1].cells[0].innerHTML;
@@ -223,9 +221,7 @@ appDivRight.addEventListener('click', function () {
                     .then(releaseTasks => {
                         releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                         appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                        console.log('Delete='+currentSelectedRowTaskID);
                         currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                        console.log('DeleteB='+currentSelectedRowTaskID);
                         var table = document.getElementById('table1Id');
                         var rows = table.getElementsByTagName('tr');
                         let firstReleaseTaskID = rows[1].cells[0].innerHTML;
@@ -310,9 +306,7 @@ appDivRight.addEventListener('click', function () {
             .then(releaseTasks => {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                console.log('Edit='+currentSelectedRowTaskID);
                 currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                console.log('EditB='+currentSelectedRowTaskID);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
                 currActiveReleaseTasks = releaseTasks;
             })
@@ -378,19 +372,14 @@ appDivRight.addEventListener('click', function () {
                 text:'Task has been added.'
             });
 
-            console.log('new task ID='+newReleaseTaskID);
-
         //Reload the Left Table
         fetch("https://localhost:44302/api/releaseTask")
             .then(response => response.json())
             .then(releaseTasks => {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                console.log('AddSave='+currentSelectedRowTaskID);
                 currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                console.log('AddSaveB='+currentSelectedRowTaskID);
                 HandleTaskRows.highlightSpecificRow(newReleaseTaskID);
-                console.log('in reload left new id='+newReleaseTaskID);
                 const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${newReleaseTaskID}`;
                 const releaseTaskCallback = releaseTask => {
                     appDivRight.innerHTML = ReleaseTask(releaseTask);
@@ -461,9 +450,7 @@ appDivRight.addEventListener('click', function () {
             .then(releaseTasks => {
                 releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                 appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                console.log('EditSave='+currentSelectedRowTaskID);
                 currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                console.log('EditSaveB='+currentSelectedRowTaskID);
                 HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
                 currActiveReleaseTasks = releaseTasks;
             })
