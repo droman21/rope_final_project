@@ -33,13 +33,13 @@ export default function pagebuild() {
     header()
     footer()
     //navHome()
-    swal.fire({
-        title:'Welcome to R.O.P.E',
-        text:'Release Operations Process Enforcer.'
-    });    
+    //swal.fire({
+    //    title:'Welcome to R.O.P.E',
+    //    text:'Release Operations Process Enforcer.'
+    //});    
 
-    showReleaseTasks();
-    //StartApp();
+    //showReleaseTasks();
+    StartApp();
 
     //TODO:  Uncomment the following line before demos and final release
     //AppTimer = setInterval(ExecuteTimer,15000);    

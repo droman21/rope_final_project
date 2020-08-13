@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>R.O.P.E Application</title>
+    <title>R.O.P.E.</title>
     <link rel="stylesheet" type="text/css" href="./css/layout.css"/>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <link rel="stylesheet" type="text/css" href="./css/prioritycolor.css" />
@@ -20,41 +20,7 @@
         </tr>
     </table>
     <div class="footer"></div>
-
     <script src="main.js"></script>
-    <!-- <script language="JavaScript">
-        function OnSelectedIndexChange(){
-        console.log('left status clicked');
-        //console.log(this);
-        const selectedItem = event.target.parentElement.querySelector('.Leftedit-releaseTask__Status').value;
-        console.log('selected item='+selectedItem);
-
-        const releaseTaskId = event.target.parentElement.querySelector('.Leftedit-releaseTask__Status').id;
-        console.log('in html relid='+releaseTaskId);
-        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-
-        // apiActions.patchRequest(
-        //             releaseTaskEndpoint,
-        //             releaseEdit
-        //         )
-        const releaseEdit = {
-                id: releaseTaskId,
-                CurrentStatusID: selectedItem
-            };
-
-        fetch(releaseTaskEndpoint, {
-        method: 'PATCH',
-        body: JSON.stringify(releaseEdit),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-        .then(response => response.json())
-        .catch(err => console.log(err))
-
-
-    }
-    </script>      -->
 </body>
 
 </html>
