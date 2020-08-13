@@ -43,7 +43,7 @@ export default function pagebuild() {
     StartApp();
 
     //TODO:  Uncomment the following line before demos and final release
-    //AppTimer = setInterval(ExecuteTimer,15000);    
+    AppTimer = setInterval(ExecuteTimer,60000);    
 }
 
 function header() {
@@ -425,7 +425,7 @@ function ExecuteTimer() {
             swal.fire({
                 icon:'info',
                 title:'Task Due',
-                text:'Warning. The folloiwing task is overdue\n\n' + rt.name
+                text:'Warning. The following task is overdue.   \n\n' + rt.name
             });
         }
     });
