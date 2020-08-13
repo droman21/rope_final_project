@@ -120,7 +120,7 @@ appDivLeft.addEventListener('click', function () {
     }
 })
 
-function getReleaseTasks(){
+function getReleaseTasksShowFirst(){
     fetch("https://localhost:44302/api/releaseTask")
         .then(response => response.json())
         .then(releaseTasks => {
@@ -141,8 +141,39 @@ function getReleaseTasks(){
         .catch(err => console.log(err))
 }
 
+function getReleaseTasksShowCurrent(){
+    fetch("https://localhost:44302/api/releaseTask")
+    .then(response => response.json())
+    .then(releaseTasks => {
+        releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+        appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+        currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
+        HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
+        currActiveReleaseTasks = releaseTasks;
+    })
+    .catch(err => console.log(err))
+}
+
+function getReleaseTasksShowNew(){
+    fetch("https://localhost:44302/api/releaseTask")
+    .then(response => response.json())
+    .then(releaseTasks => {
+        releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
+        appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
+        currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
+        HandleTaskRows.highlightSpecificRow(newReleaseTaskID);
+        const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${newReleaseTaskID}`;
+        const releaseTaskCallback = releaseTask => {
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        currActiveReleaseTasks = releaseTasks;
+    })
+    .catch(err => console.log(err))
+}
+
 function showReleaseTasks() {
-    getReleaseTasks();
+    getReleaseTasksShowFirst();
 }
 
 appDivRight.addEventListener('click', function () {
@@ -170,7 +201,7 @@ appDivRight.addEventListener('click', function () {
                         title:'Task Delete',
                         text:'Task has been PERMANENTLY deleted.'
                     });    
-                    getReleaseTasks();
+                    getReleaseTasksShowFirst();
                 }
               })
         }
@@ -200,7 +231,7 @@ appDivRight.addEventListener('click', function () {
                         title:'Task Delete',
                         text:'Task has been deleted.'
                     });    
-                    getReleaseTasks();
+                    getReleaseTasksShowFirst();
                 }
               })
         }
@@ -265,22 +296,12 @@ appDivRight.addEventListener('click', function () {
             title:'Task Edit',
             text:'Task has been edited.'
         });
+        getReleaseTasksShowCurrent();
+        const releaseTaskCallback = releaseTask => {
+            appDivRight.innerHTML = ReleaseTask(releaseTask);
+        };
+        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
 
-        //Reload the Left Table -- this one is different than others that default to first row selection
-        fetch("https://localhost:44302/api/releaseTask")
-            .then(response => response.json())
-            .then(releaseTasks => {
-                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-                appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                HandleTaskRows.highlightSpecificRow(currentSelectedRowTaskID);
-                const releaseTaskCallback = releaseTask => {
-                    appDivRight.innerHTML = ReleaseTask(releaseTask);
-                };
-                apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                currActiveReleaseTasks = releaseTasks;
-            })
-            .catch(err => console.log(err))
     }
 })
 
@@ -335,22 +356,7 @@ appDivRight.addEventListener('click', function () {
                 text:'Task has been added.'
             });
 
-        //Reload the Left Table - this one is different as we highlight the new row
-        fetch("https://localhost:44302/api/releaseTask")
-            .then(response => response.json())
-            .then(releaseTasks => {
-                releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
-                appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
-                currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                HandleTaskRows.highlightSpecificRow(newReleaseTaskID);
-                const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${newReleaseTaskID}`;
-                const releaseTaskCallback = releaseTask => {
-                    appDivRight.innerHTML = ReleaseTask(releaseTask);
-                };
-                apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-                currActiveReleaseTasks = releaseTasks;
-            })
-            .catch(err => console.log(err))
+        getReleaseTasksShowNew();    
     }
 })
 
