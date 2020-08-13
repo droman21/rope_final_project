@@ -1,5 +1,4 @@
 import ReleaseTasks from './ReleaseTasks';
-//import ActiveTasks from './ActiveTasks';
 
 const appDivLeft = document.querySelector('.appLeft');
 

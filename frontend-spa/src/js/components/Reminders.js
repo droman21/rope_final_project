@@ -9,8 +9,6 @@ let AllTasks = fetch("https://localhost:44302/api/releaseTask", {cache: "no-stor
 .catch(err => console.log(err));
 
 function TasksArray(){
-    //console.log('in Task Array');
-    //console.log(AllTasks)
     return AllTasks;
 
 }

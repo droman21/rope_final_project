@@ -7,19 +7,15 @@ export default function ReleaseTask(releaseTask) {
     switch (releaseTask.priority.value) {
         case 1:
             imageSrc = "images/chainHigh.png"
-                //"images/critical.png"
             break;
         case 2:
             imageSrc = "images/chainHigh.png"
-            //"images/high.png"
             break;
         case 3:
             imageSrc = "images/chainHigh.png"
-            //"images/medium.png"
             break;
         case 4:
             imageSrc = "images/chainLow.png"
-            //"images/low.png"
             break;
         default:
             imageSrc = "images/rope.png"

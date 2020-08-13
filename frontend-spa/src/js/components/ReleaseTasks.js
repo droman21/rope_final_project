@@ -20,9 +20,6 @@ export default function ReleaseTasks(releaseTasks) {
                         <th class="table_header__AssignedTo" style="width: 90px;">Assigned</th>
                     </tr>
         ${releaseTasks.map(releaseTask => {
-        //var dueTime = FormatTime(releaseTask.currentDueTime);
-        //console.log(releaseTask);
-        //console.log(releaseTask.status.name);
         return `
             <tr id="${releaseTask.id}" class="table1__rowFont">
                 <td>${releaseTask.id}</td>
@@ -40,10 +37,3 @@ export default function ReleaseTasks(releaseTasks) {
         </section>
     `
 }
-
-function FormatTime(time){
-    //TODO:  Change this to use Momento package
-    var date = new Date(time);
-    return (date.getHours()<10?'0':'') + date.getHours() + ":" +  (date.getMinutes()<10?'0':'') + date.getMinutes() + ":" + (date.getSeconds()<10?'0':'') + date.getSeconds();
-}
-
