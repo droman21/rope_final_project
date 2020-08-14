@@ -2,6 +2,37 @@ import ReleaseTasks from './ReleaseTasks';
 
 const appDivLeft = document.querySelector('.appLeft');
 
+function HighlightSortedColumn(colID){
+
+    document.querySelector('.table_header__ID').style.color = 'black';
+    document.querySelector('.table_header__Name').style.color = 'black';
+    document.querySelector('.table_header__Status').style.color = 'black';
+    document.querySelector('.table_header__Priority').style.color = 'black';
+    document.querySelector('.table_header__DueTime').style.color = 'black';
+    document.querySelector('.table_header__AssignedTo').style.color = 'black';
+    switch (colID)
+    {
+        case 1:
+            document.querySelector('.table_header__ID').style.color = 'blue';
+            break;
+        case 2:
+            document.querySelector('.table_header__Name').style.color = 'blue';
+            break;
+        case 3:
+            document.querySelector('.table_header__Status').style.color = 'blue';
+            break;
+        case 4:
+            document.querySelector('.table_header__Priority').style.color = 'blue';
+            break;
+        case 5:
+            document.querySelector('.table_header__DueTime').style.color = 'blue';
+            break;
+        case 6:
+            document.querySelector('.table_header__AssignedTo').style.color = 'blue';
+            break;
+    }
+}
+
 function ID(sortorder, activeTasks) {
     
     if (sortorder == "ascending"){
@@ -14,6 +45,7 @@ function ID(sortorder, activeTasks) {
     }
 
     appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+    HighlightSortedColumn(1);
     return sortorder;
 }
 
@@ -29,6 +61,7 @@ function Name(sortorder, activeTasks) {
     }
 
     appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+    HighlightSortedColumn(2);
     return sortorder;
 }
 
@@ -44,6 +77,7 @@ function Status(sortorder, activeTasks){
     }
 
     appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+    HighlightSortedColumn(3);
     return sortorder;
 }
 
@@ -59,6 +93,7 @@ function Priority(sortorder, activeTasks){
     }
 
     appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+    HighlightSortedColumn(4);
     return sortorder;
 }
 
@@ -74,6 +109,7 @@ function Employee (sortorder, activeTasks){
     }
 
     appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+    HighlightSortedColumn(6);
     return sortorder;
 }
 
@@ -89,6 +125,7 @@ function DueTime (sortorder, activeTasks){
     }
 
     appDivLeft.innerHTML = ReleaseTasks(activeTasks);
+    HighlightSortedColumn(5);
     return sortorder;
 }
 

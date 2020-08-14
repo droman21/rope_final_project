@@ -412,13 +412,16 @@ function ExecuteTimer() {
     currActiveReleaseTasks.forEach(rt => {
         let curr = (new Date(rt.currentDueTime));
         let now = (new Date());
-        if (curr < now) {
-            //alert('Warning.  The following task is overdue\n\n' + rt.name);
-            swal.fire({
-                icon:'info',
-                title:'Task Due',
-                text:'Warning. The following task is overdue.   \n\n' + rt.name
-            });
+        console.log(curr);
+        console.log(now);
+        console.log(rt.currentStatusID);
+        if ((curr < now) && (rt.currentStatusID < 3)) {
+                //alert('Warning.  The following task is overdue\n\n' + rt.name);
+                swal.fire({
+                    icon:'info',
+                    title:'Warning. This Task is Due',
+                    text: rt.name
+                });
         }
     });
 }
