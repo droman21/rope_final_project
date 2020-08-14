@@ -432,8 +432,8 @@ appDivLeft.addEventListener('click', function () {
                 .then(releaseTasks => {
                     //releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                     appDiv.innerHTML = ReleaseTasks(releaseTasks);
-                    //appDivLeft.innerHTML = null;
-                    //appDivRight.innerHTML = null;
+                    appDivLeft.innerHTML = null;
+                    appDivRight.innerHTML = null;
                     //currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
                     //HandleTaskRows.highlightSpecificRow(1);
                 })
@@ -452,4 +452,5 @@ appDivLeft.addEventListener('click', function () {
 
 appDiv.addEventListener('click', function() {
     appDiv.innerHTML = null;
+    showReleaseTasks();
 })
