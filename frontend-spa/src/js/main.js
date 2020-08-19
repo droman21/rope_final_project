@@ -32,7 +32,9 @@ let newReleaseTaskID = null;
 export default function pagebuild() {
     header()
     footer()
-    StartApp();
+    //StartApp();
+    showReleaseTasks();
+
 
     //TODO: Uncomment the following line to active Popup Reminders
     //AppTimer = setInterval(ExecuteTimer, 180000);    
