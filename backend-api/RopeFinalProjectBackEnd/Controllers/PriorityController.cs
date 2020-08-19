@@ -12,7 +12,6 @@ namespace RopeFinalProjectBackEnd.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-
     public class PriorityController : ControllerBase
     {
         private IRepository<Priority> priorityRepo;

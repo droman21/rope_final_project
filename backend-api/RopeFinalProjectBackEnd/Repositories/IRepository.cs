@@ -15,5 +15,6 @@ namespace RopeFinalProjectBackEnd.Repositories
         void Create(T obj);
         void Delete(T entity);
         void Update(T entity);
+        void UpdateFields(T entity);
     }
 }

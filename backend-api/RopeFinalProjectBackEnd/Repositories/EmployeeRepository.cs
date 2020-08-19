@@ -12,7 +12,6 @@ namespace RopeFinalProjectBackEnd.Repositories
     {
         public EmployeeRepository(ReleaseTasksAPIContext context) : base(context)
         {
-
         }
     }
 }
