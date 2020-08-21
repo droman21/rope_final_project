@@ -193,10 +193,10 @@ appDivRight.addEventListener('click', function () {
                     )
                     swal.fire({
                         icon:'success',
-                        title:'Task Delete',
-                        text:'Task has been deleted.'
+                        title:'Task has been deleted.'
+                    }).then((result) => {
+                        getReleaseTasksShowFirst();
                     });
-                    getReleaseTasksShowFirst();
                 }
               })
         }
@@ -223,10 +223,10 @@ appDivRight.addEventListener('click', function () {
 
                     swal.fire({
                         icon:'success',
-                        title:'Task Delete',
-                        text:'Task has been deleted.'
+                        title:'Task has been deleted.'
+                    }).then((result) => {
+                        getReleaseTasksShowFirst();
                     });
-                    getReleaseTasksShowFirst();
                 }
               })
         }
