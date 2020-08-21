@@ -403,15 +403,14 @@ appDivRight.addEventListener('click', function () {
 
         swal.fire({
             icon:'success',
-            title:'Add Comment',
-            text:'Comment had been added.'
+            title:'Comment had been added.'
+        }).then((result) => {
+            getReleaseTasksShowCurrent();
+            const releaseTaskCallback = releaseTask => {
+                appDivRight.innerHTML = ReleaseTask(releaseTask);
+            };
+            apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         });
-
-        getReleaseTasksShowCurrent();
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
     }
 })
 
