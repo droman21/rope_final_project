@@ -339,20 +339,23 @@ appDivRight.addEventListener('click', function () {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(requestBody),
-        })
-            .then(response => response.json())
-            .then(
-                data => {
-                    newReleaseTaskID = data})
-            .catch(err => console.log(err))
+        }).then(response => response.json())
+        .then(
+            data => {
+                newReleaseTaskID = data})
+        .catch(err => console.log(err))
 
-            swal.fire({
-                icon:'success',
-                title:'Task Add',
-                text:'Task has been added.'
-            });
-
+        swal.fire({
+            icon:'success',
+            title:'Release Task Added',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            //getReleaseTasksShowNew();
+        });
         getReleaseTasksShowNew();
+
     }
 })
 
