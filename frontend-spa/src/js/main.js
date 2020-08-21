@@ -469,12 +469,12 @@ function ExecuteTimer2(){
                 dueTasks = dueTasks.filter(task => (new Date(task.currentDueTime)) < (new Date()));
                 console.log(dueTasks);
                 dueTasks.forEach(task => {
-                    swal.insertQueueStep(task.name + '\nwas due\n' + moment(task.currentDueTime).format('MMM DD, h:mm a'));
-                    // swal.insertQueueStep([{
-                    //     showCancelButton: true,
-                    //     title: task.name,
-                    //     text: task.currentDueTime
-                    // }])
+                    //swal.insertQueueStep(task.name + '\nwas due\n' + moment(task.currentDueTime).format('MMM DD, h:mm a'));
+                     swal.insertQueueStep({
+                         showCancelButton: true,
+                         title: task.name,
+                         text: `Was Due: ` + moment(task.currentDueTime).format('MMM DD, h:mm a')
+                     })
                 })
             })
 
