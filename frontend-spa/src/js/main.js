@@ -39,7 +39,7 @@ export default function pagebuild() {
 
 
     //TODO: Uncomment the following line to active Popup Reminders
-    //AppTimer = setInterval(ExecuteTimer, 180000);    
+    //AppTimer = setInterval(ExecuteTimer, 180000);
 }
 
 function header() {
@@ -135,9 +135,9 @@ function getReleaseTasksShowFirst(){
         .catch(err => console.log(err))
 }
 
-async function getReleaseTasksShowCurrent(){
+function getReleaseTasksShowCurrent(){
     console.log('9-in get rel Show current');
-    await fetch("https://localhost:44302/api/releaseTask")
+    fetch("https://localhost:44302/api/releaseTask")
     .then(response => response.json())
     .then(releaseTasks => {
         console.log('10-in then');
@@ -197,7 +197,7 @@ appDivRight.addEventListener('click', function () {
                         icon:'success',
                         title:'Task Delete',
                         text:'Task has been deleted.'
-                    });    
+                    });
                     getReleaseTasksShowFirst();
                 }
               })
@@ -217,7 +217,7 @@ appDivRight.addEventListener('click', function () {
                         id: releaseTaskId,
                         IsVisisble: false
                     };
-        
+
                     apiActions.patchRequest(
                         releaseTaskEndpoint,
                         releaseEdit
@@ -227,7 +227,7 @@ appDivRight.addEventListener('click', function () {
                         icon:'success',
                         title:'Task Delete',
                         text:'Task has been deleted.'
-                    });    
+                    });
                     getReleaseTasksShowFirst();
                 }
               })
@@ -272,6 +272,36 @@ async function saveData(releaseEdit){
     console.log('6-end save data');
 }
 
+function test1 () {
+    console.log('in test1');
+}
+function showAlert(){
+    console.log('in show alert');
+    swal.fire({
+        icon:'success',
+        title:'Task Edit',
+        text:'Task has been edited.'
+    },test1());
+    console.log('after show alert');
+
+}
+
+function saveData2(location, requestBody){
+    console.log('2-inSaveData2');
+    fetch(location, {
+        method: 'PUT',
+        body: JSON.stringify(requestBody),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(response => response.json())
+        .then(showAlert())
+        .catch(err => console.log(err))
+    console.log('3-end of save data2');
+
+}
+
 
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit-releaseTask__submit')) {
@@ -306,25 +336,44 @@ appDivRight.addEventListener('click', function () {
         // )
 
         console.log('1-before');
-        saveData(releaseEdit);
+        //saveData(releaseEdit);
+        saveData2(releaseTaskEndpoint,releaseEdit);
+        swal.fire({
+            title: 'swal title',
+            text: 'swal text',
+            icon: 'success',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            getReleaseTasksShowCurrent();
+            console.log('4-after gettasksShowCurrent');
+            const releaseTaskCallback = releaseTask => {
+                appDivRight.innerHTML = ReleaseTask(releaseTask);
+            };
+            console.log('5-before get request');
+            apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+            console.log('6-after get request');
+    
+        })
         //work();
         //pause(2000).then(updateDisplay(releaseTaskId))
         console.log('7-after');
-        swal.fire({
-            icon:'success',
-            title:'Task Edit',
-            text:'Task has been edited.'
-        });
+        // swal.fire({
+        //     icon:'success',
+        //     title:'Task Edit',
+        //     text:'Task has been edited.'
+        // });
 
-        console.log('8-after swal');
-        getReleaseTasksShowCurrent();
-        console.log('12-after gettasksShowCurrent');
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        console.log('13-before get request');
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-        console.log('16-after get request');
+        // console.log('8-after swal');
+        // getReleaseTasksShowCurrent();
+        // console.log('12-after gettasksShowCurrent');
+        // const releaseTaskCallback = releaseTask => {
+        //     appDivRight.innerHTML = ReleaseTask(releaseTask);
+        // };
+        // console.log('13-before get request');
+        // apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        // console.log('16-after get request');
     }
 })
 
@@ -394,7 +443,7 @@ appDivRight.addEventListener('click', function () {
                 text:'Task has been added.'
             });
 
-        getReleaseTasksShowNew();    
+        getReleaseTasksShowNew();
     }
 })
 
