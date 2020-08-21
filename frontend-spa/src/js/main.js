@@ -14,6 +14,8 @@ import HomePageRight from './components/HomePageRight';
 import Sort from './components/Sort';
 import swal from 'sweetalert2';
 
+const pause = ms => new Promise (resolve => setTimeout(resolve, ms));
+
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
@@ -133,10 +135,12 @@ function getReleaseTasksShowFirst(){
         .catch(err => console.log(err))
 }
 
-function getReleaseTasksShowCurrent(){
-    fetch("https://localhost:44302/api/releaseTask")
+async function getReleaseTasksShowCurrent(){
+    console.log('9-in get rel Show current');
+    await fetch("https://localhost:44302/api/releaseTask")
     .then(response => response.json())
     .then(releaseTasks => {
+        console.log('10-in then');
         releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
         appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
         currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
@@ -144,6 +148,7 @@ function getReleaseTasksShowCurrent(){
         currActiveReleaseTasks = releaseTasks;
     })
     .catch(err => console.log(err))
+    console.log('11-end of get show current');
 }
 
 function getReleaseTasksShowNew(){
@@ -250,6 +255,24 @@ appDivRight.addEventListener('click', function () {
     }
 })
 
+async function work(){
+    console.log('pause');
+    await pause(2000);
+    console.log('end pause');
+}
+
+async function saveData(releaseEdit){
+    console.log('2-in saveData');
+    console.log('3-id='+releaseEdit.id);
+    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseEdit.id}`;
+    await apiActions.putRequest2(
+        releaseTaskEndpoint,
+        releaseEdit
+    )
+    console.log('6-end save data');
+}
+
+
 appDivRight.addEventListener('click', function () {
     if (event.target.classList.contains('edit-releaseTask__submit')) {
         let name = event.target.parentElement.querySelector('.edit-releaseTask__name').value;
@@ -277,23 +300,48 @@ appDivRight.addEventListener('click', function () {
         };
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
-        apiActions.putRequest2(
-            releaseTaskEndpoint,
-            releaseEdit
-        )
+        // apiActions.putRequest2(
+        //     releaseTaskEndpoint,
+        //     releaseEdit
+        // )
 
+        console.log('1-before');
+        saveData(releaseEdit);
+        //work();
+        //pause(2000).then(updateDisplay(releaseTaskId))
+        console.log('7-after');
         swal.fire({
             icon:'success',
             title:'Task Edit',
             text:'Task has been edited.'
         });
+
+        console.log('8-after swal');
         getReleaseTasksShowCurrent();
+        console.log('12-after gettasksShowCurrent');
         const releaseTaskCallback = releaseTask => {
             appDivRight.innerHTML = ReleaseTask(releaseTask);
         };
+        console.log('13-before get request');
         apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        console.log('16-after get request');
     }
 })
+
+async function updateDisplay(releaseTaskId){
+    console.log('in updateDisplay');
+    const releaseTaskEndpoint = await `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+
+    getReleaseTasksShowCurrent();
+    const releaseTaskCallback = releaseTask => {
+        console.log('before load specific task');
+        appDivRight.innerHTML = ReleaseTask(releaseTask);
+        console.log('after load specific task');
+    };
+    apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+    console.log('end of updateDisplay');
+
+}
 
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement != null && event.target.parentElement.classList.contains('add__releaseTaskButton')) {

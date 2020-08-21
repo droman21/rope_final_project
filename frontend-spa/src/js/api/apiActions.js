@@ -1,8 +1,10 @@
 function getRequest(location, callback) {
+    console.log('14-in get request');
     fetch(location)
         .then(response => response.json())
         .then(data => callback(data))
         .catch(err => console.log(err))
+    console.log('15-end get request');
 }
 function getRequest2(location, callback) {
     fetch(location)
@@ -70,8 +72,9 @@ function putRequest(location, requestBody, callback) {
         .catch(err => console.log(err))
 }
 
-function putRequest2(location, requestBody){
-    fetch(location, {
+async function putRequest2(location, requestBody){
+    console.log('4-in put request');
+    await fetch(location, {
         method: 'PUT',
         body: JSON.stringify(requestBody),
         headers: {
@@ -80,7 +83,7 @@ function putRequest2(location, requestBody){
     })
         .then(response => response.json())
         .catch(err => console.log(err))
-
+    console.log('5-end put request');
 }
 
 function patchRequest(location, requestBody){
