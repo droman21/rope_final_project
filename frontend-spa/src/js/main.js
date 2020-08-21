@@ -13,6 +13,7 @@ import HomePageLeft from './components/HomePageLeft';
 import HomePageRight from './components/HomePageRight';
 import Sort from './components/Sort';
 import swal from 'sweetalert2';
+import moment from 'moment';
 
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
@@ -420,9 +421,9 @@ function ExecuteTimer() {
     currActiveReleaseTasks.forEach(rt => {
         let curr = (new Date(rt.currentDueTime));
         let now = (new Date());
-        console.log(curr);
-        console.log(now);
-        console.log(rt.currentStatusID);
+        //console.log(curr);
+        //console.log(now);
+        //console.log(rt.currentStatusID);
         if ((curr < now) && (rt.currentStatusID < 3)) {
                 //alert('Warning.  The following task is overdue\n\n' + rt.name);
                 swal.fire({
@@ -432,6 +433,92 @@ function ExecuteTimer() {
                 });
         }
     });
+}
+
+function getOverDueReleaseTasks(){
+    fetch("https://localhost:44302/api/releaseTask")
+        .then(response => response.json())
+        .then(dueTasks => {
+            dueTasks = dueTasks.filter(task => task.isVisisble == true);
+            dueTasks = dueTasks.filter(task => task.currentStatusID < 3);
+            dueTasks = dueTasks.filter(task => (new Date(task.currentDueTime)) < (new Date()));
+            console.log(dueTasks);
+        })
+        .catch(err => console.log(err))
+}
+
+function ExecuteTimer2(){
+    currActiveReleaseTasks.sort((a, b) => (a.currentDueTime > b.currentDueTime) ? 1 : -1);
+    const totalTasks = currActiveReleaseTasks.length;
+    console.log('Total Tasks='+totalTasks);
+    //getOverDueReleaseTasks();
+
+    swal.queue([{
+        title: 'There are Overdue Tasks',
+        text: 'Would you like to view them now?',
+        cancelButtonText: "No",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        //showLoaderOnConfirm: true,
+        preConfirm: () => {
+            return fetch("https://localhost:44302/api/releaseTask")
+            .then(response => response.json())
+            .then(dueTasks => {
+                dueTasks = dueTasks.filter(task => task.isVisisble == true);
+                dueTasks = dueTasks.filter(task => task.currentStatusID < 3);
+                dueTasks = dueTasks.filter(task => (new Date(task.currentDueTime)) < (new Date()));
+                console.log(dueTasks);
+                dueTasks.forEach(task => {
+                    swal.insertQueueStep(task.name + '\nwas due\n' + moment(task.currentDueTime).format('MMM DD, h:mm a'));
+                    // swal.insertQueueStep([{
+                    //     showCancelButton: true,
+                    //     title: task.name,
+                    //     text: task.currentDueTime
+                    // }])
+                })
+            })
+
+            .catch(() => {
+                swal.insertQueueStep({
+                title: 'Error',
+                text: 'Error Details'
+                })
+            })
+        }
+    }])
+
+}
+
+function ExecuteTimer3(){
+
+    const steps = `['1', '2', '3']`;
+    console.log(steps);
+
+    swal.mixin({
+        //input: 'text',
+        confirmButtonText: 'Next &rarr;',
+        showCancelButton: true,
+        progressSteps: ['1', '2', '3']
+        //progressSteps: steps
+      }).queue([
+        {
+          title: 'Question 1',
+          text: 'Chaining swal2 modals is easy'
+        },
+        'Question 2',
+        'Question 3'
+      ]).then((result) => {
+        if (result.value) {
+          swal({
+            title: 'All done!',
+            html:
+              'Your answers: <pre><code>' +
+                JSON.stringify(result.value) +
+              '</code></pre>',
+            confirmButtonText: 'Lovely!'
+          })
+        }
+      })
 }
 
 appDivLeft.addEventListener('click', function () {
@@ -456,7 +543,9 @@ appDivLeft.addEventListener('click', function () {
                 });
             }
         else {
-            ExecuteTimer();
+            //ExecuteTimer();
+            ExecuteTimer2();
+            //ExecuteTimer3();
         }
     }
 })
