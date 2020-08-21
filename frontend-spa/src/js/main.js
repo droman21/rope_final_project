@@ -37,7 +37,7 @@ export default function pagebuild() {
 
 
     //TODO: Uncomment the following line to active Popup Reminders
-    //AppTimer = setInterval(ExecuteTimer, 180000);    
+    //AppTimer = setInterval(ExecuteTimer, 180000);
 }
 
 function header() {
@@ -134,9 +134,11 @@ function getReleaseTasksShowFirst(){
 }
 
 function getReleaseTasksShowCurrent(){
+    console.log('9-in get rel Show current');
     fetch("https://localhost:44302/api/releaseTask")
     .then(response => response.json())
     .then(releaseTasks => {
+        console.log('10-in then');
         releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
         appDivLeft.innerHTML = ReleaseTasks(releaseTasks);
         currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
@@ -144,6 +146,7 @@ function getReleaseTasksShowCurrent(){
         currActiveReleaseTasks = releaseTasks;
     })
     .catch(err => console.log(err))
+    console.log('11-end of get show current');
 }
 
 function getReleaseTasksShowNew(){
@@ -190,10 +193,10 @@ appDivRight.addEventListener('click', function () {
                     )
                     swal.fire({
                         icon:'success',
-                        title:'Task Delete',
-                        text:'Task has been deleted.'
-                    });    
-                    getReleaseTasksShowFirst();
+                        title:'Task has been deleted.'
+                    }).then((result) => {
+                        getReleaseTasksShowFirst();
+                    });
                 }
               })
         }
@@ -212,7 +215,7 @@ appDivRight.addEventListener('click', function () {
                         id: releaseTaskId,
                         IsVisisble: false
                     };
-        
+
                     apiActions.patchRequest(
                         releaseTaskEndpoint,
                         releaseEdit
@@ -220,10 +223,10 @@ appDivRight.addEventListener('click', function () {
 
                     swal.fire({
                         icon:'success',
-                        title:'Task Delete',
-                        text:'Task has been deleted.'
-                    });    
-                    getReleaseTasksShowFirst();
+                        title:'Task has been deleted.'
+                    }).then((result) => {
+                        getReleaseTasksShowFirst();
+                    });
                 }
               })
         }
@@ -277,21 +280,24 @@ appDivRight.addEventListener('click', function () {
         };
 
         const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+
         apiActions.putRequest2(
             releaseTaskEndpoint,
             releaseEdit
         )
-
         swal.fire({
-            icon:'success',
-            title:'Task Edit',
-            text:'Task has been edited.'
-        });
-        getReleaseTasksShowCurrent();
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+            title: 'Release Task Saved',
+            icon: 'success',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            getReleaseTasksShowCurrent();
+            const releaseTaskCallback = releaseTask => {
+                appDivRight.innerHTML = ReleaseTask(releaseTask);
+            };
+            apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+        })
     }
 })
 
@@ -333,20 +339,21 @@ appDivRight.addEventListener('click', function () {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(requestBody),
-        })
-            .then(response => response.json())
-            .then(
-                data => {
-                    newReleaseTaskID = data})
-            .catch(err => console.log(err))
+        }).then(response => response.json())
+        .then(
+            data => {
+                newReleaseTaskID = data})
+        .catch(err => console.log(err))
 
-            swal.fire({
-                icon:'success',
-                title:'Task Add',
-                text:'Task has been added.'
-            });
-
-        getReleaseTasksShowNew();    
+        swal.fire({
+            icon:'success',
+            title:'Release Task Added',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            getReleaseTasksShowNew();
+        });
     }
 })
 
@@ -396,15 +403,14 @@ appDivRight.addEventListener('click', function () {
 
         swal.fire({
             icon:'success',
-            title:'Add Comment',
-            text:'Comment had been added.'
+            title:'Comment had been added.'
+        }).then((result) => {
+            getReleaseTasksShowCurrent();
+            const releaseTaskCallback = releaseTask => {
+                appDivRight.innerHTML = ReleaseTask(releaseTask);
+            };
+            apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
         });
-
-        getReleaseTasksShowCurrent();
-        const releaseTaskCallback = releaseTask => {
-            appDivRight.innerHTML = ReleaseTask(releaseTask);
-        };
-        apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
     }
 })
 
