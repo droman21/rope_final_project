@@ -352,10 +352,8 @@ appDivRight.addEventListener('click', function () {
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'OK'
         }).then((result) => {
-            //getReleaseTasksShowNew();
+            getReleaseTasksShowNew();
         });
-        getReleaseTasksShowNew();
-
     }
 })
 
