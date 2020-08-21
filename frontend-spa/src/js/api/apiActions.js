@@ -72,9 +72,9 @@ function putRequest(location, requestBody, callback) {
         .catch(err => console.log(err))
 }
 
-async function putRequest2(location, requestBody){
+function putRequest2(location, requestBody){
     console.log('4-in put request');
-    await fetch(location, {
+    fetch(location, {
         method: 'PUT',
         body: JSON.stringify(requestBody),
         headers: {

@@ -14,8 +14,6 @@ import HomePageRight from './components/HomePageRight';
 import Sort from './components/Sort';
 import swal from 'sweetalert2';
 
-const pause = ms => new Promise (resolve => setTimeout(resolve, ms));
-
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
 const appDivRight = document.querySelector('.appRight');
@@ -255,39 +253,24 @@ appDivRight.addEventListener('click', function () {
     }
 })
 
-async function work(){
-    console.log('pause');
-    await pause(2000);
-    console.log('end pause');
-}
+// function test1 () {
+//     console.log('in test1');
+// }
+// function showAlert(){
+//     //console.log('in show alert');
+//     swal.fire({
+//         icon:'success',
+//         title:'Task Edit',
+//         text:'Task has been edited.'
+//     }
+//     //,test1()
+//     );
+//     //console.log('after show alert');
 
-async function saveData(releaseEdit){
-    console.log('2-in saveData');
-    console.log('3-id='+releaseEdit.id);
-    const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseEdit.id}`;
-    await apiActions.putRequest2(
-        releaseTaskEndpoint,
-        releaseEdit
-    )
-    console.log('6-end save data');
-}
-
-function test1 () {
-    console.log('in test1');
-}
-function showAlert(){
-    console.log('in show alert');
-    swal.fire({
-        icon:'success',
-        title:'Task Edit',
-        text:'Task has been edited.'
-    },test1());
-    console.log('after show alert');
-
-}
+// }
 
 function saveData2(location, requestBody){
-    console.log('2-inSaveData2');
+    //console.log('2-inSaveData2');
     fetch(location, {
         method: 'PUT',
         body: JSON.stringify(requestBody),
@@ -296,9 +279,9 @@ function saveData2(location, requestBody){
         }
     })
         .then(response => response.json())
-        .then(showAlert())
+        //.then(showAlert())
         .catch(err => console.log(err))
-    console.log('3-end of save data2');
+    //console.log('3-end of save data2');
 
 }
 
@@ -339,21 +322,21 @@ appDivRight.addEventListener('click', function () {
         //saveData(releaseEdit);
         saveData2(releaseTaskEndpoint,releaseEdit);
         swal.fire({
-            title: 'swal title',
-            text: 'swal text',
+            title: 'Release Task Saved',
+//            text: 'swal text',
             icon: 'success',
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'OK'
         }).then((result) => {
             getReleaseTasksShowCurrent();
-            console.log('4-after gettasksShowCurrent');
+            //console.log('4-after gettasksShowCurrent');
             const releaseTaskCallback = releaseTask => {
                 appDivRight.innerHTML = ReleaseTask(releaseTask);
             };
-            console.log('5-before get request');
+            //console.log('5-before get request');
             apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-            console.log('6-after get request');
+            //console.log('6-after get request');
     
         })
         //work();
@@ -377,20 +360,20 @@ appDivRight.addEventListener('click', function () {
     }
 })
 
-async function updateDisplay(releaseTaskId){
-    console.log('in updateDisplay');
-    const releaseTaskEndpoint = await `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
+// async function updateDisplay(releaseTaskId){
+//     console.log('in updateDisplay');
+//     const releaseTaskEndpoint = await `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
 
-    getReleaseTasksShowCurrent();
-    const releaseTaskCallback = releaseTask => {
-        console.log('before load specific task');
-        appDivRight.innerHTML = ReleaseTask(releaseTask);
-        console.log('after load specific task');
-    };
-    apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
-    console.log('end of updateDisplay');
+//     getReleaseTasksShowCurrent();
+//     const releaseTaskCallback = releaseTask => {
+//         console.log('before load specific task');
+//         appDivRight.innerHTML = ReleaseTask(releaseTask);
+//         console.log('after load specific task');
+//     };
+//     apiActions.getRequest(releaseTaskEndpoint, releaseTaskCallback);
+//     console.log('end of updateDisplay');
 
-}
+// }
 
 appDivLeft.addEventListener('click', function () {
     if (event.target.parentElement != null && event.target.parentElement.classList.contains('add__releaseTaskButton')) {
