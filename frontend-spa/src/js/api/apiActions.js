@@ -4,6 +4,7 @@ function getRequest(location, callback) {
         .then(data => callback(data))
         .catch(err => console.log(err))
 }
+
 function getRequest2(location, callback) {
     fetch(location)
         .then(response => response.json())
@@ -80,7 +81,6 @@ function putRequest2(location, requestBody){
     })
         .then(response => response.json())
         .catch(err => console.log(err))
-
 }
 
 function patchRequest(location, requestBody){
