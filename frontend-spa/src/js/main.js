@@ -13,6 +13,7 @@ import HomePageLeft from './components/HomePageLeft';
 import HomePageRight from './components/HomePageRight';
 import Sort from './components/Sort';
 import swal from 'sweetalert2';
+import moment from 'moment';
 
 const appDiv = document.querySelector('.app');
 const appDivLeft = document.querySelector('.appLeft');
@@ -32,9 +33,8 @@ let newReleaseTaskID = null;
 export default function pagebuild() {
     header()
     footer()
-    //StartApp();
-    showReleaseTasks();
-
+    StartApp();
+    //showReleaseTasks();
 
     //TODO: Uncomment the following line to active Popup Reminders
     //AppTimer = setInterval(ExecuteTimer, 180000);
@@ -123,6 +123,7 @@ function getReleaseTasksShowFirst(){
             var rows = table.getElementsByTagName('tr');
             let firstReleaseTaskID = rows[1].cells[0].innerHTML;
             HandleTaskRows.highlightSpecificRow(firstReleaseTaskID);
+            document.querySelector('.table_header__ID').style.color = 'blue';
             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${firstReleaseTaskID}`;
             const releaseTaskCallback = releaseTask => {
                 appDivRight.innerHTML = ReleaseTask(releaseTask);
@@ -169,6 +170,8 @@ function getReleaseTasksShowNew(){
 
 function showReleaseTasks() {
     getReleaseTasksShowFirst();
+    console.log('in show rel tasks');
+    
 }
 
 appDivRight.addEventListener('click', function () {
@@ -414,24 +417,54 @@ appDivRight.addEventListener('click', function () {
     }
 })
 
-function ExecuteTimer() {
+function getOverDueReleaseTasks(){
+    fetch("https://localhost:44302/api/releaseTask")
+        .then(response => response.json())
+        .then(dueTasks => {
+            dueTasks = dueTasks.filter(task => task.isVisisble == true);
+            dueTasks = dueTasks.filter(task => task.currentStatusID < 3);
+            dueTasks = dueTasks.filter(task => (new Date(task.currentDueTime)) < (new Date()));
+            console.log(dueTasks);
+        })
+        .catch(err => console.log(err))
+}
 
+function ExecuteTimer(){
     currActiveReleaseTasks.sort((a, b) => (a.currentDueTime > b.currentDueTime) ? 1 : -1);
-    currActiveReleaseTasks.forEach(rt => {
-        let curr = (new Date(rt.currentDueTime));
-        let now = (new Date());
-        console.log(curr);
-        console.log(now);
-        console.log(rt.currentStatusID);
-        if ((curr < now) && (rt.currentStatusID < 3)) {
-                //alert('Warning.  The following task is overdue\n\n' + rt.name);
-                swal.fire({
-                    icon:'info',
-                    title:'Warning. This Task is Due',
-                    text: rt.name
-                });
+    const totalTasks = currActiveReleaseTasks.length;
+    console.log('Total Tasks='+totalTasks);
+
+    swal.queue([{
+        title: 'There are Overdue Tasks',
+        text: 'Would you like to view them now?',
+        cancelButtonText: "No",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        preConfirm: () => {
+            return fetch("https://localhost:44302/api/releaseTask")
+            .then(response => response.json())
+            .then(dueTasks => {
+                dueTasks = dueTasks.filter(task => task.isVisisble == true);
+                dueTasks = dueTasks.filter(task => task.currentStatusID < 3);
+                dueTasks = dueTasks.filter(task => (new Date(task.currentDueTime)) < (new Date()));
+                console.log(dueTasks);
+                dueTasks.forEach(task => {
+                     swal.insertQueueStep({
+                         showCancelButton: true,
+                         title: task.name,
+                         text: `Was Due: ` + moment(task.currentDueTime).format('MMM DD, h:mm a')
+                     })
+                })
+            })
+
+            .catch(() => {
+                swal.insertQueueStep({
+                title: 'Error',
+                text: 'Error Details'
+                })
+            })
         }
-    });
+    }])
 }
 
 appDivLeft.addEventListener('click', function () {
@@ -441,12 +474,9 @@ appDivLeft.addEventListener('click', function () {
             fetch("https://localhost:44302/api/releaseTask")
                 .then(response => response.json())
                 .then(releaseTasks => {
-                    //releaseTasks = releaseTasks.filter(task => task.isVisisble == true);
                     appDiv.innerHTML = ReleaseTasks(releaseTasks);
                     appDivLeft.innerHTML = null;
                     appDivRight.innerHTML = null;
-                    //currentSelectedRowTaskID = HandleTaskRows.highlightSelectedRow();
-                    //HandleTaskRows.highlightSpecificRow(1);
                 })
                 .catch(err => console.log(err))
                 swal.fire({
