@@ -3,27 +3,36 @@ body {
     background-color: #242424;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23000000' fill-opacity='0.36' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
+
 table, th, td {
     border: 1px solid black;
 }
+
 table.mainTable{
     margin-left: auto;
     margin-right: auto;
 }
-.table1__rowFont.disabled, .table1__rowFont:hover{color: blue; font-weight: bolder;}
+
+.table1__rowFont.disabled, .table1__rowFont:hover{
+    color: blue; font-weight: bolder;
+}
 
 .table1__body tr:first-child:hover{
     background-color:#D9B08C;
 }
+
 #appRow tr a.appRight{
     background-color: rgb(173, 204, 209);
 }
+
 #appRow tr a.appLeft {
     background-color: #169496;
 }
+
 #table1__rowHighlight :focus{
     background-color: red;
 }
+
 .table-2 {
     height: 267px;
     max-height: 267px;
@@ -31,51 +40,62 @@ table.mainTable{
     background-color: #169496;
     width: auto;
 }
+
 .table-2_header{
     background-color: rgb(219, 219, 106);
     white-space: nowrap;
 }
+
 .floatLeft { width: 65%; float: left; }
 .floatRight {width: 50%; float: right; }
 
 .container {
     overflow: scroll;
 }
+
 .table_header{
     background-color: #D9B08C;
     color: black;
 }
+
 .table1__rowFont{
     background-color: #169496;
     color: rgb(0, 0, 0);
 }
+
 tbody {
     background-color: #242424;
 }
+
 .table-2__header{
     font-size: 28px;
 }
+
 .appRight {
     background-color: #242424;
     color: rgb(218, 216, 216);
 }
+
 .add__releaseTaskButton{
     color: black;
     background-color: rgb(19, 184, 14);
     border-radius: 6px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .add__releaseTaskButton:hover{
     background-color: yellow;
     color: black;
     cursor: pointer;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .edit__releaseTaskButton:hover{
     background-color: yellow;
     cursor: pointer;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .edit__releaseTaskButton{
     color: black;
     font-weight: bold;
@@ -83,113 +103,134 @@ tbody {
     border-radius: 15px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .edit-releaseTask__submit{
     background-color: rgb(245, 91, 2);
     font-weight: bold;
     border-radius: 10px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .edit-releaseTask__submit:hover{
     background-color: yellow;
     cursor: pointer;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .floatLeft-container{
     cursor: pointer;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .edit__releaseTaskButton__back{
     background-color: rgb(185, 184, 184);
     border-radius: 8px;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .edit__releaseTaskButton__back:hover{
     background-color: yellow;
     cursor: pointer;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 #alert{
     background-color: rgb(185, 184, 184);
     border-radius: 8px;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 #alert:hover{
     background-color: yellow;
     cursor: pointer;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .create-releaseTask__submit{
     background-color: rgb(245, 91, 2);
     font-weight: bold;
     border-radius: 10px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .create-releaseTask__submit:hover{
     background-color: yellow;
     cursor: pointer;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .add-comment__submit{
     background-color: rgb(245, 91, 2);
     font-weight: bold;
     border-radius: 10px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .add-comment__submit:hover{
     background-color: yellow;
     cursor: pointer;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .add__commentButton{
     background-color: rgb(185, 184, 184);
     border-radius: 8px;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .add__commentButton:hover{
     background-color: yellow;
     cursor: pointer;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .delete_releaseTaskButton{
     background-color: rgb(185, 184, 184);
     border-radius: 8px;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .delete_releaseTaskButton:hover{
     background-color: yellow;
     cursor: pointer;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .reminders__button{
     background-color: rgb(185, 184, 184);
     border-radius: 8px;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .reminders__button:hover{
     background-color: yellow;
     cursor: pointer;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 #editStyle{
     border: solid;
     border-radius: 5%;
 }
+
 select{
     width:20%;
 }
+
 .aboutuscopy{
     color: rgb(218, 216, 216);
 }
+
 .startapp{
     font-size: 25px;
     background-color: rgb(19, 184, 14);
@@ -200,6 +241,7 @@ select{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding: 0.5em;
 }
+
 .startapp:hover{
     background-color: yellow;
     color: black;
@@ -207,6 +249,7 @@ select{
     box-shadow: 4px 4px grey;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 #columnHeader {
     background-color: #D9B08C;
     color: black;

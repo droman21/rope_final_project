@@ -2,9 +2,11 @@
     display: flex;
     justify-items: center;
 }
+
 .edit-button{
     margin-left: 75%;
 }
+
 .appRight{
     padding: 10px;
     overflow: scroll;
@@ -14,6 +16,7 @@
     width: 580px;
     height: 490px;
 }
+
 .appLeft{
     padding: 10px;
     overflow: scroll;
@@ -23,18 +26,21 @@
     width: 670px;
     height: 490px;
 }
+
 .create-releaseTask__post{
     position: auto;
     right: auto;
     width: auto;
     height: 440px;
 }
+
 .commentpostcomponent{
     position: auto;
     right: auto;
     width: auto;
     height: 440px;
 }
+
 nav{
     position: top;
     top: 0;
@@ -51,6 +57,7 @@ nav{
     vertical-align: middle;
     text-align: center;
 }
+
 nav a{
     color: white;
     text-decoration: none;
@@ -89,32 +96,33 @@ nav a:hover{
     text-align: center;
     
 }
-/* .header-container a{
-    position: absolute;
-    left:8em;
-    padding:1em 2.5em;
-} */
 
 .commentpostcomponent {
     padding: 5em;
 }
+
 .post,.releaseTask__detailsInfo{
     padding: 2em;
 }
+
 ::-webkit-scrollbar{
     background-color: rgb(59, 57, 57);
     width: 10px;
 }
+
 ::-webkit-scrollbar-corner{
     background-color: rgb(59, 57, 57);
 }
+
 ::-webkit-scrollbar-thumb {
     background: #116466; 
     border-radius: 7px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: #FFCB9A;
 }
+
 .footer{
     display: flex;
     flex-flow: row;;
@@ -126,3 +134,4 @@ nav a:hover{
     justify-content: center;
     position: bottom;
 }
+

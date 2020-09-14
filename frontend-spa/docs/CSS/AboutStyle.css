@@ -16,6 +16,7 @@ body {
     border-style: outset;
     border-radius: 150%;
 }
+
 h2 {
     text-align: left;
     /* font-family: Arial, Helvetica, sans-serif; */
@@ -24,6 +25,7 @@ h2 {
     line-height: 1.6;
     font-weight: bolder;
 }
+
 h3, h4 {
     text-align: center;
     /* font-family: Arial, Helvetica, sans-serif; */
@@ -32,27 +34,27 @@ h3, h4 {
     line-height: 1.6;
     font-weight: bolder;
 }
+
 .list {
     font-size: 20px;
     font-family: monospace;
     font-weight: bolder;
     list-style-position: outside
 }
+
 .ul1 {
     
     /* font-family: Arial, Helvetica, sans-serif; */
     list-style-position: inside;
     direction: rtl;
 }
+
 p {
     text-align: center;
     /* font-family: Arial, Helvetica, sans-serif; */
     letter-spacing: 3px;
 }
-.list-2 {
-    /* font-family: Arial, Helvetica, sans-serif; */
 
-}
 .list-3 {
     /* font-family: Arial, Helvetica, sans-serif; */
     list-style-position: inside;
@@ -72,10 +74,6 @@ p {
 }
 
 .TeamMember {
-    /* text-align: left;
-    margin-left: 400px;
-    margin-right: 300px; */
     font-size: x-large;
     padding-top: 20px;
-
 }
