@@ -11,8 +11,6 @@ namespace RopeFinalProjectBackEnd.Models
         public string Details { get; set; }
         public bool IsVisible { get; set; }
 
-        public ReleaseTask ReleaseTask { get; set; }
         public int ReleaseTaskID { get; set; }
-
     }
 }

@@ -1,7 +1,128 @@
 .table1-rowFont{
-display: flex;
+    display: flex;
     justify-items: center;
 }
 .edit-button{
     margin-left: 75%;
+}
+.appRight{
+    padding: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
+    position: auto;
+    right: auto;
+    width: 580px;
+    height: 490px;
+}
+.appLeft{
+    padding: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
+    position: auto;
+    left: auto;
+    width: 670px;
+    height: 490px;
+}
+.create-releaseTask__post{
+    position: auto;
+    right: auto;
+    width: auto;
+    height: 440px;
+}
+.commentpostcomponent{
+    position: auto;
+    right: auto;
+    width: auto;
+    height: 440px;
+}
+nav{
+    position: top;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    background: rgb(71, 71, 71); opacity:0.6;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    border-color: grey;
+    border: grey;
+    vertical-align: middle;
+    text-align: center;
+}
+nav a{
+    color: white;
+    text-decoration: none;
+    /* padding: .5em 2em; */
+    border-color: grey;
+    border: grey;
+    border-style: solid;
+    border-radius: 8px;
+}
+
+.button1{
+    position: absolute;
+    left: 15em;
+    padding:.8em 2.5em;
+}
+
+.button2{
+    position: absolute;
+    left: 5em;
+    padding:.8em 2.5em;
+}
+
+nav a:hover{
+    background: yellow;
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+    border-color: grey;
+    border: grey;
+    border-style: solid;
+}
+
+.header-container{
+    display:inline-block;
+    position:relative;
+    text-align: center;
+    
+}
+/* .header-container a{
+    position: absolute;
+    left:8em;
+    padding:1em 2.5em;
+} */
+
+.commentpostcomponent {
+    padding: 5em;
+}
+.post,.releaseTask__detailsInfo{
+    padding: 2em;
+}
+::-webkit-scrollbar{
+    background-color: rgb(59, 57, 57);
+    width: 10px;
+}
+::-webkit-scrollbar-corner{
+    background-color: rgb(59, 57, 57);
+}
+::-webkit-scrollbar-thumb {
+    background: #116466; 
+    border-radius: 7px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #FFCB9A;
+}
+.footer{
+    display: flex;
+    flex-flow: row;;
+    background: rgb(71, 71, 71); opacity:0.6;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    border-color: grey;
+    justify-content: center;
+    position: bottom;
 }

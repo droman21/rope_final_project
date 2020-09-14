@@ -52,5 +52,11 @@ namespace RopeFinalProjectBackEnd.Repositories
             db.Set<T>().Update(entity);
             db.SaveChanges();
         }
+
+        public virtual void UpdateFields(T entity)
+        {
+            db.Set<T>().Update(entity);
+            db.SaveChanges();
+        }
     }
 }

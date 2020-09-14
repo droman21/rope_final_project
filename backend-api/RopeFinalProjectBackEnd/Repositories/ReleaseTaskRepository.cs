@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using RopeFinalProjectBackEnd.Models;
 using RopeFinalProjectBackEnd.Contexts;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace RopeFinalProjectBackEnd.Repositories
 {
@@ -18,6 +19,16 @@ namespace RopeFinalProjectBackEnd.Repositories
             db = context;
         }
 
+        public override void UpdateFields(ReleaseTask entity)
+        {
+            using (var db = new ReleaseTasksAPIContext())
+            {
+                db.ReleaseTasks.Attach(entity);
+                db.Entry(entity).Property(e => e.IsVisisble).IsModified = true;
+                db.SaveChanges();
+            }
+        }
+
         public override ReleaseTask GetById(int id)
         {
             var someReleaseTask = db.ReleaseTasks.Where(o => o.ID == id)
@@ -28,5 +39,16 @@ namespace RopeFinalProjectBackEnd.Repositories
             return someReleaseTask;
         }
 
+        public override IEnumerable<ReleaseTask> GetAll()
+        {
+            var releaseTasks = db.ReleaseTasks
+            .Include(rt => rt.Status).Where(s => s.CurrentStatusID == s.Status.ID)
+            .Include(rt => rt.Priority).Where(p => p.CurrentPriorityID == p.Priority.ID)
+            .Include(rt => rt.Employee).Where(e => e.AssignedEmployeeID == e.Employee.ID)
+            .Include(rt => rt.Comments)
+            .ToList();
+
+            return releaseTasks;
+        }
     }
 }

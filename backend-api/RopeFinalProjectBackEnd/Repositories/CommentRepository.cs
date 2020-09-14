@@ -11,7 +11,6 @@ namespace RopeFinalProjectBackEnd.Repositories
     {
         public CommentRepository(ReleaseTasksAPIContext context) : base(context)
         {
-
         }
     }
 }

@@ -36,10 +36,10 @@ namespace RopeFinalProjectBackEnd.Controllers
 
         // POST: api/ReleaseTask
         [HttpPost]
-        public IEnumerable<ReleaseTask> Post([FromBody] ReleaseTask value)
+        public int Post([FromBody] ReleaseTask value)
         {
             releaseTasksRepo.Create(value);
-            return releaseTasksRepo.GetAll();
+            return value.ID;
         }
 
         // PUT: api/ReleaseTask/5
@@ -47,6 +47,14 @@ namespace RopeFinalProjectBackEnd.Controllers
         public IEnumerable<ReleaseTask> Put(int id, [FromBody] ReleaseTask value)
         {
             releaseTasksRepo.Update(value);
+            return releaseTasksRepo.GetAll();
+        }
+
+        //PATCH: api/ReleaseTask/5
+        [HttpPatch("{id}")]
+        public IEnumerable<ReleaseTask> Patch(int id, [FromBody] ReleaseTask value)
+        {
+            releaseTasksRepo.UpdateFields(value);
             return releaseTasksRepo.GetAll();
         }
 

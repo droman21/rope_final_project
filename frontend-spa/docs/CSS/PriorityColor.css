@@ -1,0 +1,22 @@
+.priorityValue[id$="1"],.priorityColor[id$="1"]{
+    color: white;
+    animation: blinkingBackground 3s infinite;
+}
+@keyframes blinkingBackground{
+    0%		{ background-color:red;}
+    25%		{ background-color: darkred;}
+    50%		{ background-color: red;}
+    75%		{ background-color: darkred;}
+    100%	{ background-color: red;}
+}
+
+.priorityValue[id$="2"],.priorityColor[id$="2"]{
+     background-color:rgb(219, 123, 13);
+}
+.priorityValue[id$="3"],.priorityColor[id$="3"]{
+    background-color:rgb(11, 102, 4);
+}
+
+.priorityColor{
+    border-radius: 5px;
+}
