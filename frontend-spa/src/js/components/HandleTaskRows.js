@@ -1,7 +1,7 @@
 import apiActions from '../api/apiActions';
 import ReleaseTask from './ReleaseTask';
-import HandleDropDowns from './HandleDropDowns';
-import SelectDropDownID from './SelectDropDownID';
+// import HandleDropDowns from './HandleDropDowns';
+// import SelectDropDownID from './SelectDropDownID';
 
 
 const appDiv = document.querySelector('.app');
@@ -30,15 +30,6 @@ function OnSelectedIndexClick(){
             releaseEdit
     )
 
-    // fetch(releaseTaskEndpoint, {
-    // method: 'PATCH',
-    // body: JSON.stringify(releaseEdit),
-    // headers: {
-    //     "Content-Type": "application/json"
-    // }
-    // })
-    //     .then(response => response.json())
-    //     .catch(err => console.log(err))
 
 }
 
@@ -66,12 +57,6 @@ function highlightSelectedRow() {
             
             const releaseTaskId = rowSelected.cells[0].innerHTML;
             
-            //const statusDrop = HandleDropDowns.StatusDropDown();
-            // console.log('before set HTML');
-            // rowSelected.cells[2].innerHTML = `<select id="${releaseTaskId}" style="width:100px;" class="Leftedit-releaseTask__Status" onChange="${OnSelectedIndexChange()}" type="dropdown">${statusDrop}</select>`;
-            // console.log('before set drop value');
-            // SelectDropDownID.selectElement2('.Leftedit-releaseTask__Status',2);
-            // //SelectDropDownID.selectElement('LeftstatusDropID',releaseTaskEdit.currentStatusID);
             
             const releaseTaskEndpoint = `https://localhost:44302/api/releaseTask/${releaseTaskId}`;
             const releaseTaskCallback = releaseTask => {
